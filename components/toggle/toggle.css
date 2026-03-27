@@ -1,0 +1,194 @@
+/* ============================================
+   TOGGLE COMPONENT
+   Depends on: tokens/tokens.css
+   No hardcoded values — all tokens referenced
+   from tokens.css
+
+   States are driven entirely by CSS using
+   the adjacent sibling selector (+) from the
+   hidden checkbox — no JavaScript required.
+   ============================================ */
+
+
+/* ============================================
+   WRAPPER LABEL
+   Makes the entire toggle clickable.
+   ============================================ */
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-x-small);
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggle:has(.toggle__input:disabled) {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+
+/* ============================================
+   HIDDEN CHECKBOX INPUT
+   Stays in DOM so + sibling selectors work.
+   ============================================ */
+
+.toggle__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+
+/* ============================================
+   TRACK
+   Off state: grey bg + primary border.
+   ============================================ */
+
+.toggle__track {
+  position: relative;
+  width: var(--number-48);
+  height: var(--number-28);
+  border-radius: var(--radius-round);
+  background: var(--bg-secondary);
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-primary);
+  flex-shrink: 0;
+  transition: background 200ms ease, box-shadow 200ms ease;
+}
+
+
+/* ============================================
+   THUMB
+   ============================================ */
+
+.toggle__thumb {
+  position: absolute;
+  top: var(--number-4);
+  left: var(--number-4);
+  width: var(--number-20);
+  height: var(--number-20);
+  border-radius: var(--radius-round);
+  background: var(--colour-white);
+  box-shadow: 0 var(--border-s) var(--number-4) var(--colour-black-10-20);
+  transition: transform 200ms ease;
+  pointer-events: none;
+}
+
+
+/* ============================================
+   CHECKED (ON) STATE
+   Track turns aqua, border removed.
+   Thumb slides right by --number-20.
+   ============================================ */
+
+.toggle__input:checked + .toggle__track {
+  background: var(--bg-brand-aqua);
+  box-shadow: none;
+}
+
+.toggle__input:checked + .toggle__track .toggle__thumb {
+  transform: translateX(var(--number-20));
+}
+
+
+/* ============================================
+   FOCUS VISIBLE
+   ============================================ */
+
+.toggle__input:focus-visible + .toggle__track {
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-primary),
+              0 0 0 var(--border-focused) var(--border-color-focused);
+}
+
+.toggle__input:checked:focus-visible + .toggle__track {
+  box-shadow: 0 0 0 var(--border-focused) var(--border-color-focused);
+}
+
+
+/* ============================================
+   DISABLED STATE
+   Track bg: --bg-disabled, thumb: grey-50.
+   ============================================ */
+
+.toggle__input:disabled + .toggle__track {
+  background: var(--bg-disabled);
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-primary);
+}
+
+.toggle__input:disabled + .toggle__track .toggle__thumb {
+  background: var(--colour-grey-50);
+  box-shadow: none;
+}
+
+.toggle__input:disabled:checked + .toggle__track {
+  background: var(--bg-disabled);
+}
+
+
+/* ============================================
+   LABEL TEXT
+   ============================================ */
+
+.toggle__label {
+  font-size: var(--font-size-body-2);
+  font-weight: var(--font-weight-regular);
+  color: var(--text-primary);
+  line-height: var(--line-height-body-2);
+}
+
+.toggle:has(.toggle__input:disabled) .toggle__label { color: var(--text-disabled); }
+
+
+/* ============================================
+   SMALL VARIANT — 40×24 track, 16px thumb
+   ============================================ */
+
+.toggle--small .toggle__track {
+  width: var(--number-40);
+  height: var(--number-24);
+}
+
+.toggle--small .toggle__thumb {
+  width: var(--number-16);
+  height: var(--number-16);
+}
+
+.toggle--small .toggle__input:checked + .toggle__track .toggle__thumb {
+  transform: translateX(var(--number-16));
+}
+
+
+/* ============================================
+   DARK MODE
+   ============================================ */
+
+/* Off state track in dark */
+.dark .toggle__track {
+  background: var(--colour-navy-40);
+  box-shadow: inset 0 0 0 var(--border-s) var(--colour-navy-30);
+}
+
+/* On state — same aqua, no override needed */
+
+/* Focus ring in dark */
+.dark .toggle__input:focus-visible + .toggle__track {
+  box-shadow: inset 0 0 0 var(--border-s) var(--colour-navy-30),
+              0 0 0 var(--border-focused) var(--border-color-focused);
+}
+
+.dark .toggle__input:checked:focus-visible + .toggle__track {
+  box-shadow: 0 0 0 var(--border-focused) var(--border-color-focused);
+}
+
+/* Disabled in dark */
+.dark .toggle__input:disabled + .toggle__track {
+  background: var(--colour-navy-50);
+  box-shadow: none;
+}
+
+.dark .toggle__input:disabled:checked + .toggle__track {
+  background: var(--colour-navy-50);
+}

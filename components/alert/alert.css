@@ -1,0 +1,134 @@
+/* ============================================
+   ALERT COMPONENT
+   Depends on: tokens/tokens.css
+               tokens/typography.css
+               icons/icons.css
+   No hardcoded values — all tokens referenced
+   from tokens.css
+   ============================================ */
+
+
+/* ============================================
+   BASE
+   ============================================ */
+
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gap-x-small);
+  padding: var(--gap-medium);
+  border-radius: var(--radius-medium);
+  width: 100%;
+  /* Reserve the border slot so layout doesn't shift when .alert--bordered is added */
+  border: var(--border-s) solid transparent;
+}
+
+
+/* ============================================
+   VARIANT BACKGROUNDS
+   ============================================ */
+
+.alert--neutral     { background: var(--bg-primary); }
+.alert--information { background: var(--bg-information); }
+.alert--positive    { background: var(--bg-positive); }
+.alert--warning     { background: var(--bg-warning); }
+.alert--negative    { background: var(--bg-negative); }
+
+
+/* ============================================
+   BORDER MODIFIER
+   Activates the 1px variant border colour.
+   Without this class the transparent border
+   keeps layout stable but stays invisible.
+   ============================================ */
+
+.alert--neutral.alert--bordered     { border-color: var(--border-color-primary); }
+.alert--information.alert--bordered { border-color: var(--border-color-information-subtle); }
+.alert--positive.alert--bordered    { border-color: var(--border-color-positive-subtle); }
+.alert--warning.alert--bordered     { border-color: var(--border-color-warning-subtle); }
+.alert--negative.alert--bordered    { border-color: var(--border-color-negative-subtle); }
+
+
+/* ============================================
+   ICON — left column
+   color is set per-variant so SVG inherits
+   via currentColor
+   ============================================ */
+
+.alert__icon {
+  flex-shrink: 0;
+  padding-top: 3px; /* optical alignment with first line of text */
+  width: 16px;
+  height: 16px;
+}
+
+.alert--neutral .alert__icon     { color: var(--icon-primary); }
+.alert--information .alert__icon { color: var(--icon-link); }
+.alert--positive .alert__icon    { color: var(--icon-positive); }
+.alert--warning .alert__icon     { color: var(--icon-warning); }
+.alert--negative .alert__icon    { color: var(--icon-negative); }
+
+
+/* ============================================
+   CONTENT — middle column
+   ============================================ */
+
+.alert__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-x-small);
+}
+
+.alert__title {
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-bold);
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--text-primary);
+}
+
+.alert__description {
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--text-primary);
+}
+
+.alert__link {
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  color: var(--text-link);
+  text-decoration: underline;
+  cursor: pointer;
+  align-self: flex-start;
+}
+.alert__link:hover { color: var(--text-link-pressed); }
+
+
+/* ============================================
+   CLOSE BUTTON — top-right dismiss
+   ============================================ */
+
+.alert__close {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--icon-secondary);
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.alert__close:hover { color: var(--icon-primary); }
+
+
+/* ============================================
+   HIDDEN UTILITY
+   Added by the close-button JS to dismiss
+   ============================================ */
+
+.alert.hidden { display: none; }

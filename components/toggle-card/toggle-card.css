@@ -1,0 +1,173 @@
+/* ============================================
+   TOGGLE CARD COMPONENT
+   Depends on: tokens/tokens.css
+               tokens/typography.css
+               components/toggle/toggle.css
+
+   No hardcoded values — all tokens referenced
+   from tokens.css.
+
+   The toggle card wraps a .toggle component
+   with a title, body text, and a semantic
+   background colour. toggle-card.css does not
+   redefine any toggle styles.
+
+   Colour variants — modifier on .toggle-card:
+     .toggle-card--default    neutral white/grey
+     .toggle-card--info       purple tint (--bg-information)
+     .toggle-card--positive   green tint  (--bg-positive)
+     .toggle-card--warning    yellow tint (--bg-warning)
+     .toggle-card--negative   red/pink tint (--bg-negative)
+     .toggle-card--disabled   greyed out, text muted
+
+   Semantic background tokens auto-switch in dark
+   mode via .dark in tokens.css. Only the default
+   and disabled variants need explicit dark overrides.
+   ============================================ */
+
+
+/* ============================================
+   BASE CARD
+   flex: content on left, toggle on right.
+   ============================================ */
+
+.toggle-card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--gap-medium);
+  padding: var(--gap-medium);
+  border-radius: var(--radius-medium);
+  background: var(--bg-primary);
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-primary);
+}
+
+
+/* ============================================
+   CONTENT — left side
+   ============================================ */
+
+.toggle-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-x-small);
+  flex: 1;
+}
+
+
+/* ============================================
+   TITLE
+   ============================================ */
+
+.toggle-card__title { color: var(--text-primary); }
+
+
+/* ============================================
+   BODY TEXT
+   ============================================ */
+
+.toggle-card__body { color: var(--text-primary); }
+
+
+/* ============================================
+   TOGGLE HOLDER — right side
+   Keeps the toggle flush-top with the title.
+   ============================================ */
+
+.toggle-card__toggle { flex-shrink: 0; }
+
+
+/* ============================================
+   COLOUR VARIANTS
+   Only the background and border change.
+   Text colours remain --text-primary throughout.
+   ============================================ */
+
+/* Default — white bg, primary border */
+.toggle-card--default {
+  background: var(--bg-primary);
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-primary);
+}
+
+/* Info — light purple tint */
+.toggle-card--info {
+  background: var(--bg-information);
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-information-subtle);
+}
+
+/* Positive — light green tint */
+.toggle-card--positive {
+  background: var(--bg-positive);
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-positive-subtle);
+}
+
+/* Warning — light yellow tint */
+.toggle-card--warning {
+  background: var(--bg-warning);
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-warning-subtle);
+}
+
+/* Negative — light red/pink tint */
+.toggle-card--negative {
+  background: var(--bg-negative);
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-negative-subtle);
+}
+
+/* Disabled — greyed out, no border, text muted */
+.toggle-card--disabled {
+  background: var(--bg-disabled);
+  box-shadow: none;
+}
+
+.toggle-card--disabled .toggle-card__title,
+.toggle-card--disabled .toggle-card__body {
+  color: var(--text-disabled);
+}
+
+
+/* ============================================
+   DARK MODE
+
+   --bg-information, --bg-positive, --bg-warning,
+   --bg-negative, and their border counterparts
+   all auto-switch via .dark in tokens.css — no
+   override needed for those variants.
+
+   Default and disabled need explicit overrides
+   since their light-mode values (--bg-primary,
+   --bg-disabled) resolve to different dark tones.
+   ============================================ */
+
+/* Default dark — deep navy */
+.dark .toggle-card--default {
+  background: var(--bg-brand-navy);
+  box-shadow: inset 0 0 0 var(--border-s) var(--colour-navy-50);
+}
+
+.dark .toggle-card--default .toggle-card__title,
+.dark .toggle-card--default .toggle-card__body {
+  color: var(--colour-white);
+}
+
+/* Semantic variants — text needs to stay white in dark */
+.dark .toggle-card--info .toggle-card__title,
+.dark .toggle-card--info .toggle-card__body,
+.dark .toggle-card--positive .toggle-card__title,
+.dark .toggle-card--positive .toggle-card__body,
+.dark .toggle-card--warning .toggle-card__title,
+.dark .toggle-card--warning .toggle-card__body,
+.dark .toggle-card--negative .toggle-card__title,
+.dark .toggle-card--negative .toggle-card__body {
+  color: var(--colour-white);
+}
+
+/* Disabled dark — deep navy-60 so it differs from default */
+.dark .toggle-card--disabled {
+  background: var(--colour-navy-60);
+  box-shadow: none;
+}
+
+.dark .toggle-card--disabled .toggle-card__title,
+.dark .toggle-card--disabled .toggle-card__body {
+  color: var(--colour-navy-30);
+}

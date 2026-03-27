@@ -1,0 +1,243 @@
+<!-- ============================================
+     DISPLAY ROW COMPONENT SNIPPETS
+     Copy what you need into a screen or index.html
+     Requires: tokens/tokens.css
+               icons/icons.css + icons/icons.svg
+               components/display-row/display-row.css
+               components/button/button.css    (button variants)
+               components/radio/radio.css      (radio variants)
+
+     Wrap stacked rows in a container that provides
+     horizontal padding, e.g.:
+       <div style="padding: 0 var(--gap-medium);">...</div>
+     ============================================ -->
+
+
+<!-- ============================================
+     BASE — label + chevron only
+     ============================================ -->
+
+<div class="display-row">
+  <div class="display-row__content">
+    <div class="display-row__text">
+      <span class="display-row__label">Delivery</span>
+    </div>
+    <span class="display-row__chevron">
+      <svg width="7" height="12"><use href="../../icons/icons.svg#icon-chevron-small-right"></use></svg>
+    </span>
+  </div>
+</div>
+
+
+<!-- ============================================
+     WITH SUPPORT TEXT
+     ============================================ -->
+
+<div class="display-row">
+  <div class="display-row__content">
+    <div class="display-row__text">
+      <span class="display-row__label">Delivery</span>
+      <span class="display-row__support">Paragraph</span>
+    </div>
+    <span class="display-row__chevron">
+      <svg width="7" height="12"><use href="../../icons/icons.svg#icon-chevron-small-right"></use></svg>
+    </span>
+  </div>
+</div>
+
+
+<!-- ============================================
+     2 COLUMNS — label left + value right
+     ============================================ -->
+
+<div class="display-row">
+  <div class="display-row__content">
+    <div class="display-row__text">
+      <span class="display-row__label">Delivery</span>
+    </div>
+    <div class="display-row__value">
+      <span class="display-row__label">Next day</span>
+    </div>
+    <span class="display-row__chevron">
+      <svg width="7" height="12"><use href="../../icons/icons.svg#icon-chevron-small-right"></use></svg>
+    </span>
+  </div>
+</div>
+
+
+<!-- ============================================
+     2 COLUMNS — with support text both sides
+     ============================================ -->
+
+<div class="display-row">
+  <div class="display-row__content">
+    <div class="display-row__text">
+      <span class="display-row__label">Delivery</span>
+      <span class="display-row__support">Estimated arrival</span>
+    </div>
+    <div class="display-row__value">
+      <span class="display-row__label">Next day</span>
+      <span class="display-row__support">By 9pm</span>
+    </div>
+    <span class="display-row__chevron">
+      <svg width="7" height="12"><use href="../../icons/icons.svg#icon-chevron-small-right"></use></svg>
+    </span>
+  </div>
+</div>
+
+
+<!-- ============================================
+     WITH LEFT ICON
+     ============================================ -->
+
+<div class="display-row">
+  <div class="display-row__content">
+    <span class="display-row__icon">
+      <svg class="icon icon--sm icon--primary"><use href="../../icons/icons.svg#icon-information"></use></svg>
+    </span>
+    <div class="display-row__text">
+      <span class="display-row__label">Delivery</span>
+    </div>
+    <span class="display-row__chevron">
+      <svg width="7" height="12"><use href="../../icons/icons.svg#icon-chevron-small-right"></use></svg>
+    </span>
+  </div>
+</div>
+
+
+<!-- ============================================
+     WITH LEFT ICON + SUPPORT TEXT
+     ============================================ -->
+
+<div class="display-row">
+  <div class="display-row__content">
+    <span class="display-row__icon">
+      <svg class="icon icon--sm icon--primary"><use href="../../icons/icons.svg#icon-information"></use></svg>
+    </span>
+    <div class="display-row__text">
+      <span class="display-row__label">Delivery</span>
+      <span class="display-row__support">Paragraph</span>
+    </div>
+    <span class="display-row__chevron">
+      <svg width="7" height="12"><use href="../../icons/icons.svg#icon-chevron-small-right"></use></svg>
+    </span>
+  </div>
+</div>
+
+
+<!-- ============================================
+     WITH LEFT ICON + 2 COLUMNS
+     ============================================ -->
+
+<div class="display-row">
+  <div class="display-row__content">
+    <span class="display-row__icon">
+      <svg class="icon icon--sm icon--primary"><use href="../../icons/icons.svg#icon-information"></use></svg>
+    </span>
+    <div class="display-row__text">
+      <span class="display-row__label">Delivery</span>
+    </div>
+    <div class="display-row__value">
+      <span class="display-row__label">Next day</span>
+    </div>
+    <span class="display-row__chevron">
+      <svg width="7" height="12"><use href="../../icons/icons.svg#icon-chevron-small-right"></use></svg>
+    </span>
+  </div>
+</div>
+
+
+<!-- ============================================
+     WITH RADIO
+     Uses .radio component — no label text on
+     the radio itself, the row label serves that role.
+     ============================================ -->
+
+<label class="display-row">
+  <div class="display-row__content">
+    <div class="display-row__text">
+      <span class="display-row__label">Delivery</span>
+    </div>
+    <div class="display-row__action">
+      <span class="radio">
+        <input class="radio__input" type="radio" name="option" />
+        <span class="radio__control"></span>
+      </span>
+    </div>
+    <span class="display-row__chevron">
+      <svg width="7" height="12"><use href="../../icons/icons.svg#icon-chevron-small-right"></use></svg>
+    </span>
+  </div>
+</label>
+
+
+<!-- ============================================
+     WITH RADIO + SUPPORT TEXT
+     ============================================ -->
+
+<label class="display-row">
+  <div class="display-row__content">
+    <div class="display-row__text">
+      <span class="display-row__label">Delivery</span>
+      <span class="display-row__support">Paragraph</span>
+    </div>
+    <div class="display-row__action">
+      <span class="radio">
+        <input class="radio__input" type="radio" name="option" />
+        <span class="radio__control"></span>
+      </span>
+    </div>
+    <span class="display-row__chevron">
+      <svg width="7" height="12"><use href="../../icons/icons.svg#icon-chevron-small-right"></use></svg>
+    </span>
+  </div>
+</label>
+
+
+<!-- ============================================
+     WITH BUTTON
+     Uses .btn component in the action slot.
+     ============================================ -->
+
+<div class="display-row">
+  <div class="display-row__content">
+    <div class="display-row__text">
+      <span class="display-row__label">Delivery</span>
+    </div>
+    <div class="display-row__action">
+      <button class="btn btn--pill btn--primary">
+        Button
+        <svg class="icon icon--sm"><use href="../../icons/icons.svg#icon-arrow-right"></use></svg>
+      </button>
+    </div>
+    <span class="display-row__chevron">
+      <svg width="7" height="12"><use href="../../icons/icons.svg#icon-chevron-small-right"></use></svg>
+    </span>
+  </div>
+</div>
+
+
+<!-- ============================================
+     STACKED LIST — rows share borders cleanly
+     ============================================ -->
+
+<div style="padding: 0 var(--gap-medium);">
+  <div class="display-row">
+    <div class="display-row__content">
+      <div class="display-row__text"><span class="display-row__label">Personal details</span></div>
+      <span class="display-row__chevron"><svg width="7" height="12"><use href="../../icons/icons.svg#icon-chevron-small-right"></use></svg></span>
+    </div>
+  </div>
+  <div class="display-row">
+    <div class="display-row__content">
+      <div class="display-row__text"><span class="display-row__label">Vehicle</span></div>
+      <span class="display-row__chevron"><svg width="7" height="12"><use href="../../icons/icons.svg#icon-chevron-small-right"></use></svg></span>
+    </div>
+  </div>
+  <div class="display-row">
+    <div class="display-row__content">
+      <div class="display-row__text"><span class="display-row__label">Cover type</span></div>
+      <span class="display-row__chevron"><svg width="7" height="12"><use href="../../icons/icons.svg#icon-chevron-small-right"></use></svg></span>
+    </div>
+  </div>
+</div>

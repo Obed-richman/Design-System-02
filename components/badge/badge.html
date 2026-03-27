@@ -1,0 +1,75 @@
+<!-- ============================================
+     BADGE COMPONENT SNIPPETS
+     Copy what you need into a screen or index.html
+
+     Requires: tokens/tokens.css
+               components/badge/badge.css
+
+     Use badges to label content by priority,
+     status, or category.
+     ============================================ -->
+
+
+<!-- ============================================
+     VARIANTS — all 5 status levels
+     ============================================ -->
+
+<!-- Low — green; low priority or passing status -->
+<span class="badge badge--low">
+  <span class="badge__label">Low</span>
+</span>
+
+<!-- Medium — yellow; moderate priority or caution -->
+<span class="badge badge--medium">
+  <span class="badge__label">Medium</span>
+</span>
+
+<!-- High — red; high priority, errors, or critical status -->
+<span class="badge badge--high">
+  <span class="badge__label">High</span>
+</span>
+
+<!-- Inactive — white/light grey; present but not active -->
+<span class="badge badge--inactive">
+  <span class="badge__label">Inactive</span>
+</span>
+
+<!-- Disabled — grey; unavailable or turned off -->
+<span class="badge badge--disabled">
+  <span class="badge__label">Disabled</span>
+</span>
+
+
+<!-- ============================================
+     IN CONTEXT — badge alongside text content
+     ============================================ -->
+
+<!-- Inline with a list item label -->
+<div style="display: flex; align-items: center; gap: 8px;">
+  <span>Comprehensive cover</span>
+  <span class="badge badge--low"><span class="badge__label">Low risk</span></span>
+</div>
+
+<!-- Inline with a heading -->
+<div style="display: flex; align-items: center; gap: 8px;">
+  <h3>Your renewal quote</h3>
+  <span class="badge badge--medium"><span class="badge__label">Expiring soon</span></span>
+</div>
+
+<!-- Inline with a policy row -->
+<div style="display: flex; align-items: center; gap: 8px;">
+  <span>Claims history</span>
+  <span class="badge badge--high"><span class="badge__label">Action required</span></span>
+</div>
+
+<!-- Inactive policy -->
+<div style="display: flex; align-items: center; gap: 8px;">
+  <span>Third party cover</span>
+  <span class="badge badge--inactive"><span class="badge__label">Inactive</span></span>
+</div>
+
+<!-- Unavailable option -->
+<div style="display: flex; align-items: center; gap: 8px;">
+  <span>Premium add-on</span>
+  <span class="badge badge--disabled"><span class="badge__label">Unavailable</span></span>
+</div>

@@ -1,0 +1,206 @@
+<!-- ============================================
+     DISPLAY TILE COMPONENT SNIPPETS
+     Copy what you need into a screen or index.html
+     Requires: tokens/tokens.css
+               icons/icons.css + icons/icons.svg
+               components/display-tile/display-tile.css
+               components/radio/radio.css      (radio variants)
+               components/checkbox/checkbox.css (checkbox variants)
+               components/button/button.css    (button variants)
+
+     Tiles are self-contained cards — no stacking
+     wrapper needed. Add gap between tiles with
+     CSS gap or margin on the parent container.
+     ============================================ -->
+
+
+<!-- ============================================
+     BASE — label + chevron only
+     ============================================ -->
+
+<div class="display-tile">
+  <div class="display-tile__content">
+    <div class="display-tile__text">
+      <span class="display-tile__label">Subtitle</span>
+    </div>
+    <span class="display-tile__chevron">
+      <svg width="7" height="12"><use href="../../icons/icons.svg#icon-chevron-small-right"></use></svg>
+    </span>
+  </div>
+</div>
+
+
+<!-- ============================================
+     WITH SUPPORT TEXT
+     ============================================ -->
+
+<div class="display-tile">
+  <div class="display-tile__content">
+    <div class="display-tile__text">
+      <span class="display-tile__label">Subtitle</span>
+      <span class="display-tile__support">Support</span>
+    </div>
+    <span class="display-tile__chevron">
+      <svg width="7" height="12"><use href="../../icons/icons.svg#icon-chevron-small-right"></use></svg>
+    </span>
+  </div>
+</div>
+
+
+<!-- ============================================
+     WITH LEFT ICON
+     ============================================ -->
+
+<div class="display-tile">
+  <div class="display-tile__content">
+    <span class="display-tile__icon">
+      <svg class="icon icon--sm icon--primary"><use href="../../icons/icons.svg#icon-information"></use></svg>
+    </span>
+    <div class="display-tile__text">
+      <span class="display-tile__label">Subtitle</span>
+    </div>
+    <span class="display-tile__chevron">
+      <svg width="7" height="12"><use href="../../icons/icons.svg#icon-chevron-small-right"></use></svg>
+    </span>
+  </div>
+</div>
+
+
+<!-- ============================================
+     WITH LEFT ICON + SUPPORT TEXT
+     Icon pins to top when support text is present.
+     ============================================ -->
+
+<div class="display-tile">
+  <div class="display-tile__content">
+    <span class="display-tile__icon display-tile__icon--top">
+      <svg class="icon icon--sm icon--primary"><use href="../../icons/icons.svg#icon-information"></use></svg>
+    </span>
+    <div class="display-tile__text">
+      <span class="display-tile__label">Subtitle</span>
+      <span class="display-tile__support">Support</span>
+    </div>
+    <span class="display-tile__chevron">
+      <svg width="7" height="12"><use href="../../icons/icons.svg#icon-chevron-small-right"></use></svg>
+    </span>
+  </div>
+</div>
+
+
+<!-- ============================================
+     2 COLUMNS — label left + value right
+     ============================================ -->
+
+<div class="display-tile">
+  <div class="display-tile__content">
+    <div class="display-tile__text">
+      <span class="display-tile__label">Subtitle</span>
+      <span class="display-tile__support">Support</span>
+    </div>
+    <div class="display-tile__value">
+      <span class="display-tile__label">Delivery</span>
+      <span class="display-tile__support">Paragraph</span>
+    </div>
+    <span class="display-tile__chevron">
+      <svg width="7" height="12"><use href="../../icons/icons.svg#icon-chevron-small-right"></use></svg>
+    </span>
+  </div>
+</div>
+
+
+<!-- ============================================
+     2 COLUMNS + LEFT ICON
+     ============================================ -->
+
+<div class="display-tile">
+  <div class="display-tile__content">
+    <span class="display-tile__icon display-tile__icon--top">
+      <svg class="icon icon--sm icon--primary"><use href="../../icons/icons.svg#icon-information"></use></svg>
+    </span>
+    <div class="display-tile__text">
+      <span class="display-tile__label">Subtitle</span>
+      <span class="display-tile__support">Support</span>
+    </div>
+    <div class="display-tile__value">
+      <span class="display-tile__label">Delivery</span>
+      <span class="display-tile__support">Paragraph</span>
+    </div>
+    <span class="display-tile__chevron">
+      <svg width="7" height="12"><use href="../../icons/icons.svg#icon-chevron-small-right"></use></svg>
+    </span>
+  </div>
+</div>
+
+
+<!-- ============================================
+     WITH RADIO (right-aligned)
+     Wrap in <label> so the full tile is clickable.
+     Uses .radio component — no extra radio styling needed.
+     ============================================ -->
+
+<label class="display-tile">
+  <div class="display-tile__content">
+    <div class="display-tile__text">
+      <span class="display-tile__label">Subtitle</span>
+    </div>
+    <div class="display-tile__action">
+      <span class="radio">
+        <input class="radio__input" type="radio" name="tile-group" />
+        <span class="radio__control"></span>
+      </span>
+    </div>
+    <span class="display-tile__chevron">
+      <svg width="7" height="12"><use href="../../icons/icons.svg#icon-chevron-small-right"></use></svg>
+    </span>
+  </div>
+</label>
+
+
+<!-- ============================================
+     WITH RADIO + ICON + SUPPORT TEXT
+     ============================================ -->
+
+<label class="display-tile">
+  <div class="display-tile__content">
+    <span class="display-tile__icon display-tile__icon--top">
+      <svg class="icon icon--sm icon--primary"><use href="../../icons/icons.svg#icon-information"></use></svg>
+    </span>
+    <div class="display-tile__text">
+      <span class="display-tile__label">Subtitle</span>
+      <span class="display-tile__support">Support</span>
+    </div>
+    <div class="display-tile__action">
+      <span class="radio">
+        <input class="radio__input" type="radio" name="tile-group" />
+        <span class="radio__control"></span>
+      </span>
+    </div>
+    <span class="display-tile__chevron">
+      <svg width="7" height="12"><use href="../../icons/icons.svg#icon-chevron-small-right"></use></svg>
+    </span>
+  </div>
+</label>
+
+
+<!-- ============================================
+     WITH CHECKBOX (left-aligned, before text)
+     Wrap in <label> so the full tile is clickable.
+     Uses .checkbox component — no extra checkbox styling needed.
+     ============================================ -->
+
+<label class="display-tile">
+  <div class="display-tile__content">
+    <div class="display-tile__action">
+      <span class="checkbox">
+        <input class="checkbox__input" type="checkbox" />
+        <span class="checkbox__control"></span>
+      </span>
+    </div>
+    <div class="display-tile__text">
+      <span class="display-tile__label">Subtitle</span>
+    </div>
+    <span class="display-tile__chevron">
+      <svg width="7" height="12"><use href="../../icons/icons.svg#icon-chevron-small-right"></use></svg>
+    </span>
+  </div>
+</label>

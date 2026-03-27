@@ -1,0 +1,181 @@
+<!-- ============================================
+     NAVIGATION COMPONENT SNIPPETS
+     Copy what you need into a screen or index.html
+     Requires: tokens/tokens.css
+               components/button/button.css
+               components/navigation/navigation.css
+
+     Variants:
+       .nav--desktop    full top bar with links and CTAs
+       .nav--mobile     collapsed bar with hamburger and drawer
+       .nav--responsive auto-switches at 768px breakpoint
+
+     Item states:
+       .nav__item--active     white pill, active page
+       .nav__item--disabled   faded, not interactive
+     ============================================ -->
+
+
+<!-- =====================
+     DESKTOP — full top nav
+     ===================== -->
+
+<nav class="nav nav--desktop" aria-label="Main navigation">
+
+  <!-- Logo -->
+  <a href="/" class="nav__logo" aria-label="Zego home">
+    <img src="../../assets/logo.svg" class="nav__logo-img" alt="Zego" />
+  </a>
+
+  <!-- Nav links — .nav__item--active on current page -->
+  <div class="nav__links">
+    <a href="#" class="nav__item nav__item--active">Personal Car</a>
+    <a href="#" class="nav__item">Taxi</a>
+    <a href="#" class="nav__item">Van</a>
+    <a href="#" class="nav__item">Food Delivery</a>
+    <a href="#" class="nav__item">Sense</a>
+    <a href="#" class="nav__item">Blog</a>
+    <a href="#" class="nav__item">More</a>
+    <a href="#" class="nav__item nav__item--disabled" aria-disabled="true">Disabled</a>
+  </div>
+
+  <!-- CTA actions -->
+  <div class="nav__actions">
+    <a href="#" class="btn btn--pill btn--primary">Get a quote</a>
+    <a href="#" class="btn btn--pill btn--secondary">Login</a>
+  </div>
+
+</nav>
+
+
+<!-- =====================
+     MOBILE — hamburger bar (collapsed)
+     ===================== -->
+
+<nav class="nav nav--mobile" aria-label="Main navigation" id="mobile-nav">
+
+  <!-- Logo -->
+  <a href="/" class="nav__logo" aria-label="Zego home">
+    <img src="../../assets/logo.svg" class="nav__logo-img" alt="Zego" />
+  </a>
+
+  <!-- Hamburger toggle -->
+  <button
+    class="nav__mobile-toggle"
+    aria-expanded="false"
+    aria-controls="mobile-drawer"
+    aria-label="Open menu"
+    onclick="navToggleDrawer('mobile-nav')"
+  >
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+
+  <!-- Drawer — hidden by default, toggled by JS -->
+  <div class="nav__drawer" id="mobile-drawer" role="dialog" aria-label="Navigation menu">
+    <a href="#" class="nav__item nav__item--active">Personal Car</a>
+    <a href="#" class="nav__item">Taxi</a>
+    <a href="#" class="nav__item">Van</a>
+    <a href="#" class="nav__item">Food Delivery</a>
+    <a href="#" class="nav__item">Sense</a>
+    <a href="#" class="nav__item">Blog</a>
+    <a href="#" class="nav__item">More</a>
+
+    <div class="nav__drawer-actions">
+      <a href="#" class="btn btn--pill btn--primary">Get a quote</a>
+      <a href="#" class="btn btn--pill btn--secondary">Login</a>
+    </div>
+  </div>
+
+</nav>
+
+
+<!-- =====================
+     RESPONSIVE — auto-switches at 768px
+     Use instead of separate desktop/mobile navs
+     ===================== -->
+
+<nav class="nav nav--responsive" aria-label="Main navigation" id="responsive-nav">
+
+  <a href="/" class="nav__logo" aria-label="Zego home">
+    <img src="../../assets/logo.svg" class="nav__logo-img" alt="Zego" />
+  </a>
+
+  <div class="nav__links">
+    <a href="#" class="nav__item nav__item--active">Personal Car</a>
+    <a href="#" class="nav__item">Taxi</a>
+    <a href="#" class="nav__item">Van</a>
+    <a href="#" class="nav__item">Food Delivery</a>
+    <a href="#" class="nav__item">Sense</a>
+    <a href="#" class="nav__item">Blog</a>
+    <a href="#" class="nav__item">More</a>
+  </div>
+
+  <div class="nav__actions">
+    <a href="#" class="btn btn--pill btn--primary">Get a quote</a>
+    <a href="#" class="btn btn--pill btn--secondary">Login</a>
+  </div>
+
+  <button
+    class="nav__mobile-toggle"
+    aria-expanded="false"
+    aria-controls="responsive-drawer"
+    aria-label="Open menu"
+    onclick="navToggleDrawer('responsive-nav')"
+  >
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+
+  <div class="nav__drawer" id="responsive-drawer" role="dialog" aria-label="Navigation menu">
+    <a href="#" class="nav__item nav__item--active">Personal Car</a>
+    <a href="#" class="nav__item">Taxi</a>
+    <a href="#" class="nav__item">Van</a>
+    <a href="#" class="nav__item">Food Delivery</a>
+    <a href="#" class="nav__item">Sense</a>
+    <a href="#" class="nav__item">Blog</a>
+    <a href="#" class="nav__item">More</a>
+    <div class="nav__drawer-actions">
+      <a href="#" class="btn btn--pill btn--primary">Get a quote</a>
+      <a href="#" class="btn btn--pill btn--secondary">Login</a>
+    </div>
+  </div>
+
+</nav>
+
+
+<!-- ============================================
+     REQUIRED JAVASCRIPT
+     Copy this <script> block into your screen file.
+     ============================================ -->
+<script>
+  // Toggle mobile drawer open/closed
+  // Pass the id of the .nav element e.g. navToggleDrawer('mobile-nav')
+  function navToggleDrawer(navId) {
+    const nav     = document.getElementById(navId);
+    const drawer  = nav.querySelector('.nav__drawer');
+    const toggle  = nav.querySelector('.nav__mobile-toggle');
+    const isOpen  = drawer.classList.contains('nav__drawer--open');
+
+    drawer.classList.toggle('nav__drawer--open');
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+    toggle.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
+  }
+
+  // Close drawer when clicking outside
+  document.addEventListener('click', function (e) {
+    document.querySelectorAll('.nav--mobile, .nav--responsive').forEach(function (nav) {
+      const drawer = nav.querySelector('.nav__drawer');
+      const toggle = nav.querySelector('.nav__mobile-toggle');
+      if (drawer && !nav.contains(e.target)) {
+        drawer.classList.remove('nav__drawer--open');
+        if (toggle) {
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.setAttribute('aria-label', 'Open menu');
+        }
+      }
+    });
+  });
+</script>

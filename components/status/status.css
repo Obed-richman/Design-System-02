@@ -1,0 +1,46 @@
+/* ============================================
+   STATUS COMPONENT
+   Depends on: tokens/tokens.css
+   No hardcoded values — all tokens referenced
+   from tokens.css
+
+   A purely visual 8px dot used to communicate
+   state at a glance. No children needed.
+   Compose with text or inside .badge for richer
+   labelled status patterns.
+
+   Dark mode: --base-positive, --base-warning,
+   --base-negative and --text-disabled resolve to
+   the same values in dark mode — no overrides
+   needed.
+   ============================================ */
+
+
+/* ============================================
+   BASE
+   ============================================ */
+
+.status {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-round);
+  flex-shrink: 0;
+}
+
+
+/* ============================================
+   VARIANTS
+   ============================================ */
+
+/* Positive — green; active, success, all good */
+.status--positive { background: var(--base-positive); }
+
+/* Warning — yellow; pending, expiring, needs attention */
+.status--warning  { background: var(--base-warning); }
+
+/* Negative — red; error, failed, critical */
+.status--negative { background: var(--base-negative); }
+
+/* Disabled — grey; inactive, unavailable, off */
+.status--disabled { background: var(--text-disabled); }

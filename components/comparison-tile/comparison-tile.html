@@ -1,0 +1,231 @@
+<!-- ============================================
+     COMPARISON TILE COMPONENT SNIPPETS
+     Copy what you need into a screen or index.html
+
+     Dependencies — link all of these in <head>:
+       tokens/tokens.css
+       tokens/typography.css
+       components/comparison-tile/comparison-tile.css
+
+     NOTE: This component does NOT require
+     components/radio/radio.css — the radio
+     control is custom-styled within comparison-tile.css.
+
+     Structure:
+       <label class="comparison-tile">    ← entire tile is clickable (no JS needed)
+         <div class="comparison-tile__header">
+           <input type="radio" />          ← hidden, drives all states via CSS
+           <span class="...radio-control"> ← custom styled circle
+           <span class="...title">         ← title text
+         </div>
+         <div class="comparison-tile__body">
+           <p class="...price">            ← large value + period suffix
+           <p class="...sub">              ← sub text
+           <p class="...support">          ← support text
+         </div>
+       </label>
+
+     Size modifier classes on the <label>:
+       .comparison-tile--large     desktop padding
+       .comparison-tile--small     mobile padding
+
+     States are driven by the radio input attribute:
+       (no attribute)   → default (unselected)
+       checked          → selected / active
+       disabled         → disabled
+       :hover on label  → hover (handled by CSS automatically)
+
+     Group tiles with the same name="" so only
+     one can be selected at a time.
+     ============================================ -->
+
+
+<!-- ============================================
+     LARGE — desktop size
+     ============================================ -->
+
+<!-- Large · Default -->
+<label class="comparison-tile comparison-tile--large" for="ct-lg-default">
+
+  <div class="comparison-tile__header">
+    <input class="comparison-tile__input" type="radio" id="ct-lg-default" name="ct-group-lg">
+    <span class="comparison-tile__radio-control"></span>
+    <span class="comparison-tile__title text-subtitle-2">Title</span>
+  </div>
+  <div class="comparison-tile__body">
+    <p class="comparison-tile__price text-title-2-bold">
+      £XXX <span class="comparison-tile__period text-body-2">/year</span>
+    </p>
+    <p class="comparison-tile__sub text-subtitle-3">Sub text</p>
+    <p class="comparison-tile__support text-body-3">Support text</p>
+  </div>
+  
+</label>
+
+
+<!-- Large · Hover — hover the element in browser to see state -->
+<!-- No modifier class needed — CSS :hover on the label drives it automatically -->
+<label class="comparison-tile comparison-tile--large" for="ct-lg-hover">
+  <div class="comparison-tile__header">
+    <input class="comparison-tile__input" type="radio" id="ct-lg-hover" name="ct-group-lg-h">
+    <span class="comparison-tile__radio-control"></span>
+    <span class="comparison-tile__title text-subtitle-2">Title</span>
+  </div>
+  <div class="comparison-tile__body">
+    <p class="comparison-tile__price text-title-2-bold">
+      £XXX <span class="comparison-tile__period text-body-2">/year</span>
+    </p>
+    <p class="comparison-tile__sub text-subtitle-3">Sub text</p>
+    <p class="comparison-tile__support text-body-3">Support text</p>
+  </div>
+</label>
+
+
+<!-- Large · Selected — add checked to the input -->
+<label class="comparison-tile comparison-tile--large" for="ct-lg-selected">
+  <div class="comparison-tile__header">
+    <input class="comparison-tile__input" type="radio" id="ct-lg-selected" name="ct-group-lg-s" checked>
+    <span class="comparison-tile__radio-control"></span>
+    <span class="comparison-tile__title text-subtitle-2">Title</span>
+  </div>
+  <div class="comparison-tile__body">
+    <p class="comparison-tile__price text-title-2-bold">
+      £XXX <span class="comparison-tile__period text-body-2">/year</span>
+    </p>
+    <p class="comparison-tile__sub text-subtitle-3">Sub text</p>
+    <p class="comparison-tile__support text-body-3">Support text</p>
+  </div>
+</label>
+
+
+<!-- Large · Disabled — add disabled to the input -->
+<label class="comparison-tile comparison-tile--large" for="ct-lg-disabled">
+  <div class="comparison-tile__header">
+    <input class="comparison-tile__input" type="radio" id="ct-lg-disabled" name="ct-group-lg-d" disabled>
+    <span class="comparison-tile__radio-control"></span>
+    <span class="comparison-tile__title text-subtitle-2">Title</span>
+  </div>
+  <div class="comparison-tile__body">
+    <p class="comparison-tile__price text-title-2-bold">
+      £XXX <span class="comparison-tile__period text-body-2">/year</span>
+    </p>
+    <p class="comparison-tile__sub text-subtitle-3">Sub text</p>
+    <p class="comparison-tile__support text-body-3">Support text</p>
+  </div>
+</label>
+
+
+<!-- ============================================
+     SMALL — mobile size
+     ============================================ -->
+
+<!-- Small · Default -->
+<label class="comparison-tile comparison-tile--small" for="ct-sm-default">
+  <div class="comparison-tile__header">
+    <input class="comparison-tile__input" type="radio" id="ct-sm-default" name="ct-group-sm">
+    <span class="comparison-tile__radio-control"></span>
+    <span class="comparison-tile__title text-subtitle-3">Title</span>
+  </div>
+  <div class="comparison-tile__body">
+    <p class="comparison-tile__price text-title-3-bold">
+      £XXX <span class="comparison-tile__period text-body-3">/year</span>
+    </p>
+    <p class="comparison-tile__sub text-subtitle-4">Sub text</p>
+    <p class="comparison-tile__support text-body-4">Support text</p>
+  </div>
+</label>
+
+
+<!-- Small · Selected -->
+<label class="comparison-tile comparison-tile--small" for="ct-sm-selected">
+  <div class="comparison-tile__header">
+    <input class="comparison-tile__input" type="radio" id="ct-sm-selected" name="ct-group-sm-s" checked>
+    <span class="comparison-tile__radio-control"></span>
+    <span class="comparison-tile__title text-subtitle-3">Title</span>
+  </div>
+  <div class="comparison-tile__body">
+    <p class="comparison-tile__price text-title-3-bold">
+      £XXX <span class="comparison-tile__period text-body-3">/year</span>
+    </p>
+    <p class="comparison-tile__sub text-subtitle-4">Sub text</p>
+    <p class="comparison-tile__support text-body-4">Support text</p>
+  </div>
+</label>
+
+
+<!-- Small · Disabled -->
+<label class="comparison-tile comparison-tile--small" for="ct-sm-disabled">
+  <div class="comparison-tile__header">
+    <input class="comparison-tile__input" type="radio" id="ct-sm-disabled" name="ct-group-sm-d" disabled>
+    <span class="comparison-tile__radio-control"></span>
+    <span class="comparison-tile__title text-subtitle-3">Title</span>
+  </div>
+  <div class="comparison-tile__body">
+    <p class="comparison-tile__price text-title-3-bold">
+      £XXX <span class="comparison-tile__period text-body-3">/year</span>
+    </p>
+    <p class="comparison-tile__sub text-subtitle-4">Sub text</p>
+    <p class="comparison-tile__support text-body-4">Support text</p>
+  </div>
+</label>
+
+
+<!-- ============================================
+     GROUP EXAMPLE
+     Same name="" on all inputs = mutually
+     exclusive selection, no JavaScript needed.
+     Clicking anywhere on a tile selects it
+     because the outer element is a <label>.
+     ============================================ -->
+
+<div style="display: flex; gap: 16px;">
+
+  <!-- Third Party — unselected -->
+  <label class="comparison-tile comparison-tile--large" for="ct-plan-a">
+    <div class="comparison-tile__header">
+      <input class="comparison-tile__input" type="radio" id="ct-plan-a" name="ct-plan">
+      <span class="comparison-tile__radio-control"></span>
+      <span class="comparison-tile__title text-subtitle-2">Third Party</span>
+    </div>
+    <div class="comparison-tile__body">
+      <p class="comparison-tile__price text-title-2-bold">
+        £58 <span class="comparison-tile__period text-body-2">/year</span>
+      </p>
+      <p class="comparison-tile__sub text-subtitle-3">Billed annually</p>
+      <p class="comparison-tile__support text-body-3">Basic cover only</p>
+    </div>
+  </label>
+
+  <!-- Comprehensive — selected by default -->
+  <label class="comparison-tile comparison-tile--large" for="ct-plan-b">
+    <div class="comparison-tile__header">
+      <input class="comparison-tile__input" type="radio" id="ct-plan-b" name="ct-plan" checked>
+      <span class="comparison-tile__radio-control"></span>
+      <span class="comparison-tile__title text-subtitle-2">Comprehensive</span>
+    </div>
+    <div class="comparison-tile__body">
+      <p class="comparison-tile__price text-title-2-bold">
+        £142 <span class="comparison-tile__period text-body-2">/year</span>
+      </p>
+      <p class="comparison-tile__sub text-subtitle-3">Billed annually</p>
+      <p class="comparison-tile__support text-body-3">Includes roadside assist</p>
+    </div>
+  </label>
+
+  <!-- Premium — disabled -->
+  <label class="comparison-tile comparison-tile--large" for="ct-plan-c">
+    <div class="comparison-tile__header">
+      <input class="comparison-tile__input" type="radio" id="ct-plan-c" name="ct-plan" disabled>
+      <span class="comparison-tile__radio-control"></span>
+      <span class="comparison-tile__title text-subtitle-2">Premium</span>
+    </div>
+    <div class="comparison-tile__body">
+      <p class="comparison-tile__price text-title-2-bold">
+        £210 <span class="comparison-tile__period text-body-2">/year</span>
+      </p>
+      <p class="comparison-tile__sub text-subtitle-3">Billed annually</p>
+      <p class="comparison-tile__support text-body-3">Unavailable in your area</p>
+    </div>
+  </label>
+
+</div>

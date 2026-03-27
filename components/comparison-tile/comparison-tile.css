@@ -1,0 +1,301 @@
+/* ============================================
+   COMPARISON TILE COMPONENT
+   Depends on: tokens/tokens.css
+               tokens/typography.css
+
+   No hardcoded values — all tokens referenced
+   from tokens.css.
+
+   This component does NOT use .radio component
+   CSS. The radio control is fully custom-styled
+   here to match the tile's specific states.
+
+   States are driven entirely by CSS using
+   :has(), adjacent sibling selectors, and a
+   <label> wrapper — no JavaScript required.
+   ============================================ */
+
+
+/* ============================================
+   BASE WRAPPER
+   The outer element is a <label> so the entire
+   tile area is clickable with no JS.
+   ============================================ */
+
+.comparison-tile {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-large);
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  transition: box-shadow 120ms ease;
+  background-color: var(--bg-disabled);
+  padding: var(--gap-xx-small);
+
+}
+
+
+/* ============================================
+   HEADER
+   Background changes per state.
+   Contains: hidden input · radio control · title
+   ============================================ */
+
+.comparison-tile__header {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-x-small);
+  padding: var(--gap-medium);
+  transition: background 120ms ease;
+  position: relative;
+}
+
+
+/* ============================================
+   HIDDEN RADIO INPUT
+   Visually hidden but remains in DOM so
+   sibling selectors and :has() still work.
+   ============================================ */
+
+.comparison-tile__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+
+/* ============================================
+   CUSTOM RADIO CONTROL
+   Styled independently of .radio component to
+   match tile-specific states (e.g. white on
+   solid aqua header in selected state).
+   ============================================ */
+
+.comparison-tile__radio-control {
+  width: var(--number-20);
+  height: var(--number-20);
+  border-radius: var(--radius-round);
+  background: var(--bg-primary);
+  box-shadow: inset 0 0 0 var(--border-m) var(--border-color-primary);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 120ms ease, box-shadow 120ms ease;
+}
+
+/* Inner dot — hidden by default */
+.comparison-tile__radio-control::after {
+  content: '';
+  width: var(--number-8);
+  height: var(--number-8);
+  border-radius: var(--radius-round);
+  background: var(--colour-aqua-50);
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+
+
+/* ============================================
+   TITLE
+   ============================================ */
+
+.comparison-tile__title {
+  color: var(--text-primary);
+  flex: 1;
+}
+
+
+/* ============================================
+   BODY
+   Always white — background is explicit so it
+   is not overridden by header state changes.
+   ============================================ */
+
+.comparison-tile__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-x-small);
+  padding: var(--gap-medium);
+  border-radius: var(--number-20);
+  flex: 1;
+  background: var(--bg-primary);
+}
+
+
+/* ============================================
+   PRICE
+   .comparison-tile__price  — large value + period
+   .comparison-tile__period — /year or /month suffix
+   ============================================ */
+
+.comparison-tile__price {
+  display: flex;
+  align-items: baseline;
+  gap: var(--gap-xx-small);
+  margin: 0 0 var(--gap-xx-small);
+  color: var(--text-primary);
+}
+
+.comparison-tile__period {
+  color: var(--text-primary);
+}
+
+
+/* ============================================
+   SUB + SUPPORT TEXT
+   ============================================ */
+
+.comparison-tile__sub     { color: var(--text-primary); margin: 0; }
+.comparison-tile__support { color: var(--text-primary); margin: 0; }
+
+
+/* ============================================
+   HOVER STATE
+   Driven by :hover on the <label> wrapper.
+   Suppressed when input is checked or disabled.
+   ============================================ */
+
+.comparison-tile:hover:not(:has(.comparison-tile__input:checked)):not(:has(.comparison-tile__input:disabled)) {
+  box-shadow: inset 0 0 0 var(--border-m) var(--border-color-active);
+}
+
+.comparison-tile:hover:not(:has(.comparison-tile__input:checked)):not(:has(.comparison-tile__input:disabled)) {
+  background: var(--colour-aqua-10);
+}
+
+/* Radio ring on hover */
+.comparison-tile:hover:not(:has(.comparison-tile__input:checked)):not(:has(.comparison-tile__input:disabled)) .comparison-tile__radio-control {
+  box-shadow: inset 0 0 0 var(--border-m) var(--border-color-active);
+}
+
+
+/* ============================================
+   SELECTED STATE
+   Driven by :has(:checked) on the wrapper.
+   ============================================ */
+
+.comparison-tile:has(.comparison-tile__input:checked) {
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-active);
+}
+
+.comparison-tile:has(.comparison-tile__input:checked) {
+  background: var(--bg-brand-aqua);
+}
+
+/* Title on solid aqua — must be navy to remain legible */
+.comparison-tile:has(.comparison-tile__input:checked) .comparison-tile__title {
+  color: var(--colour-navy-70);
+}
+
+/* Radio control inverted on aqua header */
+.comparison-tile__input:checked + .comparison-tile__radio-control {
+  background: var(--colour-white);
+  box-shadow: inset 0 0 0 var(--border-m) var(--colour-aqua-50);
+}
+
+/* Inner dot visible, navy on white */
+.comparison-tile__input:checked + .comparison-tile__radio-control::after {
+  opacity: 1;
+}
+
+
+/* ============================================
+   DISABLED STATE
+   Driven by :has(:disabled) on the wrapper.
+   ============================================ */
+
+.comparison-tile:has(.comparison-tile__input:disabled) {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Header stays grey — lighter than default */
+.comparison-tile:has(.comparison-tile__input:disabled) {
+  background: var(--bg-secondary);
+}
+
+/* All text muted */
+.comparison-tile:has(.comparison-tile__input:disabled) .comparison-tile__title,
+.comparison-tile:has(.comparison-tile__input:disabled) .comparison-tile__price,
+.comparison-tile:has(.comparison-tile__input:disabled) .comparison-tile__period,
+.comparison-tile:has(.comparison-tile__input:disabled) .comparison-tile__sub,
+.comparison-tile:has(.comparison-tile__input:disabled) .comparison-tile__support {
+  color: var(--text-disabled);
+}
+
+/* Radio control muted */
+.comparison-tile:has(.comparison-tile__input:disabled) .comparison-tile__radio-control {
+  background: var(--bg-disabled);
+  box-shadow: inset 0 0 0 var(--border-m) var(--border-color-primary);
+}
+
+
+/* ============================================
+   SIZE VARIANTS
+   ============================================ */
+
+/* --- Large — desktop, more padding --- */
+.comparison-tile--large .comparison-tile__header {
+  padding: var(--gap-medium) var(--gap-large);
+}
+
+.comparison-tile--large .comparison-tile__body {
+  padding: var(--gap-large) var(--gap-large) var(--gap-x-large);
+  gap: var(--gap-small);
+}
+
+/* --- Small — mobile, compact --- */
+.comparison-tile--small .comparison-tile__header {
+  padding: var(--gap-small) var(--gap-medium);
+}
+
+.comparison-tile--small .comparison-tile__body {
+  padding: var(--gap-small) var(--gap-medium) var(--gap-medium);
+}
+
+
+/* ============================================
+   DARK MODE
+   ============================================ */
+
+/* Default header in dark */
+.dark .comparison-tile__header {
+  background: var(--colour-navy-60);
+}
+
+/* Radio control in dark */
+.dark .comparison-tile__radio-control {
+  background: var(--colour-navy-60);
+  box-shadow: inset 0 0 0 var(--border-m) var(--colour-navy-40);
+}
+
+/* Hover — dark */
+.dark .comparison-tile:hover:not(:has(.comparison-tile__input:checked)):not(:has(.comparison-tile__input:disabled)) {
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-active);
+}
+
+.dark .comparison-tile:hover:not(:has(.comparison-tile__input:checked)):not(:has(.comparison-tile__input:disabled)) .comparison-tile__header {
+  background: var(--colour-aqua-20-20);
+}
+
+/* Selected — dark */
+.dark .comparison-tile:has(.comparison-tile__input:checked) .comparison-tile__header {
+  background: var(--bg-brand-aqua);
+}
+
+/* Disabled — dark */
+.dark .comparison-tile:has(.comparison-tile__input:disabled) .comparison-tile__header {
+  background: var(--colour-navy-50);
+}
+
+.dark .comparison-tile:has(.comparison-tile__input:disabled) .comparison-tile__title,
+.dark .comparison-tile:has(.comparison-tile__input:disabled) .comparison-tile__price,
+.dark .comparison-tile:has(.comparison-tile__input:disabled) .comparison-tile__period,
+.dark .comparison-tile:has(.comparison-tile__input:disabled) .comparison-tile__sub,
+.dark .comparison-tile:has(.comparison-tile__input:disabled) .comparison-tile__support {
+  color: var(--colour-navy-30);
+}

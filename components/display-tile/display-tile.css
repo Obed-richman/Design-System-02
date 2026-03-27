@@ -1,0 +1,130 @@
+/* ============================================
+   DISPLAY TILE COMPONENT
+   Depends on: tokens/tokens.css
+               components/radio/radio.css      (radio slot)
+               components/checkbox/checkbox.css (checkbox slot)
+               components/button/button.css    (button slot)
+   No hardcoded values — all tokens referenced
+   from tokens.css
+
+   Unlike display-row, each tile is a self-contained
+   card with full border, rounded corners, and built-in
+   horizontal padding. Tiles do not stack border-to-border.
+   ============================================ */
+
+
+/* --- Base --- */
+.display-tile {
+  width: 100%;
+  border: var(--border-s) solid var(--border-color-primary);
+  border-radius: var(--radius-medium);
+  padding: 0 var(--gap-medium);
+  cursor: pointer;
+  transition: background 120ms ease, border-color 120ms ease;
+}
+
+
+/* ============================================
+   CONTENT
+   ============================================ */
+
+.display-tile__content {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-medium);
+  padding: var(--gap-medium) 0;
+  width: 100%;
+}
+
+
+/* ============================================
+   LEFT ICON
+   ============================================ */
+
+.display-tile__icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--icon-primary);
+}
+
+/* When accompanied by support text, icon pins to top */
+.display-tile__icon--top {
+  align-items: flex-start;
+  padding-top: var(--gap-xx-small);
+}
+
+
+/* ============================================
+   TEXT BLOCK (left, fills remaining space)
+   ============================================ */
+
+.display-tile__text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--number-2);
+  min-width: 0;
+}
+
+.display-tile__label {
+  font-size: var(--font-size-subtitle-2);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-subtitle-2);
+  color: var(--text-primary);
+}
+
+.display-tile__support {
+  font-size: var(--font-size-subtitle-3);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-subtitle-3);
+  color: var(--text-primary);
+}
+
+
+/* ============================================
+   VALUE TEXT (right column, 2-column variant)
+   ============================================ */
+
+.display-tile__value {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--number-2);
+  align-items: flex-end;
+}
+
+.display-tile__value .display-tile__label   { text-align: right; }
+.display-tile__value .display-tile__support { text-align: right; }
+
+
+/* ============================================
+   ACTION SLOT
+   Holds a .radio or .checkbox component — those
+   components own their own styles.
+   ============================================ */
+
+.display-tile__action {
+  flex-shrink: 0;
+}
+
+
+/* ============================================
+   CHEVRON (right nav indicator)
+   ============================================ */
+
+.display-tile__chevron {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  color: var(--icon-primary);
+}
+
+
+/* ============================================
+   DARK MODE
+   ============================================ */
+
+.dark .display-tile {
+  border-color: var(--border-color-primary);
+}

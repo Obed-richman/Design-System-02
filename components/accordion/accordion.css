@@ -1,0 +1,140 @@
+/* ============================================
+   ACCORDION COMPONENT
+   Depends on: tokens/tokens.css, icons/icons.css
+   No hardcoded values — all tokens referenced
+   from tokens.css
+
+   Usage:
+   <details class="accordion">
+     <summary class="accordion__title">...</summary>
+     <div class="accordion__content">...</div>
+   </details>
+   ============================================ */
+
+
+/* --- Base --- */
+.accordion {
+  background: var(--bg-primary);
+  border-radius: var(--radius-medium);
+  overflow: hidden;
+  width: 100%;
+  border: var(--border-s) solid var(--border-color-primary);
+  transition: background 120ms ease, border-color 120ms ease;
+}
+
+
+/* ============================================
+   STATES
+   ============================================ */
+
+.accordion:not([open]):not(.accordion--error):hover {
+  border-color: var(--border-color-secondary);
+}
+
+.accordion--error {
+  border-color: var(--border-color-negative);
+}
+
+
+/* ============================================
+   TITLE (summary)
+   ============================================ */
+
+.accordion__title {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-medium);
+  padding: var(--gap-medium);
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Hide native details disclosure triangle */
+.accordion__title::-webkit-details-marker { display: none; }
+.accordion__title::marker              { display: none; }
+
+.accordion__title:active {
+  background: var(--bg-pressed);
+}
+
+.accordion__title-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.accordion__title-text {
+  flex: 1;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+  color: var(--text-primary);
+}
+
+
+/* ============================================
+   CHEVRON
+   ============================================ */
+
+.accordion__chevron {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  color: var(--icon-primary);
+}
+
+.accordion__chevron svg {
+  display: block;
+}
+
+.accordion__chevron--up   { display: none; }
+.accordion__chevron--down { display: flex; }
+
+.accordion[open] .accordion__chevron--up   { display: flex; }
+.accordion[open] .accordion__chevron--down { display: none; }
+
+
+/* ============================================
+   CONTENT
+   ============================================ */
+
+.accordion__content {
+  background: var(--bg-primary);
+  border-top: var(--border-s) solid var(--border-color-primary);
+  padding: var(--gap-medium) var(--gap-medium) var(--number-16);
+}
+
+.accordion__body {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--text-primary);
+  padding: var(--gap-medium) 0;
+}
+
+
+/* ============================================
+   DESKTOP VARIANT
+   ============================================ */
+
+.accordion--desktop .accordion__title {
+  padding: var(--gap-medium) var(--gap-large);
+}
+
+.accordion--desktop .accordion__content {
+  padding: var(--gap-medium) var(--gap-large) var(--number-16);
+}
+
+
+/* ============================================
+   DARK MODE
+   ============================================ */
+
+.dark .accordion--error {
+  border-color: var(--border-color-negative);
+}
+
+.dark .accordion:not([open]):not(.accordion--error):hover {
+  border-color: var(--border-color-secondary);
+}

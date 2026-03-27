@@ -1,0 +1,146 @@
+<!-- ============================================
+     BUTTON COMPONENT SNIPPETS
+     Copy what you need into a screen or index.html
+     Requires: tokens/tokens.css
+               components/button/button.css
+     ============================================ -->
+
+
+<!-- ============================================================
+     PILL — full-width label + optional icon
+     ============================================================ -->
+
+<!-- Primary · Pill -->
+<button class="btn btn--pill btn--primary">Get started</button>
+
+<!-- Primary · Pill · Loading -->
+<button class="btn btn--pill btn--primary btn--loading" disabled>
+  <span class="btn__spinner"></span> Loading
+</button>
+
+<!-- Primary · Pill · Disabled -->
+<button class="btn btn--pill btn--primary" disabled>Disabled</button>
+
+<!-- Primary · Pill · Rounded -->
+<button class="btn btn--rounded btn--primary">Get started</button>
+
+
+<!-- Secondary · Pill -->
+<button class="btn btn--pill btn--secondary">Get a quote</button>
+
+<!-- Secondary · Pill · Disabled -->
+<button class="btn btn--pill btn--secondary" disabled>Disabled</button>
+
+<!-- Secondary · Rounded -->
+<button class="btn btn--rounded btn--secondary">Get a quote</button>
+
+
+<!-- Tertiary · Pill -->
+<button class="btn btn--pill btn--tertiary">Learn more</button>
+
+<!-- Tertiary · Pill · Disabled -->
+<button class="btn btn--pill btn--tertiary" disabled>Disabled</button>
+
+<!-- Tertiary · Rounded -->
+<button class="btn btn--rounded btn--tertiary">Learn more</button>
+
+
+<!-- Full width -->
+<button class="btn btn--pill btn--primary btn--full">Create my account</button>
+
+
+<!-- ============================================================
+     FAB — icon-only circular button (40 × 40)
+     Use icon--sm (16 px) inside the 40 px container.
+     ============================================================ -->
+
+<!-- Primary FAB -->
+<button class="btn btn--fab btn--primary" aria-label="Search">
+  <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+    <use href="../../icons/icons.svg#icon-search"></use>
+  </svg>
+</button>
+
+<!-- Secondary FAB -->
+<button class="btn btn--fab btn--secondary" aria-label="Search">
+  <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+    <use href="../../icons/icons.svg#icon-search"></use>
+  </svg>
+</button>
+
+<!-- Tertiary FAB -->
+<button class="btn btn--fab btn--tertiary" aria-label="Search">
+  <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+    <use href="../../icons/icons.svg#icon-search"></use>
+  </svg>
+</button>
+
+<!-- Primary FAB · Disabled -->
+<button class="btn btn--fab btn--primary" aria-label="Search" disabled>
+  <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+    <use href="../../icons/icons.svg#icon-search"></use>
+  </svg>
+</button>
+
+<!-- Primary FAB · Loading -->
+<button class="btn btn--fab btn--primary btn--loading" aria-label="Loading" disabled>
+  <span class="btn__spinner" style="width: 16px; height: 16px;"></span>
+</button>
+
+
+<!-- ============================================================
+     TEXT STYLE — 12 px / bold / link colour
+     ============================================================ -->
+
+<!-- Text · Primary (purple link) -->
+<button class="btn btn--text btn--text-primary">Get started</button>
+
+<!-- Text · Secondary (same purple as primary) -->
+<button class="btn btn--text btn--text-secondary">Learn more</button>
+
+<!-- Text · Tertiary (default text colour) -->
+<button class="btn btn--text btn--text-tertiary">Cancel</button>
+
+<!-- Text with leading icon -->
+<button class="btn btn--text btn--text-primary">
+  <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+    <use href="../../icons/icons.svg#icon-arrow-left"></use>
+  </svg>
+  Back
+</button>
+
+<!-- Text · Disabled -->
+<button class="btn btn--text btn--text-primary" disabled>Get started</button>
+
+
+<!-- ============================================================
+     FORCED STATE CLASSES
+     Pin a button to any state without user interaction —
+     useful for design reviews, prototypes, and Storybook.
+     ============================================================ -->
+
+<!-- Hover -->
+<button class="btn btn--pill btn--primary btn--hover">Primary hover</button>
+<button class="btn btn--pill btn--secondary btn--hover">Secondary hover</button>
+<button class="btn btn--pill btn--tertiary btn--hover">Tertiary hover</button>
+
+<!-- Active / Pressed -->
+<button class="btn btn--pill btn--primary btn--active">Primary active</button>
+<button class="btn btn--pill btn--secondary btn--pressed">Secondary pressed</button>
+<button class="btn btn--pill btn--tertiary btn--active">Tertiary active</button>
+
+<!-- Focused -->
+<button class="btn btn--pill btn--primary btn--focused">Primary focused</button>
+<button class="btn btn--pill btn--secondary btn--focused">Secondary focused</button>
+<button class="btn btn--pill btn--tertiary btn--focused">Tertiary focused</button>
+
+<!-- Loading (class-based — can be toggled via JS) -->
+<button class="btn btn--pill btn--primary btn--loading" disabled>
+  <span class="btn__spinner"></span> Loading
+</button>
+<button class="btn btn--pill btn--secondary btn--loading" disabled>
+  <span class="btn__spinner"></span> Loading
+</button>
+<button class="btn btn--pill btn--tertiary btn--loading" disabled>
+  <span class="btn__spinner"></span> Loading
+</button>

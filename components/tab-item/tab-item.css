@@ -1,0 +1,241 @@
+/* ============================================
+   TAB ITEM COMPONENT
+   Depends on: tokens/tokens.css
+               tokens/typography.css
+
+   No hardcoded values — all tokens referenced
+   from tokens.css.
+
+   Style variants — modifier on .tab-item:
+     .tab-item--underline   text + bottom border indicator
+     .tab-item--filled      box/pill with background fill
+
+   Size variants:
+     .tab-item--large       larger padding, subtitle-2 font
+     .tab-item--small       compact padding, subtitle-3 font
+
+   States:
+     (none)                 default / inactive
+     .tab-item--active      currently selected tab
+     [aria-selected="true"] also drives active state
+     .tab-item--disabled    muted, not interactive
+     :hover                 handled automatically by CSS
+     :focus-visible         keyboard focus ring
+
+   The active indicator is a ::after pseudo-element
+   — position absolute, bottom 0, full width,
+   --border-m (2px) height. No extra HTML needed.
+   ============================================ */
+
+
+/* ============================================
+   BASE
+   Shared across both style variants.
+   ============================================ */
+
+.tab-item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-x-small);
+  cursor: pointer;
+  white-space: nowrap;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+  text-decoration: none;
+  outline: none;
+  transition: background 150ms ease, color 150ms ease;
+  -webkit-appearance: none;
+}
+
+/* Indicator — hidden by default, revealed per variant + state */
+.tab-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--border-m);
+  background: transparent;
+  border-radius: var(--radius-round);
+  transition: background 150ms ease;
+}
+
+
+/* ============================================
+   ICON WRAPPER
+   Optional — place left of .tab-item__label.
+   ============================================ */
+
+.tab-item__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--number-20);
+  height: var(--number-20);
+  flex-shrink: 0;
+}
+
+.tab-item__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+
+/* ============================================
+   FOCUS RING
+   ============================================ */
+
+.tab-item:focus-visible {
+  outline: var(--border-focused) solid var(--border-color-focused);
+  outline-offset: 2px;
+  border-radius: var(--radius-x-small);
+}
+
+
+/* ============================================
+   DISABLED — base
+   ============================================ */
+
+.tab-item--disabled,
+.tab-item:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+
+/* ============================================
+   SIZE VARIANTS
+   ============================================ */
+
+/* Large */
+.tab-item--large {
+  padding: var(--gap-medium) var(--gap-large);
+  font-size: var(--font-size-subtitle-2);
+  line-height: var(--line-height-subtitle-2);
+}
+
+/* Small */
+.tab-item--small {
+  padding: var(--gap-small) var(--gap-medium);
+  font-size: var(--font-size-subtitle-3);
+  line-height: var(--line-height-subtitle-3);
+}
+
+
+/* ============================================
+   UNDERLINE VARIANT
+   No background — indicator is the only
+   visual signal for the active state.
+   ============================================ */
+
+.tab-item--underline {
+  background: transparent;
+  color: var(--text-primary);
+  border-radius: var(--radius-x-small) var(--radius-x-small) 0 0;
+}
+
+/* Hover — subtle grey tint, no indicator */
+.tab-item--underline:hover:not(.tab-item--disabled):not(:disabled) {
+  background: var(--bg-secondary);
+}
+
+/* Active — aqua bottom indicator, text unchanged */
+.tab-item--underline.tab-item--active::after,
+.tab-item--underline[aria-selected="true"]::after {
+  background: var(--border-color-active);
+}
+
+/* Disabled */
+.tab-item--underline.tab-item--disabled,
+.tab-item--underline:disabled {
+  color: var(--text-disabled);
+}
+
+
+/* ============================================
+   FILLED VARIANT
+   Box/pill with background fill per state.
+   ============================================ */
+
+.tab-item--filled {
+  background: transparent;
+  color: var(--text-primary);
+  border-radius: var(--radius-small);
+}
+
+/* Filled size overrides — more square padding */
+.tab-item--filled.tab-item--large { padding: var(--gap-medium); }
+.tab-item--filled.tab-item--small { padding: var(--gap-small); }
+
+/* Hover — light aqua tint, indicator appears */
+.tab-item--filled:hover:not(.tab-item--disabled):not(:disabled) {
+  background: var(--colour-aqua-10);
+}
+
+.tab-item--filled:hover:not(.tab-item--disabled):not(:disabled)::after {
+  background: var(--border-color-active);
+}
+
+/* Active — solid aqua fill, navy text, indicator */
+.tab-item--filled.tab-item--active,
+.tab-item--filled[aria-selected="true"] {
+  background: var(--bg-brand-aqua);
+  color: var(--colour-navy-70);
+  border-radius: var(--radius-small);
+}
+
+.tab-item--filled.tab-item--active::after,
+.tab-item--filled[aria-selected="true"]::after {
+  background: var(--border-color-active);
+}
+
+/* Disabled */
+.tab-item--filled.tab-item--disabled,
+.tab-item--filled:disabled {
+  background: var(--bg-secondary);
+  color: var(--text-disabled);
+}
+
+
+/* ============================================
+   DARK MODE
+   ============================================ */
+
+/* Underline — hover */
+.dark .tab-item--underline:hover:not(.tab-item--disabled):not(:disabled) {
+  background: var(--colour-navy-50);
+}
+
+/* Underline — disabled */
+.dark .tab-item--underline.tab-item--disabled,
+.dark .tab-item--underline:disabled {
+  color: var(--colour-navy-30);
+}
+
+/* Filled — hover */
+.dark .tab-item--filled:hover:not(.tab-item--disabled):not(:disabled) {
+  background: var(--colour-navy-50);
+}
+
+.dark .tab-item--filled:hover:not(.tab-item--disabled):not(:disabled)::after {
+  background: var(--border-color-active);
+}
+
+/* Filled — active: aqua is same in dark, navy text stays */
+.dark .tab-item--filled.tab-item--active,
+.dark .tab-item--filled[aria-selected="true"] {
+  background: var(--bg-brand-aqua);
+  color: var(--colour-navy-70);
+}
+
+/* Filled — disabled */
+.dark .tab-item--filled.tab-item--disabled,
+.dark .tab-item--filled:disabled {
+  background: var(--colour-navy-60);
+  color: var(--colour-navy-30);
+}

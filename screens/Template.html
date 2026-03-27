@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Screen Name</title>
+
+  <!-- 1. Tokens — always first -->
+  <link rel="stylesheet" href="../tokens/tokens.css" />
+
+  <!-- 2. Components — add only what this screen uses -->
+  <link rel="stylesheet" href="../components/button/button.css" />
+  <link rel="stylesheet" href="../components/input/input.css" />
+
+  <style>
+    /* Screen-specific layout styles go here */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+    }
+
+    /* Mobile-first, centred content */
+    .screen {
+      max-width: var(--frame-container);
+      margin: 0 auto;
+      padding: var(--gap-x-large) var(--margin-small);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="screen">
+
+    <!-- Your prototype content goes here -->
+
+  </div>
+
+</body>
+</html>

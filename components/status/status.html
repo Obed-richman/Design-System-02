@@ -1,0 +1,78 @@
+<!-- ============================================
+     STATUS COMPONENT SNIPPETS
+     Copy what you need into a screen or index.html
+
+     Requires: tokens/tokens.css
+               components/status/status.css
+
+     A purely visual 8px dot — no children needed.
+     Compose with text or inside .badge for labelled
+     status patterns.
+     ============================================ -->
+
+
+<!-- ============================================
+     STANDALONE DOTS — all 4 variants
+     ============================================ -->
+
+<!-- Positive — green; active, success, all good -->
+<span class="status status--positive"></span>
+
+<!-- Warning — yellow; pending, expiring, needs attention -->
+<span class="status status--warning"></span>
+
+<!-- Negative — red; error, failed, critical -->
+<span class="status status--negative"></span>
+
+<!-- Disabled — grey; inactive, unavailable, off -->
+<span class="status status--disabled"></span>
+
+
+<!-- ============================================
+     IN CONTEXT — dot paired with a text label
+     Wrap both in a flex container to align them.
+     ============================================ -->
+
+<!-- Active policy -->
+<span class="status status--positive"></span>
+<span>Active</span>
+
+<!-- Renewal pending -->
+<span class="status status--warning"></span>
+<span>Pending</span>
+
+<!-- Payment failed -->
+<span class="status status--negative"></span>
+<span>Error</span>
+
+<!-- Policy lapsed -->
+<span class="status status--disabled"></span>
+<span>Inactive</span>
+
+
+<!-- ============================================
+     COMPOSED WITH BADGE
+     The status dot sits inside .badge to add a
+     visual colour cue alongside the badge label.
+     Requires: components/badge/badge.css
+     ============================================ -->
+
+<span class="badge badge--low">
+  <span class="status status--positive"></span>
+  Low
+</span>
+
+<span class="badge badge--medium">
+  <span class="status status--warning"></span>
+  Medium
+</span>
+
+<span class="badge badge--high">
+  <span class="status status--negative"></span>
+  High
+</span>
+
+<span class="badge badge--inactive">
+  <span class="status status--disabled"></span>
+  Inactive
+</span>

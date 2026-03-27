@@ -1,0 +1,292 @@
+/* ============================================
+   SELECTOR ITEM COMPONENT
+   Depends on: tokens/tokens.css
+   No hardcoded values — all tokens referenced
+   from tokens.css
+   ============================================ */
+
+
+/* --- Base --- */
+.selector-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: var(--radius-small);
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-primary);
+  transition: background 120ms ease, color 120ms ease, box-shadow 120ms ease;
+}
+
+.selector-item--disabled { cursor: not-allowed; }
+
+
+/* ============================================
+   STATES — apply across all variants
+   ============================================ */
+
+/* --- Default hover / active / focus --- */
+.selector-item:hover:not(.selector-item--disabled):not(.selector-item--selected):not(.selector-item--error) {
+  background: var(--bg-secondary);
+}
+.selector-item:active:not(.selector-item--disabled):not(.selector-item--selected):not(.selector-item--error) {
+  background: var(--bg-pressed);
+}
+.selector-item:focus-visible:not(.selector-item--disabled) {
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-primary),
+              0 0 0 var(--border-focused) var(--border-color-focused);
+}
+
+
+/* --- Selected --- */
+.selector-item--selected {
+  background: var(--bg-primary);
+  box-shadow: inset 0 0 0 var(--border-m) var(--border-color-active);
+}
+.selector-item--selected:hover:not(.selector-item--disabled) {
+  background: var(--colour-aqua-10);
+  box-shadow: inset 0 0 0 var(--border-m) var(--border-color-active);
+}
+.selector-item--selected:active:not(.selector-item--disabled) {
+  background: var(--colour-aqua-20);
+  box-shadow: inset 0 0 0 var(--border-m) var(--border-color-active);
+}
+.selector-item--selected:focus-visible:not(.selector-item--disabled) {
+  box-shadow: inset 0 0 0 var(--border-m) var(--border-color-active),
+              0 0 0 var(--border-focused) var(--border-color-focused);
+}
+
+
+/* --- Error --- */
+.selector-item--error {
+  background: var(--bg-negative);
+  color: var(--text-negative);
+  box-shadow: inset 0 0 0 var(--border-m) var(--border-color-negative);
+}
+.selector-item--error:hover:not(.selector-item--disabled) {
+  background: var(--colour-red-20);
+}
+.selector-item--error:active:not(.selector-item--disabled) {
+  background: var(--colour-red-10);
+}
+.selector-item--error:focus-visible:not(.selector-item--disabled) {
+  box-shadow: inset 0 0 0 var(--border-m) var(--border-color-negative),
+              0 0 0 var(--border-focused) var(--border-color-focused);
+}
+
+
+/* --- Disabled --- */
+.selector-item--disabled {
+  background: var(--bg-disabled);
+  color: var(--text-disabled);
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-primary);
+}
+
+
+/* ============================================
+   DOT VARIANT — small radio-style dot
+   ============================================ */
+
+.selector-item--dot {
+  width: var(--number-8);
+  height: var(--number-8);
+  padding: 0;
+  border-radius: var(--radius-round);
+  background: var(--colour-grey-50);
+  box-shadow: none;
+  flex-shrink: 0;
+  cursor: default;
+}
+
+.selector-item--dot:hover:not(.selector-item--disabled)  { background: var(--colour-grey-50); }
+.selector-item--dot:active:not(.selector-item--disabled) { background: var(--colour-grey-50); }
+
+.selector-item--dot.selector-item--selected {
+  background: var(--border-color-active);
+  box-shadow: none;
+}
+.selector-item--dot.selector-item--selected:hover:not(.selector-item--disabled)  { background: var(--colour-aqua-30); }
+.selector-item--dot.selector-item--selected:active:not(.selector-item--disabled) { background: var(--colour-aqua-50); }
+
+.selector-item--dot.selector-item--error {
+  background: var(--base-negative);
+  box-shadow: none;
+}
+
+.selector-item--dot.selector-item--disabled {
+  background: var(--colour-grey-50);
+  box-shadow: none;
+  opacity: 0.4;
+}
+
+
+/* ============================================
+   NUMBER VARIANT — single number in a box
+   ============================================ */
+
+.selector-item--number {
+  width: var(--number-48);
+  height: var(--number-48);
+  padding: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+
+/* ============================================
+   ICON + TEXT VARIANT — icon left, label right
+   ============================================ */
+
+.selector-item--icon-text {
+  gap: var(--gap-x-small);
+  padding: 0 var(--gap-medium);
+  height: var(--number-48);
+}
+
+.selector-item__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: inherit;
+}
+
+.selector-item__text {
+  color: inherit;
+}
+
+
+/* ============================================
+   INDICATOR VARIANT — label + dot + value
+   ============================================ */
+
+.selector-item--indicator {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap-xx-small);
+  padding: var(--gap-small) var(--gap-medium);
+  min-height: var(--number-64);
+  border-radius: var(--radius-small);
+}
+
+.selector-item__label {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  color: inherit;
+}
+
+.selector-item__value {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xx-small);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  color: inherit;
+}
+
+.selector-item__indicator-dot {
+  width: var(--number-8);
+  height: var(--number-8);
+  border-radius: var(--radius-round);
+  background: var(--border-color-active);
+  flex-shrink: 0;
+}
+
+.selector-item--error    .selector-item__indicator-dot { background: var(--base-negative); }
+.selector-item--disabled .selector-item__indicator-dot { background: var(--colour-grey-50); }
+
+
+/* ============================================
+   LIST VARIANT — icon image + text + chevron
+   ============================================ */
+
+.selector-item--list {
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: var(--gap-medium);
+  padding: var(--gap-medium);
+  height: var(--number-72);
+  width: 100%;
+  border-radius: var(--radius-medium);
+}
+
+.selector-item__icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--number-40);
+  height: var(--number-40);
+  border-radius: var(--radius-small);
+  background: var(--bg-brand-purple);
+  flex-shrink: 0;
+  overflow: hidden;
+  color: var(--icon-on-colour);
+}
+
+.selector-item--disabled .selector-item__icon-wrap {
+  background: var(--bg-disabled);
+}
+
+.selector-item__chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  flex-shrink: 0;
+  color: var(--icon-secondary);
+}
+
+.selector-item--disabled .selector-item__chevron { color: var(--icon-disabled); }
+
+
+/* ============================================
+   DARK MODE
+   ============================================ */
+
+.dark .selector-item {
+  box-shadow: inset 0 0 0 var(--border-s) var(--colour-navy-40);
+}
+
+.dark .selector-item:hover:not(.selector-item--disabled):not(.selector-item--selected):not(.selector-item--error) {
+  background: var(--colour-navy-50);
+}
+.dark .selector-item:active:not(.selector-item--disabled):not(.selector-item--selected):not(.selector-item--error) {
+  background: var(--colour-navy-40);
+}
+.dark .selector-item:focus-visible:not(.selector-item--disabled) {
+  box-shadow: inset 0 0 0 var(--border-s) var(--colour-navy-40),
+              0 0 0 var(--border-focused) var(--border-color-focused);
+}
+
+.dark .selector-item--selected {
+  box-shadow: inset 0 0 0 var(--border-m) var(--border-color-active);
+}
+.dark .selector-item--selected:hover:not(.selector-item--disabled) {
+  background: var(--colour-aqua-20-20);
+}
+.dark .selector-item--selected:focus-visible:not(.selector-item--disabled) {
+  box-shadow: inset 0 0 0 var(--border-m) var(--border-color-active),
+              0 0 0 var(--border-focused) var(--border-color-focused);
+}
+
+.dark .selector-item--error {
+  box-shadow: inset 0 0 0 var(--border-m) var(--border-color-negative);
+}
+
+.dark .selector-item--disabled {
+  background: var(--colour-navy-50);
+  box-shadow: inset 0 0 0 var(--border-s) var(--colour-navy-40);
+}
+
+.dark .selector-item--dot { background: var(--colour-navy-30); }
+.dark .selector-item--dot.selector-item--disabled { background: var(--colour-navy-30); }

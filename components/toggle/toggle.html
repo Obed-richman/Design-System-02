@@ -1,0 +1,118 @@
+<!-- ============================================
+     TOGGLE COMPONENT SNIPPETS
+     Copy what you need into a screen or index.html
+     Requires: tokens/tokens.css + components/toggle/toggle.css
+
+     Structure:
+       <label class="toggle">           ← entire switch is clickable (no JS needed)
+         <input type="checkbox" />      ← hidden, drives all states via CSS
+         <span class="toggle__track">  ← pill background
+           <span class="toggle__thumb"></span>  ← circular handle
+         </span>
+         <span class="toggle__label">  ← optional label text
+       </label>
+
+     States are driven by native checkbox attributes:
+       (no attribute)   → off
+       checked          → on
+       disabled         → disabled
+       :focus-visible   → focus ring (keyboard nav / Tab key)
+
+     Size modifier on .toggle:
+       (none)           → default 48×28px
+       .toggle--small   → 40×24px
+     ============================================ -->
+
+
+<!-- ============================================
+     DEFAULT SIZE — 48×28px
+     ============================================ -->
+
+<!-- Default · Off -->
+<label class="toggle">
+  <input type="checkbox" class="toggle__input" role="switch" aria-label="Toggle">
+  <span class="toggle__track">
+    <span class="toggle__thumb"></span>
+  </span>
+</label>
+
+<!-- Default · On -->
+<label class="toggle">
+  <input type="checkbox" class="toggle__input" role="switch" aria-label="Toggle" checked>
+  <span class="toggle__track">
+    <span class="toggle__thumb"></span>
+  </span>
+</label>
+
+<!-- Default · Off · With label -->
+<label class="toggle">
+  <input type="checkbox" class="toggle__input" role="switch">
+  <span class="toggle__track">
+    <span class="toggle__thumb"></span>
+  </span>
+  <span class="toggle__label">Notifications</span>
+</label>
+
+<!-- Default · On · With label -->
+<label class="toggle">
+  <input type="checkbox" class="toggle__input" role="switch" checked>
+  <span class="toggle__track">
+    <span class="toggle__thumb"></span>
+  </span>
+  <span class="toggle__label">Notifications</span>
+</label>
+
+<!-- Default · Off · Disabled -->
+<label class="toggle">
+  <input type="checkbox" class="toggle__input" role="switch" disabled aria-label="Toggle">
+  <span class="toggle__track">
+    <span class="toggle__thumb"></span>
+  </span>
+  <span class="toggle__label">Notifications</span>
+</label>
+
+<!-- Default · On · Disabled -->
+<label class="toggle">
+  <input type="checkbox" class="toggle__input" role="switch" checked disabled aria-label="Toggle">
+  <span class="toggle__track">
+    <span class="toggle__thumb"></span>
+  </span>
+  <span class="toggle__label">Notifications</span>
+</label>
+
+
+<!-- ============================================
+     SMALL VARIANT — 40×24px
+     ============================================ -->
+
+<!-- Small · Off -->
+<label class="toggle toggle--small">
+  <input type="checkbox" class="toggle__input" role="switch" aria-label="Toggle">
+  <span class="toggle__track">
+    <span class="toggle__thumb"></span>
+  </span>
+</label>
+
+<!-- Small · On -->
+<label class="toggle toggle--small">
+  <input type="checkbox" class="toggle__input" role="switch" aria-label="Toggle" checked>
+  <span class="toggle__track">
+    <span class="toggle__thumb"></span>
+  </span>
+</label>
+
+<!-- Small · Off · Disabled -->
+<label class="toggle toggle--small">
+  <input type="checkbox" class="toggle__input" role="switch" disabled aria-label="Toggle">
+  <span class="toggle__track">
+    <span class="toggle__thumb"></span>
+  </span>
+</label>
+
+<!-- Small · On · Disabled -->
+<label class="toggle toggle--small">
+  <input type="checkbox" class="toggle__input" role="switch" checked disabled aria-label="Toggle">
+  <span class="toggle__track">
+    <span class="toggle__thumb"></span>
+  </span>
+</label>

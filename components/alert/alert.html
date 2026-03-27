@@ -1,0 +1,231 @@
+<!-- ============================================
+     ALERT COMPONENT SNIPPETS
+     Copy what you need into a screen or index.html
+
+     Requires: tokens/tokens.css
+               tokens/typography.css
+               components/alert/alert.css
+               icons/icons.css (for icon sizing)
+     ============================================ -->
+
+
+<!-- ============================================
+     WITHOUT BORDER — background colour only
+     ============================================ -->
+
+<!-- Neutral — white bg, grey icon -->
+<div class="alert alert--neutral" role="alert">
+  <span class="alert__icon">
+    <svg class="icon icon--sm"><use href="icons/icons.svg#icon-information"></use></svg>
+  </span>
+  <div class="alert__content">
+    <p class="alert__title">Neutral alert</p>
+    <p class="alert__description">This is a neutral alert with some supporting information for the user.</p>
+    <a class="alert__link">Learn more</a>
+  </div>
+  <button class="alert__close" aria-label="Dismiss alert">
+    <svg class="icon icon--sm"><use href="icons/icons.svg#icon-close"></use></svg>
+  </button>
+</div>
+
+<!-- Information — purple bg, purple icon -->
+<div class="alert alert--information" role="alert">
+  <span class="alert__icon">
+    <svg class="icon icon--sm"><use href="icons/icons.svg#icon-information"></use></svg>
+  </span>
+  <div class="alert__content">
+    <p class="alert__title">Information alert</p>
+    <p class="alert__description">This is an informational alert with some supporting information for the user.</p>
+    <a class="alert__link">Learn more</a>
+  </div>
+  <button class="alert__close" aria-label="Dismiss alert">
+    <svg class="icon icon--sm"><use href="icons/icons.svg#icon-close"></use></svg>
+  </button>
+</div>
+
+<!-- Positive — green bg, green icon -->
+<div class="alert alert--positive" role="alert">
+  <span class="alert__icon">
+    <svg class="icon icon--sm"><use href="icons/icons.svg#icon-correct"></use></svg>
+  </span>
+  <div class="alert__content">
+    <p class="alert__title">Positive alert</p>
+    <p class="alert__description">This is a positive alert confirming a successful action or outcome.</p>
+    <a class="alert__link">Learn more</a>
+  </div>
+  <button class="alert__close" aria-label="Dismiss alert">
+    <svg class="icon icon--sm"><use href="icons/icons.svg#icon-close"></use></svg>
+  </button>
+</div>
+
+<!-- Warning — yellow bg, yellow icon -->
+<div class="alert alert--warning" role="alert">
+  <span class="alert__icon">
+    <svg class="icon icon--sm"><use href="icons/icons.svg#icon-caution"></use></svg>
+  </span>
+  <div class="alert__content">
+    <p class="alert__title">Warning alert</p>
+    <p class="alert__description">This is a warning alert drawing attention to something that may need action.</p>
+    <a class="alert__link">Learn more</a>
+  </div>
+  <button class="alert__close" aria-label="Dismiss alert">
+    <svg class="icon icon--sm"><use href="icons/icons.svg#icon-close"></use></svg>
+  </button>
+</div>
+
+<!-- Negative — red bg, red icon -->
+<div class="alert alert--negative" role="alert">
+  <span class="alert__icon">
+    <svg class="icon icon--sm"><use href="icons/icons.svg#icon-warning"></use></svg>
+  </span>
+  <div class="alert__content">
+    <p class="alert__title">Negative alert</p>
+    <p class="alert__description">This is a negative alert indicating an error or failed action.</p>
+    <a class="alert__link">Learn more</a>
+  </div>
+  <button class="alert__close" aria-label="Dismiss alert">
+    <svg class="icon icon--sm"><use href="icons/icons.svg#icon-close"></use></svg>
+  </button>
+</div>
+
+
+<!-- ============================================
+     WITH BORDER — .alert--bordered adds a 1px
+     border using each variant's subtle border token
+     ============================================ -->
+
+<!-- Neutral · Bordered -->
+<div class="alert alert--neutral alert--bordered" role="alert">
+  <span class="alert__icon">
+    <svg class="icon icon--sm"><use href="icons/icons.svg#icon-information"></use></svg>
+  </span>
+  <div class="alert__content">
+    <p class="alert__title">Neutral alert</p>
+    <p class="alert__description">This is a neutral alert with some supporting information for the user.</p>
+    <a class="alert__link">Learn more</a>
+  </div>
+  <button class="alert__close" aria-label="Dismiss alert">
+    <svg class="icon icon--sm"><use href="icons/icons.svg#icon-close"></use></svg>
+  </button>
+</div>
+
+<!-- Information · Bordered -->
+<div class="alert alert--information alert--bordered" role="alert">
+  <span class="alert__icon">
+    <svg class="icon icon--sm"><use href="icons/icons.svg#icon-information"></use></svg>
+  </span>
+  <div class="alert__content">
+    <p class="alert__title">Information alert</p>
+    <p class="alert__description">This is an informational alert with some supporting information for the user.</p>
+    <a class="alert__link">Learn more</a>
+  </div>
+  <button class="alert__close" aria-label="Dismiss alert">
+    <svg class="icon icon--sm"><use href="icons/icons.svg#icon-close"></use></svg>
+  </button>
+</div>
+
+<!-- Positive · Bordered -->
+<div class="alert alert--positive alert--bordered" role="alert">
+  <span class="alert__icon">
+    <svg class="icon icon--sm"><use href="icons/icons.svg#icon-correct"></use></svg>
+  </span>
+  <div class="alert__content">
+    <p class="alert__title">Positive alert</p>
+    <p class="alert__description">This is a positive alert confirming a successful action or outcome.</p>
+    <a class="alert__link">Learn more</a>
+  </div>
+  <button class="alert__close" aria-label="Dismiss alert">
+    <svg class="icon icon--sm"><use href="icons/icons.svg#icon-close"></use></svg>
+  </button>
+</div>
+
+<!-- Warning · Bordered -->
+<div class="alert alert--warning alert--bordered" role="alert">
+  <span class="alert__icon">
+    <svg class="icon icon--sm"><use href="icons/icons.svg#icon-caution"></use></svg>
+  </span>
+  <div class="alert__content">
+    <p class="alert__title">Warning alert</p>
+    <p class="alert__description">This is a warning alert drawing attention to something that may need action.</p>
+    <a class="alert__link">Learn more</a>
+  </div>
+  <button class="alert__close" aria-label="Dismiss alert">
+    <svg class="icon icon--sm"><use href="icons/icons.svg#icon-close"></use></svg>
+  </button>
+</div>
+
+<!-- Negative · Bordered -->
+<div class="alert alert--negative alert--bordered" role="alert">
+  <span class="alert__icon">
+    <svg class="icon icon--sm"><use href="icons/icons.svg#icon-warning"></use></svg>
+  </span>
+  <div class="alert__content">
+    <p class="alert__title">Negative alert</p>
+    <p class="alert__description">This is a negative alert indicating an error or failed action.</p>
+    <a class="alert__link">Learn more</a>
+  </div>
+  <button class="alert__close" aria-label="Dismiss alert">
+    <svg class="icon icon--sm"><use href="icons/icons.svg#icon-close"></use></svg>
+  </button>
+</div>
+
+
+<!-- ============================================
+     OPTIONAL ELEMENT EXAMPLES
+     ============================================ -->
+
+<!-- No title — description only (omit .alert__title) -->
+<div class="alert alert--information alert--bordered" role="alert">
+  <span class="alert__icon">
+    <svg class="icon icon--sm"><use href="icons/icons.svg#icon-information"></use></svg>
+  </span>
+  <div class="alert__content">
+    <p class="alert__description">Description-only alert with no title. Useful for brief, self-explanatory messages.</p>
+    <a class="alert__link">Learn more</a>
+  </div>
+  <button class="alert__close" aria-label="Dismiss alert">
+    <svg class="icon icon--sm"><use href="icons/icons.svg#icon-close"></use></svg>
+  </button>
+</div>
+
+<!-- No link — omit .alert__link -->
+<div class="alert alert--warning alert--bordered" role="alert">
+  <span class="alert__icon">
+    <svg class="icon icon--sm"><use href="icons/icons.svg#icon-caution"></use></svg>
+  </span>
+  <div class="alert__content">
+    <p class="alert__title">No link example</p>
+    <p class="alert__description">This alert has no action link. The close button is still present.</p>
+  </div>
+  <button class="alert__close" aria-label="Dismiss alert">
+    <svg class="icon icon--sm"><use href="icons/icons.svg#icon-close"></use></svg>
+  </button>
+</div>
+
+<!-- No close button — omit .alert__close -->
+<div class="alert alert--positive alert--bordered" role="alert">
+  <span class="alert__icon">
+    <svg class="icon icon--sm"><use href="icons/icons.svg#icon-correct"></use></svg>
+  </span>
+  <div class="alert__content">
+    <p class="alert__title">No close button</p>
+    <p class="alert__description">This alert cannot be dismissed — no close button is rendered.</p>
+    <a class="alert__link">Learn more</a>
+  </div>
+</div>
+
+
+<!-- ============================================
+     CLOSE BUTTON JS
+     Copy this <script> block into your screen file.
+     Clicking .alert__close adds the .hidden class
+     to the parent .alert, removing it from view.
+     ============================================ -->
+<script>
+  document.addEventListener('click', function (e) {
+    const closeBtn = e.target.closest('.alert__close');
+    if (!closeBtn) return;
+    const alert = closeBtn.closest('.alert');
+    if (alert) alert.classList.add('hidden');
+  });
+</script>

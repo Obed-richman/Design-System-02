@@ -1,0 +1,85 @@
+<!-- ============================================
+     TEXTAREA COMPONENT SNIPPETS
+     Copy what you need into a screen or index.html
+
+     Requires: tokens/tokens.css
+               components/input/input.css
+               components/input/textarea.css
+
+     The textarea element uses class="input textarea":
+       .input   → border, background, colour, focus ring,
+                  error/valid/disabled states (from input.css)
+       .textarea → height, padding, resize, line-height
+                  (from textarea.css)
+
+     State modifiers on the .input-group wrapper:
+       (none)               → default
+       .input-group--error  → error border + red label/hint
+       .input-group--valid  → success border + green label/hint
+
+     All other states (hover, focus, disabled) are
+     handled automatically by the browser and CSS.
+     ============================================ -->
+
+
+<!-- Default — placeholder text -->
+<div class="input-group">
+  <label class="input-label" for="textarea-default">Placeholder</label>
+  <div class="input-field">
+    <textarea class="input textarea" id="textarea-default" placeholder="Input"></textarea>
+  </div>
+</div>
+
+
+<!-- Filled — value entered, unfocused -->
+<div class="input-group">
+  <label class="input-label" for="textarea-filled">Placeholder</label>
+  <div class="input-field">
+    <textarea class="input textarea" id="textarea-filled">Input</textarea>
+  </div>
+</div>
+
+
+<!-- Focused — click the field in browser to see the aqua border and focus ring -->
+<div class="input-group">
+  <label class="input-label" for="textarea-focused">Placeholder</label>
+  <div class="input-field">
+    <textarea class="input textarea" id="textarea-focused">Input</textarea>
+  </div>
+</div>
+
+
+<!-- Error — red border driven by .input-group--error on the wrapper -->
+<div class="input-group input-group--error">
+  <label class="input-label" for="textarea-error">Placeholder</label>
+  <div class="input-field">
+    <textarea class="input textarea" id="textarea-error">Input</textarea>
+  </div>
+  <span class="input-hint input-hint--error">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M8 4.5v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="8" cy="11" r="0.75" fill="currentColor"/>
+    </svg>
+    Messaging
+  </span>
+</div>
+
+
+<!-- Disabled — grey background, no resize handle -->
+<div class="input-group">
+  <label class="input-label" for="textarea-disabled">Placeholder</label>
+  <div class="input-field">
+    <textarea class="input textarea" id="textarea-disabled" disabled>Input</textarea>
+  </div>
+</div>
+
+
+<!-- With hint text -->
+<div class="input-group">
+  <label class="input-label" for="textarea-hint">Message</label>
+  <div class="input-field">
+    <textarea class="input textarea" id="textarea-hint" placeholder="Tell us more..."></textarea>
+  </div>
+  <span class="input-hint">Maximum 500 characters.</span>
+</div>

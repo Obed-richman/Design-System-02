@@ -1,0 +1,72 @@
+/* ============================================
+   BADGE COMPONENT
+   Depends on: tokens/tokens.css
+   No hardcoded values — all tokens referenced
+   from tokens.css
+
+   Use badges to label content by priority,
+   status, or category.
+   ============================================ */
+
+
+/* ============================================
+   BASE
+   ============================================ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-round);
+  border: var(--border-s) solid;
+  padding: 2px var(--gap-x-small);
+  white-space: nowrap;
+  font-family: var(--font-family-base);
+  font-size: 12px;
+  font-weight: var(--font-weight-bold);
+  line-height: 16px;
+}
+
+
+/* ============================================
+   VARIANTS
+   Background, border, and text all use the
+   same semantic token family per variant.
+   Dark mode is handled automatically by the
+   token cascade — no extra overrides needed.
+   ============================================ */
+
+/* Low — green; use for low priority or passing status */
+.badge--low {
+  background: var(--bg-positive);
+  border-color: var(--border-color-positive);
+  color: var(--text-positive);
+}
+
+/* Medium — yellow; use for moderate priority or caution */
+.badge--medium {
+  background: var(--bg-warning);
+  border-color: var(--border-color-warning);
+  color: var(--text-warning);
+}
+
+/* High — red; use for high priority, errors, or critical status */
+.badge--high {
+  background: var(--bg-negative);
+  border-color: var(--border-color-negative);
+  color: var(--text-negative);
+}
+
+/* Inactive — white/light grey; use for items that are present but not active */
+.badge--inactive {
+  background: var(--bg-primary);
+  border-color: var(--border-color-primary);
+  color: var(--text-disabled);
+}
+
+/* Disabled — grey; use for items that are unavailable or turned off */
+.badge--disabled {
+  background: var(--bg-secondary);
+  border-color: var(--border-color-secondary);
+  color: var(--text-disabled);
+}

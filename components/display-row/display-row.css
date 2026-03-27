@@ -1,0 +1,119 @@
+/* ============================================
+   DISPLAY ROW COMPONENT
+   Depends on: tokens/tokens.css
+               components/button/button.css   (button slot)
+               components/radio/radio.css     (radio slot)
+   No hardcoded values — all tokens referenced
+   from tokens.css
+
+   Wrap stacked rows in a container that sets
+   horizontal padding, e.g.:
+     <div style="padding: 0 var(--gap-medium);">...</div>
+   ============================================ */
+
+
+/* --- Base --- */
+.display-row {
+  width: 100%;
+  border-top: var(--border-s) solid var(--border-color-primary);
+  border-bottom: var(--border-s) solid var(--border-color-primary);
+  cursor: pointer;
+  transition: background 120ms ease;
+}
+
+/* Prevent double borders when rows are stacked */
+.display-row + .display-row {
+  border-top: none;
+}
+
+
+/* ============================================
+   CONTENT
+   ============================================ */
+
+.display-row__content {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-medium);
+  padding: var(--gap-medium) 0;
+  width: 100%;
+}
+
+
+/* ============================================
+   LEFT ICON
+   ============================================ */
+
+.display-row__icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--icon-primary);
+}
+
+
+/* ============================================
+   TEXT BLOCK (left, fills remaining space)
+   ============================================ */
+
+.display-row__text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--number-2);
+  min-width: 0;
+}
+
+.display-row__label {
+  font-size: var(--font-size-subtitle-2);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-subtitle-2);
+  color: var(--text-primary);
+}
+
+.display-row__support {
+  font-size: var(--font-size-subtitle-3);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-subtitle-3);
+  color: var(--text-primary);
+}
+
+
+/* ============================================
+   VALUE TEXT (right column, 2-column variant)
+   ============================================ */
+
+.display-row__value {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--number-2);
+  align-items: flex-end;
+}
+
+.display-row__value .display-row__label   { text-align: right; }
+.display-row__value .display-row__support { text-align: right; }
+
+
+/* ============================================
+   ACTION SLOT
+   Holds a .btn or .radio component — no extra
+   styling needed here, those components own
+   their own styles.
+   ============================================ */
+
+.display-row__action {
+  flex-shrink: 0;
+}
+
+
+/* ============================================
+   CHEVRON (right nav indicator)
+   ============================================ */
+
+.display-row__chevron {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  color: var(--icon-primary);
+}

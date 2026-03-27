@@ -1,0 +1,365 @@
+/* ============================================
+   INPUT COMPONENT
+   Depends on: tokens/tokens.css
+   No hardcoded values — all tokens referenced
+   from tokens.css
+   ============================================ */
+
+
+/* ============================================
+   INPUT GROUP
+   Wraps label block + field + message
+   ============================================ */
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-x-small);
+  width: 100%;
+}
+
+
+/* ============================================
+   LABEL BLOCK
+   Optional title + support text above the field.
+   Use in place of (or alongside) .input-label
+   for states that need supporting copy.
+   ============================================ */
+
+.input-label-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xx-small);
+}
+
+.input-label-block__title {
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  font-weight: var(--font-weight-medium);
+  line-height: 20px;
+  color: var(--text-primary);
+}
+
+.input-label-block__support {
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  font-weight: var(--font-weight-regular);
+  line-height: 20px;
+  color: var(--text-disabled);
+}
+
+
+/* ============================================
+   LABEL (simple single-line label)
+   ============================================ */
+
+.input-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.input-group--error .input-label { color: var(--text-negative); }
+.input-group--valid .input-label  { color: var(--text-positive); }
+
+
+/* ============================================
+   FIELD CONTAINER
+   Holds input + right-side icon (absolute)
+   ============================================ */
+
+.input-field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+
+/* ============================================
+   INPUT ELEMENT
+   ============================================ */
+
+.input {
+  width: 100%;
+  height: 48px;
+  padding: 0 var(--gap-large);
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-primary);
+  background: transparent;
+  border: var(--border-s) solid var(--border-color-primary);
+  border-radius: var(--radius-small);
+  outline: none;
+  transition: border-color 150ms ease, border-width 150ms ease, box-shadow 150ms ease;
+  -webkit-appearance: none;
+}
+
+.input::placeholder { color: var(--text-disabled); }
+
+/* Hover — 2px active border, no focus ring */
+.input:hover:not(:disabled):not(:focus) {
+  border-width: var(--border-m);
+  border-color: var(--border-color-active);
+}
+
+/* Focused — 2px active border + outer focus ring */
+.input:focus:not(:disabled) {
+  border-width: var(--border-m);
+  border-color: var(--border-color-active);
+  box-shadow: 0 0 0 var(--border-focused) var(--border-color-focused);
+}
+
+/* Disabled */
+.input:disabled {
+  background: var(--bg-disabled);
+  color: var(--text-disabled);
+  border-color: var(--border-color-primary);
+  border-width: var(--border-s);
+  cursor: not-allowed;
+}
+
+.input:disabled::placeholder { color: var(--text-disabled); }
+
+/* Leave space for a right-side icon */
+.input--icon-right { padding-right: 44px; }
+
+
+/* ============================================
+   STATE VARIANTS
+   ============================================ */
+
+/* Error — red background, 1px negative border */
+.input-group--error .input {
+  background: var(--bg-negative);
+  border-width: var(--border-s);
+  border-color: var(--border-color-negative);
+}
+.input-group--error .input:focus {
+  border-width: var(--border-s);
+  border-color: var(--border-color-negative);
+  box-shadow: 0 0 0 var(--border-focused) var(--colour-red-70-10);
+}
+.input-group--error .input:hover:not(:disabled):not(:focus) {
+  border-width: var(--border-s);
+  border-color: var(--border-color-negative);
+}
+
+/* Valid — default background, 1px positive border */
+.input-group--valid .input {
+  background: var(--bg-primary);
+  border-width: var(--border-s);
+  border-color: var(--border-color-positive);
+}
+.input-group--valid .input:focus {
+  border-width: var(--border-s);
+  border-color: var(--border-color-positive);
+  box-shadow: 0 0 0 var(--border-focused) var(--colour-green-70-30);
+}
+.input-group--valid .input:hover:not(:disabled):not(:focus) {
+  border-width: var(--border-s);
+  border-color: var(--border-color-positive);
+}
+
+/* Hint — default background, default border */
+.input-group--hint .input {
+  background: var(--bg-primary);
+  border-width: var(--border-s);
+  border-color: var(--border-color-primary);
+}
+
+
+/* ============================================
+   ICONS (right-side, inside field)
+   ============================================ */
+
+.input-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: var(--gap-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: var(--icon-secondary);
+  pointer-events: none;
+}
+
+.input-icon--error { color: var(--icon-negative); }
+.input-icon--valid { color: var(--icon-positive); }
+.input-icon--hint  { color: var(--icon-secondary); }
+
+/* Clickable icon e.g. password toggle */
+.input-icon--button {
+  pointer-events: all;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--icon-secondary);
+  font-family: inherit;
+}
+
+.input-icon--button:hover { color: var(--text-primary); }
+
+
+/* ============================================
+   MESSAGE ROW
+   Displayed below the field for error / valid / hint.
+   Row: icon (24px) + text, aligned centre.
+   ============================================ */
+
+.input-message {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-x-small);
+}
+
+.input-message__icon {
+  flex-shrink: 0;
+  width: var(--number-24);
+  height: var(--number-24);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-message__text {
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  font-weight: var(--font-weight-regular);
+  line-height: 20px;
+}
+
+/* Colour per state */
+.input-group--error .input-message__icon { color: var(--icon-negative); }
+.input-group--error .input-message__text { color: var(--text-negative); }
+.input-group--valid .input-message__icon { color: var(--icon-positive); }
+.input-group--valid .input-message__text { color: var(--text-primary); }
+.input-group--hint  .input-message__icon { color: var(--icon-secondary); }
+.input-group--hint  .input-message__text { color: var(--text-primary); }
+
+
+/* ============================================
+   HINT / MESSAGE (legacy — kept for back-compat)
+   ============================================ */
+
+.input-hint               { font-size: 13px; font-weight: 400; color: var(--text-disabled); line-height: 1.4; }
+.input-hint--error        { color: var(--text-negative); }
+.input-hint--valid        { color: var(--text-positive); }
+
+
+/* ============================================
+   SELECT / DROPDOWN
+   ============================================ */
+
+.select-field { position: relative; width: 100%; }
+
+.select-trigger {
+  width: 100%;
+  height: 48px;
+  padding: 0 var(--gap-large);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-x-small);
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  border: var(--border-s) solid var(--border-color-primary);
+  border-radius: var(--radius-small);
+  outline: none;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+  -webkit-appearance: none;
+}
+
+.select-trigger:hover            { border-color: var(--border-color-active); border-width: var(--border-m); }
+.select-trigger--placeholder     { color: var(--text-disabled); }
+
+.select-trigger:focus,
+.select-trigger[aria-expanded="true"] {
+  border-width: var(--border-m);
+  border-color: var(--border-color-active);
+  box-shadow: 0 0 0 var(--border-focused) var(--border-color-focused);
+}
+
+.select-chevron {
+  flex-shrink: 0;
+  color: var(--icon-secondary);
+  transition: transform 200ms ease;
+}
+
+.select-trigger[aria-expanded="true"] .select-chevron { transform: rotate(180deg); }
+
+.select-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + var(--gap-xx-small));
+  left: 0;
+  right: 0;
+  background: var(--bg-primary);
+  border-radius: var(--radius-small);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.10), 0 0 16px 8px rgba(39,37,45,0.08);
+  z-index: 100;
+  overflow: hidden;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.select-dropdown--open { display: block; }
+
+.select-option {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  padding: 0 var(--gap-large);
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: background 100ms ease;
+  -webkit-appearance: none;
+}
+
+.select-option:hover     { background: var(--bg-secondary); }
+.select-option--selected { font-weight: 600; background: var(--bg-secondary); }
+
+.select-dropdown::-webkit-scrollbar       { width: 4px; }
+.select-dropdown::-webkit-scrollbar-track { background: transparent; }
+.select-dropdown::-webkit-scrollbar-thumb { background: var(--colour-grey-40); border-radius: var(--radius-round); }
+
+
+/* ============================================
+   DARK MODE
+   ============================================ */
+
+.dark .input                                    { background: transparent; }
+.dark .input:hover:not(:disabled):not(:focus)   { border-color: var(--border-color-active); border-width: var(--border-m); }
+.dark .input:disabled                           { background: var(--colour-navy-50); }
+
+/* Error: dark bg-negative is already remapped by tokens (.dark overrides --bg-negative) */
+.dark .input-group--error .input               { background: var(--bg-negative); }
+
+/* Valid and hint fields use navy-60 like default */
+.dark .input-group--valid .input               { background: var(--colour-navy-60); }
+.dark .input-group--hint  .input               { background: var(--colour-navy-60); }
+
+.dark .select-trigger                           { background: var(--colour-navy-60); }
+.dark .select-trigger:hover                     { border-color: var(--border-color-active); border-width: var(--border-m); }
+.dark .select-dropdown                          { background: var(--colour-navy-60); box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 0 16px 8px rgba(0,0,0,0.2); }
+.dark .select-option                            { background: var(--colour-navy-60); }
+.dark .select-option:hover,
+.dark .select-option--selected                  { background: var(--colour-navy-50); }

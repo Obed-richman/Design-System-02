@@ -1,0 +1,129 @@
+<!-- ============================================
+     RADIO COMPONENT SNIPPETS
+     Copy what you need into a screen or index.html
+     Requires: tokens/tokens.css + components/radio/radio.css
+
+     Modifier classes:
+       .radio--error    error state on wrapper
+
+     States driven by native input attributes:
+       checked          selected state
+       disabled         disabled state
+       :hover           CSS hover (move cursor over label)
+       :focus-visible   CSS focus (Tab key to reach input)
+
+     Group radios with the same name="" attribute
+     so only one can be selected at a time.
+     ============================================ -->
+
+
+<!-- Default · Unchecked -->
+<label class="radio" for="rb-unchecked">
+  <input type="radio" class="radio__input" id="rb-unchecked" name="rb-group-1">
+  <span class="radio__control"></span>
+  <span class="radio__label">Option one</span>
+</label>
+
+<!-- Default · Checked -->
+<label class="radio" for="rb-checked">
+  <input type="radio" class="radio__input" id="rb-checked" name="rb-group-1" checked>
+  <span class="radio__control"></span>
+  <span class="radio__label">Option two</span>
+</label>
+
+<!-- Default · No label -->
+<label class="radio" for="rb-no-label">
+  <input type="radio" class="radio__input" id="rb-no-label" name="rb-group-1">
+  <span class="radio__control"></span>
+</label>
+
+
+<!-- Hover · Unchecked — hover visible via CSS :hover on wrapper -->
+<!-- Move cursor over this element to see the hover state         -->
+<label class="radio" for="rb-hover-unchecked">
+  <input type="radio" class="radio__input" id="rb-hover-unchecked" name="rb-group-2">
+  <span class="radio__control"></span>
+  <span class="radio__label">Hover to see state</span>
+</label>
+
+<!-- Hover · Checked — hover visible via CSS :hover on wrapper -->
+<label class="radio" for="rb-hover-checked">
+  <input type="radio" class="radio__input" id="rb-hover-checked" name="rb-group-2" checked>
+  <span class="radio__control"></span>
+  <span class="radio__label">Hover to see state</span>
+</label>
+
+
+<!-- Focus · Unchecked — Tab key to see focus ring -->
+<label class="radio" for="rb-focus-unchecked">
+  <input type="radio" class="radio__input" id="rb-focus-unchecked" name="rb-group-3">
+  <span class="radio__control"></span>
+  <span class="radio__label">Tab to see focus ring</span>
+</label>
+
+<!-- Focus · Checked — Tab key to see focus ring -->
+<label class="radio" for="rb-focus-checked">
+  <input type="radio" class="radio__input" id="rb-focus-checked" name="rb-group-3" checked>
+  <span class="radio__control"></span>
+  <span class="radio__label">Tab to see focus ring</span>
+</label>
+
+
+<!-- Disabled · Unchecked -->
+<label class="radio" for="rb-disabled-unchecked">
+  <input type="radio" class="radio__input" id="rb-disabled-unchecked" name="rb-group-4" disabled>
+  <span class="radio__control"></span>
+  <span class="radio__label">Unavailable option</span>
+</label>
+
+<!-- Disabled · Checked -->
+<label class="radio" for="rb-disabled-checked">
+  <input type="radio" class="radio__input" id="rb-disabled-checked" name="rb-group-4" checked disabled>
+  <span class="radio__control"></span>
+  <span class="radio__label">Unavailable option</span>
+</label>
+
+
+<!-- Error · Unchecked -->
+<label class="radio radio--error" for="rb-error-unchecked">
+  <input type="radio" class="radio__input" id="rb-error-unchecked" name="rb-group-5">
+  <span class="radio__control"></span>
+  <span class="radio__label">Please select an option</span>
+</label>
+
+<!-- Error · Checked -->
+<label class="radio radio--error" for="rb-error-checked">
+  <input type="radio" class="radio__input" id="rb-error-checked" name="rb-group-5" checked>
+  <span class="radio__control"></span>
+  <span class="radio__label">Please select an option</span>
+</label>
+
+
+<!-- Radio group example — name keeps selection mutually exclusive -->
+<fieldset style="border:none; padding:0;">
+  <legend class="checkbox__label">Choose your vehicle type</legend>
+
+  <label class="radio" for="rb-car">
+    <input type="radio" class="radio__input" id="rb-car" name="vehicle" checked>
+    <span class="radio__control"></span>
+    <span class="radio__label">Personal Car</span>
+  </label>
+
+  <label class="radio" for="rb-van">
+    <input type="radio" class="radio__input" id="rb-van" name="vehicle">
+    <span class="radio__control"></span>
+    <span class="radio__label">Van</span>
+  </label>
+
+  <label class="radio" for="rb-taxi">
+    <input type="radio" class="radio__input" id="rb-taxi" name="vehicle">
+    <span class="radio__control"></span>
+    <span class="radio__label">Taxi</span>
+  </label>
+
+  <label class="radio" for="rb-other-disabled">
+    <input type="radio" class="radio__input" id="rb-other-disabled" name="vehicle" disabled>
+    <span class="radio__control"></span>
+    <span class="radio__label">Other (unavailable)</span>
+  </label>
+</fieldset>

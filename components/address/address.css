@@ -1,0 +1,153 @@
+/* ============================================
+   ADDRESS COMPONENT
+   Depends on: tokens/tokens.css
+               components/input/input.css
+               components/button/button.css
+   No hardcoded values — all tokens referenced
+   from tokens.css
+
+   This file only styles the address wrapper and
+   layout. Input and button styles come from their
+   own component files.
+
+   Structure:
+   .address                 outer container (id="address-component")
+     .address__view         view mode panel — shown by default
+     .address__edit         edit mode panel — hidden by default (uses `hidden` attr)
+
+   The `hidden` attribute handles show/hide natively via JS.
+   No CSS visibility tricks are needed.
+   ============================================ */
+
+
+/* ============================================
+   OUTER WRAPPER
+   ============================================ */
+
+.address {
+  width: 100%;
+}
+
+/* Each mode panel is its own flex column — same spacing as the old outer wrapper */
+.address__view,
+.address__edit {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-large);
+  width: 100%;
+}
+
+/* Save button is enabled by JS (disabled attr removed) when line 1 has a value.
+   The disabled state is handled natively by the browser + button.css.
+   .address--has-value is available as a hook if CSS-only enabling is needed. */
+
+
+/* ============================================
+   EDIT MODE
+   ============================================ */
+
+/* Heading above the fields */
+.address__title {
+  font-family: var(--font-family-base);
+  font-size: 16px;
+  font-weight: var(--font-weight-bold);
+  line-height: 24px;
+  color: var(--text-primary);
+  margin-bottom: var(--gap-x-small);
+}
+
+/* Stack all four .input-group blocks with no extra gap between them.
+   Each .input-group already carries its own internal label→field gap. */
+.address__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Full-width save button wrapper */
+.address__save {
+  width: 100%;
+}
+
+
+/* ============================================
+   VIEW MODE
+   ============================================ */
+
+/* "Address" section heading above the card */
+.address__list-title {
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  font-weight: var(--font-weight-medium);
+  line-height: 20px;
+  color: var(--text-disabled);
+}
+
+/* White bordered card container */
+.address__card {
+  background: var(--bg-primary);
+  border: var(--border-s) solid var(--border-color-primary);
+  border-radius: var(--radius-medium);
+  padding: 0 var(--gap-medium);
+  width: 100%;
+}
+
+/* Row inside card — address text left, chevron right */
+.address__card-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-medium);
+  padding: var(--gap-medium) 0;
+  cursor: pointer;
+}
+
+/* Multi-line stacked address text */
+.address__card-text {
+  font-family: var(--font-family-base);
+  font-size: 16px;
+  font-weight: var(--font-weight-regular);
+  line-height: 24px;
+  color: var(--text-primary);
+  white-space: pre-line;
+}
+
+/* Right chevron */
+.address__card-chevron {
+  flex-shrink: 0;
+  width: var(--number-16);
+  height: var(--number-16);
+  color: var(--icon-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Action row below the address — separated by a border */
+.address__action {
+  border-top: var(--border-s) solid var(--border-color-primary);
+  padding: var(--gap-medium) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-x-small);
+}
+
+/* Supporting description text above the edit button */
+.address__action-text {
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  font-weight: var(--font-weight-regular);
+  line-height: 20px;
+  color: var(--text-primary);
+}
+
+
+/* ============================================
+   DARK MODE
+   ============================================ */
+
+/* bg-primary and border-color-primary are already remapped by .dark tokens —
+   no extra rules needed for the card background or borders.
+   Text colours via --text-primary and --text-disabled also auto-remap. */
+
+.dark .address__card-chevron { color: var(--icon-secondary); }

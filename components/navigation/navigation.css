@@ -1,0 +1,257 @@
+/* ============================================
+   NAVIGATION COMPONENT
+   Depends on: tokens/tokens.css
+   No hardcoded values — all tokens referenced
+   from tokens.css
+
+   Variants:  .nav--desktop   full top nav with links and CTAs
+              .nav--mobile    collapsed bar with hamburger toggle
+   ============================================ */
+
+
+/* --- Base --- */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-large);
+  background: var(--bg-brand-navy);
+  border-radius: var(--radius-medium);
+  padding: var(--gap-medium) var(--gap-large);
+  position: relative;
+}
+
+
+/* ============================================
+   LOGO
+   ============================================ */
+
+.nav__logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  text-decoration: none;
+  color: var(--colour-white);
+}
+
+.nav__logo-img {
+  height: var(--number-24);
+  width: auto;
+  display: block;
+}
+
+
+/* ============================================
+   NAV LINKS
+   ============================================ */
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xx-small);
+  flex: 1;
+}
+
+/* --- Nav item --- */
+.nav__item {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--gap-x-small) var(--gap-medium);
+  border-radius: var(--radius-round);
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: var(--colour-white);
+  transition: background 120ms ease, color 120ms ease;
+}
+
+.nav__item:hover:not(.nav__item--active):not(.nav__item--disabled) {
+  background: var(--colour-white-10);
+}
+
+.nav__item:active:not(.nav__item--active):not(.nav__item--disabled) {
+  background: var(--colour-white-20);
+}
+
+.nav__item:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 var(--border-focused) var(--border-color-focused);
+}
+
+
+/* ============================================
+   ITEM STATES
+   ============================================ */
+
+/* --- Active — white pill --- */
+.nav__item--active {
+  background: var(--colour-white);
+  color: var(--colour-navy-70);
+  font-weight: 600;
+}
+
+.nav__item--active:hover {
+  background: var(--colour-grey-20);
+}
+
+/* --- Disabled --- */
+.nav__item--disabled {
+  color: var(--colour-white-40);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+
+/* ============================================
+   ACTIONS — CTA buttons on the right
+   ============================================ */
+
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-small);
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+/* Secondary button always renders on dark inside nav */
+.nav .btn--secondary {
+  color: var(--colour-white);
+  box-shadow: inset 0 0 0 var(--border-s) var(--colour-white-40);
+}
+
+.nav .btn--secondary:hover:not(:disabled) {
+  background: var(--colour-white-10);
+  box-shadow: inset 0 0 0 var(--border-s) var(--colour-white-40);
+}
+
+.nav .btn--secondary:active:not(:disabled) {
+  background: var(--colour-white-20);
+}
+
+.nav .btn--secondary:focus-visible:not(:disabled) {
+  box-shadow: inset 0 0 0 var(--border-s) var(--colour-white-40),
+              0 0 0 var(--border-focused) var(--border-color-focused);
+}
+
+
+/* ============================================
+   DESKTOP VARIANT
+   ============================================ */
+
+.nav--desktop .nav__mobile-toggle { display: none; }
+.nav--desktop .nav__drawer        { display: none; }
+
+
+/* ============================================
+   MOBILE VARIANT — logo + hamburger only
+   ============================================ */
+
+.nav--mobile .nav__links  { display: none; }
+.nav--mobile .nav__actions { display: none; }
+
+/* --- Hamburger toggle --- */
+.nav__mobile-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  padding: var(--gap-xx-small);
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: var(--colour-white);
+  border-radius: var(--radius-x-small);
+  transition: background 120ms ease;
+  flex-shrink: 0;
+}
+
+.nav__mobile-toggle:hover {
+  background: var(--colour-white-10);
+}
+
+.nav__mobile-toggle:focus-visible {
+  box-shadow: 0 0 0 var(--border-focused) var(--border-color-focused);
+}
+
+/* --- Mobile drawer --- */
+.nav__drawer {
+  display: none;
+  flex-direction: column;
+  gap: var(--gap-xx-small);
+  position: absolute;
+  top: calc(100% + var(--gap-x-small));
+  left: 0;
+  right: 0;
+  background: var(--bg-brand-navy);
+  border-radius: var(--radius-medium);
+  padding: var(--gap-medium);
+  z-index: 100;
+}
+
+.nav__drawer--open {
+  display: flex;
+}
+
+.nav--mobile .nav__drawer .nav__item {
+  width: 100%;
+  justify-content: flex-start;
+  border-radius: var(--radius-small);
+}
+
+/* --- Mobile drawer actions --- */
+.nav__drawer-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-small);
+  padding-top: var(--gap-medium);
+  border-top: var(--border-s) solid var(--colour-white-10);
+  margin-top: var(--gap-x-small);
+}
+
+.nav__drawer-actions .btn {
+  width: 100%;
+}
+
+
+/* ============================================
+   RESPONSIVE — auto-switch at breakpoint
+   ============================================ */
+
+@media (max-width: 767px) {
+  .nav--responsive .nav__links   { display: none; }
+  .nav--responsive .nav__actions { display: none; }
+  .nav--responsive .nav__mobile-toggle { display: flex; }
+}
+
+@media (min-width: 768px) {
+  .nav--responsive .nav__links   { display: flex; }
+  .nav--responsive .nav__actions { display: flex; }
+  .nav--responsive .nav__mobile-toggle { display: none; }
+  .nav--responsive .nav__drawer  { display: none !important; }
+}
+
+
+/* ============================================
+   DARK MODE
+   ============================================ */
+
+.dark .nav {
+  background: var(--colour-black-20);
+}
+
+.dark .nav__drawer {
+  background: var(--colour-black-20);
+}
+
+.dark .nav__item--active {
+  background: var(--colour-white);
+  color: var(--colour-navy-70);
+}

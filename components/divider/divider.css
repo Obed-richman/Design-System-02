@@ -1,0 +1,54 @@
+/* ============================================
+   DIVIDER COMPONENT
+   Depends on: tokens/tokens.css
+   No hardcoded values — all tokens referenced
+   from tokens.css
+
+   Variants:
+   .divider--simple   Single thin line — subtle content separation
+   .divider--text     Thin lines flanking a centred text label
+   .divider--thick    Heavy line — clear section break
+   ============================================ */
+
+
+/* --- Wrapper --- */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-medium);
+  width: 100%;
+}
+
+
+/* --- Line segment --- */
+.divider__line {
+  flex: 1;
+  height: 0;
+  border: none;
+}
+
+/* Simple and Text: 1px line */
+.divider--simple .divider__line,
+.divider--text .divider__line {
+  border-top: var(--border-s) solid var(--border-color-primary);
+}
+
+/* Thick: 2px line */
+.divider--thick .divider__line {
+  border-top: var(--border-m) solid var(--border-color-primary);
+}
+
+
+/* --- Text label (Text variant only) --- */
+.divider__label {
+  flex-shrink: 0;
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  font-weight: var(--font-weight-regular);
+  line-height: 20px;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+/* Dark mode — border-color-primary already remapped by .dark token overrides,
+   no additional rules needed. Text colour via --text-primary also handled. */

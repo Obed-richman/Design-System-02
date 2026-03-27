@@ -1,0 +1,374 @@
+<!-- ============================================
+     TABS COMPONENT SNIPPETS
+     Copy what you need into a screen or index.html
+
+     Requires: tokens/tokens.css
+               tokens/typography.css
+               components/tab-item/tab-item.css
+               components/tabs/tabs.css
+
+     Structure:
+       <div class="tabs tabs--[layout] tabs--[style]">
+         <div class="tabs__list" role="tablist">
+           <button class="tab-item tab-item--[style] tab-item--[size] tab-item--active"
+                   role="tab" aria-selected="true"
+                   data-tab="panel-id">Label</button>
+           ...
+         </div>
+         <div class="tabs__panel tabs__panel--active" id="panel-id">
+           panel content
+         </div>
+         ...
+       </div>
+
+     Layout variants on .tabs:
+       .tabs--compact   items are auto width, bar scrolls on overflow
+       .tabs--full      items share space equally (flex: 1)
+
+     Style variants on .tabs (mirrors the tab-item variant):
+       .tabs--underline   underline indicator, hairline border on bar
+       .tabs--filled      pill items in a tinted tray
+
+     Connect tabs to panels:
+       Add data-tab="some-id" on each .tab-item
+       Add id="some-id" on the matching .tabs__panel
+       JS handles show/hide — see script block below.
+
+     The first tab and its panel should start active:
+       tab:  class="... tab-item--active"  aria-selected="true"
+       panel: class="tabs__panel tabs__panel--active"
+     ============================================ -->
+
+
+<!-- ============================================
+     UNDERLINE · FULL WIDTH · 2 ITEMS
+     ============================================ -->
+
+<div class="tabs tabs--underline tabs--full">
+  <div class="tabs__list" role="tablist" aria-label="Overview">
+
+    <button class="tab-item tab-item--underline tab-item--large tab-item--active"
+            role="tab" aria-selected="true" data-tab="uf2-overview">
+      Overview
+    </button>
+    <button class="tab-item tab-item--underline tab-item--large"
+            role="tab" aria-selected="false" data-tab="uf2-details">
+      Details
+    </button>
+
+  </div>
+
+  <div class="tabs__panel tabs__panel--active" id="uf2-overview">
+    <p>Overview panel content.</p>
+  </div>
+  <div class="tabs__panel" id="uf2-details">
+    <p>Details panel content.</p>
+  </div>
+</div>
+
+
+<!-- ============================================
+     UNDERLINE · FULL WIDTH · 3 ITEMS
+     ============================================ -->
+
+<div class="tabs tabs--underline tabs--full">
+  <div class="tabs__list" role="tablist" aria-label="Policy">
+
+    <button class="tab-item tab-item--underline tab-item--large tab-item--active"
+            role="tab" aria-selected="true" data-tab="uf3-overview">
+      Overview
+    </button>
+    <button class="tab-item tab-item--underline tab-item--large"
+            role="tab" aria-selected="false" data-tab="uf3-details">
+      Details
+    </button>
+    <button class="tab-item tab-item--underline tab-item--large"
+            role="tab" aria-selected="false" data-tab="uf3-documents">
+      Documents
+    </button>
+
+  </div>
+
+  <div class="tabs__panel tabs__panel--active" id="uf3-overview">
+    <p>Overview panel content.</p>
+  </div>
+  <div class="tabs__panel" id="uf3-details">
+    <p>Details panel content.</p>
+  </div>
+  <div class="tabs__panel" id="uf3-documents">
+    <p>Documents panel content.</p>
+  </div>
+</div>
+
+
+<!-- ============================================
+     UNDERLINE · FULL WIDTH · 4 ITEMS
+     ============================================ -->
+
+<div class="tabs tabs--underline tabs--full">
+  <div class="tabs__list" role="tablist" aria-label="Policy">
+
+    <button class="tab-item tab-item--underline tab-item--large tab-item--active"
+            role="tab" aria-selected="true" data-tab="uf4-overview">
+      Overview
+    </button>
+    <button class="tab-item tab-item--underline tab-item--large"
+            role="tab" aria-selected="false" data-tab="uf4-details">
+      Details
+    </button>
+    <button class="tab-item tab-item--underline tab-item--large"
+            role="tab" aria-selected="false" data-tab="uf4-documents">
+      Documents
+    </button>
+    <button class="tab-item tab-item--underline tab-item--large tab-item--disabled"
+            role="tab" aria-selected="false" data-tab="uf4-reports" disabled>
+      Reports
+    </button>
+
+  </div>
+
+  <div class="tabs__panel tabs__panel--active" id="uf4-overview">
+    <p>Overview panel content.</p>
+  </div>
+  <div class="tabs__panel" id="uf4-details">
+    <p>Details panel content.</p>
+  </div>
+  <div class="tabs__panel" id="uf4-documents">
+    <p>Documents panel content.</p>
+  </div>
+  <div class="tabs__panel" id="uf4-reports">
+    <p>Reports panel content.</p>
+  </div>
+</div>
+
+
+<!-- ============================================
+     UNDERLINE · FULL WIDTH · 5 ITEMS
+     ============================================ -->
+
+<div class="tabs tabs--underline tabs--full">
+  <div class="tabs__list" role="tablist" aria-label="Account">
+
+    <button class="tab-item tab-item--underline tab-item--large tab-item--active"
+            role="tab" aria-selected="true" data-tab="uf5-overview">
+      Overview
+    </button>
+    <button class="tab-item tab-item--underline tab-item--large"
+            role="tab" aria-selected="false" data-tab="uf5-details">
+      Details
+    </button>
+    <button class="tab-item tab-item--underline tab-item--large"
+            role="tab" aria-selected="false" data-tab="uf5-documents">
+      Documents
+    </button>
+    <button class="tab-item tab-item--underline tab-item--large"
+            role="tab" aria-selected="false" data-tab="uf5-claims">
+      Claims
+    </button>
+    <button class="tab-item tab-item--underline tab-item--large"
+            role="tab" aria-selected="false" data-tab="uf5-settings">
+      Settings
+    </button>
+
+  </div>
+
+  <div class="tabs__panel tabs__panel--active" id="uf5-overview">
+    <p>Overview panel content.</p>
+  </div>
+  <div class="tabs__panel" id="uf5-details">
+    <p>Details panel content.</p>
+  </div>
+  <div class="tabs__panel" id="uf5-documents">
+    <p>Documents panel content.</p>
+  </div>
+  <div class="tabs__panel" id="uf5-claims">
+    <p>Claims panel content.</p>
+  </div>
+  <div class="tabs__panel" id="uf5-settings">
+    <p>Settings panel content.</p>
+  </div>
+</div>
+
+
+<!-- ============================================
+     UNDERLINE · COMPACT · 3 ITEMS
+     Items are natural content width — bar scrolls
+     on overflow rather than compressing items.
+     ============================================ -->
+
+<div class="tabs tabs--underline tabs--compact">
+  <div class="tabs__list" role="tablist" aria-label="Filter">
+
+    <button class="tab-item tab-item--underline tab-item--small tab-item--active"
+            role="tab" aria-selected="true" data-tab="uc3-all">
+      All
+    </button>
+    <button class="tab-item tab-item--underline tab-item--small"
+            role="tab" aria-selected="false" data-tab="uc3-active">
+      Active
+    </button>
+    <button class="tab-item tab-item--underline tab-item--small"
+            role="tab" aria-selected="false" data-tab="uc3-expired">
+      Expired
+    </button>
+
+  </div>
+
+  <div class="tabs__panel tabs__panel--active" id="uc3-all">
+    <p>All items.</p>
+  </div>
+  <div class="tabs__panel" id="uc3-active">
+    <p>Active items.</p>
+  </div>
+  <div class="tabs__panel" id="uc3-expired">
+    <p>Expired items.</p>
+  </div>
+</div>
+
+
+<!-- ============================================
+     FILLED · COMPACT · 3 ITEMS
+     Items sit in a tinted tray with small inset.
+     ============================================ -->
+
+<div class="tabs tabs--filled tabs--compact">
+  <div class="tabs__list" role="tablist" aria-label="View">
+
+    <button class="tab-item tab-item--filled tab-item--small tab-item--active"
+            role="tab" aria-selected="true" data-tab="fc3-monthly">
+      Monthly
+    </button>
+    <button class="tab-item tab-item--filled tab-item--small"
+            role="tab" aria-selected="false" data-tab="fc3-quarterly">
+      Quarterly
+    </button>
+    <button class="tab-item tab-item--filled tab-item--small"
+            role="tab" aria-selected="false" data-tab="fc3-annual">
+      Annual
+    </button>
+
+  </div>
+
+  <div class="tabs__panel tabs__panel--active" id="fc3-monthly">
+    <p>Monthly view.</p>
+  </div>
+  <div class="tabs__panel" id="fc3-quarterly">
+    <p>Quarterly view.</p>
+  </div>
+  <div class="tabs__panel" id="fc3-annual">
+    <p>Annual view.</p>
+  </div>
+</div>
+
+
+<!-- ============================================
+     FILLED · FULL WIDTH · 3 ITEMS
+     ============================================ -->
+
+<div class="tabs tabs--filled tabs--full">
+  <div class="tabs__list" role="tablist" aria-label="Plan">
+
+    <button class="tab-item tab-item--filled tab-item--small tab-item--active"
+            role="tab" aria-selected="true" data-tab="ff3-basic">
+      Basic
+    </button>
+    <button class="tab-item tab-item--filled tab-item--small"
+            role="tab" aria-selected="false" data-tab="ff3-standard">
+      Standard
+    </button>
+    <button class="tab-item tab-item--filled tab-item--small"
+            role="tab" aria-selected="false" data-tab="ff3-premium">
+      Premium
+    </button>
+
+  </div>
+
+  <div class="tabs__panel tabs__panel--active" id="ff3-basic">
+    <p>Basic plan details.</p>
+  </div>
+  <div class="tabs__panel" id="ff3-standard">
+    <p>Standard plan details.</p>
+  </div>
+  <div class="tabs__panel" id="ff3-premium">
+    <p>Premium plan details.</p>
+  </div>
+</div>
+
+
+<script>
+  // NOTE: Copy this script block into your screen file.
+  // It will not run from a snippets-only file.
+
+  (function () {
+
+    function initTabs(tabsEl) {
+      const tablist = tabsEl.querySelector('[role="tablist"]');
+      if (!tablist) return;
+
+      const tabs = Array.from(
+        tablist.querySelectorAll('[role="tab"]:not(:disabled)')
+      );
+
+      function activateTab(tab) {
+        // Deactivate all tabs and hide all panels in this group
+        tablist.querySelectorAll('[role="tab"]').forEach(function (t) {
+          t.classList.remove('tab-item--active');
+          t.setAttribute('aria-selected', 'false');
+        });
+
+        tabsEl.querySelectorAll('.tabs__panel').forEach(function (panel) {
+          panel.classList.remove('tabs__panel--active');
+        });
+
+        // Activate the selected tab
+        tab.classList.add('tab-item--active');
+        tab.setAttribute('aria-selected', 'true');
+
+        // Show the matching panel (connected via data-tab / id)
+        const panelId = tab.getAttribute('data-tab');
+        if (panelId) {
+          const panel = tabsEl.querySelector('#' + panelId);
+          if (panel) panel.classList.add('tabs__panel--active');
+        }
+      }
+
+      // Click to activate
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          activateTab(tab);
+        });
+      });
+
+      // Keyboard navigation (ARIA tabs pattern)
+      tablist.addEventListener('keydown', function (e) {
+        const idx = tabs.indexOf(document.activeElement);
+        if (idx === -1) return;
+
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+          e.preventDefault();
+          tabs[(idx + 1) % tabs.length].focus();
+
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+          e.preventDefault();
+          tabs[(idx - 1 + tabs.length) % tabs.length].focus();
+
+        } else if (e.key === 'Home') {
+          e.preventDefault();
+          tabs[0].focus();
+
+        } else if (e.key === 'End') {
+          e.preventDefault();
+          tabs[tabs.length - 1].focus();
+
+        } else if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          activateTab(document.activeElement);
+        }
+      });
+    }
+
+    // Initialise all .tabs on the page
+    document.querySelectorAll('.tabs').forEach(initTabs);
+
+  })();
+</script>

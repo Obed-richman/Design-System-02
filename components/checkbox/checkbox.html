@@ -1,0 +1,96 @@
+<!-- ============================================
+     CHECKBOX COMPONENT SNIPPETS
+     Copy what you need into a screen or index.html
+     Requires: tokens/tokens.css + components/checkbox/checkbox.css
+
+     Modifier classes:
+       .checkbox--error    error state on wrapper
+
+     States driven by native input attributes:
+       checked             checked state
+       disabled            disabled state
+       :hover              CSS hover (move cursor over label)
+       :focus-visible      CSS focus (Tab key to reach input)
+     ============================================ -->
+
+
+<!-- Default · Unchecked -->
+<label class="checkbox" for="cb-unchecked">
+  <input type="checkbox" class="checkbox__input" id="cb-unchecked">
+  <span class="checkbox__control"></span>
+  <span class="checkbox__label">Accept terms and conditions</span>
+</label>
+
+<!-- Default · Checked -->
+<label class="checkbox" for="cb-checked">
+  <input type="checkbox" class="checkbox__input" id="cb-checked" checked>
+  <span class="checkbox__control"></span>
+  <span class="checkbox__label">Accept terms and conditions</span>
+</label>
+
+<!-- Default · No label -->
+<label class="checkbox" for="cb-no-label">
+  <input type="checkbox" class="checkbox__input" id="cb-no-label">
+  <span class="checkbox__control"></span>
+</label>
+
+
+<!-- Hover · Unchecked — hover visible via CSS :hover on wrapper -->
+<!-- Move cursor over this element to see the hover state         -->
+<label class="checkbox" for="cb-hover-unchecked">
+  <input type="checkbox" class="checkbox__input" id="cb-hover-unchecked">
+  <span class="checkbox__control"></span>
+  <span class="checkbox__label">Hover to see state</span>
+</label>
+
+<!-- Hover · Checked — hover visible via CSS :hover on wrapper -->
+<label class="checkbox" for="cb-hover-checked">
+  <input type="checkbox" class="checkbox__input" id="cb-hover-checked" checked>
+  <span class="checkbox__control"></span>
+  <span class="checkbox__label">Hover to see state</span>
+</label>
+
+
+<!-- Focus · Unchecked — Tab key to see focus ring -->
+<label class="checkbox" for="cb-focus-unchecked">
+  <input type="checkbox" class="checkbox__input" id="cb-focus-unchecked">
+  <span class="checkbox__control"></span>
+  <span class="checkbox__label">Tab to see focus ring</span>
+</label>
+
+<!-- Focus · Checked — Tab key to see focus ring -->
+<label class="checkbox" for="cb-focus-checked">
+  <input type="checkbox" class="checkbox__input" id="cb-focus-checked" checked>
+  <span class="checkbox__control"></span>
+  <span class="checkbox__label">Tab to see focus ring</span>
+</label>
+
+
+<!-- Disabled · Unchecked -->
+<label class="checkbox" for="cb-disabled-unchecked">
+  <input type="checkbox" class="checkbox__input" id="cb-disabled-unchecked" disabled>
+  <span class="checkbox__control"></span>
+  <span class="checkbox__label">Disabled option</span>
+</label>
+
+<!-- Disabled · Checked -->
+<label class="checkbox" for="cb-disabled-checked">
+  <input type="checkbox" class="checkbox__input" id="cb-disabled-checked" checked disabled>
+  <span class="checkbox__control"></span>
+  <span class="checkbox__label">Disabled option</span>
+</label>
+
+
+<!-- Error · Unchecked -->
+<label class="checkbox checkbox--error" for="cb-error-unchecked">
+  <input type="checkbox" class="checkbox__input" id="cb-error-unchecked">
+  <span class="checkbox__control"></span>
+  <span class="checkbox__label">You must accept to continue</span>
+</label>
+
+<!-- Error · Checked -->
+<label class="checkbox checkbox--error" for="cb-error-checked">
+  <input type="checkbox" class="checkbox__input" id="cb-error-checked" checked>
+  <span class="checkbox__control"></span>
+  <span class="checkbox__label">You must accept to continue</span>
+</label>

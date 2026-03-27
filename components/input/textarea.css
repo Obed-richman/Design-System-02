@@ -1,0 +1,63 @@
+/* ============================================
+   TEXTAREA COMPONENT
+   Depends on: tokens/tokens.css
+               components/input/input.css
+
+   Apply as: <textarea class="input textarea">
+
+   .textarea overrides only the properties that
+   differ from a single-line .input — height,
+   padding, line-height, and resize. All border,
+   background, colour, focus-ring, error, valid,
+   and disabled styles are inherited from .input
+   in input.css and require no duplication here.
+
+   Link both stylesheets in your screen:
+     <link rel="stylesheet" href="../components/input/input.css" />
+     <link rel="stylesheet" href="../components/input/textarea.css" />
+   ============================================ */
+
+
+/* ============================================
+   BASE TEXTAREA
+   Overrides height, padding, and resize from
+   the single-line .input class.
+   ============================================ */
+
+.textarea {
+  height: auto;
+  min-height: 128px;
+  padding: var(--gap-medium) var(--gap-large);
+  line-height: var(--line-height-body-2);
+  resize: vertical;
+  overflow-y: auto;
+}
+
+
+/* ============================================
+   DISABLED — remove resize handle
+   ============================================ */
+
+.textarea:disabled { resize: none; }
+
+
+/* ============================================
+   SCROLLBAR
+   Matches the select dropdown scrollbar in
+   input.css.
+   ============================================ */
+
+.textarea::-webkit-scrollbar       { width: 4px; }
+.textarea::-webkit-scrollbar-track { background: transparent; }
+.textarea::-webkit-scrollbar-thumb { background: var(--colour-grey-40); border-radius: var(--radius-round); }
+
+
+/* ============================================
+   DARK MODE
+   .dark .input in input.css covers background
+   and hover/disabled overrides. Only the
+   scrollbar thumb colour needs a textarea-
+   specific override here.
+   ============================================ */
+
+.dark .textarea::-webkit-scrollbar-thumb { background: var(--colour-navy-40); }

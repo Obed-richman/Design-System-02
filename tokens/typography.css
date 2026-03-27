@@ -1,0 +1,230 @@
+/* ============================================
+   TYPOGRAPHY UTILITY CLASSES
+   Depends on: tokens/tokens.css
+   No hardcoded values — all token variables
+
+   Usage: add the class directly to any element
+   <h1 class="text-title-1-bold">Heading</h1>
+   <p  class="text-body-2">Body copy</p>
+   ============================================ */
+
+
+/* ============================================
+   DISPLAY — mobile hero heading
+   ============================================ */
+
+.text-display-bold {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-display);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-display);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.text-display-medium {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-display);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-display);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+
+/* ============================================
+   TITLE 1
+   ============================================ */
+
+.text-title-1-bold {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-title-1);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-title-1);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.text-title-1-medium {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-title-1);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-title-1);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+
+/* ============================================
+   TITLE 2
+   ============================================ */
+
+.text-title-2-bold {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-title-2);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-title-2);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.text-title-2-medium {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-title-2);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-title-2);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.text-title-2-regular {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-title-2);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-title-2);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+
+/* ============================================
+   TITLE 3
+   ============================================ */
+
+.text-title-3-bold {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-title-3);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-title-3);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.text-title-3-medium {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-title-3);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-title-3);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.text-title-3-regular {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-title-3);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-title-3);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+
+/* ============================================
+   TITLE 4
+   ============================================ */
+
+.text-title-4-medium {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-title-4);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-title-4);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.text-title-4-regular {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-title-4);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-title-4);
+  letter-spacing: var(--letter-spacing-snug);
+}
+
+
+/* ============================================
+   SUBTITLE — always bold, used for section headings
+   ============================================ */
+
+.text-subtitle-1 {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-subtitle-1);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-subtitle-1);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+.text-subtitle-2 {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-subtitle-2);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-subtitle-2);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+.text-subtitle-3 {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-subtitle-3);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-subtitle-3);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+.text-subtitle-4 {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-subtitle-4);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-subtitle-4);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+
+/* ============================================
+   BODY — always regular, used for long-form text
+   ============================================ */
+
+.text-body-1 {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body-1);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-1);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+.text-body-2 {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body-2);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-2);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+.text-body-3 {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body-3);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-3);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+.text-body-4 {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body-4);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-4);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+
+/* ============================================
+   METADATA — small supportive content
+   ============================================ */
+
+.text-metadata {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-metadata);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-metadata);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+
+/* ============================================
+   PLATE NUMBER — licence plate display
+   ============================================ */
+
+.text-plate-number {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-plate-number);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-plate-number);
+  letter-spacing: var(--letter-spacing-wide);
+}

@@ -1,0 +1,308 @@
+<!-- ============================================
+     DROPDOWN COMPONENT SNIPPETS
+     Copy what you need into a screen or index.html
+
+     Dependencies — link all of these in <head>:
+       tokens/tokens.css
+       tokens/typography.css
+       components/dropdown/dropdown.css
+
+     Structure:
+       <div class="dropdown">                ← wrapper, carries state modifier
+         <button class="dropdown__trigger">  ← visible field
+           <span class="...trigger-value">   ← selected value or placeholder text
+           <span class="...trigger-icon">    ← chevron SVG (rotates on open)
+         </button>
+         <ul class="dropdown__list">         ← detached list panel
+           <li class="dropdown__list-item">  ← option
+           <li class="dropdown__divider">    ← separator
+           <li class="dropdown__group-label"> ← section heading (optional)
+         </ul>
+       </div>
+
+     Trigger state modifiers on .dropdown:
+       (none)               → default / placeholder
+       .dropdown--filled    → a value has been selected
+       .dropdown--open      → list is visible (dark trigger)
+       .dropdown--disabled  → not interactive
+       .dropdown--error     → validation error
+
+     JS handles all modifier classes at runtime.
+     Static mockups can manually apply modifiers.
+
+     Chevron: icon-chevron-down from icons/icons.svg
+     ============================================ -->
+
+
+<!-- ============================================
+     DEFAULT — placeholder state
+     JS will set --open / --filled as needed.
+     ============================================ -->
+
+<div class="dropdown" id="dropdown-example">
+
+  <button class="dropdown__trigger" type="button"
+          aria-haspopup="listbox" aria-expanded="false">
+    <span class="dropdown__trigger-value dropdown__trigger-value--placeholder">Input</span>
+    <span class="dropdown__trigger-icon" aria-hidden="true">
+      <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <use href="../../icons/icons.svg#icon-chevron-down"></use>
+      </svg>
+    </span>
+  </button>
+
+  <ul class="dropdown__list" role="listbox" aria-label="Options">
+
+    <!-- Default item -->
+    <li class="dropdown__list-item" role="option" aria-selected="false" tabindex="-1">Item</li>
+
+    <!-- Hover state — use .dropdown__list-item--hover in static mockups to show hover -->
+    <li class="dropdown__list-item" role="option" aria-selected="false" tabindex="-1">Item</li>
+
+    <!-- Selected / active item -->
+    <li class="dropdown__list-item dropdown__list-item--selected" role="option" aria-selected="true" tabindex="-1">Item</li>
+
+    <!-- Divider between groups -->
+    <li class="dropdown__divider" role="separator"></li>
+
+    <!-- Group label — optional section heading -->
+    <li class="dropdown__group-label" role="presentation">Section heading</li>
+
+    <!-- Default items under group -->
+    <li class="dropdown__list-item" role="option" aria-selected="false" tabindex="-1">Item</li>
+    <li class="dropdown__list-item" role="option" aria-selected="false" tabindex="-1">Item</li>
+
+    <!-- Disabled item -->
+    <li class="dropdown__list-item dropdown__list-item--disabled" role="option"
+        aria-disabled="true" aria-selected="false" tabindex="-1">Item (disabled)</li>
+
+    <!-- More items to demonstrate scroll -->
+    <li class="dropdown__list-item" role="option" aria-selected="false" tabindex="-1">Item</li>
+    <li class="dropdown__list-item" role="option" aria-selected="false" tabindex="-1">Item</li>
+    <li class="dropdown__list-item" role="option" aria-selected="false" tabindex="-1">Item</li>
+
+  </ul>
+
+</div>
+
+
+<!-- ============================================
+     STATE VARIANTS
+     Static snapshots — JS manages these classes
+     at runtime; add them manually in mockups.
+     ============================================ -->
+
+<!-- Filled — a value has been selected -->
+<div class="dropdown dropdown--filled">
+  <button class="dropdown__trigger" type="button"
+          aria-haspopup="listbox" aria-expanded="false">
+    <span class="dropdown__trigger-value">Item (selected)</span>
+    <span class="dropdown__trigger-icon" aria-hidden="true">
+      <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <use href="../../icons/icons.svg#icon-chevron-down"></use>
+      </svg>
+    </span>
+  </button>
+  <ul class="dropdown__list" role="listbox" aria-label="Options">
+    <li class="dropdown__list-item dropdown__list-item--selected" role="option" aria-selected="true" tabindex="-1">Item (selected)</li>
+    <li class="dropdown__list-item" role="option" aria-selected="false" tabindex="-1">Item</li>
+    <li class="dropdown__list-item" role="option" aria-selected="false" tabindex="-1">Item</li>
+  </ul>
+</div>
+
+
+<!-- Open — list visible, trigger is dark -->
+<!-- Add .dropdown--open to simulate open state in a static mockup -->
+<div class="dropdown dropdown--open">
+  <button class="dropdown__trigger" type="button"
+          aria-haspopup="listbox" aria-expanded="true">
+    <span class="dropdown__trigger-value dropdown__trigger-value--placeholder">Input</span>
+    <span class="dropdown__trigger-icon" aria-hidden="true">
+      <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <use href="../../icons/icons.svg#icon-chevron-down"></use>
+      </svg>
+    </span>
+  </button>
+  <ul class="dropdown__list" role="listbox" aria-label="Options">
+    <li class="dropdown__list-item" role="option" aria-selected="false" tabindex="-1">Item</li>
+    <li class="dropdown__list-item" role="option" aria-selected="false" tabindex="-1">Item</li>
+    <li class="dropdown__list-item" role="option" aria-selected="false" tabindex="-1">Item</li>
+    <li class="dropdown__list-item" role="option" aria-selected="false" tabindex="-1">Item</li>
+    <li class="dropdown__list-item" role="option" aria-selected="false" tabindex="-1">Item</li>
+    <li class="dropdown__list-item" role="option" aria-selected="false" tabindex="-1">Item</li>
+    <li class="dropdown__list-item" role="option" aria-selected="false" tabindex="-1">Item</li>
+    <li class="dropdown__list-item" role="option" aria-selected="false" tabindex="-1">Item</li>
+    <li class="dropdown__list-item" role="option" aria-selected="false" tabindex="-1">Item</li>
+    <li class="dropdown__list-item" role="option" aria-selected="false" tabindex="-1">Item</li>
+  </ul>
+</div>
+
+
+<!-- Disabled — add disabled attribute to trigger too -->
+<div class="dropdown dropdown--disabled">
+  <button class="dropdown__trigger" type="button"
+          aria-haspopup="listbox" aria-expanded="false" disabled>
+    <span class="dropdown__trigger-value dropdown__trigger-value--placeholder">Input</span>
+    <span class="dropdown__trigger-icon" aria-hidden="true">
+      <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <use href="../../icons/icons.svg#icon-chevron-down"></use>
+      </svg>
+    </span>
+  </button>
+  <ul class="dropdown__list" role="listbox" aria-label="Options"></ul>
+</div>
+
+
+<!-- Error -->
+<div class="dropdown dropdown--error">
+  <button class="dropdown__trigger" type="button"
+          aria-haspopup="listbox" aria-expanded="false">
+    <span class="dropdown__trigger-value dropdown__trigger-value--placeholder">Input</span>
+    <span class="dropdown__trigger-icon" aria-hidden="true">
+      <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <use href="../../icons/icons.svg#icon-chevron-down"></use>
+      </svg>
+    </span>
+  </button>
+  <ul class="dropdown__list" role="listbox" aria-label="Options">
+    <li class="dropdown__list-item" role="option" aria-selected="false" tabindex="-1">Item</li>
+    <li class="dropdown__list-item" role="option" aria-selected="false" tabindex="-1">Item</li>
+    <li class="dropdown__list-item" role="option" aria-selected="false" tabindex="-1">Item</li>
+  </ul>
+</div>
+
+
+<script>
+  // NOTE: Copy this script block into your screen file.
+  // It will not run from a snippets-only file — no DOM is present.
+
+  (function () {
+
+    function initDropdown(wrapper) {
+      const trigger = wrapper.querySelector('.dropdown__trigger');
+      const list    = wrapper.querySelector('.dropdown__list');
+      const valueEl = wrapper.querySelector('.dropdown__trigger-value');
+      let focusedIndex = -1;
+
+      if (!trigger || !list || !valueEl) return;
+
+      function getItems() {
+        return Array.from(
+          list.querySelectorAll('.dropdown__list-item:not(.dropdown__list-item--disabled)')
+        );
+      }
+
+      function open() {
+        wrapper.classList.add('dropdown--open');
+        trigger.setAttribute('aria-expanded', 'true');
+        focusedIndex = -1;
+        // Restore focus index to currently selected item
+        const selected = list.querySelector('.dropdown__list-item--selected');
+        if (selected) focusedIndex = getItems().indexOf(selected);
+      }
+
+      function close() {
+        wrapper.classList.remove('dropdown--open');
+        trigger.setAttribute('aria-expanded', 'false');
+        trigger.focus();
+      }
+
+      function select(item) {
+        // Clear previous selection
+        list.querySelectorAll('.dropdown__list-item--selected').forEach(function (el) {
+          el.classList.remove('dropdown__list-item--selected');
+          el.setAttribute('aria-selected', 'false');
+        });
+
+        // Apply new selection
+        item.classList.add('dropdown__list-item--selected');
+        item.setAttribute('aria-selected', 'true');
+
+        // Update trigger value text
+        valueEl.textContent = item.textContent.trim();
+        valueEl.classList.remove('dropdown__trigger-value--placeholder');
+        wrapper.classList.add('dropdown--filled');
+
+        close();
+      }
+
+      // Toggle list on trigger click
+      trigger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        wrapper.classList.contains('dropdown--open') ? close() : open();
+      });
+
+      // Select on item click
+      list.addEventListener('click', function (e) {
+        const item = e.target.closest('.dropdown__list-item');
+        if (!item || item.classList.contains('dropdown__list-item--disabled')) return;
+        select(item);
+      });
+
+      // Close when clicking outside
+      document.addEventListener('click', function (e) {
+        if (!wrapper.contains(e.target) && wrapper.classList.contains('dropdown--open')) {
+          close();
+        }
+      });
+
+      // Keyboard navigation on trigger
+      trigger.addEventListener('keydown', function (e) {
+        const items  = getItems();
+        const isOpen = wrapper.classList.contains('dropdown--open');
+
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          isOpen ? close() : open();
+
+        } else if (e.key === 'Escape') {
+          if (isOpen) { e.preventDefault(); close(); }
+
+        } else if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          if (!isOpen) open();
+          focusedIndex = Math.min(focusedIndex + 1, items.length - 1);
+          if (items[focusedIndex]) items[focusedIndex].focus();
+
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          if (!isOpen) open();
+          focusedIndex = Math.max(focusedIndex - 1, 0);
+          if (items[focusedIndex]) items[focusedIndex].focus();
+        }
+      });
+
+      // Keyboard navigation inside the list
+      list.addEventListener('keydown', function (e) {
+        const items = getItems();
+
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          focusedIndex = Math.min(focusedIndex + 1, items.length - 1);
+          if (items[focusedIndex]) items[focusedIndex].focus();
+
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          focusedIndex = Math.max(focusedIndex - 1, 0);
+          if (focusedIndex < 0) { trigger.focus(); return; }
+          if (items[focusedIndex]) items[focusedIndex].focus();
+
+        } else if (e.key === 'Enter') {
+          e.preventDefault();
+          const focused = list.querySelector('.dropdown__list-item:focus');
+          if (focused && !focused.classList.contains('dropdown__list-item--disabled')) {
+            select(focused);
+          }
+
+        } else if (e.key === 'Escape') {
+          e.preventDefault();
+          close();
+        }
+      });
+    }
+
+    // Initialise all dropdowns on the page
+    document.querySelectorAll('.dropdown').forEach(initDropdown);
+
+  })();
+</script>

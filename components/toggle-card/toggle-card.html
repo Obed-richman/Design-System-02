@@ -1,0 +1,129 @@
+<!-- ============================================
+     TOGGLE CARD COMPONENT SNIPPETS
+     Copy what you need into a screen or index.html
+
+     Dependencies — link all of these in <head>:
+       tokens/tokens.css
+       tokens/typography.css
+       components/toggle/toggle.css
+       components/toggle-card/toggle-card.css
+
+     Structure:
+       <div class="toggle-card toggle-card--[variant]">
+         <div class="toggle-card__content">
+           <p class="toggle-card__title text-subtitle-3">Title</p>
+           <p class="toggle-card__body text-body-3">Body text</p>
+         </div>
+         <div class="toggle-card__toggle">
+            .toggle component goes here 
+         </div>
+       </div> 
+
+     Colour variants — modifier on .toggle-card:
+       .toggle-card--default    neutral white/grey bg
+       .toggle-card--info       purple tint — informational context
+       .toggle-card--positive   green tint  — feature confirmed on
+       .toggle-card--warning    yellow tint — feature on with a caution
+       .toggle-card--negative   red/pink tint — feature off with a warning
+       .toggle-card--disabled   greyed out — not interactive
+
+     The .toggle inside .toggle-card__toggle is a
+     standalone component — set it to off, on, or
+     disabled independently of the card colour variant.
+     ============================================ -->
+
+
+<!-- Default — neutral white, toggle off -->
+<!-- Use when the setting has no current status to communicate -->
+<div class="toggle-card toggle-card--default">
+  <div class="toggle-card__content">
+    <p class="toggle-card__title text-subtitle-3">Activate auto renewal?</p>
+    <p class="toggle-card__body text-body-3">Activate to automatically renew at the end of your policy to avoid gaps in your cover.</p>
+  </div>
+  <div class="toggle-card__toggle">
+    <label class="toggle toggle--small">
+      <input type="checkbox" class="toggle__input" role="switch" aria-label="Activate auto renewal">
+      <span class="toggle__track"><span class="toggle__thumb"></span></span>
+    </label>
+  </div>
+</div>
+
+
+<!-- Info — purple tint, toggle off -->
+<!-- Use for contextual information the user should be aware of -->
+<div class="toggle-card toggle-card--info">
+  <div class="toggle-card__content">
+    <p class="toggle-card__title text-subtitle-3">Activate auto renewal?</p>
+    <p class="toggle-card__body text-body-3">Activate to automatically renew at the end of your policy to avoid gaps in your cover.</p>
+  </div>
+  <div class="toggle-card__toggle">
+    <label class="toggle toggle--small">
+      <input type="checkbox" class="toggle__input" role="switch" aria-label="Activate auto renewal">
+      <span class="toggle__track"><span class="toggle__thumb"></span></span>
+    </label>
+  </div>
+</div>
+
+
+<!-- Positive — green tint, toggle on -->
+<!-- Use when the feature is active and that is a positive outcome -->
+<div class="toggle-card toggle-card--positive">
+  <div class="toggle-card__content">
+    <p class="toggle-card__title text-subtitle-3">Auto renewal is turned on</p>
+    <p class="toggle-card__body text-body-3">Your policy will automatically renew on 00/00/0000, so you do not need to do anything.</p>
+  </div>
+  <div class="toggle-card__toggle">
+    <label class="toggle toggle--small">
+      <input type="checkbox" class="toggle__input" role="switch" aria-label="Auto renewal" checked>
+      <span class="toggle__track"><span class="toggle__thumb"></span></span>
+    </label>
+  </div>
+</div>
+
+
+<!-- Warning — yellow tint, toggle on -->
+<!-- Use when the feature is active but the user should be cautious -->
+<div class="toggle-card toggle-card--warning">
+  <div class="toggle-card__content">
+    <p class="toggle-card__title text-subtitle-3">Auto renewal is turned on</p>
+    <p class="toggle-card__body text-body-3">Your policy will automatically renew on 00/00/0000, so you do not need to do anything.</p>
+  </div>
+  <div class="toggle-card__toggle">
+    <label class="toggle toggle--small">
+      <input type="checkbox" class="toggle__input" role="switch" aria-label="Auto renewal" checked>
+      <span class="toggle__track"><span class="toggle__thumb"></span></span>
+    </label>
+  </div>
+</div>
+
+
+<!-- Negative — red/pink tint, toggle off -->
+<!-- Use when the feature is off and that presents a risk to the user -->
+<div class="toggle-card toggle-card--negative">
+  <div class="toggle-card__content">
+    <p class="toggle-card__title text-subtitle-3">Auto renew is turned off</p>
+    <p class="toggle-card__body text-body-3">You will need to manually renew your policy in the future, there could potentially be gaps in your cover if you forget to do this.</p>
+  </div>
+  <div class="toggle-card__toggle">
+    <label class="toggle toggle--small">
+      <input type="checkbox" class="toggle__input" role="switch" aria-label="Auto renewal">
+      <span class="toggle__track"><span class="toggle__thumb"></span></span>
+    </label>
+  </div>
+</div>
+
+
+<!-- Disabled — greyed out, toggle disabled -->
+<!-- Use when the setting is not available in the current context -->
+<div class="toggle-card toggle-card--disabled">
+  <div class="toggle-card__content">
+    <p class="toggle-card__title text-subtitle-3">I am the main title</p>
+    <p class="toggle-card__body text-body-3">I understand that I must download the Sense app after purchase and enable permissions for the app to work.</p>
+  </div>
+  <div class="toggle-card__toggle">
+    <label class="toggle toggle--small">
+      <input type="checkbox" class="toggle__input" role="switch" aria-label="Setting" disabled>
+      <span class="toggle__track"><span class="toggle__thumb"></span></span>
+    </label>
+  </div>
+</div>

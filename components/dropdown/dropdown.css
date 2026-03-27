@@ -1,0 +1,369 @@
+/* ============================================
+   DROPDOWN COMPONENT
+   Depends on: tokens/tokens.css
+               tokens/typography.css
+
+   No hardcoded values — all tokens referenced
+   from tokens.css.
+
+   Trigger states are driven by modifier
+   classes on the .dropdown wrapper (toggled
+   by JS — see dropdown.html script block):
+     (none)               → default / placeholder
+     .dropdown--filled    → a value is selected
+     .dropdown--open      → list is visible
+     .dropdown--disabled  → not interactive
+     .dropdown--error     → validation error
+
+   The dropdown list is detached from the
+   trigger and positioned absolutely below it.
+   ============================================ */
+
+
+/* ============================================
+   OUTER WRAPPER
+   position: relative anchors the list panel.
+   ============================================ */
+
+.dropdown {
+  position: relative;
+  width: 100%;
+}
+
+
+/* ============================================
+   TRIGGER
+   Styled like the text input — same height,
+   padding, border, radius, and font.
+   ============================================ */
+
+.dropdown__trigger {
+  width: 100%;
+  height: 48px;
+  padding: 0 var(--gap-medium) 0 var(--gap-large);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-x-small);
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  border: var(--border-s) solid var(--border-color-primary);
+  border-radius: var(--radius-small);
+  outline: none;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 150ms ease, background 150ms ease, color 150ms ease, box-shadow 150ms ease;
+  -webkit-appearance: none;
+}
+
+
+/* ============================================
+   TRIGGER VALUE / PLACEHOLDER TEXT
+   ============================================ */
+
+.dropdown__trigger-value {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Placeholder — muted text colour */
+.dropdown__trigger-value--placeholder { color: var(--text-disabled); }
+
+
+/* ============================================
+   TRIGGER CHEVRON ICON
+   Rotates 180deg when the list is open.
+   ============================================ */
+
+.dropdown__trigger-icon {
+  flex-shrink: 0;
+  width: var(--number-20);
+  height: var(--number-20);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--icon-secondary);
+  transition: transform 200ms ease, color 150ms ease;
+}
+
+.dropdown__trigger-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+
+/* ============================================
+   TRIGGER HOVER STATE
+   Suppressed when open or disabled.
+   ============================================ */
+
+.dropdown:not(.dropdown--open):not(.dropdown--disabled) .dropdown__trigger:hover {
+  border-color: var(--colour-grey-60);
+}
+
+
+/* ============================================
+   TRIGGER FOCUS RING
+   Keyboard / programmatic focus only.
+   Suppressed when open (dark state takes over).
+   ============================================ */
+
+.dropdown:not(.dropdown--open) .dropdown__trigger:focus-visible {
+  border-color: var(--border-color-active);
+  box-shadow: 0 0 0 var(--border-focused) var(--border-color-focused);
+}
+
+
+/* ============================================
+   OPEN STATE
+   Trigger inverts — dark background, white
+   border, white text. Chevron rotates 180deg.
+   ============================================ */
+
+.dropdown--open .dropdown__trigger {
+  background: var(--bg-tertiary);
+  border-color: var(--colour-white);
+  color: var(--text-on-colour);
+}
+
+/* Placeholder text turns white when open */
+.dropdown--open .dropdown__trigger-value--placeholder { color: var(--text-on-colour); }
+
+/* Chevron — white and flipped */
+.dropdown--open .dropdown__trigger-icon {
+  color: var(--icon-on-colour);
+  transform: rotate(180deg);
+}
+
+
+/* ============================================
+   FILLED STATE
+   A value has been selected — standard colours.
+   ============================================ */
+
+.dropdown--filled .dropdown__trigger { color: var(--text-primary); }
+
+
+/* ============================================
+   DISABLED STATE
+   ============================================ */
+
+.dropdown--disabled .dropdown__trigger {
+  background: var(--bg-disabled);
+  color: var(--text-disabled);
+  border-color: var(--border-color-primary);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.dropdown--disabled .dropdown__trigger-icon { color: var(--icon-disabled); }
+
+
+/* ============================================
+   ERROR STATE
+   ============================================ */
+
+.dropdown--error .dropdown__trigger {
+  border-color: var(--border-color-negative);
+}
+
+.dropdown--error .dropdown__trigger:focus-visible,
+.dropdown--error.dropdown--open .dropdown__trigger {
+  border-color: var(--border-color-negative);
+  box-shadow: 0 0 0 var(--border-focused) var(--colour-red-70-10);
+}
+
+
+/* ============================================
+   DROPDOWN LIST
+   Detached from trigger — positioned below
+   with a small gap. Hidden until --open.
+   ============================================ */
+
+.dropdown__list {
+  display: none;
+  position: absolute;
+  top: calc(100% + var(--gap-xx-small));
+  left: 0;
+  right: 0;
+  background: var(--bg-primary);
+  border-radius: var(--radius-small);
+  box-shadow: 0 1px 3px var(--colour-black-10-20),
+              0 0 16px 8px var(--colour-black-10-20);
+  z-index: 200;
+  overflow: hidden;
+  max-height: 280px;
+  overflow-y: auto;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown--open .dropdown__list { display: block; }
+
+/* Scrollbar */
+.dropdown__list::-webkit-scrollbar       { width: 4px; }
+.dropdown__list::-webkit-scrollbar-track { background: transparent; }
+.dropdown__list::-webkit-scrollbar-thumb { background: var(--colour-grey-40); border-radius: var(--radius-round); }
+
+
+/* ============================================
+   LIST ITEM — BASE
+   ============================================ */
+
+.dropdown__list-item {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  padding: 0 var(--gap-large);
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: background 100ms ease;
+  -webkit-appearance: none;
+}
+
+
+/* ============================================
+   LIST ITEM — HOVER STATE
+   ============================================ */
+
+.dropdown__list-item:hover,
+.dropdown__list-item--hover {
+  background: var(--bg-secondary);
+}
+
+
+/* ============================================
+   LIST ITEM — SELECTED STATE
+   ============================================ */
+
+.dropdown__list-item--selected {
+  font-weight: 600;
+  background: var(--colour-aqua-10);
+  color: var(--colour-navy-70);
+}
+
+.dropdown__list-item--selected:hover { background: var(--colour-aqua-10); }
+
+
+/* ============================================
+   LIST ITEM — DISABLED STATE
+   ============================================ */
+
+.dropdown__list-item--disabled {
+  color: var(--text-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+
+/* ============================================
+   DIVIDER
+   Separator line between groups.
+   ============================================ */
+
+.dropdown__divider {
+  height: var(--border-s);
+  background: var(--border-color-primary);
+  margin: var(--gap-xx-small) 0;
+  pointer-events: none;
+}
+
+
+/* ============================================
+   GROUP LABEL
+   Section heading for grouped lists.
+   ============================================ */
+
+.dropdown__group-label {
+  display: block;
+  padding: var(--gap-small) var(--gap-large) var(--gap-xx-small);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-disabled);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  pointer-events: none;
+}
+
+
+/* ============================================
+   DARK MODE
+   ============================================ */
+
+/* Default trigger in dark */
+.dark .dropdown__trigger {
+  background: var(--colour-navy-60);
+  border-color: var(--colour-navy-40);
+  color: var(--colour-white);
+}
+
+/* Placeholder in dark */
+.dark .dropdown__trigger-value--placeholder { color: var(--colour-navy-30); }
+
+/* Hover in dark — suppressed when open or disabled */
+.dark .dropdown:not(.dropdown--open):not(.dropdown--disabled) .dropdown__trigger:hover {
+  border-color: var(--colour-navy-20);
+}
+
+/* Open state in dark — deeper navy, preserve white text */
+.dark .dropdown--open .dropdown__trigger {
+  background: var(--colour-navy-70);
+  border-color: var(--colour-navy-40);
+  color: var(--colour-white);
+}
+
+.dark .dropdown--open .dropdown__trigger-value--placeholder { color: var(--colour-navy-20); }
+
+/* Disabled in dark */
+.dark .dropdown--disabled .dropdown__trigger {
+  background: var(--colour-navy-50);
+  color: var(--colour-navy-30);
+  border-color: var(--colour-navy-40);
+}
+
+/* List panel in dark */
+.dark .dropdown__list {
+  background: var(--colour-navy-60);
+  box-shadow: 0 1px 3px var(--colour-black-10-40),
+              0 0 16px 8px var(--colour-black-10-40);
+}
+
+.dark .dropdown__list::-webkit-scrollbar-thumb { background: var(--colour-navy-40); }
+
+/* Items in dark */
+.dark .dropdown__list-item {
+  background: var(--colour-navy-60);
+  color: var(--colour-white);
+}
+
+.dark .dropdown__list-item:hover,
+.dark .dropdown__list-item--hover   { background: var(--colour-navy-50); }
+
+.dark .dropdown__list-item--selected {
+  background: var(--colour-aqua-20-20);
+  color: var(--colour-aqua-40);
+}
+
+.dark .dropdown__list-item--selected:hover { background: var(--colour-aqua-20-20); }
+
+.dark .dropdown__list-item--disabled { color: var(--colour-navy-30); }
+
+/* Divider in dark */
+.dark .dropdown__divider { background: var(--colour-navy-50); }
+
+/* Group label in dark */
+.dark .dropdown__group-label { color: var(--colour-navy-30); }

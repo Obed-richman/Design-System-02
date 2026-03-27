@@ -1,0 +1,197 @@
+/* ============================================
+   CHECKBOX COMPONENT
+   Depends on: tokens/tokens.css
+   No hardcoded values — all tokens referenced
+   from tokens.css
+   ============================================ */
+
+
+/* --- Wrapper --- */
+.checkbox {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--gap-x-small);
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox:has(.checkbox__input:disabled) { cursor: not-allowed; }
+
+
+/* --- Hide native input --- */
+.checkbox__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+
+/* ============================================
+   CONTROL — custom styled box
+   ============================================ */
+
+.checkbox__control {
+  width: var(--number-20);
+  height: var(--number-20);
+  border-radius: var(--radius-x-small);
+  background: var(--bg-primary);
+  box-shadow: inset 0 0 0 var(--border-m) var(--border-color-primary);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 120ms ease, box-shadow 120ms ease;
+}
+
+/* Checkmark via pseudo-element */
+.checkbox__control::after {
+  content: '';
+  width: var(--number-4);
+  height: var(--number-8);
+  border-right: var(--border-m) solid var(--colour-white);
+  border-bottom: var(--border-m) solid var(--colour-white);
+  transform: rotate(45deg) translate(-1px, -1px);
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+
+
+/* ============================================
+   LABEL
+   ============================================ */
+
+.checkbox__label {
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--text-primary);
+}
+
+.checkbox:has(.checkbox__input:disabled) .checkbox__label { color: var(--text-disabled); }
+.checkbox--error .checkbox__label                         { color: var(--text-negative); }
+
+
+/* ============================================
+   CHECKED
+   ============================================ */
+
+.checkbox__input:checked + .checkbox__control {
+  background: var(--bg-brand-aqua);
+  box-shadow: inset 0 0 0 var(--border-m) var(--border-color-active);
+}
+
+.checkbox__input:checked + .checkbox__control::after { opacity: 1; }
+
+
+/* ============================================
+   HOVER
+   ============================================ */
+
+.checkbox:hover .checkbox__input:not(:disabled):not(:checked) + .checkbox__control {
+  background: var(--bg-secondary);
+  box-shadow: inset 0 0 0 var(--border-m) var(--border-color-active);
+}
+
+.checkbox:hover .checkbox__input:not(:disabled):checked + .checkbox__control {
+  background: var(--bg-aqua-active);
+  box-shadow: inset 0 0 0 var(--border-m) var(--border-color-active);
+}
+
+
+/* ============================================
+   FOCUS
+   ============================================ */
+
+.checkbox__input:focus-visible + .checkbox__control {
+  box-shadow: inset 0 0 0 var(--border-m) var(--border-color-primary),
+              0 0 0 var(--border-focused) var(--border-color-focused);
+}
+
+.checkbox__input:focus-visible:checked + .checkbox__control {
+  box-shadow: inset 0 0 0 var(--border-m) var(--border-color-active),
+              0 0 0 var(--border-focused) var(--border-color-focused);
+}
+
+
+/* ============================================
+   DISABLED
+   ============================================ */
+
+.checkbox__input:disabled + .checkbox__control {
+  background: var(--bg-disabled);
+  box-shadow: inset 0 0 0 var(--border-m) var(--border-color-primary);
+}
+
+.checkbox__input:disabled:checked + .checkbox__control {
+  background: var(--bg-disabled);
+  box-shadow: inset 0 0 0 var(--border-m) var(--bg-disabled);
+}
+
+.checkbox__input:disabled:checked + .checkbox__control::after {
+  border-right-color: var(--text-disabled);
+  border-bottom-color: var(--text-disabled);
+}
+
+
+/* ============================================
+   ERROR — .checkbox--error on wrapper
+   ============================================ */
+
+.checkbox--error .checkbox__control {
+  background: var(--bg-negative);
+  box-shadow: inset 0 0 0 var(--border-m) var(--border-color-negative);
+}
+
+/* Checked overrides error border */
+.checkbox--error .checkbox__input:checked + .checkbox__control {
+  background: var(--bg-brand-aqua);
+  box-shadow: inset 0 0 0 var(--border-m) var(--border-color-active);
+}
+
+.checkbox--error .checkbox__input:focus-visible + .checkbox__control {
+  box-shadow: inset 0 0 0 var(--border-m) var(--border-color-negative),
+              0 0 0 var(--border-focused) var(--border-color-focused);
+}
+
+.checkbox--error .checkbox__input:focus-visible:checked + .checkbox__control {
+  box-shadow: inset 0 0 0 var(--border-m) var(--border-color-active),
+              0 0 0 var(--border-focused) var(--border-color-focused);
+}
+
+
+/* ============================================
+   DARK MODE
+   ============================================ */
+
+.dark .checkbox__control {
+  background: var(--colour-navy-60);
+  box-shadow: inset 0 0 0 var(--border-m) var(--colour-navy-40);
+}
+
+.dark .checkbox:hover .checkbox__input:not(:disabled):not(:checked) + .checkbox__control {
+  background: var(--colour-navy-50);
+  box-shadow: inset 0 0 0 var(--border-m) var(--border-color-active);
+}
+
+.dark .checkbox__input:checked + .checkbox__control {
+  background: var(--bg-brand-aqua);
+  box-shadow: inset 0 0 0 var(--border-m) var(--border-color-active);
+}
+
+.dark .checkbox__input:focus-visible + .checkbox__control {
+  box-shadow: inset 0 0 0 var(--border-m) var(--colour-navy-40),
+              0 0 0 var(--border-focused) var(--border-color-focused);
+}
+
+.dark .checkbox__input:disabled + .checkbox__control {
+  background: var(--colour-navy-50);
+  box-shadow: inset 0 0 0 var(--border-m) var(--colour-navy-40);
+}
+
+.dark .checkbox__input:disabled:checked + .checkbox__control {
+  background: var(--colour-navy-50);
+  box-shadow: inset 0 0 0 var(--border-m) var(--colour-navy-40);
+}

@@ -1,0 +1,169 @@
+<!-- ============================================
+     SELECTOR ITEM COMPONENT SNIPPETS
+     Copy what you need into a screen or index.html
+     Requires: tokens/tokens.css + components/selector-item/selector-item.css
+     ============================================ -->
+
+
+<!-- =====================
+     DOT — radio-style dot
+     ===================== -->
+
+<!-- Dot · Default -->
+<span class="selector-item selector-item--dot"></span>
+
+<!-- Dot · Selected -->
+<span class="selector-item selector-item--dot selector-item--selected"></span>
+
+<!-- Dot · Error -->
+<span class="selector-item selector-item--dot selector-item--error"></span>
+
+<!-- Dot · Disabled -->
+<span class="selector-item selector-item--dot selector-item--disabled"></span>
+
+
+<!-- =====================
+     NUMBER — number in a box
+     ===================== -->
+
+<!-- Number · Default -->
+<button class="selector-item selector-item--number">0</button>
+
+<!-- Number · Selected -->
+<button class="selector-item selector-item--number selector-item--selected">0</button>
+
+<!-- Number · Error -->
+<button class="selector-item selector-item--number selector-item--error">0</button>
+
+<!-- Number · Disabled -->
+<button class="selector-item selector-item--number selector-item--disabled" disabled>0</button>
+
+
+<!-- =====================
+     ICON + TEXT — icon left, label right
+     ===================== -->
+
+<!-- Icon + Text · Default -->
+<button class="selector-item selector-item--icon-text">
+  <span class="selector-item__icon">
+    <svg class="icon">
+      <use href="../icons/icons.svg#icon-additional-user"></use>
+    </svg>
+  </span>
+  <span class="selector-item__text">Text</span>
+</button>
+
+<!-- Icon + Text · Selected -->
+<button class="selector-item selector-item--icon-text selector-item--selected">
+  <span class="selector-item__icon">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M13 11a4 4 0 0 1 4 4v1H3v-1a4 4 0 0 1 4-4h6ZM10 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm5-1v2m0 2v2M16 3h2M14 3h-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </span>
+  <span class="selector-item__text">Text</span>
+</button>
+
+<!-- Icon + Text · Error -->
+<button class="selector-item selector-item--icon-text selector-item--error">
+  <span class="selector-item__icon">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M13 11a4 4 0 0 1 4 4v1H3v-1a4 4 0 0 1 4-4h6ZM10 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm5-1v2m0 2v2M16 3h2M14 3h-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </span>
+  <span class="selector-item__text">Text</span>
+</button>
+
+<!-- Icon + Text · Disabled -->
+<button class="selector-item selector-item--icon-text selector-item--disabled" disabled>
+  <span class="selector-item__icon">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M13 11a4 4 0 0 1 4 4v1H3v-1a4 4 0 0 1 4-4h6ZM10 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm5-1v2m0 2v2M16 3h2M14 3h-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </span>
+  <span class="selector-item__text">Text</span>
+</button>
+
+
+<!-- =====================
+     INDICATOR — label + dot + value
+     ===================== -->
+
+<!-- Indicator · Default -->
+<button class="selector-item selector-item--indicator">
+  <span class="selector-item__label">Text</span>
+  <span class="selector-item__value">
+    <span class="selector-item__indicator-dot"></span>
+    0,000
+  </span>
+</button>
+
+<!-- Indicator · Selected -->
+<button class="selector-item selector-item--indicator selector-item--selected">
+  <span class="selector-item__label">Text</span>
+  <span class="selector-item__value">
+    <span class="selector-item__indicator-dot"></span>
+    0,000
+  </span>
+</button>
+
+<!-- Indicator · Error -->
+<button class="selector-item selector-item--indicator selector-item--error">
+  <span class="selector-item__label">Text</span>
+  <span class="selector-item__value">
+    <span class="selector-item__indicator-dot"></span>
+    0,000
+  </span>
+</button>
+
+<!-- Indicator · Disabled -->
+<button class="selector-item selector-item--indicator selector-item--disabled" disabled>
+  <span class="selector-item__label">Text</span>
+  <span class="selector-item__value">
+    <span class="selector-item__indicator-dot"></span>
+    0,000
+  </span>
+</button>
+
+
+<!-- =====================
+     LIST — icon image + text + chevron
+     ===================== -->
+
+<!-- List · Default -->
+<button class="selector-item selector-item--list">
+  <span class="selector-item__icon-wrap">
+    <img src="" alt="" width="40" height="40">
+  </span>
+  <span class="selector-item__text">New drivers</span>
+  <span class="selector-item__chevron" aria-hidden="true">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7.5 5l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </span>
+</button>
+
+<!-- List · Selected -->
+<button class="selector-item selector-item--list selector-item--selected">
+  <span class="selector-item__icon-wrap">
+    <img src="" alt="" width="40" height="40">
+  </span>
+  <span class="selector-item__text">New drivers</span>
+  <span class="selector-item__chevron" aria-hidden="true">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7.5 5l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </span>
+</button>
+
+<!-- List · Disabled -->
+<button class="selector-item selector-item--list selector-item--disabled" disabled>
+  <span class="selector-item__icon-wrap">
+    <img src="" alt="" width="40" height="40">
+  </span>
+  <span class="selector-item__text">New drivers</span>
+  <span class="selector-item__chevron" aria-hidden="true">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7.5 5l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </span>
+</button>

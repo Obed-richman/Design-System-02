@@ -1,0 +1,202 @@
+<!-- ============================================
+     INPUT COMPONENT SNIPPETS
+     Copy what you need into a screen or index.html
+     Requires: tokens/tokens.css
+               components/input/input.css
+
+     JS needed for password toggle and select dropdown.
+     Copy the <script> block at the bottom into your screen.
+     ============================================ -->
+
+
+<!-- Default — bg-primary, 1px primary border, no message -->
+<div class="input-group">
+  <label class="input-label" for="input-default">Full name</label>
+  <div class="input-field">
+    <input class="input" id="input-default" type="text" />
+  </div>
+</div>
+
+
+<!-- Placeholder — same as Default; placeholder colour is --text-disabled -->
+<div class="input-group">
+  <label class="input-label" for="input-placeholder">Full name</label>
+  <div class="input-field">
+    <input class="input" id="input-placeholder" type="text" placeholder="Jane Smith" />
+  </div>
+</div>
+
+
+<!-- Hover — 2px --border-color-active border, no focus ring
+     (interact with the field in the browser to see this state) -->
+<div class="input-group">
+  <label class="input-label" for="input-hover">Email address</label>
+  <div class="input-field">
+    <input class="input" id="input-hover" type="email" placeholder="you@example.com" />
+  </div>
+</div>
+
+
+<!-- Focused — 2px --border-color-active border + outer focus ring
+     (click the field in the browser to see this state) -->
+<div class="input-group">
+  <label class="input-label" for="input-focused">Email address</label>
+  <div class="input-field">
+    <input class="input" id="input-focused" type="email" placeholder="you@example.com" />
+  </div>
+</div>
+
+
+<!-- Error — bg-negative, 1px negative border, warning icon in field, red message row -->
+<div class="input-group input-group--error">
+  <div class="input-label-block">
+    <p class="input-label-block__title">Email address</p>
+    <p class="input-label-block__support">We'll send your confirmation here.</p>
+  </div>
+  <div class="input-field">
+    <input class="input input--icon-right" id="input-error" type="email" value="notanemail" />
+    <span class="input-icon input-icon--error" aria-hidden="true">
+      <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+        <use href="../../icons/icons.svg#icon-caution"></use>
+      </svg>
+    </span>
+  </div>
+  <div class="input-message">
+    <svg class="icon icon--md input-message__icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+      <use href="../../icons/icons.svg#icon-caution"></use>
+    </svg>
+    <span class="input-message__text">Please enter a valid email address</span>
+  </div>
+</div>
+
+
+<!-- Valid — bg-primary, 1px positive border, check icon in field, positive message row -->
+<div class="input-group input-group--valid">
+  <div class="input-label-block">
+    <p class="input-label-block__title">Username</p>
+    <p class="input-label-block__support">Choose something memorable.</p>
+  </div>
+  <div class="input-field">
+    <input class="input input--icon-right" id="input-valid" type="text" value="obie_designs" />
+    <span class="input-icon input-icon--valid" aria-hidden="true">
+      <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+        <use href="../../icons/icons.svg#icon-correct"></use>
+      </svg>
+    </span>
+  </div>
+  <div class="input-message">
+    <svg class="icon icon--md input-message__icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+      <use href="../../icons/icons.svg#icon-correct"></use>
+    </svg>
+    <span class="input-message__text">Username is available</span>
+  </div>
+</div>
+
+
+<!-- Hint — bg-primary, 1px primary border, info icon in field, secondary message row -->
+<div class="input-group input-group--hint">
+  <div class="input-label-block">
+    <p class="input-label-block__title">Password</p>
+    <p class="input-label-block__support">Must be at least 8 characters.</p>
+  </div>
+  <div class="input-field">
+    <input class="input input--icon-right" id="input-hint" type="password" placeholder="Enter your password" />
+    <span class="input-icon input-icon--hint" aria-hidden="true">
+      <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+        <use href="../../icons/icons.svg#icon-information"></use>
+      </svg>
+    </span>
+  </div>
+  <div class="input-message">
+    <svg class="icon icon--md input-message__icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+      <use href="../../icons/icons.svg#icon-information"></use>
+    </svg>
+    <span class="input-message__text">Use a mix of letters, numbers and symbols</span>
+  </div>
+</div>
+
+
+<!-- Disabled — bg-disabled, 1px primary border, text-disabled, cursor not-allowed -->
+<div class="input-group">
+  <label class="input-label" for="input-disabled">Account number</label>
+  <div class="input-field">
+    <input class="input" id="input-disabled" type="text" value="•••• •••• 1234" disabled />
+  </div>
+</div>
+
+
+<!-- Select / Dropdown -->
+<!-- Note: give each select a unique ID prefix (e.g. "vehicle"). -->
+<div class="input-group">
+  <label class="input-label" id="vehicle-label">Vehicle type</label>
+  <div class="select-field" id="vehicle-field">
+    <button
+      class="select-trigger select-trigger--placeholder"
+      aria-haspopup="listbox"
+      aria-expanded="false"
+      aria-labelledby="vehicle-label"
+      id="vehicle-trigger"
+      onclick="toggleSelect('vehicle')"
+    >
+      <span id="vehicle-value">Select an option</span>
+      <svg class="select-chevron" width="12" height="8" viewBox="0 0 12 8" fill="none">
+        <path d="M1 1.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="select-dropdown" role="listbox" id="vehicle-dropdown" aria-labelledby="vehicle-label">
+      <button class="select-option" role="option" onclick="selectOption('vehicle', this, 'Hatchback')">Hatchback</button>
+      <button class="select-option" role="option" onclick="selectOption('vehicle', this, 'Saloon')">Saloon</button>
+      <button class="select-option" role="option" onclick="selectOption('vehicle', this, 'Estate')">Estate</button>
+      <button class="select-option" role="option" onclick="selectOption('vehicle', this, 'SUV')">SUV</button>
+      <button class="select-option" role="option" onclick="selectOption('vehicle', this, 'Coupe')">Coupe</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================================
+     REQUIRED JAVASCRIPT
+     Copy this <script> block into your screen file.
+     ============================================ -->
+<script>
+  // Password toggle
+  function togglePassword(id) {
+    const input = document.getElementById(id);
+    input.type = input.type === 'password' ? 'text' : 'password';
+  }
+
+  // Select toggle — pass the prefix id e.g. 'vehicle'
+  function toggleSelect(prefix) {
+    const trigger  = document.getElementById(prefix + '-trigger');
+    const dropdown = document.getElementById(prefix + '-dropdown');
+    const isOpen   = dropdown.classList.contains('select-dropdown--open');
+    dropdown.classList.toggle('select-dropdown--open');
+    trigger.setAttribute('aria-expanded', !isOpen);
+  }
+
+  // Select option — pass prefix, the clicked element, and the value
+  function selectOption(prefix, el, value) {
+    const trigger  = document.getElementById(prefix + '-trigger');
+    const valueEl  = document.getElementById(prefix + '-value');
+    const dropdown = document.getElementById(prefix + '-dropdown');
+    valueEl.textContent = value;
+    trigger.classList.remove('select-trigger--placeholder');
+    dropdown.querySelectorAll('.select-option').forEach(o => o.classList.remove('select-option--selected'));
+    el.classList.add('select-option--selected');
+    dropdown.classList.remove('select-dropdown--open');
+    trigger.setAttribute('aria-expanded', 'false');
+  }
+
+  // Close any open select when clicking outside
+  document.addEventListener('click', function(e) {
+    document.querySelectorAll('.select-field').forEach(function(field) {
+      const prefix   = field.id.replace('-field', '');
+      const trigger  = document.getElementById(prefix + '-trigger');
+      const dropdown = document.getElementById(prefix + '-dropdown');
+      if (trigger && dropdown && !field.contains(e.target)) {
+        dropdown.classList.remove('select-dropdown--open');
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+</script>

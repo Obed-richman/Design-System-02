@@ -1,0 +1,71 @@
+/* ============================================
+   BULLET POINTS COMPONENT
+   Depends on: tokens/tokens.css
+   No hardcoded values — all tokens referenced
+   from tokens.css
+
+   Usage:
+   <ul class="bullet-list">
+     <li class="bullet-point">
+       <span class="bullet-point__icon">...</span>
+       <span class="bullet-point__text">...</span>
+     </li>
+   </ul>
+   ============================================ */
+
+
+/* ============================================
+   LIST CONTAINER
+   ============================================ */
+
+.bullet-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-large);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ============================================
+   BULLET POINT ROW
+   ============================================ */
+
+.bullet-point {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-medium);
+}
+
+
+/* ============================================
+   ICON — sized wrapper for icon-tick sprite
+   ============================================ */
+
+.bullet-point__icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* ============================================
+   TEXT
+   ============================================ */
+
+.bullet-point__text {
+  font-size: var(--font-size-body-2);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-2);
+  color: var(--text-primary);
+}
+
+
+/* ============================================
+   DARK MODE
+   ============================================ */
+
+/* icon-tick uses var(--bg-brand-aqua) which resolves
+   correctly in both light and dark via tokens.css */

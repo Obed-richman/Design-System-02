@@ -1,0 +1,225 @@
+<!-- ============================================
+     TAB ITEM COMPONENT SNIPPETS
+     Copy what you need into a screen or index.html
+
+     Dependencies — link all of these in <head>:
+       tokens/tokens.css
+       tokens/typography.css
+       components/tab-item/tab-item.css
+
+     Structure:
+       <button class="tab-item tab-item--[variant] tab-item--[size]"
+               role="tab" aria-selected="false">
+         <span class="tab-item__icon">...</span>  ← optional
+         <span class="tab-item__label">Label</span>
+       </button>
+
+     Style variant modifiers on .tab-item:
+       .tab-item--underline   text + bottom border indicator
+       .tab-item--filled      box/pill with background fill
+
+     Size modifiers on .tab-item:
+       .tab-item--large       larger padding, 16px font
+       .tab-item--small       compact padding, 14px font
+
+     State modifiers on .tab-item:
+       (none)                 default / inactive
+       .tab-item--active      currently selected (add via JS)
+       .tab-item--disabled    muted, not interactive
+
+     The ::after pseudo-element renders the aqua
+     indicator — no extra HTML needed.
+     ============================================ -->
+
+
+<!-- ============================================
+     UNDERLINE VARIANT — LARGE
+     ============================================ -->
+
+<!-- Underline · Large · Default -->
+<button class="tab-item tab-item--underline tab-item--large"
+        role="tab" aria-selected="false">
+  <span class="tab-item__label">Item</span>
+</button>
+
+<!-- Underline · Large · Active -->
+<button class="tab-item tab-item--underline tab-item--large tab-item--active"
+        role="tab" aria-selected="true">
+  <span class="tab-item__label">Item</span>
+</button>
+
+<!-- Underline · Large · Disabled -->
+<button class="tab-item tab-item--underline tab-item--large tab-item--disabled"
+        role="tab" aria-selected="false" disabled>
+  <span class="tab-item__label">Item</span>
+</button>
+
+<!-- Underline · Large · With icon -->
+<button class="tab-item tab-item--underline tab-item--large tab-item--active"
+        role="tab" aria-selected="true">
+  <span class="tab-item__icon" aria-hidden="true">
+    <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <use href="../../icons/icons.svg#icon-policy"></use>
+    </svg>
+  </span>
+  <span class="tab-item__label">Item</span>
+</button>
+
+
+<!-- ============================================
+     UNDERLINE VARIANT — SMALL
+     ============================================ -->
+
+<!-- Underline · Small · Default -->
+<button class="tab-item tab-item--underline tab-item--small"
+        role="tab" aria-selected="false">
+  <span class="tab-item__label">Item</span>
+</button>
+
+<!-- Underline · Small · Active -->
+<button class="tab-item tab-item--underline tab-item--small tab-item--active"
+        role="tab" aria-selected="true">
+  <span class="tab-item__label">Item</span>
+</button>
+
+<!-- Underline · Small · Disabled -->
+<button class="tab-item tab-item--underline tab-item--small tab-item--disabled"
+        role="tab" aria-selected="false" disabled>
+  <span class="tab-item__label">Item</span>
+</button>
+
+
+<!-- ============================================
+     FILLED VARIANT — LARGE
+     ============================================ -->
+
+<!-- Filled · Large · Default -->
+<button class="tab-item tab-item--filled tab-item--large"
+        role="tab" aria-selected="false">
+  <span class="tab-item__label">Item</span>
+</button>
+
+<!-- Filled · Large · Active -->
+<button class="tab-item tab-item--filled tab-item--large tab-item--active"
+        role="tab" aria-selected="true">
+  <span class="tab-item__label">Item</span>
+</button>
+
+<!-- Filled · Large · Disabled -->
+<button class="tab-item tab-item--filled tab-item--large tab-item--disabled"
+        role="tab" aria-selected="false" disabled>
+  <span class="tab-item__label">Item</span>
+</button>
+
+<!-- Filled · Large · With icon -->
+<button class="tab-item tab-item--filled tab-item--large tab-item--active"
+        role="tab" aria-selected="true">
+  <span class="tab-item__icon" aria-hidden="true">
+    <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <use href="../../icons/icons.svg#icon-policy"></use>
+    </svg>
+  </span>
+  <span class="tab-item__label">Item</span>
+</button>
+
+
+<!-- ============================================
+     FILLED VARIANT — SMALL
+     ============================================ -->
+
+<!-- Filled · Small · Default -->
+<button class="tab-item tab-item--filled tab-item--small"
+        role="tab" aria-selected="false">
+  <span class="tab-item__label">Item</span>
+</button>
+
+<!-- Filled · Small · Active -->
+<button class="tab-item tab-item--filled tab-item--small tab-item--active"
+        role="tab" aria-selected="true">
+  <span class="tab-item__label">Item</span>
+</button>
+
+<!-- Filled · Small · Disabled -->
+<button class="tab-item tab-item--filled tab-item--small tab-item--disabled"
+        role="tab" aria-selected="false" disabled>
+  <span class="tab-item__label">Item</span>
+</button>
+
+
+<!-- ============================================
+     GROUP EXAMPLES
+     Wrap in a container with role="tablist" in
+     your screen. JS below handles activation.
+     ============================================ -->
+
+<!-- Underline tab bar — default group layout -->
+<div role="tablist" aria-label="Navigation">
+  <button class="tab-item tab-item--underline tab-item--large tab-item--active"
+          role="tab" aria-selected="true">Overview</button>
+  <button class="tab-item tab-item--underline tab-item--large"
+          role="tab" aria-selected="false">Details</button>
+  <button class="tab-item tab-item--underline tab-item--large"
+          role="tab" aria-selected="false">Documents</button>
+  <button class="tab-item tab-item--underline tab-item--large tab-item--disabled"
+          role="tab" aria-selected="false" disabled>Reports</button>
+</div>
+
+<!-- Filled tab bar — default group layout -->
+<div role="tablist" aria-label="Navigation" style="display:flex; gap:4px;">
+  <button class="tab-item tab-item--filled tab-item--small tab-item--active"
+          role="tab" aria-selected="true">Overview</button>
+  <button class="tab-item tab-item--filled tab-item--small"
+          role="tab" aria-selected="false">Details</button>
+  <button class="tab-item tab-item--filled tab-item--small"
+          role="tab" aria-selected="false">Documents</button>
+  <button class="tab-item tab-item--filled tab-item--small tab-item--disabled"
+          role="tab" aria-selected="false" disabled>Reports</button>
+</div>
+
+
+<script>
+  // NOTE: Copy this script block into your screen file.
+  // It will not run from a snippets-only file.
+
+  (function () {
+
+    function initTabList(tablist) {
+      const tabs = Array.from(tablist.querySelectorAll('[role="tab"]:not(:disabled)'));
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          // Deactivate all tabs in this tablist
+          tabs.forEach(function (t) {
+            t.classList.remove('tab-item--active');
+            t.setAttribute('aria-selected', 'false');
+          });
+
+          // Activate the clicked tab
+          tab.classList.add('tab-item--active');
+          tab.setAttribute('aria-selected', 'true');
+        });
+
+        // Arrow key navigation
+        tab.addEventListener('keydown', function (e) {
+          const idx = tabs.indexOf(tab);
+          if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+            e.preventDefault();
+            tabs[(idx + 1) % tabs.length].focus();
+          } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+            e.preventDefault();
+            tabs[(idx - 1 + tabs.length) % tabs.length].focus();
+          } else if (e.key === 'Home') {
+            e.preventDefault();
+            tabs[0].focus();
+          } else if (e.key === 'End') {
+            e.preventDefault();
+            tabs[tabs.length - 1].focus();
+          }
+        });
+      });
+    }
+
+    document.querySelectorAll('[role="tablist"]').forEach(initTabList);
+
+  })();
+</script>

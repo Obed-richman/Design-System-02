@@ -1,0 +1,166 @@
+<!-- ============================================
+     ADDRESS COMPONENT SNIPPET
+     Copy this block (and the <script> at the bottom)
+     into a screen or index.html.
+
+     Requires: tokens/tokens.css
+               tokens/typography.css
+               components/input/input.css
+               components/button/button.css
+               components/address/address.css
+               icons/icons.css
+
+     Interaction:
+     - Starts in view mode (edit panel is hidden)
+     - Edit button → switches to edit mode, pre-fills fields
+     - Save address button → switches back to view mode,
+       updates the displayed address from field values
+     - Save button is disabled until Address line 1 has a value
+     ============================================ -->
+
+<div class="address" id="address-component">
+
+  <!-- ============================================================
+       VIEW MODE — shown on load
+       Read-only address card with chevron + action row below.
+       ============================================================ -->
+  <div class="address__view">
+    <p class="address__list-title">Address</p>
+
+    <div class="address__card">
+      <div class="address__card-row">
+        <p class="address__card-text">76 Elaine Street<br>Merseyside<br>Liverpool<br>L8 8HU</p>
+        <span class="address__card-chevron" aria-hidden="true">
+          <svg class="icon icon--sm" viewBox="0 0 7 12" fill="currentColor">
+            <use href="../../icons/icons.svg#icon-chevron-small-right"></use>
+          </svg>
+        </span>
+      </div>
+
+      <div class="address__action">
+        <p class="address__action-text">Need to update your address? You can edit it here.</p>
+        <button class="btn btn--pill btn--secondary btn--full address__edit-btn">
+          <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-arrow-right"></use>
+          </svg>
+          Edit
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       EDIT MODE — hidden on load, revealed when Edit is clicked
+       Four input fields + save button.
+       ============================================================ -->
+  <div class="address__edit" hidden>
+    <h2 class="address__title">What is your address</h2>
+
+    <div class="address__fields">
+      <div class="input-group">
+        <label class="input-label" for="address-line-1">Address line 1</label>
+        <div class="input-field">
+          <input class="input" id="address-line-1" type="text" placeholder="e.g. 76 Elaine Street" autocomplete="address-line1" />
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label class="input-label" for="address-line-2">Address line 2</label>
+        <div class="input-field">
+          <input class="input" id="address-line-2" type="text" placeholder="Apartment, suite, etc. (optional)" autocomplete="address-line2" />
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label class="input-label" for="address-city">City</label>
+        <div class="input-field">
+          <input class="input" id="address-city" type="text" placeholder="e.g. Liverpool" autocomplete="address-level2" />
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label class="input-label" for="address-postcode">Postcode</label>
+        <div class="input-field">
+          <input class="input" id="address-postcode" type="text" placeholder="e.g. L8 8HU" autocomplete="postal-code" />
+        </div>
+      </div>
+    </div>
+
+    <div class="address__save">
+      <button class="btn btn--pill btn--primary btn--full address__save-btn" disabled>
+        Save address
+      </button>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ============================================
+     REQUIRED JAVASCRIPT
+     Copy this <script> block into your screen file.
+     ============================================ -->
+<script>
+  // Address component — mode switcher
+  (function () {
+    const component = document.getElementById('address-component');
+    if (!component) return;
+
+    const viewEl    = component.querySelector('.address__view');
+    const editEl    = component.querySelector('.address__edit');
+    const editBtn   = component.querySelector('.address__edit-btn');
+    const saveBtn   = component.querySelector('.address__save-btn');
+    const viewText  = component.querySelector('.address__card-text');
+
+    const field1    = component.querySelector('#address-line-1');
+    const field2    = component.querySelector('#address-line-2');
+    const fieldCity = component.querySelector('#address-city');
+    const fieldPost = component.querySelector('#address-postcode');
+
+    // Switch to edit mode — pre-fill fields from the current view text
+    function showEdit() {
+      viewEl.hidden = true;
+      editEl.hidden = false;
+
+      // Parse address lines from innerHTML (split on <br>)
+      const lines = viewText.innerHTML.split('<br>').map(function (l) { return l.trim(); });
+      if (field1)    field1.value    = lines[0] || '';
+      if (field2)    field2.value    = lines[1] || '';
+      if (fieldCity) fieldCity.value = lines[2] || '';
+      if (fieldPost) fieldPost.value = lines[3] || '';
+
+      checkFields();
+      if (field1) field1.focus();
+    }
+
+    // Switch to view mode — rebuild the address card text from field values
+    function showView() {
+      const line1 = field1    ? field1.value.trim()    : '';
+      const line2 = field2    ? field2.value.trim()    : '';
+      const city  = fieldCity ? fieldCity.value.trim() : '';
+      const post  = fieldPost ? fieldPost.value.trim() : '';
+
+      // Filter empty lines so optional line 2 is skipped if blank
+      const lines = [line1, line2, city, post].filter(Boolean);
+      viewText.innerHTML = lines.join('<br>');
+
+      editEl.hidden = true;
+      viewEl.hidden = false;
+    }
+
+    // Enable save button only when Address line 1 has a value
+    function checkFields() {
+      if (saveBtn) saveBtn.disabled = !(field1 && field1.value.trim().length > 0);
+    }
+
+    if (editBtn) editBtn.addEventListener('click', showEdit);
+    if (saveBtn) saveBtn.addEventListener('click', showView);
+
+    [field1, field2, fieldCity, fieldPost].forEach(function (f) {
+      if (f) f.addEventListener('input', checkFields);
+    });
+
+    // Set initial button state
+    checkFields();
+  }());
+</script>

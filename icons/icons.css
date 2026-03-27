@@ -1,0 +1,44 @@
+/* ============================================
+   ICON SYSTEM
+   Depends on: tokens/tokens.css
+   No hardcoded values — all tokens referenced
+   from tokens.css
+
+   Usage:
+   <svg class="icon icon--sm icon--brand">
+     <use href="icons/icons.svg#icon-search"></use>
+   </svg>
+   ============================================ */
+
+
+/* --- Base --- */
+.icon {
+  width: var(--number-24);
+  height: var(--number-24);
+  display: inline-block;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+
+/* ============================================
+   SIZE VARIANTS
+   ============================================ */
+
+.icon--sm  { width: var(--number-16); height: var(--number-16); }
+.icon--md  { width: var(--number-24); height: var(--number-24); }
+.icon--lg  { width: var(--number-32); height: var(--number-32); }
+
+
+/* ============================================
+   COLOUR VARIANTS
+   ============================================ */
+
+.icon--primary    { color: var(--icon-primary); }
+.icon--secondary  { color: var(--icon-secondary); }
+.icon--brand      { color: var(--icon-brand); }
+.icon--positive   { color: var(--icon-positive); }
+.icon--negative   { color: var(--icon-negative); }
+.icon--warning    { color: var(--icon-warning); }
+.icon--disabled   { color: var(--icon-disabled); }
+.icon--on-colour  { color: var(--icon-on-colour); }

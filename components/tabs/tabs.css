@@ -1,0 +1,122 @@
+/* ============================================
+   TABS COMPONENT
+   Depends on: tokens/tokens.css
+               tokens/typography.css
+               components/tab-item/tab-item.css
+
+   No hardcoded values — all tokens referenced
+   from tokens.css.
+
+   This file styles only the wrapper and layout.
+   All tab item appearance (colours, states,
+   indicator) comes from tab-item.css — nothing
+   in this file duplicates those rules.
+
+   Variants on .tabs:
+     .tabs--underline   uses underline tab items (default)
+     .tabs--filled      uses filled tab items
+
+   Layout variants on .tabs:
+     .tabs--compact     items are auto width, bar fits content
+     .tabs--full        items share space equally (flex: 1)
+
+   Connect tabs to panels via data-tab on each
+   .tab-item and a matching id on each .tabs__panel.
+   JS handles switching — see tabs.html script block.
+   ============================================ */
+
+
+/* ============================================
+   WRAPPER
+   ============================================ */
+
+.tabs {
+  position: relative;
+  background: var(--bg-primary);
+  width: 100%;
+}
+
+
+/* ============================================
+   BOTTOM BORDER
+   The underline variant shows a hairline below
+   the full bar to anchor the active indicator.
+   The filled variant has no bar-level border.
+   ============================================ */
+
+.tabs--underline {
+  border-bottom: var(--border-s) solid var(--border-color-primary);
+}
+
+
+/* ============================================
+   TAB LIST
+   Flex row that holds all .tab-item elements.
+   Scrolls horizontally on small screens without
+   showing a scrollbar.
+   ============================================ */
+
+.tabs__list {
+  display: flex;
+  align-items: stretch;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tabs__list::-webkit-scrollbar { display: none; }
+
+
+/* ============================================
+   LAYOUT VARIANTS
+   ============================================ */
+
+/* Full — items share all available space equally */
+.tabs--full .tabs__list .tab-item { flex: 1; }
+
+/* Compact — items are natural content width */
+.tabs--compact .tabs__list .tab-item { flex: none; }
+
+
+/* ============================================
+   FILLED VARIANT PADDING
+   The filled tab bar has a small inset so the
+   pill-shaped items don't sit edge-to-edge.
+   ============================================ */
+
+.tabs--filled .tabs__list {
+  gap: var(--gap-xx-small);
+  padding: var(--gap-xx-small);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-medium);
+}
+
+
+/* ============================================
+   TAB PANEL
+   Hidden by default — .tabs__panel--active
+   reveals the matching panel.
+   ============================================ */
+
+.tabs__panel {
+  display: none;
+  padding-top: var(--gap-large);
+}
+
+.tabs__panel--active { display: block; }
+
+
+/* ============================================
+   DARK MODE
+   ============================================ */
+
+.dark .tabs {
+  background: var(--colour-navy-60);
+}
+
+.dark .tabs--underline {
+  border-bottom-color: var(--colour-navy-40);
+}
+
+.dark .tabs--filled .tabs__list {
+  background: var(--colour-navy-50);
+}
