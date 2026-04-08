@@ -1,0 +1,326 @@
+/* ============================================
+   FILTER SELECT COMPONENT
+   Depends on: tokens/tokens.css
+               components/input/input.css
+               components/checkbox/checkbox.css
+               components/badge/badge.css
+               components/divider/divider.css
+   No hardcoded values except where noted inline.
+   ============================================ */
+
+
+/* ============================================
+   WRAPPER
+   Position relative so dropdown can be
+   absolutely positioned below.
+   ============================================ */
+
+.filter-select {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+}
+
+
+/* ============================================
+   TRIGGER
+   Input-like appearance — same height, border
+   and radius as .input, but displays flex row.
+   ============================================ */
+
+.filter-select__trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-small);
+  padding: var(--gap-x-small) var(--gap-medium);
+  width: 100%;
+  min-height: 48px;
+  background: var(--bg-primary);
+  border: var(--border-s) solid var(--border-color-primary);
+  border-radius: var(--radius-small);
+  font-family: var(--font-family-base);
+  cursor: pointer;
+  text-align: left;
+  outline: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+  -webkit-appearance: none;
+}
+
+/* Hover — inset shadow simulates thicker border without shifting content */
+.filter-select__trigger:hover,
+.filter-select--hover .filter-select__trigger {
+  border-color: var(--border-color-active);
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-active);
+}
+
+/* Open / focus — inset shadow + outer focus ring */
+.filter-select--open .filter-select__trigger {
+  border-color: var(--border-color-active);
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-active), 0 0 0 var(--border-focused) var(--border-color-focused);
+}
+
+/* Populated — slightly less vertical padding to balance tag height */
+.filter-select--populated .filter-select__trigger {
+  padding-top: 6px; /* no exact token between xx-small(4px) and x-small(8px) */
+  padding-bottom: 6px;
+}
+
+
+/* ============================================
+   LABEL
+   "Status" — bold, secondary colour, never wraps.
+   ============================================ */
+
+.filter-select__label {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body-2);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-body-2);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-pressed);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+
+/* ============================================
+   VERTICAL DIVIDER
+   1px line separating label from content area.
+   align-self: stretch fills the trigger height.
+   ============================================ */
+
+.filter-select__divider {
+  align-self: stretch;
+  width: 0;
+  border-left: var(--border-s) solid var(--border-color-primary);
+  flex-shrink: 0;
+}
+
+
+/* ============================================
+   PLACEHOLDER
+   "Select to filter.." — shown when empty,
+   hidden when populated.
+   ============================================ */
+
+.filter-select__placeholder {
+  flex: 1;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body-2);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-2);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-disabled);
+  white-space: nowrap;
+}
+
+.filter-select--populated .filter-select__placeholder {
+  display: none;
+}
+
+
+/* ============================================
+   TAGS
+   Selected filter badges shown in the trigger.
+   Hidden when empty, shown when populated.
+   ============================================ */
+
+.filter-select__tags {
+  display: none;
+  flex: 1;
+  /* flex-wrap: wrap; */
+  gap: var(--gap-xx-small);
+  min-width: 0;
+}
+
+.filter-select--populated .filter-select__tags {
+  display: flex;
+}
+
+/* Individual tag — badge-like appearance with a remove button */
+.filter-select__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-xx-small);
+  flex-shrink: 0;
+}
+
+/* Remove (×) button inside each tag */
+.filter-select__tag-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: inherit;
+  line-height: 1;
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.filter-select__tag-remove:hover {
+  opacity: 1;
+}
+
+
+/* ============================================
+   CHEVRON
+   Right-aligned. Rotates 180° when open.
+   ============================================ */
+
+.filter-select__chevron {
+  flex-shrink: 0;
+  width: var(--icon-size-3xs);
+  height: var(--icon-size-3xs);
+  color: var(--icon-secondary);
+  fill: currentColor;
+  margin-left: auto;
+  transition: transform 200ms ease;
+}
+
+.filter-select--open .filter-select__chevron {
+  transform: rotate(180deg);
+}
+
+
+/* ============================================
+   DROPDOWN
+   Absolutely positioned below the trigger.
+   Fixed width, hidden by default.
+   ============================================ */
+
+.filter-select__dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  width: 100%;
+  background: var(--bg-primary);
+  border-radius: var(--radius-small);
+  border: var(--border-s) solid var(--border-color-primary);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.10), 0px 4px 6px rgba(0, 0, 0, 0.10);
+  z-index: 100;
+  padding: var(--gap-x-small) var(--gap-x-small);
+  flex-direction: column;
+  gap: var(--gap-xx-small);
+}
+
+.filter-select--open .filter-select__dropdown {
+  display: flex;
+}
+
+
+/* ============================================
+   OPTION ROWS
+   Each row is a label wrapping a checkbox +
+   badge. Clicking anywhere on the row toggles
+   the checkbox.
+   ============================================ */
+
+.filter-select__options {
+  display: flex;
+  flex-direction: column;
+  gap: 2px; /* tighter than xx-small(4px) to match Figma density */
+}
+
+.filter-select__option {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-medium);
+  padding: var(--gap-xx-small);
+  border-radius: var(--radius-small);
+  cursor: pointer;
+  width: 100%;
+  user-select: none;
+}
+
+.filter-select__option:hover {
+  background: var(--bg-secondary);
+}
+
+/* Checkbox inside option — 16×16 to keep rows compact */
+.filter-select__option-checkbox {
+  flex-shrink: 0;
+}
+
+.filter-select__option-checkbox .checkbox__control {
+  width: 16px;
+  height: 16px;
+}
+
+/* Badge inside option — no remove button */
+.filter-select__option-badge {
+  flex: 1;
+}
+
+
+/* ============================================
+   FOOTER — divider + action buttons
+   ============================================ */
+
+.filter-select__footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-x-small);
+  padding-top: var(--gap-xx-small);
+}
+
+.filter-select__actions {
+  display: flex;
+  gap: var(--gap-x-small);
+}
+
+/* Clear button */
+.filter-select__clear {
+  flex: 1;
+  padding: var(--gap-xx-small) var(--gap-x-small);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body-2);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-2);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  border: var(--border-s) solid var(--border-color-primary);
+  border-radius: var(--radius-small);
+  cursor: pointer;
+  transition: background 100ms ease;
+}
+
+.filter-select__clear:hover {
+  background: var(--bg-secondary);
+}
+
+/* Apply button */
+.filter-select__apply {
+  flex: 1;
+  padding: var(--gap-xx-small) var(--gap-x-small);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body-2);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-2);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-primary);
+  background: var(--bg-brand-aqua);
+  border: none;
+  border-radius: var(--radius-small);
+  cursor: pointer;
+  transition: background 100ms ease;
+}
+
+.filter-select__apply:hover {
+  background: var(--bg-aqua-active);
+}
+
+
+/* ============================================
+   DARK MODE
+   Semantic tokens remap automatically.
+   Only explicit primitives need overrides.
+   ============================================ */
+
+.dark .filter-select__dropdown {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.30), 0px 4px 6px rgba(0, 0, 0, 0.20);
+}

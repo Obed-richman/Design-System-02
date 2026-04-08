@@ -70,3 +70,13 @@
   border-color: var(--border-color-secondary);
   color: var(--text-disabled);
 }
+
+
+/* ============================================
+   SHAPE MODIFIER
+   ============================================ */
+
+/* Square — 4px corners instead of pill */
+.badge--square {
+  border-radius: var(--radius-x-small);
+}

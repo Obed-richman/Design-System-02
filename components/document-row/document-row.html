@@ -1,0 +1,167 @@
+<!-- ============================================
+     DOCUMENT ROW COMPONENT SNIPPETS
+     Copy what you need into a screen or index.html
+
+     Requires: tokens/tokens.css
+               icons/icons.css
+               components/document-row/document-row.css
+
+     States:
+       Default (no modifier)  — collapsed, children hidden
+       .doc-row--expanded     — children visible, bottom track shown
+   ============================================ -->
+
+
+<!-- ============================================================
+     1. Collapsed
+     ============================================================ -->
+
+<div class="doc-row">
+  <div class="doc-row__header">
+    <div class="doc-row__track-col">
+      <div class="doc-row__track doc-row__track--top"></div>
+      <div class="doc-row__icon">
+        <svg class="icon icon--s" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-documents"></use>
+        </svg>
+      </div>
+      <div class="doc-row__track doc-row__track--bottom"></div>
+    </div>
+    <div class="doc-row__content">
+      <span class="doc-row__label">Loan agreements</span>
+      <button class="doc-row__count-btn" type="button" aria-label="Download all 4 documents">
+        <svg class="doc-row__count-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-download"></use>
+        </svg>
+        4
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     2. Expanded (add .doc-row--expanded)
+     ============================================================ -->
+
+<div class="doc-row doc-row--expanded">
+  <div class="doc-row__header">
+    <div class="doc-row__track-col">
+      <div class="doc-row__track doc-row__track--top"></div>
+      <div class="doc-row__icon">
+        <svg class="icon icon--s" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-documents"></use>
+        </svg>
+      </div>
+      <div class="doc-row__track doc-row__track--bottom"></div>
+    </div>
+    <div class="doc-row__content">
+      <span class="doc-row__label">Loan agreements</span>
+      <button class="doc-row__count-btn" type="button" aria-label="Download all 4 documents">
+        <svg class="doc-row__count-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-download"></use>
+        </svg>
+        4
+      </button>
+    </div>
+  </div>
+
+  <div class="doc-row__children">
+
+    <!-- Child 1 -->
+    <div class="doc-row__child">
+      <div class="doc-row__child-track">
+        <div class="doc-row__child-track-top"></div>
+        <div class="doc-row__child-dot"></div>
+        <div class="doc-row__child-track-bottom"></div>
+      </div>
+      <div class="doc-row__child-content">
+        <div class="doc-row__child-text">
+          <span class="doc-row__child-name">Credit Agreement Contract</span>
+          <span class="doc-row__child-meta">PDF · 645 KB · Jan 15, 2024</span>
+        </div>
+        <button class="doc-row__download-btn" type="button" aria-label="Download Credit Agreement Contract">
+          <svg class="doc-row__download-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-download"></use>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Child 2 -->
+    <div class="doc-row__child">
+      <div class="doc-row__child-track">
+        <div class="doc-row__child-track-top"></div>
+        <div class="doc-row__child-dot"></div>
+        <div class="doc-row__child-track-bottom"></div>
+      </div>
+      <div class="doc-row__child-content">
+        <div class="doc-row__child-text">
+          <span class="doc-row__child-name">Terms &amp; Conditions</span>
+          <span class="doc-row__child-meta">PDF · 645 KB · Jan 15, 2024</span>
+        </div>
+        <button class="doc-row__download-btn" type="button" aria-label="Download Terms and Conditions">
+          <svg class="doc-row__download-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-download"></use>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Child 3 -->
+    <div class="doc-row__child">
+      <div class="doc-row__child-track">
+        <div class="doc-row__child-track-top"></div>
+        <div class="doc-row__child-dot"></div>
+        <div class="doc-row__child-track-bottom"></div>
+      </div>
+      <div class="doc-row__child-content">
+        <div class="doc-row__child-text">
+          <span class="doc-row__child-name">Payment Schedule</span>
+          <span class="doc-row__child-meta">PDF · 312 KB · Jan 15, 2024</span>
+        </div>
+        <button class="doc-row__download-btn" type="button" aria-label="Download Payment Schedule">
+          <svg class="doc-row__download-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-download"></use>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Child 4 — last, bottom track hidden -->
+    <div class="doc-row__child">
+      <div class="doc-row__child-track">
+        <div class="doc-row__child-track-top"></div>
+        <div class="doc-row__child-dot"></div>
+        <div class="doc-row__child-track-bottom"></div>
+      </div>
+      <div class="doc-row__child-content">
+        <div class="doc-row__child-text">
+          <span class="doc-row__child-name">Direct Debit Mandate</span>
+          <span class="doc-row__child-meta">PDF · 198 KB · Jan 15, 2024</span>
+        </div>
+        <button class="doc-row__download-btn" type="button" aria-label="Download Direct Debit Mandate">
+          <svg class="doc-row__download-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-download"></use>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<script>
+  // Document Row — expand/collapse
+  // Copy this script block into your screen file
+
+  (function() {
+    document.querySelectorAll('.doc-row__header').forEach(function(header) {
+      header.addEventListener('click', function() {
+        var row = header.closest('.doc-row');
+        if (row) row.classList.toggle('doc-row--expanded');
+      });
+    });
+  })();
+</script>

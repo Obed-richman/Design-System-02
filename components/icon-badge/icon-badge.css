@@ -1,0 +1,76 @@
+/* ============================================
+   ICON BADGE COMPONENT
+   Depends on: tokens/tokens.css
+               icons/icons.css (for --icon-size-* tokens)
+   No hardcoded values — all tokens referenced
+   from tokens.css
+   ============================================ */
+
+
+/* --- Base ---
+   Rounded square container with a coloured
+   background and a white icon centred inside.
+   Default colour: purple. */
+
+.icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: var(--base-light-purple);
+}
+
+
+/* ============================================
+   SIZE VARIANTS
+   Container size and border radius only.
+
+   | Size | Container | Radius            |
+   |------|-----------|-------------------|
+   | XXL  | 96×96px   | --radius-x-large  |
+   | XL   | 72×72px   | --radius-large    |
+   | L    | 64×64px   | --radius-medium   |
+   | M    | 48×48px   | --radius-small    |
+   ============================================ */
+
+.icon-badge--xxl { width: 96px;  height: 96px;  border-radius: var(--radius-x-large); }
+.icon-badge--xl  { width: 72px;  height: 72px;  border-radius: var(--radius-large); }
+.icon-badge--l   { width: 64px;  height: 64px;  border-radius: var(--radius-medium); }
+.icon-badge--m   { width: 48px;  height: 48px;  border-radius: var(--radius-small); }
+
+
+/* ============================================
+   COLOUR VARIANTS
+   Background colour only — icon is always white.
+   ============================================ */
+
+.icon-badge--purple { background: var(--base-light-purple); }
+.icon-badge--navy   { background: var(--base-brand-navy); }
+.icon-badge--aqua   { background: var(--bg-brand-aqua); }
+
+
+/* ============================================
+   ICON ELEMENT
+   The SVG inside the badge container.
+   Icon is slightly smaller than the container
+   so it doesn't bleed to the edges.
+
+   | Badge | Icon size         |
+   |-------|-------------------|
+   | XXL   | --icon-size-xl    |
+   | XL    | --icon-size-s     |
+   | L     | --icon-size-s     |
+   | M     | --icon-size-xs    |
+   ============================================ */
+
+.icon-badge__icon {
+  color: var(--colour-white);
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.icon-badge--xxl .icon-badge__icon { width: var(--icon-size-xl);  height: var(--icon-size-xl); }
+.icon-badge--xl  .icon-badge__icon { width: var(--icon-size-s);   height: var(--icon-size-s); }
+.icon-badge--l   .icon-badge__icon { width: var(--icon-size-s);   height: var(--icon-size-s); }
+.icon-badge--m   .icon-badge__icon { width: var(--icon-size-xs);  height: var(--icon-size-xs); }

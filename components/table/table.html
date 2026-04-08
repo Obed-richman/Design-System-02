@@ -1,0 +1,217 @@
+<!-- ============================================
+     TABLE COMPONENT SNIPPETS
+     Copy what you need into a screen or index.html
+
+     Requires: tokens/tokens.css
+               icons/icons.css
+               components/badge/badge.css
+               components/table/table.css
+
+     Row types:
+       .table__head          — header row, grey bg, bold labels
+       .table__row           — default data row, white bg
+       .table__row--hover    — forced hover state (grey bg)
+       .table__row--error    — empty/error state, centred text
+
+     Cell modifiers:
+       .table__cell          — base, flex: 1, equal width
+       .table__cell--fixed   — 130px fixed width (badges, status)
+       .table__cell--action  — 48px icon-only action column
+       .table__cell--badge   — reduced padding for badge cells
+
+     Cell content elements:
+       .table__cell-text        — regular 14px text (14px bold in header)
+       .table__cell-link        — bold purple link text
+       .table__cell-avatar      — 16px circular avatar
+       .table__cell-avatar-initials — initials inside avatar
+
+     Quick action:
+       .table__quick-action     — circular icon button in action cell
+       Uses icon-vertical-ellipsis from icons.svg.
+
+     Badge variants (from badge.css):
+       badge--low        green   — Active, positive states
+       badge--medium     yellow  — Pending, warning states
+       badge--high       red     — Cancelled, error states
+       badge--inactive   outline — Inactive states
+       badge--disabled   grey    — Processing, disabled states
+     ============================================ -->
+
+
+<!-- ============================================================
+     FULL TABLE — title block + all row variants + action column
+     ============================================================ -->
+
+<div class="table">
+
+  <!-- Optional title block — remove if no heading needed -->
+  <div class="table__title-block">
+    <span class="table__title-block-heading">Table title</span>
+    <span class="table__title-block-support">Support text or description goes here</span>
+  </div>
+
+  <!-- Header row -->
+  <div class="table__head">
+    <div class="table__cell"><span class="table__cell-text">Name</span></div>
+    <div class="table__cell"><span class="table__cell-text">Owner</span></div>
+    <div class="table__cell"><span class="table__cell-text">Reference</span></div>
+    <div class="table__cell table__cell--fixed table__cell--badge"><span class="table__cell-text">Status</span></div>
+    <div class="table__cell"><span class="table__cell-text">Date</span></div>
+    <div class="table__cell"><span class="table__cell-text">Amount</span></div>
+    <div class="table__cell table__cell--action">
+      <button class="table__quick-action" aria-label="Column actions">
+        <svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-vertical-ellipsis"></use>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Display row — default, link + badge (Processing) -->
+  <div class="table__row">
+    <div class="table__cell">
+      <button class="table__cell-link">POL-00123</button>
+    </div>
+    <div class="table__cell"><span class="table__cell-text">James Morrison</span></div>
+    <div class="table__cell"><span class="table__cell-text">REF-4829</span></div>
+    <div class="table__cell table__cell--fixed table__cell--badge">
+      <span class="badge badge--disabled">Processing</span>
+    </div>
+    <div class="table__cell"><span class="table__cell-text">12 Jan 2026</span></div>
+    <div class="table__cell"><span class="table__cell-text">£1,200.00</span></div>
+    <div class="table__cell table__cell--action">
+      <button class="table__quick-action" aria-label="Row actions">
+        <svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-vertical-ellipsis"></use>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Display row — default with avatar + badge (Active) -->
+  <div class="table__row">
+    <div class="table__cell">
+      <button class="table__cell-link">POL-00124</button>
+    </div>
+    <div class="table__cell">
+      <div class="table__cell-avatar">
+        <span class="table__cell-avatar-initials">MM</span>
+      </div>
+      <span class="table__cell-text">Maria Mitchell</span>
+    </div>
+    <div class="table__cell"><span class="table__cell-text">REF-4830</span></div>
+    <div class="table__cell table__cell--fixed table__cell--badge">
+      <span class="badge badge--low">Active</span>
+    </div>
+    <div class="table__cell"><span class="table__cell-text">15 Jan 2026</span></div>
+    <div class="table__cell"><span class="table__cell-text">£850.00</span></div>
+    <div class="table__cell table__cell--action">
+      <button class="table__quick-action" aria-label="Row actions">
+        <svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-vertical-ellipsis"></use>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Display row — hover state (add .table__row--hover to pin hover in prototypes) -->
+  <div class="table__row table__row--hover">
+    <div class="table__cell">
+      <button class="table__cell-link">POL-00125</button>
+    </div>
+    <div class="table__cell"><span class="table__cell-text">Thomas Hill</span></div>
+    <div class="table__cell"><span class="table__cell-text">REF-4831</span></div>
+    <div class="table__cell table__cell--fixed table__cell--badge">
+      <span class="badge badge--high">Cancelled</span>
+    </div>
+    <div class="table__cell"><span class="table__cell-text">18 Jan 2026</span></div>
+    <div class="table__cell"><span class="table__cell-text">£450.00</span></div>
+    <div class="table__cell table__cell--action">
+      <button class="table__quick-action" aria-label="Row actions">
+        <svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-vertical-ellipsis"></use>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Display row — Pending -->
+  <div class="table__row">
+    <div class="table__cell">
+      <button class="table__cell-link">POL-00126</button>
+    </div>
+    <div class="table__cell"><span class="table__cell-text">Sarah Clarke</span></div>
+    <div class="table__cell"><span class="table__cell-text">REF-4832</span></div>
+    <div class="table__cell table__cell--fixed table__cell--badge">
+      <span class="badge badge--medium">Pending</span>
+    </div>
+    <div class="table__cell"><span class="table__cell-text">22 Jan 2026</span></div>
+    <div class="table__cell"><span class="table__cell-text">£2,100.00</span></div>
+    <div class="table__cell table__cell--action">
+      <button class="table__quick-action" aria-label="Row actions">
+        <svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-vertical-ellipsis"></use>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Error row — empty / no results state -->
+  <div class="table__row table__row--error">
+    <div class="table__cell">
+      <span class="table__cell-text">No information found</span>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ============================================================
+     SIMPLE TABLE — no title block, no action column
+     Use this when the table is standalone with basic columns.
+     ============================================================ -->
+
+<div class="table">
+
+  <!-- Header row -->
+  <div class="table__head">
+    <div class="table__cell"><span class="table__cell-text">Name</span></div>
+    <div class="table__cell"><span class="table__cell-text">Reference</span></div>
+    <div class="table__cell table__cell--fixed table__cell--badge"><span class="table__cell-text">Status</span></div>
+    <div class="table__cell"><span class="table__cell-text">Date</span></div>
+    <div class="table__cell"><span class="table__cell-text">Amount</span></div>
+  </div>
+
+  <!-- Data rows -->
+  <div class="table__row">
+    <div class="table__cell">
+      <button class="table__cell-link">POL-00123</button>
+    </div>
+    <div class="table__cell"><span class="table__cell-text">REF-4829</span></div>
+    <div class="table__cell table__cell--fixed table__cell--badge">
+      <span class="badge badge--low">Active</span>
+    </div>
+    <div class="table__cell"><span class="table__cell-text">12 Jan 2026</span></div>
+    <div class="table__cell"><span class="table__cell-text">£1,200.00</span></div>
+  </div>
+
+  <div class="table__row">
+    <div class="table__cell">
+      <button class="table__cell-link">POL-00124</button>
+    </div>
+    <div class="table__cell"><span class="table__cell-text">REF-4830</span></div>
+    <div class="table__cell table__cell--fixed table__cell--badge">
+      <span class="badge badge--medium">Pending</span>
+    </div>
+    <div class="table__cell"><span class="table__cell-text">15 Jan 2026</span></div>
+    <div class="table__cell"><span class="table__cell-text">£850.00</span></div>
+  </div>
+
+  <!-- Error / empty state -->
+  <div class="table__row table__row--error">
+    <div class="table__cell">
+      <span class="table__cell-text">No information found</span>
+    </div>
+  </div>
+
+</div>

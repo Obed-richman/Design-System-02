@@ -1,0 +1,126 @@
+/* ============================================
+   TOOLTIP COMPONENT
+   Depends on: tokens/tokens.css
+   ============================================ */
+
+
+/* --- Base --- */
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  max-width: var(--frame-content);
+}
+
+.tooltip__body {
+  background: var(--bg-black-fixed);
+  color: var(--text-white-fixed);
+  padding: var(--gap-small) var(--gap-medium);
+  border-radius: var(--radius-small);
+  position: relative;
+}
+
+.tooltip__text {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body-3);
+  line-height: var(--line-height-body-3);
+  font-weight: var(--font-weight-regular);
+  color: var(--text-white-fixed);
+}
+
+/* Partner logo row — shown above text when a partner brand is present */
+.tooltip__partner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--number-16);
+  width: var(--number-40);
+  overflow: hidden;
+  padding: var(--number-2);
+  margin-bottom: var(--gap-x-small);
+}
+
+.tooltip__partner-logo {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Shared arrow base — rendered via ::after on the body */
+.tooltip__body::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+
+/* --- Variants --- */
+
+/* Arrow pointing RIGHT (tooltip sits to the left of the anchor) */
+.tooltip--arrow-right .tooltip__body::after {
+  top: 50%;
+  right: calc(-1 * var(--gap-x-small));
+  transform: translateY(-50%);
+  border-top: calc(var(--number-12) / 2) solid transparent;
+  border-bottom: calc(var(--number-12) / 2) solid transparent;
+  border-left: var(--gap-x-small) solid var(--bg-black-fixed);
+  border-right: none;
+}
+
+/* Arrow pointing LEFT (tooltip sits to the right of the anchor) */
+.tooltip--arrow-left .tooltip__body::after {
+  top: 50%;
+  left: calc(-1 * var(--gap-x-small));
+  transform: translateY(-50%);
+  border-top: calc(var(--number-12) / 2) solid transparent;
+  border-bottom: calc(var(--number-12) / 2) solid transparent;
+  border-right: var(--gap-x-small) solid var(--bg-black-fixed);
+  border-left: none;
+}
+
+/* Arrow pointing DOWN (tooltip sits above the anchor) */
+.tooltip--arrow-down .tooltip__body::after {
+  bottom: calc(-1 * var(--gap-x-small));
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: calc(var(--number-12) / 2) solid transparent;
+  border-right: calc(var(--number-12) / 2) solid transparent;
+  border-top: var(--gap-x-small) solid var(--bg-black-fixed);
+  border-bottom: none;
+}
+
+/* Arrow pointing UP (tooltip sits below the anchor) */
+.tooltip--arrow-up .tooltip__body::after {
+  top: calc(-1 * var(--gap-x-small));
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: calc(var(--number-12) / 2) solid transparent;
+  border-right: calc(var(--number-12) / 2) solid transparent;
+  border-bottom: var(--gap-x-small) solid var(--bg-black-fixed);
+  border-top: none;
+}
+
+
+/* --- Arrow position modifiers --- */
+/* Applies to top/bottom arrows only (left/right arrows are always vertically centred) */
+
+/* Start — arrow near the left edge */
+.tooltip--pos-start.tooltip--arrow-down .tooltip__body::after,
+.tooltip--pos-start.tooltip--arrow-up .tooltip__body::after {
+  left: var(--gap-medium);
+  transform: none;
+}
+
+/* End — arrow near the right edge */
+.tooltip--pos-end.tooltip--arrow-down .tooltip__body::after,
+.tooltip--pos-end.tooltip--arrow-up .tooltip__body::after {
+  left: auto;
+  right: var(--gap-medium);
+  transform: none;
+}
+
+
+/* --- Dark mode --- */
+/* Tooltip uses --bg-black-fixed and --text-white-fixed — both are fixed tokens
+   that do not change between light and dark mode. No overrides needed. */

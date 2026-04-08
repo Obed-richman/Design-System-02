@@ -1,0 +1,101 @@
+<!-- ============================================
+     TOOLTIP COMPONENT SNIPPETS
+     Copy what you need into a screen or index.html.
+     Requires: tokens/tokens.css
+               components/tooltip/tooltip.css
+
+     Modifier classes:
+       Direction  — tooltip--arrow-right | --arrow-left | --arrow-down | --arrow-up
+       Position   — (default = centre) | tooltip--pos-start | tooltip--pos-end
+                    Position only affects top/bottom arrows.
+     ============================================ -->
+
+
+<!-- ============================================================
+     ARROW RIGHT — tooltip to the left of its anchor
+     ============================================================ -->
+
+<div class="tooltip tooltip--arrow-right">
+  <div class="tooltip__body">
+    <p class="tooltip__text">Tooltip text content goes here</p>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     ARROW LEFT — tooltip to the right of its anchor
+     ============================================================ -->
+
+<div class="tooltip tooltip--arrow-left">
+  <div class="tooltip__body">
+    <p class="tooltip__text">Tooltip text content goes here</p>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     ARROW DOWN — tooltip above its anchor
+     Position: center (default) | start | end
+     ============================================================ -->
+
+<!-- Center (default) -->
+<div class="tooltip tooltip--arrow-down">
+  <div class="tooltip__body">
+    <p class="tooltip__text">Tooltip text content goes here</p>
+  </div>
+</div>
+
+<!-- Position: start (arrow near left edge) -->
+<div class="tooltip tooltip--arrow-down tooltip--pos-start">
+  <div class="tooltip__body">
+    <p class="tooltip__text">Tooltip text content goes here</p>
+  </div>
+</div>
+
+<!-- Position: end (arrow near right edge) -->
+<div class="tooltip tooltip--arrow-down tooltip--pos-end">
+  <div class="tooltip__body">
+    <p class="tooltip__text">Tooltip text content goes here</p>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     ARROW UP — tooltip below its anchor
+     Position: center (default) | start | end
+     ============================================================ -->
+
+<!-- Center (default) -->
+<div class="tooltip tooltip--arrow-up">
+  <div class="tooltip__body">
+    <p class="tooltip__text">Tooltip text content goes here</p>
+  </div>
+</div>
+
+<!-- Position: start (arrow near left edge) -->
+<div class="tooltip tooltip--arrow-up tooltip--pos-start">
+  <div class="tooltip__body">
+    <p class="tooltip__text">Tooltip text content goes here</p>
+  </div>
+</div>
+
+<!-- Position: end (arrow near right edge) -->
+<div class="tooltip tooltip--arrow-up tooltip--pos-end">
+  <div class="tooltip__body">
+    <p class="tooltip__text">Tooltip text content goes here</p>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     WITH PARTNER LOGO — optional partner branding above text
+     ============================================================ -->
+
+<div class="tooltip tooltip--arrow-right">
+  <div class="tooltip__body">
+    <div class="tooltip__partner">
+      <img class="tooltip__partner-logo" src="partner-logo.svg" alt="Partner name" />
+    </div>
+    <p class="tooltip__text">Tooltip text content goes here</p>
+  </div>
+</div>

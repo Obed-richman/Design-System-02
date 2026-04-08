@@ -1,0 +1,189 @@
+<!-- ============================================
+     SEARCH INPUT SNIPPETS
+     Copy what you need into a screen or index.html
+     Requires: tokens/tokens.css
+               tokens/typography.css
+               components/input/input.css
+               components/input/search.css
+               icons/icons.css
+
+     JS: copy the <script> block at the bottom
+         into your screen file — the search-wrapper
+         class drives focus / clear behaviour.
+     ============================================ -->
+
+
+<!-- ============================================================
+     DEFAULT — white bg, 1px primary border, search icon right,
+     messaging text below in --text-primary
+     ============================================================ -->
+
+<div class="input-group">
+  <label class="input-label" for="search-default">Search</label>
+  <div class="input-field search-wrapper">
+    <input
+      class="input search search--icon-right"
+      id="search-default"
+      type="search"
+      placeholder="Search..."
+      autocomplete="off"
+    />
+    <!-- Search icon — visible by default, hidden when focused -->
+    <span class="search__icon search__icon--search" aria-hidden="true">
+      <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+        <use href="../../icons/icons.svg#icon-search"></use>
+      </svg>
+    </span>
+    <!-- Clear icon — hidden by default, shown when focused -->
+    <button class="search__icon search__icon--clear" aria-label="Clear search" hidden>
+      <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+        <use href="../../icons/icons.svg#icon-close"></use>
+      </svg>
+    </button>
+  </div>
+  <!-- Messaging text — shown below the field -->
+  <div class="input-message">
+    <span class="input-message__text">We'll search across all policies and claims</span>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     HOVER — same as default; border becomes 2px --border-color-active
+     (hover the field in the browser to see this state)
+     ============================================================ -->
+
+<div class="input-group">
+  <label class="input-label" for="search-hover">Search</label>
+  <div class="input-field search-wrapper">
+    <input
+      class="input search search--icon-right"
+      id="search-hover"
+      type="search"
+      placeholder="Search..."
+      autocomplete="off"
+    />
+    <span class="search__icon search__icon--search" aria-hidden="true">
+      <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+        <use href="../../icons/icons.svg#icon-search"></use>
+      </svg>
+    </span>
+    <button class="search__icon search__icon--clear" aria-label="Clear search" hidden>
+      <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+        <use href="../../icons/icons.svg#icon-close"></use>
+      </svg>
+    </button>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     FOCUSED — 2px active border + focus ring, search icon swaps
+     to clear icon, placeholder in --text-disabled
+     (click the field in the browser to see this state)
+     ============================================================ -->
+
+<div class="input-group">
+  <label class="input-label" for="search-focused">Search</label>
+  <div class="input-field search-wrapper">
+    <input
+      class="input search search--icon-right"
+      id="search-focused"
+      type="search"
+      placeholder="Search..."
+      autocomplete="off"
+    />
+    <span class="search__icon search__icon--search" aria-hidden="true">
+      <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+        <use href="../../icons/icons.svg#icon-search"></use>
+      </svg>
+    </span>
+    <!-- Clear icon — JS shows this on focus, hides search icon -->
+    <button class="search__icon search__icon--clear" aria-label="Clear search" hidden>
+      <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+        <use href="../../icons/icons.svg#icon-close"></use>
+      </svg>
+    </button>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     ERROR — --bg-negative background, 1px negative border,
+     clear icon in --icon-negative, warning message row below.
+     Applied via .input-group--search-error modifier.
+     JS clear button removes the error class on click.
+     ============================================================ -->
+
+<div class="input-group input-group--search-error">
+  <label class="input-label" for="search-error">Search</label>
+  <div class="input-field search-wrapper">
+    <input
+      class="input search search--icon-right"
+      id="search-error"
+      type="search"
+      value="lamborghini huracan"
+      autocomplete="off"
+    />
+    <!-- Search icon hidden in error state — clear icon always visible -->
+    <span class="search__icon search__icon--search" aria-hidden="true" hidden>
+      <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+        <use href="../../icons/icons.svg#icon-search"></use>
+      </svg>
+    </span>
+    <button class="search__icon search__icon--clear" aria-label="Clear search">
+      <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+        <use href="../../icons/icons.svg#icon-close"></use>
+      </svg>
+    </button>
+  </div>
+  <!-- Error message row — warning icon + --text-negative message -->
+  <div class="input-message">
+    <svg class="icon icon--md input-message__icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+      <use href="../../icons/icons.svg#icon-warning"></use>
+    </svg>
+    <span class="input-message__text">Sorry, we couldn't find the results</span>
+  </div>
+</div>
+
+
+<!-- ============================================
+     REQUIRED JAVASCRIPT
+     Copy this <script> block into your screen file.
+     ============================================ -->
+<script>
+// Search bar — clear button and state management
+// Copy this script block into your screen file
+
+document.querySelectorAll('.search-wrapper').forEach(function(wrapper) {
+  const input      = wrapper.querySelector('.search');
+  const iconSearch = wrapper.querySelector('.search__icon--search');
+  const iconClear  = wrapper.querySelector('.search__icon--clear');
+  const group      = wrapper.closest('.input-group');
+
+  if (!input) return;
+
+  // Show clear icon on focus, hide search icon
+  input.addEventListener('focus', function() {
+    if (iconSearch) iconSearch.hidden = true;
+    if (iconClear)  iconClear.hidden  = false;
+  });
+
+  // Show search icon on blur if empty, keep clear if has value
+  input.addEventListener('blur', function() {
+    if (!input.value.trim()) {
+      if (iconSearch) iconSearch.hidden = false;
+      if (iconClear)  iconClear.hidden  = true;
+    }
+  });
+
+  // Clear button — clears input and returns to default state
+  if (iconClear) {
+    iconClear.addEventListener('click', function() {
+      input.value = '';
+      input.focus();
+      if (group) group.classList.remove('input-group--search-error');
+    });
+  }
+});
+</script>

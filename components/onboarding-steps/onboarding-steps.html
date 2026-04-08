@@ -1,0 +1,531 @@
+<!-- ============================================================
+     ONBOARDING STEPS — all 8 variants
+     Depends on: tokens/tokens.css
+                 components/step-indicator/step-indicator.css
+                 components/onboarding-steps/onboarding-steps.css
+     Stages: Quote (default) · Details · Review · Payment
+     Breakpoints: Desktop · Mobile (.onboarding-steps--mobile)
+     Step states use .step-indicator component classes:
+       no modifier  = incomplete (future step)
+       --active     = current step
+       --completed  = past step
+       --mobile     = mobile size variant
+     ============================================================ -->
+
+
+<!-- ============================================================
+     DESKTOP — QUOTE (stage 1 active)
+     ============================================================ -->
+<div class="onboarding-steps">
+
+  <div class="onboarding-steps__progress">
+
+    <!-- Step 1 — Quote (active) -->
+    <div class="step-indicator step-indicator--active">
+      <div class="step-indicator__circle">
+        <span class="step-indicator__number">1</span>
+      </div>
+      <span class="step-indicator__label">Quote</span>
+      <div class="step-indicator__track">
+        <div class="step-indicator__track-fill"></div>
+      </div>
+    </div>
+
+    <!-- Step 2 — Details (incomplete) -->
+    <div class="step-indicator">
+      <div class="step-indicator__circle">
+        <span class="step-indicator__number">2</span>
+      </div>
+      <span class="step-indicator__label">Details</span>
+      <div class="step-indicator__track">
+        <div class="step-indicator__track-fill"></div>
+      </div>
+    </div>
+
+    <!-- Step 3 — Review (incomplete) -->
+    <div class="step-indicator">
+      <div class="step-indicator__circle">
+        <span class="step-indicator__number">3</span>
+      </div>
+      <span class="step-indicator__label">Review</span>
+      <div class="step-indicator__track">
+        <div class="step-indicator__track-fill"></div>
+      </div>
+    </div>
+
+    <!-- Step 4 — Payment (incomplete) -->
+    <div class="step-indicator">
+      <div class="step-indicator__circle">
+        <span class="step-indicator__number">4</span>
+      </div>
+      <span class="step-indicator__label">Payment</span>
+      <div class="step-indicator__track">
+        <div class="step-indicator__track-fill"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="onboarding-steps__text onboarding-steps__text--quote">
+    <h1 class="onboarding-steps__heading">Get your instant quote</h1>
+    <img class="onboarding-steps__partner" src="" alt="Partner logo" />
+  </div>
+
+</div>
+
+
+<!-- ============================================================
+     DESKTOP — DETAILS (stage 2 active)
+     ============================================================ -->
+<div class="onboarding-steps">
+
+  <div class="onboarding-steps__progress">
+
+    <!-- Step 1 — Quote (completed) -->
+    <div class="step-indicator step-indicator--completed">
+      <div class="step-indicator__circle">
+        <svg class="step-indicator__tick" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-tick-small"></use>
+        </svg>
+      </div>
+      <span class="step-indicator__label">Quote</span>
+      <div class="step-indicator__track">
+        <div class="step-indicator__track-fill"></div>
+      </div>
+    </div>
+
+    <!-- Step 2 — Details (active) -->
+    <div class="step-indicator step-indicator--active">
+      <div class="step-indicator__circle">
+        <span class="step-indicator__number">2</span>
+      </div>
+      <span class="step-indicator__label">Details</span>
+      <div class="step-indicator__track">
+        <div class="step-indicator__track-fill"></div>
+      </div>
+    </div>
+
+    <!-- Step 3 — Review (incomplete) -->
+    <div class="step-indicator">
+      <div class="step-indicator__circle">
+        <span class="step-indicator__number">3</span>
+      </div>
+      <span class="step-indicator__label">Review</span>
+      <div class="step-indicator__track">
+        <div class="step-indicator__track-fill"></div>
+      </div>
+    </div>
+
+    <!-- Step 4 — Payment (incomplete) -->
+    <div class="step-indicator">
+      <div class="step-indicator__circle">
+        <span class="step-indicator__number">4</span>
+      </div>
+      <span class="step-indicator__label">Payment</span>
+      <div class="step-indicator__track">
+        <div class="step-indicator__track-fill"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="onboarding-steps__text onboarding-steps__text--details">
+    <span class="onboarding-steps__reg">AB12 CDE</span>
+    <h1 class="onboarding-steps__heading">Your details</h1>
+    <p class="onboarding-steps__sub">Tell us about yourself and your vehicle so we can find the right cover.</p>
+  </div>
+
+</div>
+
+
+<!-- ============================================================
+     DESKTOP — REVIEW (stage 3 active)
+     ============================================================ -->
+<div class="onboarding-steps">
+
+  <div class="onboarding-steps__progress">
+
+    <!-- Step 1 — Quote (completed) -->
+    <div class="step-indicator step-indicator--completed">
+      <div class="step-indicator__circle">
+        <svg class="step-indicator__tick" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-tick-small"></use>
+        </svg>
+      </div>
+      <span class="step-indicator__label">Quote</span>
+      <div class="step-indicator__track">
+        <div class="step-indicator__track-fill"></div>
+      </div>
+    </div>
+
+    <!-- Step 2 — Details (completed) -->
+    <div class="step-indicator step-indicator--completed">
+      <div class="step-indicator__circle">
+        <svg class="step-indicator__tick" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-tick-small"></use>
+        </svg>
+      </div>
+      <span class="step-indicator__label">Details</span>
+      <div class="step-indicator__track">
+        <div class="step-indicator__track-fill"></div>
+      </div>
+    </div>
+
+    <!-- Step 3 — Review (active) -->
+    <div class="step-indicator step-indicator--active">
+      <div class="step-indicator__circle">
+        <span class="step-indicator__number">3</span>
+      </div>
+      <span class="step-indicator__label">Review</span>
+      <div class="step-indicator__track">
+        <div class="step-indicator__track-fill"></div>
+      </div>
+    </div>
+
+    <!-- Step 4 — Payment (incomplete) -->
+    <div class="step-indicator">
+      <div class="step-indicator__circle">
+        <span class="step-indicator__number">4</span>
+      </div>
+      <span class="step-indicator__label">Payment</span>
+      <div class="step-indicator__track">
+        <div class="step-indicator__track-fill"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="onboarding-steps__text onboarding-steps__text--review">
+    <span class="onboarding-steps__reg">AB12 CDE</span>
+    <h1 class="onboarding-steps__heading">Review your quote</h1>
+    <p class="onboarding-steps__sub">Check everything looks right before you pay.</p>
+  </div>
+
+</div>
+
+
+<!-- ============================================================
+     DESKTOP — PAYMENT (stage 4 active)
+     ============================================================ -->
+<div class="onboarding-steps">
+
+  <div class="onboarding-steps__progress">
+
+    <!-- Step 1 — Quote (completed) -->
+    <div class="step-indicator step-indicator--completed">
+      <div class="step-indicator__circle">
+        <svg class="step-indicator__tick" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-tick-small"></use>
+        </svg>
+      </div>
+      <span class="step-indicator__label">Quote</span>
+      <div class="step-indicator__track">
+        <div class="step-indicator__track-fill"></div>
+      </div>
+    </div>
+
+    <!-- Step 2 — Details (completed) -->
+    <div class="step-indicator step-indicator--completed">
+      <div class="step-indicator__circle">
+        <svg class="step-indicator__tick" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-tick-small"></use>
+        </svg>
+      </div>
+      <span class="step-indicator__label">Details</span>
+      <div class="step-indicator__track">
+        <div class="step-indicator__track-fill"></div>
+      </div>
+    </div>
+
+    <!-- Step 3 — Review (completed) -->
+    <div class="step-indicator step-indicator--completed">
+      <div class="step-indicator__circle">
+        <svg class="step-indicator__tick" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-tick-small"></use>
+        </svg>
+      </div>
+      <span class="step-indicator__label">Review</span>
+      <div class="step-indicator__track">
+        <div class="step-indicator__track-fill"></div>
+      </div>
+    </div>
+
+    <!-- Step 4 — Payment (active) -->
+    <div class="step-indicator step-indicator--active">
+      <div class="step-indicator__circle">
+        <span class="step-indicator__number">4</span>
+      </div>
+      <span class="step-indicator__label">Payment</span>
+      <div class="step-indicator__track">
+        <div class="step-indicator__track-fill"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="onboarding-steps__text onboarding-steps__text--payment">
+    <span class="onboarding-steps__reg">AB12 CDE</span>
+    <h1 class="onboarding-steps__heading">Secure payment</h1>
+    <p class="onboarding-steps__sub">Complete your purchase and your cover starts immediately.</p>
+  </div>
+
+</div>
+
+
+<!-- ============================================================
+     MOBILE — QUOTE (stage 1 active)
+     ============================================================ -->
+<div class="onboarding-steps onboarding-steps--mobile">
+
+  <div class="onboarding-steps__progress">
+
+    <!-- Step 1 — Quote (active) -->
+    <div class="step-indicator step-indicator--mobile step-indicator--active">
+      <div class="step-indicator__circle">
+        <span class="step-indicator__number">1</span>
+      </div>
+      <span class="step-indicator__label">Quote</span>
+      <div class="step-indicator__track">
+        <div class="step-indicator__track-fill"></div>
+      </div>
+    </div>
+
+    <!-- Step 2 — Details (incomplete) -->
+    <div class="step-indicator step-indicator--mobile">
+      <div class="step-indicator__circle">
+        <span class="step-indicator__number">2</span>
+      </div>
+      <span class="step-indicator__label">Details</span>
+      <div class="step-indicator__track">
+        <div class="step-indicator__track-fill"></div>
+      </div>
+    </div>
+
+    <!-- Step 3 — Review (incomplete) -->
+    <div class="step-indicator step-indicator--mobile">
+      <div class="step-indicator__circle">
+        <span class="step-indicator__number">3</span>
+      </div>
+      <span class="step-indicator__label">Review</span>
+      <div class="step-indicator__track">
+        <div class="step-indicator__track-fill"></div>
+      </div>
+    </div>
+
+    <!-- Step 4 — Payment (incomplete) -->
+    <div class="step-indicator step-indicator--mobile">
+      <div class="step-indicator__circle">
+        <span class="step-indicator__number">4</span>
+      </div>
+      <span class="step-indicator__label">Payment</span>
+      <div class="step-indicator__track">
+        <div class="step-indicator__track-fill"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="onboarding-steps__text onboarding-steps__text--quote">
+    <h1 class="onboarding-steps__heading">Get your instant quote</h1>
+    <img class="onboarding-steps__partner" src="" alt="Partner logo" />
+  </div>
+
+</div>
+
+
+<!-- ============================================================
+     MOBILE — DETAILS (stage 2 active)
+     ============================================================ -->
+<div class="onboarding-steps onboarding-steps--mobile">
+
+  <div class="onboarding-steps__progress">
+
+    <!-- Step 1 — Quote (completed) -->
+    <div class="step-indicator step-indicator--mobile step-indicator--completed">
+      <div class="step-indicator__circle">
+        <svg class="step-indicator__tick" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-tick-small"></use>
+        </svg>
+      </div>
+      <span class="step-indicator__label">Quote</span>
+      <div class="step-indicator__track">
+        <div class="step-indicator__track-fill"></div>
+      </div>
+    </div>
+
+    <!-- Step 2 — Details (active) -->
+    <div class="step-indicator step-indicator--mobile step-indicator--active">
+      <div class="step-indicator__circle">
+        <span class="step-indicator__number">2</span>
+      </div>
+      <span class="step-indicator__label">Details</span>
+      <div class="step-indicator__track">
+        <div class="step-indicator__track-fill"></div>
+      </div>
+    </div>
+
+    <!-- Step 3 — Review (incomplete) -->
+    <div class="step-indicator step-indicator--mobile">
+      <div class="step-indicator__circle">
+        <span class="step-indicator__number">3</span>
+      </div>
+      <span class="step-indicator__label">Review</span>
+      <div class="step-indicator__track">
+        <div class="step-indicator__track-fill"></div>
+      </div>
+    </div>
+
+    <!-- Step 4 — Payment (incomplete) -->
+    <div class="step-indicator step-indicator--mobile">
+      <div class="step-indicator__circle">
+        <span class="step-indicator__number">4</span>
+      </div>
+      <span class="step-indicator__label">Payment</span>
+      <div class="step-indicator__track">
+        <div class="step-indicator__track-fill"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="onboarding-steps__text onboarding-steps__text--details">
+    <span class="onboarding-steps__reg">AB12 CDE</span>
+    <h1 class="onboarding-steps__heading">Your details</h1>
+    <p class="onboarding-steps__sub">Tell us about yourself and your vehicle so we can find the right cover.</p>
+  </div>
+
+</div>
+
+
+<!-- ============================================================
+     MOBILE — REVIEW (stage 3 active)
+     ============================================================ -->
+<div class="onboarding-steps onboarding-steps--mobile">
+
+  <div class="onboarding-steps__progress">
+
+    <!-- Step 1 — Quote (completed) -->
+    <div class="step-indicator step-indicator--mobile step-indicator--completed">
+      <div class="step-indicator__circle">
+        <svg class="step-indicator__tick" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-tick-small"></use>
+        </svg>
+      </div>
+      <span class="step-indicator__label">Quote</span>
+      <div class="step-indicator__track">
+        <div class="step-indicator__track-fill"></div>
+      </div>
+    </div>
+
+    <!-- Step 2 — Details (completed) -->
+    <div class="step-indicator step-indicator--mobile step-indicator--completed">
+      <div class="step-indicator__circle">
+        <svg class="step-indicator__tick" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-tick-small"></use>
+        </svg>
+      </div>
+      <span class="step-indicator__label">Details</span>
+      <div class="step-indicator__track">
+        <div class="step-indicator__track-fill"></div>
+      </div>
+    </div>
+
+    <!-- Step 3 — Review (active) -->
+    <div class="step-indicator step-indicator--mobile step-indicator--active">
+      <div class="step-indicator__circle">
+        <span class="step-indicator__number">3</span>
+      </div>
+      <span class="step-indicator__label">Review</span>
+      <div class="step-indicator__track">
+        <div class="step-indicator__track-fill"></div>
+      </div>
+    </div>
+
+    <!-- Step 4 — Payment (incomplete) -->
+    <div class="step-indicator step-indicator--mobile">
+      <div class="step-indicator__circle">
+        <span class="step-indicator__number">4</span>
+      </div>
+      <span class="step-indicator__label">Payment</span>
+      <div class="step-indicator__track">
+        <div class="step-indicator__track-fill"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="onboarding-steps__text onboarding-steps__text--review">
+    <span class="onboarding-steps__reg">AB12 CDE</span>
+    <h1 class="onboarding-steps__heading">Review your quote</h1>
+    <p class="onboarding-steps__sub">Check everything looks right before you pay.</p>
+  </div>
+
+</div>
+
+
+<!-- ============================================================
+     MOBILE — PAYMENT (stage 4 active)
+     ============================================================ -->
+<div class="onboarding-steps onboarding-steps--mobile">
+
+  <div class="onboarding-steps__progress">
+
+    <!-- Step 1 — Quote (completed) -->
+    <div class="step-indicator step-indicator--mobile step-indicator--completed">
+      <div class="step-indicator__circle">
+        <svg class="step-indicator__tick" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-tick-small"></use>
+        </svg>
+      </div>
+      <span class="step-indicator__label">Quote</span>
+      <div class="step-indicator__track">
+        <div class="step-indicator__track-fill"></div>
+      </div>
+    </div>
+
+    <!-- Step 2 — Details (completed) -->
+    <div class="step-indicator step-indicator--mobile step-indicator--completed">
+      <div class="step-indicator__circle">
+        <svg class="step-indicator__tick" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-tick-small"></use>
+        </svg>
+      </div>
+      <span class="step-indicator__label">Details</span>
+      <div class="step-indicator__track">
+        <div class="step-indicator__track-fill"></div>
+      </div>
+    </div>
+
+    <!-- Step 3 — Review (completed) -->
+    <div class="step-indicator step-indicator--mobile step-indicator--completed">
+      <div class="step-indicator__circle">
+        <svg class="step-indicator__tick" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-tick-small"></use>
+        </svg>
+      </div>
+      <span class="step-indicator__label">Review</span>
+      <div class="step-indicator__track">
+        <div class="step-indicator__track-fill"></div>
+      </div>
+    </div>
+
+    <!-- Step 4 — Payment (active) -->
+    <div class="step-indicator step-indicator--mobile step-indicator--active">
+      <div class="step-indicator__circle">
+        <span class="step-indicator__number">4</span>
+      </div>
+      <span class="step-indicator__label">Payment</span>
+      <div class="step-indicator__track">
+        <div class="step-indicator__track-fill"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="onboarding-steps__text onboarding-steps__text--payment">
+    <span class="onboarding-steps__reg">AB12 CDE</span>
+    <h1 class="onboarding-steps__heading">Secure payment</h1>
+    <p class="onboarding-steps__sub">Complete your purchase and your cover starts immediately.</p>
+  </div>
+
+</div>

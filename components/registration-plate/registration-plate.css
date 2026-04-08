@@ -1,0 +1,84 @@
+/* ============================================
+   REGISTRATION PLATE
+   UK vehicle registration plate component.
+   Three sizes: Large (default), Medium, Small.
+   Depends on: tokens/tokens.css
+   Requires: UKNumberPlate font (see @font-face below)
+   No hardcoded values except:
+     #FFB703 — UK registration plate yellow (no token)
+     7px     — medium padding (no token between xx-small 4px and x-small 8px)
+   ============================================ */
+
+
+@font-face {
+  font-family: 'UKNumberPlate';
+  src: url('../../fonts/UKNumberPlate.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* --- Base --- */
+
+.registration-plate {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFB703; /* UK registration plate yellow */
+  border-radius: var(--radius-x-small);
+  flex-shrink: 0;
+}
+
+
+/* --- Text --- */
+
+.registration-plate__text {
+  font-family: 'UKNumberPlate', sans-serif;
+  font-style: normal;
+  color: var(--text-primary);
+  white-space: nowrap;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+
+/* --- Large (default) --- */
+
+.registration-plate,
+.registration-plate--large {
+  padding: var(--gap-x-small);
+}
+
+.registration-plate .registration-plate__text,
+.registration-plate--large .registration-plate__text {
+  font-size: 24px;
+  line-height: 24px;
+  letter-spacing: 0.072px;
+}
+
+
+/* --- Medium --- */
+
+.registration-plate--medium {
+  padding: 7px var(--gap-x-small); /* 7px — no token between xx-small(4px) and x-small(8px) */
+}
+
+.registration-plate--medium .registration-plate__text {
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.045px;
+}
+
+
+/* --- Small --- */
+
+.registration-plate--small {
+  padding: var(--gap-xx-small) var(--gap-x-small);
+}
+
+.registration-plate--small .registration-plate__text {
+  font-size: 12px;
+  line-height: normal;
+  letter-spacing: 0.036px;
+}

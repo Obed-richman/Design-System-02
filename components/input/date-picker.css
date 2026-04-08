@@ -1,0 +1,339 @@
+/* ============================================
+   DATE PICKER COMPONENT
+   Depends on: tokens/tokens.css
+               components/input/input.css
+               components/divider/divider.css
+   No hardcoded values except where no token
+   exists (noted inline).
+   ============================================ */
+
+
+/* ============================================
+   WRAPPER
+   Position relative so the dropdown can be
+   absolutely positioned below.
+   ============================================ */
+
+.date-picker {
+  position: relative;
+  width: 100%;
+}
+
+
+/* ============================================
+   TRIGGER
+   Looks like an .input field but is a <button>.
+   Mirrors .input base appearance exactly.
+   ============================================ */
+
+.date-picker__trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-x-small);
+  width: 100%;
+  height: 48px;
+  padding: 0 var(--gap-large);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body-2);
+  font-weight: var(--font-weight-regular);
+  color: var(--text-disabled); /* placeholder state */
+  background: var(--bg-primary);
+  border: var(--border-s) solid var(--border-color-primary);
+  border-radius: var(--radius-small);
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+  -webkit-appearance: none;
+}
+
+/* Populated — show value in primary colour */
+.date-picker--populated .date-picker__trigger {
+  color: var(--text-primary);
+}
+
+/* Hover — inset shadow simulates thicker border without shifting content */
+.date-picker__trigger:hover,
+.date-picker--hover .date-picker__trigger {
+  border-color: var(--border-color-active);
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-active);
+}
+
+/* Open / focus — inset shadow + outer focus ring */
+.date-picker--open .date-picker__trigger {
+  border-color: var(--border-color-active);
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-active), 0 0 0 var(--border-focused) var(--border-color-focused);
+}
+
+
+/* ============================================
+   TRIGGER INNER ELEMENTS
+   ============================================ */
+
+/* Placeholder / value text — fills remaining space */
+.date-picker__trigger-text {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Calendar icon — 12×12px, right-aligned */
+.date-picker__trigger-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--icon-size-3xs);
+  height: var(--icon-size-3xs);
+  flex-shrink: 0;
+  color: var(--icon-secondary);
+  fill: currentColor;
+  margin-left: auto;
+}
+
+
+/* ============================================
+   DROPDOWN
+   Absolutely positioned below the trigger.
+   top: 16px creates a slight overlap so the
+   trigger's bottom corners are hidden behind
+   the dropdown's flat top edge.
+   Hidden by default — shown with --open.
+   ============================================ */
+
+.date-picker__dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: var(--bg-primary);
+  border-radius: var(--radius-small);
+  border: var(--border-s) solid var(--border-color-primary);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.10), 0px 4px 6px rgba(0, 0, 0, 0.10);
+  z-index: 100;
+  padding: var(--gap-medium) var(--gap-x-small) var(--gap-x-small);
+  flex-direction: column;
+  gap: var(--gap-x-small);
+}
+
+.date-picker--open .date-picker__dropdown {
+  display: flex;
+}
+
+
+/* ============================================
+   MONTH NAVIGATION ROW
+   ============================================ */
+
+.date-picker__month-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.date-picker__month-prev,
+.date-picker__month-next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: var(--gap-xx-small);
+  border-radius: var(--radius-small);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--icon-primary);
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.date-picker__month-prev:hover,
+.date-picker__month-next:hover {
+  background: var(--bg-secondary);
+}
+
+.date-picker__month-prev svg,
+.date-picker__month-next svg {
+  width: var(--icon-size-3xs);
+  height: var(--icon-size-3xs);
+  fill: currentColor;
+}
+
+.date-picker__month-label {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body-2);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-body-2);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-primary);
+  text-align: center;
+}
+
+
+/* ============================================
+   DATE GRID
+   7-column flex layout for day headers + weeks.
+   ============================================ */
+
+.date-picker__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1px; /* no token for 1px grid gap */
+}
+
+/* Day header row — M T W T F S S */
+.date-picker__day-headers {
+  display: flex;
+  gap: 1px;
+}
+
+.date-picker__day-header {
+  flex: 1;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--gap-xx-small);
+  border-radius: var(--radius-x-small);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body-2);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-2);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-disabled);
+}
+
+/* Week row */
+.date-picker__week {
+  display: flex;
+  gap: 1px;
+}
+
+/* Individual date cell */
+.date-picker__day {
+  flex: 1;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--gap-xx-small);
+  border-radius: var(--radius-x-small);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body-2);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-2);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  border: none;
+  cursor: pointer;
+  transition: background 100ms ease;
+}
+
+.date-picker__day:hover:not(:disabled) {
+  background: var(--bg-secondary);
+}
+
+/* Empty placeholder cells (before month start / after month end) */
+.date-picker__day--empty {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Today — outlined */
+.date-picker__day--today {
+  border: var(--border-s) solid var(--border-color-on-light);
+}
+
+/* Range — start, end and in-between all use the same purple tint */
+.date-picker__day--range-start,
+.date-picker__day--range-end,
+.date-picker__day--in-range {
+  /* --colour-purple-20 = #C9D3FF — the "bg-purple-muted" from Figma */
+  background: var(--colour-purple-20);
+  color: var(--text-primary);
+}
+
+.date-picker__day--range-start:hover,
+.date-picker__day--range-end:hover,
+.date-picker__day--in-range:hover {
+  background: var(--colour-purple-20);
+}
+
+
+/* ============================================
+   FOOTER — divider + action buttons
+   ============================================ */
+
+.date-picker__footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-x-small);
+}
+
+.date-picker__actions {
+  display: flex;
+  gap: 8px; /* no exact token — between xx-small(4px) and x-small(8px) */
+}
+
+/* Clear button */
+.date-picker__clear {
+  flex: 1;
+  /* height: 28px; */
+  padding: var(--gap-xx-small) var(--gap-x-small);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body-2);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-2);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  border: var(--border-s) solid var(--border-color-primary);
+  border-radius: var(--radius-small);
+  cursor: pointer;
+  transition: background 100ms ease;
+}
+
+.date-picker__clear:hover {
+  background: var(--bg-secondary);
+}
+
+/* Apply button */
+.date-picker__apply {
+  flex: 1;
+  padding: var(--gap-xx-small) var(--gap-x-small);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body-2);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-2);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-primary);
+  background: var(--bg-brand-aqua);
+  border: none;
+  border-radius: var(--radius-small);
+  cursor: pointer;
+  transition: background 100ms ease;
+}
+
+.date-picker__apply:hover {
+  background: var(--bg-aqua-active);
+}
+
+
+/* ============================================
+   DARK MODE
+   Semantic tokens remap automatically.
+   Only the purple range bg and shadow need
+   explicit overrides.
+   ============================================ */
+
+.dark .date-picker__day--range-start,
+.dark .date-picker__day--range-end,
+.dark .date-picker__day--in-range {
+  background: var(--colour-purple-70-10);
+  color: var(--text-primary);
+}
+

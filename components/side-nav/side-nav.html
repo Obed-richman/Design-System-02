@@ -1,0 +1,260 @@
+<!-- ============================================
+     SIDE NAV COMPONENT SNIPPETS
+     Copy what you need into a screen or index.html
+
+     Requires: tokens/tokens.css
+               tokens/typography.css
+               icons/icons.css
+               components/side-nav/side-nav.css
+
+     Two states:
+       Default                — expanded (187px), labels visible
+       .side-nav--collapsed   — collapsed (44px), icons only
+
+     JS: copy the <script> block at the bottom
+         into your screen file.
+     ============================================ -->
+
+
+<!-- ============================================================
+     EXPANDED STATE — default, labels + group headers visible
+     ============================================================ -->
+
+<nav class="side-nav" id="side-nav">
+
+  <!-- Header: brand + toggle -->
+  <div class="side-nav__header">
+    <div class="side-nav__brand">
+      <!-- Brand logo icon — swap for your own brand mark -->
+      <svg class="side-nav__brand-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+        <use href="../../icons/icons.svg#icon-pbs"></use>
+      </svg>
+      <span class="side-nav__brand-name">Console</span>
+    </div>
+    <!-- Toggle: chevron-left = expanded, chevron-right = collapsed (swapped by JS) -->
+    <button class="side-nav__toggle" aria-label="Collapse navigation">
+      <svg class="side-nav__toggle-icon" viewBox="0 0 7 12" fill="currentColor" aria-hidden="true">
+        <use href="../../icons/icons.svg#icon-chevron-small-left"></use>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Body: scrollable nav sections -->
+  <div class="side-nav__body">
+
+    <!-- Section 1: top-level items (no group label) -->
+    <div class="side-nav__section">
+
+      <div class="side-nav__item">
+        <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-correct"></use>
+        </svg>
+        <span class="side-nav__item-label">Home</span>
+      </div>
+
+      <div class="side-nav__item">
+        <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-tick"></use>
+        </svg>
+        <span class="side-nav__item-label">My tasks</span>
+      </div>
+
+      <!-- Active item — add .side-nav__item--active -->
+      <div class="side-nav__item side-nav__item--active">
+        <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-additional-user"></use>
+        </svg>
+        <span class="side-nav__item-label">Customers</span>
+      </div>
+
+      <div class="side-nav__item">
+        <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-policy"></use>
+        </svg>
+        <span class="side-nav__item-label">Policies</span>
+      </div>
+
+      <div class="side-nav__item">
+        <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-discount"></use>
+        </svg>
+        <span class="side-nav__item-label">Quotes</span>
+      </div>
+
+      <div class="side-nav__item">
+        <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-caution"></use>
+        </svg>
+        <span class="side-nav__item-label">Claims</span>
+      </div>
+
+    </div>
+
+
+    <!-- Section 2: Agents group -->
+    <div class="side-nav__section">
+
+      <!-- Group label row — has its own chevron for collapsing the group -->
+      <div class="side-nav__group-label side-nav__group-label--open" data-group="agents">
+        AGENTS
+        <svg class="side-nav__group-chevron" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-chevron-down"></use>
+        </svg>
+      </div>
+
+      <div class="side-nav__item">
+        <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-pbs"></use>
+        </svg>
+        <span class="side-nav__item-label">Agents</span>
+      </div>
+
+      <div class="side-nav__item">
+        <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-arrow-right"></use>
+        </svg>
+        <span class="side-nav__item-label">Workflows</span>
+      </div>
+
+      <div class="side-nav__item">
+        <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-idea"></use>
+        </svg>
+        <span class="side-nav__item-label">Training</span>
+      </div>
+
+    </div>
+
+
+    <!-- Section 3: Internal Tools group -->
+    <div class="side-nav__section">
+
+      <div class="side-nav__group-label side-nav__group-label--open" data-group="internal-tools">
+        INTERNAL TOOLS
+        <svg class="side-nav__group-chevron" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-chevron-down"></use>
+        </svg>
+      </div>
+
+      <div class="side-nav__item">
+        <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-information"></use>
+        </svg>
+        <span class="side-nav__item-label">Apps</span>
+      </div>
+
+      <div class="side-nav__item">
+        <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-stop"></use>
+        </svg>
+        <span class="side-nav__item-label">Logs</span>
+      </div>
+
+      <!-- Importer — has sub-nav, chevron on right -->
+      <div class="side-nav__item">
+        <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-driving"></use>
+        </svg>
+        <span class="side-nav__item-label">Importer</span>
+        <svg class="side-nav__item-chevron" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-chevron-down"></use>
+        </svg>
+      </div>
+
+      <!-- Sub-nav items — indented, hidden by default, shown when .side-nav__sub-items--open -->
+      <div class="side-nav__sub-items">
+        <div class="side-nav__item">
+          <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-mail"></use>
+          </svg>
+          <span class="side-nav__item-label">Invoice</span>
+        </div>
+        <div class="side-nav__item">
+          <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-policy"></use>
+          </svg>
+          <span class="side-nav__item-label">Report</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div><!-- /.side-nav__body -->
+
+
+  <!-- Footer: Settings (pinned bottom) -->
+  <div class="side-nav__footer">
+    <div class="side-nav__item">
+      <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+        <use href="../../icons/icons.svg#icon-caution"></use>
+      </svg>
+      <span class="side-nav__item-label">Settings</span>
+    </div>
+  </div>
+
+</nav><!-- /.side-nav -->
+
+
+<!-- ============================================================
+     COLLAPSED STATE — add .side-nav--collapsed to root element
+     Icons only, 44px wide. Toggle JS handles this automatically.
+     ============================================================ -->
+
+<!--
+<nav class="side-nav side-nav--collapsed" id="side-nav">
+  ... same inner HTML as above — JS toggles the modifier class ...
+</nav>
+-->
+
+
+<!-- ============================================
+     REQUIRED JAVASCRIPT
+     Copy this <script> block into your screen file.
+     ============================================ -->
+<script>
+// Side nav — toggle expanded/collapsed, active state, sub-nav
+// Copy this script block into your screen file
+
+(function() {
+  const nav    = document.querySelector('.side-nav');
+  const toggle = nav ? nav.querySelector('.side-nav__toggle') : null;
+  const toggleIcon = toggle ? toggle.querySelector('use') : null;
+
+  // Expand / collapse the whole nav
+  // Swaps the toggle chevron direction to match the new state
+  if (toggle) {
+    toggle.addEventListener('click', function() {
+      const collapsed = nav.classList.toggle('side-nav--collapsed');
+      if (toggleIcon) {
+        toggleIcon.setAttribute('href',
+          collapsed
+            ? '../../icons/icons.svg#icon-chevron-small-right'
+            : '../../icons/icons.svg#icon-chevron-small-left'
+        );
+      }
+      toggle.setAttribute('aria-label', collapsed ? 'Expand navigation' : 'Collapse navigation');
+    });
+  }
+
+  // Nav item clicks — active state + sub-nav toggle
+  if (nav) {
+    nav.querySelectorAll('.side-nav__item').forEach(function(item) {
+      item.addEventListener('click', function() {
+        // Active state — move to clicked item
+        nav.querySelectorAll('.side-nav__item').forEach(function(i) {
+          i.classList.remove('side-nav__item--active');
+        });
+        item.classList.add('side-nav__item--active');
+
+        // Sub-nav toggle — only if the next sibling is .side-nav__sub-items
+        const subItems = item.nextElementSibling;
+        if (subItems && subItems.classList.contains('side-nav__sub-items')) {
+          const isOpen = subItems.classList.toggle('side-nav__sub-items--open');
+          const chevron = item.querySelector('.side-nav__item-chevron');
+          if (chevron) chevron.classList.toggle('side-nav__item-chevron--open', isOpen);
+        }
+      });
+    });
+  }
+})();
+</script>

@@ -1,0 +1,167 @@
+/* ============================================
+   PRICE COMPARISON COMPONENT
+   Depends on: tokens/tokens.css
+               components/comparison-tile/comparison-tile.css
+   ============================================ */
+
+
+/* --- Base --- */
+
+.price-comparison {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-large);
+  width: 100%;
+}
+
+.price-comparison__card {
+  background: var(--bg-brand-ecru);
+  border-radius: var(--radius-x-large);
+  padding: var(--gap-large);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-large);
+  width: 100%;
+}
+
+.price-comparison__heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-xx-small);
+  width: 100%;
+}
+
+.price-comparison__heading-title {
+  font-family: var(--font-family-base);
+  font-size: 32px;
+  font-weight: var(--font-weight-medium);
+  line-height: 36px;
+  letter-spacing: -0.64px;
+  color: var(--text-primary);
+  text-align: center;
+  margin: 0;
+}
+
+.price-comparison__heading-sub {
+  font-family: var(--font-family-base);
+  font-size: 18px;
+  font-weight: var(--font-weight-regular);
+  line-height: 24px;
+  color: var(--text-primary);
+  text-align: center;
+  margin: 0;
+}
+
+.price-comparison__tiles {
+  display: flex;
+  flex-direction: row;
+  gap: var(--gap-large);
+  align-items: flex-start;
+  width: 100%;
+}
+
+.price-comparison__tiles--mobile {
+  flex-direction: column;
+  gap: var(--gap-small);
+}
+
+
+/* --- Badge — "Best value" pill in tile header --- */
+
+.price-comparison__badge {
+  background: var(--bg-information);
+  border: var(--border-s) solid var(--icon-link-pressed);
+  border-radius: var(--radius-round);
+  padding: 2px var(--gap-small);
+  height: 24px;
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  font-weight: var(--font-weight-bold);
+  line-height: 20px;
+  color: var(--text-link-pressed);
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+
+/* --- Tile sizing within price-comparison --- */
+
+.price-comparison__tiles .comparison-tile {
+  flex: 1;
+  min-width: 402px;
+}
+
+
+/* --- Discount code block --- */
+
+.price-comparison__discount {
+  background: var(--bg-primary);
+  border-radius: var(--radius-medium);
+  padding: var(--gap-medium);
+  width: 100%;
+}
+
+.price-comparison__discount-inner {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--gap-medium);
+}
+
+/* .input-group takes flex: 1 to fill available space */
+.price-comparison__discount-inner .input-group {
+  flex: 1;
+}
+
+/* Button is fixed width on desktop */
+.price-comparison__discount-inner .btn {
+  flex-shrink: 0;
+  width: 126px;
+}
+
+
+/* --- Variants --- */
+
+/* Mobile — stack tiles, constrain width */
+.price-comparison--mobile .price-comparison__tiles .comparison-tile {
+  flex: unset;
+  width: 100%;
+  max-width: 327px;
+  min-width: 327px;
+}
+
+.price-comparison--mobile .price-comparison__discount-inner {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.price-comparison--mobile .price-comparison__discount-inner .btn {
+  width: 100%;
+}
+
+
+/* --- Single tile — centre all content when only one tile is present --- */
+
+.price-comparison__tiles .comparison-tile:only-child .comparison-tile__header {
+  justify-content: center;
+}
+
+.price-comparison__tiles .comparison-tile:only-child .comparison-tile__body {
+  align-items: center;
+  text-align: center;
+}
+
+.price-comparison__tiles .comparison-tile:only-child .comparison-tile__price {
+  justify-content: center;
+}
+
+
+/* --- Dark mode --- */
+
+.dark .price-comparison__card {
+  background: var(--bg-brand-ecru);
+}

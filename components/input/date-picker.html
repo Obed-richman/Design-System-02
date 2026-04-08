@@ -1,0 +1,295 @@
+<!-- ============================================
+     DATE PICKER COMPONENT SNIPPETS
+     Copy what you need into a screen or index.html
+
+     Requires: tokens/tokens.css
+               tokens/typography.css
+               icons/icons.css
+               components/input/input.css
+               components/divider/divider.css
+               components/input/date-picker.css
+
+     States:
+       Default                     — placeholder text, calendar icon
+       .date-picker--hover         — darker border (force hover state)
+       .date-picker--open          — dropdown visible, focus ring on trigger
+       .date-picker--populated     — shows selected date range text
+
+     JS: copy the <script> block at the bottom
+         into your screen file.
+     ============================================ -->
+
+
+<!-- ============================================================
+     DEFAULT — placeholder, calendar icon, primary border
+     ============================================================ -->
+
+<div class="date-picker">
+  <button class="date-picker__trigger" type="button" aria-haspopup="true" aria-expanded="false">
+    <span class="date-picker__trigger-text">Select date range</span>
+    <!-- Note: no calendar icon in current sprite — replace with your calendar icon
+         when added to icons.svg. Using icon-calendar as a placeholder. -->
+    <svg class="date-picker__trigger-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+      <use href="../../icons/icons.svg#icon-ca"></use>
+    </svg>
+  </button>
+  <div class="date-picker__dropdown" role="dialog" aria-label="Date picker">
+    <div class="date-picker__month-nav">
+      <button class="date-picker__month-prev" aria-label="Previous month" type="button">
+        <svg viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-arrow-left"></use>
+        </svg>
+      </button>
+      <span class="date-picker__month-label">January 2026</span>
+      <button class="date-picker__month-next" aria-label="Next month" type="button">
+        <svg viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-arrow-right"></use>
+        </svg>
+      </button>
+    </div>
+    <!-- Grid is rendered by JS — see script block below -->
+    <div class="date-picker__grid" role="grid"></div>
+    <div class="date-picker__footer">
+      <div class="divider divider--simple">
+        <span class="divider__line"></span>
+      </div>
+      <div class="date-picker__actions">
+        <button class="date-picker__clear" type="button">Clear</button>
+        <button class="date-picker__apply" type="button">Apply</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     POPULATED — has a selected date range, --text-primary value
+     Add .date-picker--populated to the wrapper.
+     ============================================================ -->
+
+<div class="date-picker date-picker--populated">
+  <button class="date-picker__trigger" type="button" aria-haspopup="true" aria-expanded="false">
+    <span class="date-picker__trigger-text">Jan 21, 2026 → Jan 30, 2026</span>
+    <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+      <use href="../../icons/icons.svg#icon-calendar"></use>
+    </svg>
+
+
+  </button>
+  <div class="date-picker__dropdown" role="dialog" aria-label="Date picker">
+    <div class="date-picker__month-nav">
+      <button class="date-picker__month-prev" aria-label="Previous month" type="button">
+        <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+          <use href="../../icons/icons.svg#icon-arrow-left"></use>
+        </svg>
+      </button>
+      <span class="date-picker__month-label">January 2026</span>
+      <button class="date-picker__month-next" aria-label="Next month" type="button">
+        <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+          <use href="../../icons/icons.svg#icon-arrow-right"></use>
+        </svg>
+      </button>
+    </div>
+    <div class="date-picker__grid" role="grid"></div>
+    <div class="date-picker__footer">
+      <div class="divider divider--simple">
+        <span class="divider__line"></span>
+      </div>
+      <div class="date-picker__actions">
+        <button class="date-picker__clear" type="button">Clear</button>
+        <button class="date-picker__apply" type="button">Apply</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================================
+     REQUIRED JAVASCRIPT
+     Copy this <script> block into your screen file.
+     ============================================ -->
+<script>
+// Date Picker — full functionality
+// Copy this script block into your screen file
+
+(function() {
+  document.querySelectorAll('.date-picker').forEach(function(picker) {
+    const trigger     = picker.querySelector('.date-picker__trigger');
+    const dropdown    = picker.querySelector('.date-picker__dropdown');
+    const monthLabel  = picker.querySelector('.date-picker__month-label');
+    const prevBtn     = picker.querySelector('.date-picker__month-prev');
+    const nextBtn     = picker.querySelector('.date-picker__month-next');
+    const grid        = picker.querySelector('.date-picker__grid');
+    const clearBtn    = picker.querySelector('.date-picker__clear');
+    const applyBtn    = picker.querySelector('.date-picker__apply');
+    const triggerText = picker.querySelector('.date-picker__trigger-text');
+
+    if (!trigger || !grid) return;
+
+    let currentDate = new Date();
+    let viewYear    = currentDate.getFullYear();
+    let viewMonth   = currentDate.getMonth();
+    let rangeStart  = null;
+    let rangeEnd    = null;
+    let selecting   = false;
+
+    const MONTHS = ['January','February','March','April','May','June',
+                    'July','August','September','October','November','December'];
+
+    function formatRange(start, end) {
+      const opts = { month: 'short', day: 'numeric', year: 'numeric' };
+      return start.toLocaleDateString('en-US', opts) + ' \u2192 ' + end.toLocaleDateString('en-US', opts);
+    }
+
+    function isSameDay(a, b) {
+      return a && b && a.toDateString() === b.toDateString();
+    }
+
+    function renderGrid() {
+      if (!monthLabel) return;
+      monthLabel.textContent = MONTHS[viewMonth] + ' ' + viewYear;
+      grid.innerHTML = '';
+
+      // Day header row
+      var headers = document.createElement('div');
+      headers.className = 'date-picker__day-headers';
+      ['M','T','W','T','F','S','S'].forEach(function(d) {
+        var h = document.createElement('div');
+        h.className = 'date-picker__day-header';
+        h.textContent = d;
+        headers.appendChild(h);
+      });
+      grid.appendChild(headers);
+
+      // First day of month — adjust to Monday-start grid
+      var firstDay    = new Date(viewYear, viewMonth, 1).getDay();
+      var startOffset = (firstDay === 0) ? 6 : firstDay - 1;
+      var daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+      var totalCells  = Math.ceil((startOffset + daysInMonth) / 7) * 7;
+
+      var week = document.createElement('div');
+      week.className = 'date-picker__week';
+
+      for (var i = 0; i < totalCells; i++) {
+        var dayNum = i - startOffset + 1;
+        var cell   = document.createElement('button');
+        cell.className  = 'date-picker__day';
+        cell.type = 'button';
+
+        if (dayNum < 1 || dayNum > daysInMonth) {
+          cell.classList.add('date-picker__day--empty');
+          cell.setAttribute('aria-hidden', 'true');
+          cell.disabled = true;
+          cell.textContent = '\u00A0';
+        } else {
+          var thisDate = new Date(viewYear, viewMonth, dayNum);
+          cell.textContent = dayNum;
+
+          // Today
+          if (isSameDay(thisDate, currentDate)) {
+            cell.classList.add('date-picker__day--today');
+          }
+
+          // Range highlighting
+          var start = rangeStart ? new Date(rangeStart) : null;
+          var end   = rangeEnd   ? new Date(rangeEnd)   : null;
+          if (start && isSameDay(thisDate, start)) cell.classList.add('date-picker__day--range-start');
+          if (end   && isSameDay(thisDate, end))   cell.classList.add('date-picker__day--range-end');
+          if (start && end && thisDate > start && thisDate < end) cell.classList.add('date-picker__day--in-range');
+
+          // Click — first click starts selection, second click completes it
+          (function(date) {
+            cell.addEventListener('click', function() {
+              var s = rangeStart ? new Date(rangeStart) : null;
+              if (!selecting || (s && rangeEnd)) {
+                rangeStart = date;
+                rangeEnd   = null;
+                selecting  = true;
+              } else {
+                if (s && date < s) {
+                  rangeEnd   = new Date(s);
+                  rangeStart = date;
+                } else {
+                  rangeEnd = date;
+                }
+                selecting = false;
+              }
+              renderGrid();
+            });
+          }(thisDate));
+        }
+
+        week.appendChild(cell);
+
+        if ((i + 1) % 7 === 0) {
+          grid.appendChild(week);
+          week = document.createElement('div');
+          week.className = 'date-picker__week';
+        }
+      }
+    }
+
+    // Open / close toggle
+    trigger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = picker.classList.toggle('date-picker--open');
+      trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      if (isOpen) renderGrid();
+    });
+
+    // Prevent clicks inside dropdown from closing it
+    if (dropdown) {
+      dropdown.addEventListener('click', function(e) {
+        e.stopPropagation();
+      });
+    }
+
+    // Month navigation
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function() {
+        viewMonth--;
+        if (viewMonth < 0) { viewMonth = 11; viewYear--; }
+        renderGrid();
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function() {
+        viewMonth++;
+        if (viewMonth > 11) { viewMonth = 0; viewYear++; }
+        renderGrid();
+      });
+    }
+
+    // Apply — write range to trigger and close
+    if (applyBtn) {
+      applyBtn.addEventListener('click', function() {
+        if (rangeStart && rangeEnd) {
+          triggerText.textContent = formatRange(new Date(rangeStart), new Date(rangeEnd));
+          picker.classList.add('date-picker--populated');
+        }
+        picker.classList.remove('date-picker--open');
+        trigger.setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    // Clear — reset to placeholder
+    if (clearBtn) {
+      clearBtn.addEventListener('click', function() {
+        rangeStart = null;
+        rangeEnd   = null;
+        selecting  = false;
+        triggerText.textContent = 'Select date range';
+        picker.classList.remove('date-picker--populated', 'date-picker--open');
+        trigger.setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    // Close on outside click
+    document.addEventListener('click', function() {
+      picker.classList.remove('date-picker--open');
+      trigger.setAttribute('aria-expanded', 'false');
+    });
+  });
+})();
+</script>

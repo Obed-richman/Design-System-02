@@ -1,0 +1,336 @@
+<!-- ============================================
+     FILTER SELECT COMPONENT SNIPPETS
+     Copy what you need into a screen or index.html
+
+     Requires: tokens/tokens.css
+               icons/icons.css
+               components/checkbox/checkbox.css
+               components/badge/badge.css
+               components/divider/divider.css
+               components/input/input.css
+               components/input/filter-select.css
+
+     States:
+       Default                       — empty, placeholder visible
+       .filter-select--hover         — darker border (force hover)
+       .filter-select--open          — dropdown visible, chevron up, focus ring
+       .filter-select--populated     — badge tags shown, placeholder hidden
+
+     Badge variant mapping:
+       Processing → badge--disabled  (grey)
+       Pending    → badge--medium    (yellow)
+       Active     → badge--low       (green)
+       Cancelled  → badge--high      (red)
+       Inactive   → badge--inactive  (outline grey)
+
+     JS: copy the <script> block at the bottom
+         into your screen file.
+     ============================================ -->
+
+
+<!-- ============================================================
+     DEFAULT — empty, placeholder, chevron-down
+     ============================================================ -->
+
+<div class="filter-select" role="combobox" aria-haspopup="listbox" aria-expanded="false">
+  <button class="filter-select__trigger" type="button" aria-label="Filter by Status">
+    <span class="filter-select__label">Status</span>
+    <span class="filter-select__divider" aria-hidden="true"></span>
+    <span class="filter-select__placeholder">Select to filter..</span>
+    <div class="filter-select__tags" aria-label="Selected filters"></div>
+    <svg class="filter-select__chevron" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+      <use href="../../icons/icons.svg#icon-chevron-down"></use>
+    </svg>
+  </button>
+
+  <div class="filter-select__dropdown" role="listbox" aria-label="Status filters">
+    <div class="filter-select__options">
+
+      <!-- Processing -->
+      <label class="filter-select__option" data-value="Processing" role="option" aria-selected="false">
+        <span class="checkbox filter-select__option-checkbox">
+          <input type="checkbox" class="checkbox__input" value="Processing" />
+          <span class="checkbox__control"></span>
+        </span>
+        <span class="filter-select__option-badge badge badge--disabled">Processing</span>
+      </label>
+
+      <!-- Pending -->
+      <label class="filter-select__option" data-value="Pending" role="option" aria-selected="false">
+        <span class="checkbox filter-select__option-checkbox">
+          <input type="checkbox" class="checkbox__input" value="Pending" />
+          <span class="checkbox__control"></span>
+        </span>
+        <span class="filter-select__option-badge badge badge--medium">Pending</span>
+      </label>
+
+      <!-- Active -->
+      <label class="filter-select__option" data-value="Active" role="option" aria-selected="false">
+        <span class="checkbox filter-select__option-checkbox">
+          <input type="checkbox" class="checkbox__input" value="Active" />
+          <span class="checkbox__control"></span>
+        </span>
+        <span class="filter-select__option-badge badge badge--low">Active</span>
+      </label>
+
+      <!-- Cancelled -->
+      <label class="filter-select__option" data-value="Cancelled" role="option" aria-selected="false">
+        <span class="checkbox filter-select__option-checkbox">
+          <input type="checkbox" class="checkbox__input" value="Cancelled" />
+          <span class="checkbox__control"></span>
+        </span>
+        <span class="filter-select__option-badge badge badge--high">Cancelled</span>
+      </label>
+
+      <!-- Inactive -->
+      <label class="filter-select__option" data-value="Inactive" role="option" aria-selected="false">
+        <span class="checkbox filter-select__option-checkbox">
+          <input type="checkbox" class="checkbox__input" value="Inactive" />
+          <span class="checkbox__control"></span>
+        </span>
+        <span class="filter-select__option-badge badge badge--inactive">Inactive</span>
+      </label>
+
+    </div>
+
+    <div class="filter-select__footer">
+      <div class="divider divider--simple">
+        <span class="divider__line"></span>
+      </div>
+      <div class="filter-select__actions">
+        <button class="filter-select__clear" type="button">Clear</button>
+        <button class="filter-select__apply" type="button">Apply</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     POPULATED — badges shown in trigger, some options checked
+     Add .filter-select--populated on the wrapper.
+     Tags are rendered by JS — shown here statically for preview.
+     ============================================================ -->
+
+<div class="filter-select filter-select--populated" role="combobox" aria-haspopup="listbox" aria-expanded="false">
+  <button class="filter-select__trigger" type="button" aria-label="Filter by Status">
+    <span class="filter-select__label">Status</span>
+    <span class="filter-select__divider" aria-hidden="true"></span>
+    <span class="filter-select__placeholder">Select to filter..</span>
+    <!-- Pre-rendered tags for static preview — JS rebuilds these dynamically -->
+    <div class="filter-select__tags" aria-label="Selected filters">
+      <div class="filter-select__tag badge badge--low" data-value="Active">
+        <span class="filter-select__tag-label">Active</span>
+        <button class="filter-select__tag-remove" aria-label="Remove Active" type="button">×</button>
+      </div>
+      <div class="filter-select__tag badge badge--medium" data-value="Pending">
+        <span class="filter-select__tag-label">Pending</span>
+        <button class="filter-select__tag-remove" aria-label="Remove Pending" type="button">×</button>
+      </div>
+    </div>
+    <svg class="filter-select__chevron" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+      <use href="../../icons/icons.svg#icon-chevron-down"></use>
+    </svg>
+  </button>
+
+  <div class="filter-select__dropdown" role="listbox" aria-label="Status filters">
+    <div class="filter-select__options">
+
+      <label class="filter-select__option" data-value="Processing" role="option" aria-selected="false">
+        <span class="checkbox filter-select__option-checkbox">
+          <input type="checkbox" class="checkbox__input" value="Processing" />
+          <span class="checkbox__control"></span>
+        </span>
+        <span class="filter-select__option-badge badge badge--disabled">Processing</span>
+      </label>
+
+      <label class="filter-select__option" data-value="Pending" role="option" aria-selected="true">
+        <span class="checkbox filter-select__option-checkbox">
+          <input type="checkbox" class="checkbox__input" value="Pending" checked />
+          <span class="checkbox__control"></span>
+        </span>
+        <span class="filter-select__option-badge badge badge--medium">Pending</span>
+      </label>
+
+      <label class="filter-select__option" data-value="Active" role="option" aria-selected="true">
+        <span class="checkbox filter-select__option-checkbox">
+          <input type="checkbox" class="checkbox__input" value="Active" checked />
+          <span class="checkbox__control"></span>
+        </span>
+        <span class="filter-select__option-badge badge badge--low">Active</span>
+      </label>
+
+      <label class="filter-select__option" data-value="Cancelled" role="option" aria-selected="false">
+        <span class="checkbox filter-select__option-checkbox">
+          <input type="checkbox" class="checkbox__input" value="Cancelled" />
+          <span class="checkbox__control"></span>
+        </span>
+        <span class="filter-select__option-badge badge badge--high">Cancelled</span>
+      </label>
+
+      <label class="filter-select__option" data-value="Inactive" role="option" aria-selected="false">
+        <span class="checkbox filter-select__option-checkbox">
+          <input type="checkbox" class="checkbox__input" value="Inactive" />
+          <span class="checkbox__control"></span>
+        </span>
+        <span class="filter-select__option-badge badge badge--inactive">Inactive</span>
+      </label>
+
+    </div>
+
+    <div class="filter-select__footer">
+      <div class="divider divider--simple">
+        <span class="divider__line"></span>
+      </div>
+      <div class="filter-select__actions">
+        <button class="filter-select__clear" type="button">Clear</button>
+        <button class="filter-select__apply" type="button">Apply</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================================
+     REQUIRED JAVASCRIPT
+     Copy this <script> block into your screen file.
+     ============================================ -->
+<script>
+// Filter Select — full functionality
+// Copy this script block into your screen file
+
+(function() {
+  // Badge class lookup — maps data-value to its badge modifier class
+  var BADGE_CLASSES = {
+    'Processing': 'badge--disabled',
+    'Pending':    'badge--medium',
+    'Active':     'badge--low',
+    'Cancelled':  'badge--high',
+    'Inactive':   'badge--inactive'
+  };
+
+  document.querySelectorAll('.filter-select').forEach(function(fs) {
+    var trigger  = fs.querySelector('.filter-select__trigger');
+    var dropdown = fs.querySelector('.filter-select__dropdown');
+    var options  = fs.querySelectorAll('.filter-select__option');
+    var tagsWrap = fs.querySelector('.filter-select__tags');
+    var clearBtn = fs.querySelector('.filter-select__clear');
+    var applyBtn = fs.querySelector('.filter-select__apply');
+
+    if (!trigger || !dropdown) return;
+
+    // Track committed selection and in-progress pending selection
+    var selected = new Set();
+    var pending  = new Set();
+
+    // Initialise selected from any pre-checked inputs (for static populated previews)
+    options.forEach(function(option) {
+      var input = option.querySelector('.checkbox__input');
+      if (input && input.checked) selected.add(option.getAttribute('data-value'));
+    });
+    if (selected.size > 0) {
+      fs.classList.add('filter-select--populated');
+      renderTags();
+    }
+
+    // ---- Open / close ----
+    trigger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = fs.classList.toggle('filter-select--open');
+      fs.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      if (isOpen) {
+        // Sync pending state with current committed selection
+        pending = new Set(selected);
+        syncCheckboxes();
+      }
+    });
+
+    // Prevent clicks inside dropdown from bubbling to document close handler
+    dropdown.addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+
+    // ---- Option rows — toggle pending (uses native checkbox checked state) ----
+    options.forEach(function(option) {
+      var input = option.querySelector('.checkbox__input');
+      option.addEventListener('click', function(e) {
+        // Let the label's native checkbox toggle handle the input.checked state,
+        // then sync pending from it
+        if (e.target !== input) {
+          // If click wasn't directly on the input, toggle it manually
+          if (input) input.checked = !input.checked;
+        }
+        var value = option.getAttribute('data-value');
+        if (input && input.checked) {
+          pending.add(value);
+        } else {
+          pending.delete(value);
+        }
+        if (input) option.setAttribute('aria-selected', input.checked ? 'true' : 'false');
+        // Prevent the label from double-toggling the checkbox
+        e.preventDefault();
+      });
+    });
+
+    // ---- Apply — commit pending to selected ----
+    applyBtn.addEventListener('click', function() {
+      selected = new Set(pending);
+      renderTags();
+      fs.classList.toggle('filter-select--populated', selected.size > 0);
+      fs.classList.remove('filter-select--open');
+      fs.setAttribute('aria-expanded', 'false');
+    });
+
+    // ---- Clear — wipe everything ----
+    clearBtn.addEventListener('click', function() {
+      selected.clear();
+      pending.clear();
+      syncCheckboxes();
+      renderTags();
+      fs.classList.remove('filter-select--populated', 'filter-select--open');
+      fs.setAttribute('aria-expanded', 'false');
+    });
+
+    // ---- Remove individual tag ----
+    tagsWrap.addEventListener('click', function(e) {
+      var removeBtn = e.target.closest('.filter-select__tag-remove');
+      if (!removeBtn) return;
+      var value = removeBtn.closest('.filter-select__tag').getAttribute('data-value');
+      selected.delete(value);
+      renderTags();
+      fs.classList.toggle('filter-select--populated', selected.size > 0);
+    });
+
+    // ---- Close on outside click ----
+    document.addEventListener('click', function() {
+      fs.classList.remove('filter-select--open');
+      fs.setAttribute('aria-expanded', 'false');
+    });
+
+    // ---- Helpers ----
+
+    function syncCheckboxes() {
+      options.forEach(function(option) {
+        var value = option.getAttribute('data-value');
+        var input = option.querySelector('.checkbox__input');
+        if (input) input.checked = pending.has(value);
+        option.setAttribute('aria-selected', pending.has(value) ? 'true' : 'false');
+      });
+    }
+
+    function renderTags() {
+      tagsWrap.innerHTML = '';
+      selected.forEach(function(value) {
+        var badgeClass = BADGE_CLASSES[value] || '';
+        var tag = document.createElement('div');
+        tag.className = 'filter-select__tag badge ' + badgeClass;
+        tag.setAttribute('data-value', value);
+        tag.innerHTML =
+          '<span class="filter-select__tag-label">' + value + '</span>' +
+          '<button class="filter-select__tag-remove" aria-label="Remove ' + value + '" type="button">\u00D7</button>';
+        tagsWrap.appendChild(tag);
+      });
+    }
+  });
+})();
+</script>

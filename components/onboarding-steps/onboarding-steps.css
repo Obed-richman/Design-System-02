@@ -1,0 +1,153 @@
+/* ============================================
+   ONBOARDING STEPS
+   Full-width navy progress banner for the
+   purchase journey (Quote → Details → Review → Payment).
+   Depends on: tokens/tokens.css
+               components/step-indicator/step-indicator.css
+   ============================================ */
+
+
+/* --- Base --- */
+
+.onboarding-steps {
+  background: var(--bg-brand-navy);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--gap-x-large) 0;
+  gap: var(--gap-x-large);
+  width: 100%;
+}
+
+
+/* --- Progress row --- */
+
+.onboarding-steps__progress {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gap-medium);
+  width: 516px;
+}
+
+
+/* --- Text block --- */
+
+.onboarding-steps__text {
+  display: flex;
+  flex-direction: column;
+}
+
+.onboarding-steps__text--quote {
+  align-items: center;
+  gap: var(--gap-medium);
+  width: 876px;
+}
+
+.onboarding-steps__text--details,
+.onboarding-steps__text--review,
+.onboarding-steps__text--payment {
+  align-items: center;
+  gap: var(--gap-small);
+  width: 876px;
+}
+
+
+/* --- Heading --- */
+
+.onboarding-steps__heading {
+  font-size: 40px;
+  font-weight: var(--font-weight-medium);
+  line-height: 44px;
+  letter-spacing: -0.8px;
+  color: var(--colour-white);
+  text-align: center;
+  width: 100%;
+  margin: 0;
+}
+
+
+/* --- Sub text --- */
+
+.onboarding-steps__sub {
+  line-height: 24px;
+  font-weight: var(--font-weight-regular);
+  color: var(--text-on-colour);
+  text-align: center;
+  width: 100%;
+  margin: 0;
+}
+
+.onboarding-steps__text--details .onboarding-steps__sub {
+  font-size: 16px;
+}
+
+.onboarding-steps__text--review .onboarding-steps__sub {
+  font-size: 18px;
+}
+
+
+/* --- Partner logo --- */
+
+.onboarding-steps__partner {
+  width: 176px;
+  height: 18px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+
+/* --- Registration plate
+   Requires: UKNumberPlate font to be loaded in fonts.css
+   background is yellow #FFB703 — no token available --- */
+
+.onboarding-steps__reg {
+  background: #FFB703;
+  border-radius: var(--radius-x-small);
+  padding: var(--gap-x-small);
+  font-family: 'UKNumberPlate', sans-serif;
+  font-size: 24px;
+  line-height: 24px;
+  letter-spacing: 0.072px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+
+/* --- Variants --- */
+
+/* Mobile */
+.onboarding-steps--mobile {
+  gap: var(--gap-large);
+  width: 375px;
+}
+
+.onboarding-steps--mobile .onboarding-steps__progress {
+  width: 327px;
+}
+
+.onboarding-steps--mobile .onboarding-steps__text--quote,
+.onboarding-steps--mobile .onboarding-steps__text--details,
+.onboarding-steps--mobile .onboarding-steps__text--review,
+.onboarding-steps--mobile .onboarding-steps__text--payment {
+  width: 327px;
+  align-items: center;
+}
+
+.onboarding-steps--mobile .onboarding-steps__heading {
+  font-size: 28px;
+  line-height: 32px;
+  letter-spacing: -0.56px;
+}
+
+.onboarding-steps--mobile .onboarding-steps__partner {
+  width: 138px;
+  height: 14px;
+}
+
+.onboarding-steps--mobile .onboarding-steps__reg {
+  padding: 7px var(--gap-x-small);
+  font-size: 15px;
+  letter-spacing: 0.045px;
+}

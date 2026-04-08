@@ -18,17 +18,15 @@
 }
 
 
-/* ============================================
-   SIZE VARIANTS
-   ============================================ */
-
-.icon--xxs  { width: var(--number-16); height: var(--number-16); }
-.icon--xs  { width: var(--number-24); height: var(--number-24); }
-.icon--sm  { width: var(--number-32); height: var(--number-32); }
-.icon--md  { width: var(--number-32); height: var(--number-48); }
-.icon--lg  { width: var(--number-32); height: var(--number-64); }
-.icon--xl  { width: var(--number-32); height: var(--number-72); }
-.icon--xxl  { width: var(--number-32); height: var(--number-96); }
+/* --- Size variants --- */
+.icon--3xs  { width: var(--icon-size-3xs);  height: var(--icon-size-3xs); }
+.icon--xxs  { width: var(--icon-size-xxs);  height: var(--icon-size-xxs); }
+.icon--xs   { width: var(--icon-size-xs);   height: var(--icon-size-xs); }
+.icon--s    { width: var(--icon-size-s);    height: var(--icon-size-s); }
+.icon--m    { width: var(--icon-size-m);    height: var(--icon-size-m); }
+.icon--l    { width: var(--icon-size-l);    height: var(--icon-size-l); }
+.icon--xl   { width: var(--icon-size-xl);   height: var(--icon-size-xl); }
+.icon--xxl  { width: var(--icon-size-xxl);  height: var(--icon-size-xxl); }
 
 
 /* --- Colour variants --- */

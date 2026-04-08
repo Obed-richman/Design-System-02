@@ -1,0 +1,153 @@
+/* ============================================
+   STEP INDICATOR
+   Single step in a multi-step progress indicator.
+   Sub-component of: components/onboarding-steps
+   Depends on: tokens/tokens.css
+               icons/icons.css
+   No hardcoded values except where no token
+   exists (noted inline).
+   ============================================ */
+
+
+/* --- Base --- */
+
+.step-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-xx-small);
+  width: 117px;
+  height: 60px;
+  flex-shrink: 0;
+}
+
+
+/* --- Circle --- */
+
+.step-indicator__circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  /* Incomplete default — light navy, no semantic token available */
+  background: #443B5C;
+}
+
+.step-indicator--active .step-indicator__circle,
+.step-indicator--completed .step-indicator__circle {
+  background: var(--bg-brand-aqua);
+}
+
+
+/* --- Number inside circle --- */
+
+.step-indicator__number {
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  font-weight: var(--font-weight-bold);
+  line-height: 20px;
+  text-align: center;
+  white-space: nowrap;
+  /* Incomplete default — white on dark purple */
+  color: var(--text-on-colour);
+}
+
+.step-indicator--active .step-indicator__number {
+  /* Active — dark on aqua */
+  color: var(--text-primary);
+}
+
+
+/* --- Tick icon (completed state only) --- */
+
+.step-indicator__tick {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+
+/* --- Label --- */
+
+.step-indicator__label {
+  font-family: var(--font-family-base);
+  font-size: 18px;
+  font-weight: var(--font-weight-bold);
+  line-height: 24px;
+  color: var(--text-on-colour);
+  text-align: center;
+  white-space: nowrap;
+  /* Allow label to overflow its column width without wrapping */
+  min-width: 100%;
+  width: min-content;
+}
+
+
+/* --- Track container --- */
+
+.step-indicator__track {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: var(--radius-round);
+  /* Incomplete + Active — light navy, no semantic token available */
+  background: #443B5C;
+  width: 100%;
+}
+
+
+/* --- Track fill --- */
+
+.step-indicator__track-fill {
+  height: 4px;
+  border-radius: var(--radius-round);
+  background: var(--bg-brand-aqua);
+  flex-shrink: 0;
+  /* Incomplete default — hidden, preserves layout height */
+  opacity: 0;
+  width: 55px;
+}
+
+/* Active — partial aqua fill */
+.step-indicator--active .step-indicator__track-fill {
+  opacity: 1;
+  width: 58.5px;
+}
+
+/* Completed — full aqua fill */
+.step-indicator--completed .step-indicator__track-fill {
+  opacity: 1;
+  width: 100%;
+}
+
+
+/* --- Variants --- */
+
+/* Mobile */
+.step-indicator--mobile {
+  width: 69.75px;
+  height: auto;
+}
+
+.step-indicator--mobile .step-indicator__label {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* Active mobile — shorter partial fill */
+.step-indicator--mobile.step-indicator--active .step-indicator__track-fill {
+  width: 34.875px;
+}
+
+/* Completed mobile — track container becomes full aqua, fill hidden */
+.step-indicator--mobile.step-indicator--completed .step-indicator__track {
+  background: var(--bg-brand-aqua);
+}
+
+.step-indicator--mobile.step-indicator--completed .step-indicator__track-fill {
+  opacity: 0;
+  width: 55px;
+}

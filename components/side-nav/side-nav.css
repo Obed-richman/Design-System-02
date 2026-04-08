@@ -1,0 +1,347 @@
+/* ============================================
+   SIDE NAV COMPONENT
+   Depends on: tokens/tokens.css
+               tokens/typography.css
+               icons/icons.css
+   No hardcoded values — all tokens referenced
+   from tokens.css
+
+   Two states:
+     Expanded  — 187px, labels visible (default)
+     Collapsed — 44px,  icons only (.side-nav--collapsed)
+   ============================================ */
+
+
+/* ============================================
+   ROOT
+   Full-height column, right border.
+   Width transitions between expanded/collapsed.
+   ============================================ */
+
+.side-nav {
+  display: flex;
+  flex-direction: column;
+  width: 187px;
+  height: 100%;
+  background: var(--bg-primary);
+  border-right: var(--border-s) solid var(--border-color-primary);
+  transition: width 200ms ease;
+  overflow: hidden;
+}
+
+.side-nav--collapsed {
+  width: 56px;
+}
+
+
+/* ============================================
+   HEADER
+   Brand logo + toggle button.
+   Padding narrows slightly when collapsed.
+   ============================================ */
+
+.side-nav__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  padding: var(--number-20) var(--gap-medium);
+  border-bottom: var(--border-s) solid var(--border-color-primary);
+  gap: var(--gap-x-small);
+}
+
+.side-nav--collapsed .side-nav__header {
+  padding: var(--number-20) var(--gap-medium);
+  justify-content: center;
+}
+
+/* Brand — logo icon + "Console" name */
+.side-nav__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-x-small);
+  overflow: hidden;
+  min-width: 0;
+}
+
+.side-nav__brand-icon {
+  width: var(--icon-size-xs);
+  height: var(--icon-size-xs);
+  flex-shrink: 0;
+  color: var(--icon-primary);
+}
+
+.side-nav__brand-name {
+  font-family: var(--font-family-base);
+  font-size: 16px;
+  font-weight: var(--font-weight-bold);
+  line-height: 16px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* Toggle button — chevron left (expanded) / right (collapsed) */
+.side-nav__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--icon-size-xxs);
+  height: var(--icon-size-xxs);
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--icon-secondary);
+}
+
+.side-nav__toggle:hover { color: var(--icon-primary); }
+
+.side-nav__toggle-icon {
+  width: var(--icon-size-xxs);
+  height: var(--icon-size-xxs);
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+
+/* ============================================
+   BODY
+   Scrollable nav sections — flex-1 so it fills
+   the space between header and footer.
+   ============================================ */
+
+.side-nav__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-x-small);
+  padding-top: var(--gap-small);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Scrollbar — minimal, matches other components */
+.side-nav__body::-webkit-scrollbar       { width: 4px; }
+.side-nav__body::-webkit-scrollbar-track { background: transparent; }
+.side-nav__body::-webkit-scrollbar-thumb { background: var(--colour-grey-40); border-radius: var(--radius-round); }
+
+
+/* ============================================
+   SECTION
+   A group of nav items, optionally headed by a
+   group label. Collapsed state replaces labels
+   with a top border divider (except first section).
+   ============================================ */
+
+.side-nav__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xx-small);
+  padding: 0 var(--gap-small);
+}
+
+/* Collapsed: sections get a divider instead of group label */
+.side-nav--collapsed .side-nav__section {
+  border-top: var(--border-s) solid var(--border-color-primary);
+  padding-top: var(--gap-xx-small);
+}
+
+.side-nav--collapsed .side-nav__section:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+
+/* ============================================
+   GROUP LABEL
+   "AGENTS" / "INTERNAL TOOLS" — uppercase, small,
+   disabled colour. Hidden in collapsed state.
+   ============================================ */
+
+.side-nav__group-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--gap-x-small) var(--gap-x-small) var(--gap-xx-small);
+  font-family: var(--font-family-base);
+  font-size: 12px;
+  font-weight: var(--font-weight-bold);
+  line-height: 16px;
+  color: var(--text-disabled);
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+}
+
+.side-nav__group-chevron {
+  width: var(--icon-size-3xs);
+  height: var(--icon-size-3xs);
+  color: var(--icon-secondary);
+  fill: currentColor;
+  flex-shrink: 0;
+  transition: transform 200ms ease;
+}
+
+.side-nav__group-label--open .side-nav__group-chevron {
+  transform: rotate(180deg);
+}
+
+.side-nav--collapsed .side-nav__group-label {
+  display: none;
+}
+
+
+/* ============================================
+   NAV ITEM
+   Icon + label row. Hover and active states.
+   ============================================ */
+
+.side-nav__item {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-x-small);
+  padding: var(--gap-x-small) var(--gap-x-small);
+  border-radius: var(--radius-small);
+  background: var(--bg-primary);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.side-nav__item:hover {
+  background: var(--bg-secondary);
+}
+
+/* Active state — purple-10 bg, link colour label */
+.side-nav__item--active {
+  background: var(--colour-purple-10);
+}
+
+.side-nav__item--active .side-nav__item-label {
+  color: var(--text-link-pressed);
+  font-weight: var(--font-weight-regular);
+}
+
+.side-nav__item--active .side-nav__item-icon {
+  color: var(--icon-link-pressed);
+}
+
+/* Icon wrapper — 12×12px */
+.side-nav__item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--icon-size-xxs);
+  height: var(--icon-size-xxs);
+  flex-shrink: 0;
+  color: var(--icon-primary);
+  fill: currentColor;
+}
+
+/* Label */
+.side-nav__item-label {
+  flex: 1;
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  font-weight: var(--font-weight-regular);
+  line-height: 20px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Chevron — right-aligned, only on items with sub-nav */
+.side-nav__item-chevron {
+  display: flex;
+  align-items: center;
+  width: var(--icon-size-3xs);
+  height: var(--icon-size-3xs);
+  flex-shrink: 0;
+  color: var(--icon-secondary);
+  fill: currentColor;
+  transition: transform 200ms ease;
+  margin-left: auto;
+}
+
+.side-nav__item-chevron--open {
+  transform: rotate(180deg);
+}
+
+/* Hide labels and chevrons in collapsed state */
+.side-nav--collapsed .side-nav__item-label,
+.side-nav--collapsed .side-nav__item-chevron {
+  display: none;
+}
+
+/* Collapsed: centre the icon in the full item width */
+.side-nav--collapsed .side-nav__item {
+  justify-content: center;
+  gap: 0;
+}
+
+
+/* ============================================
+   SUB-NAV
+   Indented child items — hidden by default,
+   shown when .side-nav__sub-items--open is added.
+   Hidden entirely when nav is collapsed.
+   ============================================ */
+
+.side-nav__sub-items {
+  display: none;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.side-nav__sub-items--open {
+  display: flex;
+}
+
+.side-nav--collapsed .side-nav__sub-items {
+  display: none;
+}
+
+/* Indented items — extra left padding pushes icon inward */
+.side-nav__sub-items .side-nav__item {
+  padding-left: 29px;
+}
+
+
+/* ============================================
+   FOOTER
+   Pinned bottom — Settings item, top border.
+   ============================================ */
+
+.side-nav__footer {
+  flex-shrink: 0;
+  border-top: var(--border-s) solid var(--border-color-primary);
+  padding: var(--gap-small) var(--gap-x-small);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.side-nav__footer .side-nav__item-label {
+  font-size: 11px;
+  font-weight: var(--font-weight-medium);
+  line-height: 16px;
+}
+
+
+/* ============================================
+   DARK MODE
+   Semantic tokens (--bg-primary, --border-color-primary,
+   --text-primary etc.) already remap in .dark context.
+   Only the active bg and the scrollbar thumb need
+   explicit dark overrides.
+   ============================================ */
+
+.dark .side-nav__item--active {
+  background: var(--colour-purple-70-10);
+}
+
+.dark .side-nav__body::-webkit-scrollbar-thumb { background: var(--colour-navy-40); }

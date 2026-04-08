@@ -122,7 +122,7 @@
   padding: var(--gap-medium);
   border-radius: var(--number-20);
   flex: 1;
-  background: var(--bg-primary);
+  background: var(--base-white);
 }
 
 
@@ -264,12 +264,12 @@
 
 /* Default header in dark */
 .dark .comparison-tile__header {
-  background: var(--colour-navy-60);
+  background: transparent;
 }
 
 /* Radio control in dark */
 .dark .comparison-tile__radio-control {
-  background: var(--colour-navy-60);
+  background: transparent;
   box-shadow: inset 0 0 0 var(--border-m) var(--colour-navy-40);
 }
 
@@ -284,12 +284,12 @@
 
 /* Selected — dark */
 .dark .comparison-tile:has(.comparison-tile__input:checked) .comparison-tile__header {
-  background: var(--bg-brand-aqua);
+  background: transparent;
 }
 
 /* Disabled — dark */
 .dark .comparison-tile:has(.comparison-tile__input:disabled) .comparison-tile__header {
-  background: var(--colour-navy-50);
+  background: transparent;
 }
 
 .dark .comparison-tile:has(.comparison-tile__input:disabled) .comparison-tile__title,

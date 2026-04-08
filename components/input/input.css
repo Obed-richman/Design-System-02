@@ -34,9 +34,9 @@
 
 .input-label-block__title {
   font-family: var(--font-family-base);
-  font-size: 14px;
-  font-weight: var(--font-weight-medium);
-  line-height: 20px;
+  font-size: 16px;
+  font-weight: var(--font-weight-bold);
+  line-height: 24px;
   color: var(--text-primary);
 }
 
@@ -54,10 +54,11 @@
    ============================================ */
 
 .input-label {
-  font-size: 14px;
-  font-weight: 600;
+  font-family: var(--font-family-base);
+  font-size: 16px;
+  font-weight: var(--font-weight-bold);
+  line-height: 24px;
   color: var(--text-primary);
-  line-height: 1.4;
 }
 
 .input-group--error .input-label { color: var(--text-negative); }
@@ -85,31 +86,37 @@
   width: 100%;
   height: 48px;
   padding: 0 var(--gap-large);
-  font-family: inherit;
+  font-family: var(--font-family-base);
   font-size: 16px;
-  font-weight: 400;
+  font-weight: var(--font-weight-regular);
+  line-height: 24px;
   color: var(--text-primary);
   background: transparent;
   border: var(--border-s) solid var(--border-color-primary);
   border-radius: var(--radius-small);
   outline: none;
-  transition: border-color 150ms ease, border-width 150ms ease, box-shadow 150ms ease;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
   -webkit-appearance: none;
 }
 
-.input::placeholder { color: var(--text-disabled); }
-
-/* Hover — 2px active border, no focus ring */
-.input:hover:not(:disabled):not(:focus) {
-  border-width: var(--border-m);
-  border-color: var(--border-color-active);
+.input::placeholder {
+  font-family: var(--font-family-base);
+  font-size: 16px;
+  font-weight: var(--font-weight-regular);
+  line-height: 24px;
+  color: var(--text-disabled);
 }
 
-/* Focused — 2px active border + outer focus ring */
-.input:focus:not(:disabled) {
-  border-width: var(--border-m);
+/* Hover — inset shadow simulates thicker border without shifting content */
+.input:hover:not(:disabled):not(:focus) {
   border-color: var(--border-color-active);
-  box-shadow: 0 0 0 var(--border-focused) var(--border-color-focused);
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-active);
+}
+
+/* Focused — inset shadow + outer focus ring */
+.input:focus:not(:disabled) {
+  border-color: var(--border-color-active);
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-active), 0 0 0 var(--border-focused) var(--border-color-focused);
 }
 
 /* Disabled */
@@ -117,7 +124,6 @@
   background: var(--bg-disabled);
   color: var(--text-disabled);
   border-color: var(--border-color-primary);
-  border-width: var(--border-s);
   cursor: not-allowed;
 }
 
@@ -131,42 +137,37 @@
    STATE VARIANTS
    ============================================ */
 
-/* Error — red background, 1px negative border */
+/* Error — red background, negative border */
 .input-group--error .input {
   background: var(--bg-negative);
-  border-width: var(--border-s);
   border-color: var(--border-color-negative);
 }
 .input-group--error .input:focus {
-  border-width: var(--border-s);
   border-color: var(--border-color-negative);
-  box-shadow: 0 0 0 var(--border-focused) var(--colour-red-70-10);
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-negative), 0 0 0 var(--border-focused) var(--colour-red-70-10);
 }
 .input-group--error .input:hover:not(:disabled):not(:focus) {
-  border-width: var(--border-s);
   border-color: var(--border-color-negative);
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-negative);
 }
 
-/* Valid — default background, 1px positive border */
+/* Valid — default background, positive border */
 .input-group--valid .input {
   background: var(--bg-primary);
-  border-width: var(--border-s);
   border-color: var(--border-color-positive);
 }
 .input-group--valid .input:focus {
-  border-width: var(--border-s);
   border-color: var(--border-color-positive);
-  box-shadow: 0 0 0 var(--border-focused) var(--colour-green-70-30);
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-positive), 0 0 0 var(--border-focused) var(--colour-green-70-30);
 }
 .input-group--valid .input:hover:not(:disabled):not(:focus) {
-  border-width: var(--border-s);
   border-color: var(--border-color-positive);
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-positive);
 }
 
 /* Hint — default background, default border */
 .input-group--hint .input {
   background: var(--bg-primary);
-  border-width: var(--border-s);
   border-color: var(--border-color-primary);
 }
 
@@ -248,7 +249,7 @@
    HINT / MESSAGE (legacy — kept for back-compat)
    ============================================ */
 
-.input-hint               { font-size: 13px; font-weight: 400; color: var(--text-disabled); line-height: 1.4; }
+.input-hint               { font-family: var(--font-family-base); font-size: 14px; font-weight: var(--font-weight-regular); line-height: 20px; color: var(--text-disabled); }
 .input-hint--error        { color: var(--text-negative); }
 .input-hint--valid        { color: var(--text-positive); }
 
@@ -281,14 +282,13 @@
   -webkit-appearance: none;
 }
 
-.select-trigger:hover            { border-color: var(--border-color-active); border-width: var(--border-m); }
+.select-trigger:hover            { border-color: var(--border-color-active); box-shadow: inset 0 0 0 var(--border-s) var(--border-color-active); }
 .select-trigger--placeholder     { color: var(--text-disabled); }
 
 .select-trigger:focus,
 .select-trigger[aria-expanded="true"] {
-  border-width: var(--border-m);
   border-color: var(--border-color-active);
-  box-shadow: 0 0 0 var(--border-focused) var(--border-color-focused);
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-active), 0 0 0 var(--border-focused) var(--border-color-focused);
 }
 
 .select-chevron {
@@ -347,7 +347,7 @@
    ============================================ */
 
 .dark .input                                    { background: transparent; }
-.dark .input:hover:not(:disabled):not(:focus)   { border-color: var(--border-color-active); border-width: var(--border-m); }
+.dark .input:hover:not(:disabled):not(:focus)   { border-color: var(--border-color-active); box-shadow: inset 0 0 0 var(--border-s) var(--border-color-active); }
 .dark .input:disabled                           { background: var(--colour-navy-50); }
 
 /* Error: dark bg-negative is already remapped by tokens (.dark overrides --bg-negative) */
@@ -358,7 +358,7 @@
 .dark .input-group--hint  .input               { background: var(--colour-navy-60); }
 
 .dark .select-trigger                           { background: var(--colour-navy-60); }
-.dark .select-trigger:hover                     { border-color: var(--border-color-active); border-width: var(--border-m); }
+.dark .select-trigger:hover                     { border-color: var(--border-color-active); box-shadow: inset 0 0 0 var(--border-s) var(--border-color-active); }
 .dark .select-dropdown                          { background: var(--colour-navy-60); box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 0 16px 8px rgba(0,0,0,0.2); }
 .dark .select-option                            { background: var(--colour-navy-60); }
 .dark .select-option:hover,

@@ -1,0 +1,289 @@
+/* ============================================
+   TABLE COMPONENT
+   Depends on: tokens/tokens.css
+               components/badge/badge.css (for cell badges)
+   No hardcoded values except where noted inline.
+   ============================================ */
+
+
+/* ============================================
+   OUTER WRAPPER
+   Clips row corners, adds subtle shadow.
+   ============================================ */
+
+.table {
+  width: 100%;
+  border-radius: var(--radius-small);
+  overflow: hidden;
+  /* Subtle top shadow — no token for rgba(229,229,229,0.24) */
+  box-shadow: 0px -1px 2px 0px rgba(229, 229, 229, 0.24);
+  border: var(--border-s) solid var(--border-color-primary);
+}
+
+
+/* ============================================
+   TITLE BLOCK
+   Optional heading row above the header.
+   Remove from HTML if no title is needed.
+   ============================================ */
+
+.table__title-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-x-small);
+  padding: var(--gap-small) var(--gap-medium);
+  background: var(--colour-grey-10); /* #FBFBFB — lightest grey */
+  border-bottom: var(--border-s) solid var(--border-color-primary);
+}
+
+.table__title-block-heading {
+  font-family: var(--font-family-base);
+  font-size: 16px;
+  font-weight: var(--font-weight-bold);
+  line-height: 24px;
+  color: var(--text-primary);
+}
+
+.table__title-block-support {
+  font-family: var(--font-family-base);
+  font-size: 12px;
+  font-weight: var(--font-weight-regular);
+  line-height: 16px;
+  color: var(--text-primary);
+}
+
+
+/* ============================================
+   HEADER ROW
+   Grey background, bold labels.
+   ============================================ */
+
+.table__head {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: var(--colour-grey-10);
+  border-bottom: var(--border-s) solid var(--border-color-primary);
+}
+
+
+/* ============================================
+   DATA ROWS
+   Default white, hover grey, last row has no
+   bottom border (it's clipped by the wrapper).
+   ============================================ */
+
+.table__row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: var(--bg-primary);
+  border-bottom: var(--border-s) solid var(--border-color-primary);
+}
+
+.table__row:last-child {
+  border-bottom: none;
+}
+
+/* Hover — CSS :hover or forced .table__row--hover modifier */
+.table__row:hover,
+.table__row--hover {
+  background: var(--bg-secondary);
+}
+
+/* Error / empty state — centred single-cell row */
+.table__row--error {
+  justify-content: center;
+  background: var(--bg-primary);
+}
+
+.table__row--error:hover {
+  background: var(--bg-primary);
+}
+
+
+/* ============================================
+   CELLS
+   Base cell — fills remaining width equally.
+   Modifiers control fixed widths and types.
+   ============================================ */
+
+.table__cell {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  gap: var(--gap-xx-small);
+  padding: var(--gap-small) var(--gap-medium);
+}
+
+/* Fixed-width cell — for status badges and similar */
+.table__cell--fixed {
+  flex: 0 0 130px;
+}
+
+/* Action cell — 48px, icon only, centred */
+.table__cell--action {
+  flex: 0 0 48px;
+  padding: var(--gap-x-small) var(--gap-medium);
+  justify-content: center;
+}
+
+/* Badge cell — reduced vertical padding, badge aligns flush */
+.table__cell--badge {
+  padding-top: var(--gap-xx-small);
+  padding-bottom: var(--gap-xx-small);
+}
+
+
+/* ============================================
+   CELL TEXT
+   Header cells share the same element but get
+   bold weight via the .table__head ancestor.
+   ============================================ */
+
+.table__cell-text {
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  font-weight: var(--font-weight-regular);
+  line-height: 20px;
+  color: var(--text-primary);
+  /* flex: 1; */
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Header: bold + smaller */
+.table__head .table__cell-text {
+  font-size: var(--font-size-subtitle-3);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-subtitle-3);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+/* Error row: centred */
+.table__row--error .table__cell-text {
+  text-align: center;
+  flex: none;
+}
+
+
+/* ============================================
+   LINK CELL
+   Bold purple text, underline on hover.
+   ============================================ */
+
+.table__cell-link {
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  font-weight: var(--font-weight-bold);
+  line-height: 20px;
+  color: var(--text-link);
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.table__cell-link:hover {
+  text-decoration: underline;
+  color: var(--text-link-pressed);
+}
+
+
+/* ============================================
+   AVATAR
+   16px circle with initials — shown before
+   cell text to identify a person.
+   ============================================ */
+
+.table__cell-avatar {
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-round);
+  background: var(--colour-grey-10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.table__cell-avatar-initials {
+  font-family: var(--font-family-base);
+  font-size: 6px; /* no token — smaller than --icon-size-3xs */
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  color: var(--text-pressed);
+  white-space: nowrap;
+}
+
+
+/* ============================================
+   QUICK ACTION BUTTON
+   Circular icon-only button in the action cell.
+   Background shifts with row state.
+   ============================================ */
+
+.table__quick-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-round);
+  background: var(--bg-primary);
+  border: none;
+  cursor: pointer;
+  color: var(--icon-primary);
+  font-size: 14px;
+  line-height: 1;
+  padding: 0;
+  transition: background 100ms ease;
+}
+
+.table__quick-action:hover {
+  background: var(--bg-pressed);
+}
+
+/* Header row: matches grey background */
+.table__head .table__quick-action {
+  background: var(--colour-grey-10);
+}
+
+/* Hover row: matches grey row background */
+.table__row:hover .table__quick-action,
+.table__row--hover .table__quick-action {
+  background: var(--bg-secondary);
+}
+
+.table__quick-action-icon {
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+
+/* ============================================
+   DARK MODE
+   --colour-grey-10 is a primitive and does not
+   remap in dark mode — override explicitly.
+   All other styles adapt via semantic tokens.
+   ============================================ */
+
+.dark .table__head,
+.dark .table__title-block {
+  background: var(--colour-navy-60);
+}
+
+.dark .table__head .table__quick-action {
+  background: var(--colour-navy-60);
+}
+
+.dark .table__cell-avatar {
+  background: var(--colour-navy-50);
+}

@@ -126,17 +126,18 @@
    ============================================ */
 
 .dropdown--open .dropdown__trigger {
-  background: var(--bg-tertiary);
-  border-color: var(--colour-white);
-  color: var(--text-on-colour);
+  background: var(--bg-primary);
+  border-color: var(--border-color-active);
+  color: var(--text-primary);
+  box-shadow: 0 0 0 var(--border-focused) var(--border-color-focused);
 }
 
 /* Placeholder text turns white when open */
-.dropdown--open .dropdown__trigger-value--placeholder { color: var(--text-on-colour); }
+.dropdown--open .dropdown__trigger-value--placeholder { color: var(--text-primary); }
 
 /* Chevron — white and flipped */
 .dropdown--open .dropdown__trigger-icon {
-  color: var(--icon-on-colour);
+  color: var(--icon-primary);
   transform: rotate(180deg);
 }
 

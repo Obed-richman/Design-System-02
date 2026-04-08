@@ -1,0 +1,315 @@
+/* ============================================
+   DOCUMENT ROW COMPONENT
+   Depends on: tokens/tokens.css
+               icons/icons.css
+   No hardcoded values except noted inline.
+
+   Two states:
+     Collapsed  — parent header only, bottom track hidden
+     Expanded   — parent header + children visible (.doc-row--expanded)
+   ============================================ */
+
+
+/* ============================================
+   BASE
+   ============================================ */
+
+.doc-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: var(--radius-small);
+  width: 100%;
+  background: var(--bg-primary);
+}
+
+
+/* ============================================
+   HEADER ROW
+   Always visible — category icon + label + button.
+   Border lives on the inner .doc-row__content so
+   the icon track column can span full height flush.
+   ============================================ */
+
+.doc-row__header {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-small);
+  padding: 0 var(--gap-medium);
+  background: var(--bg-primary);
+  border-bottom: none; /* border handled by .doc-row__content */
+  width: 100%;
+  cursor: pointer;
+}
+
+
+/* ============================================
+   TRACK COLUMN
+   Left column containing top-track + icon + bottom-track.
+   Fixed height matches parent row height (54px).
+   ============================================ */
+
+.doc-row__track-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 54px; /* fixed — matches parent row height */
+  flex-shrink: 0;
+}
+
+.doc-row__track {
+  width: 2px;
+  background: var(--bg-disabled);
+  flex: 1;
+  min-height: 0;
+}
+
+/* Top track — always hidden; parent has no item above it */
+.doc-row__track--top {
+  opacity: 0;
+}
+
+/* Bottom track — hidden when collapsed, visible when expanded */
+.doc-row__track--bottom {
+  opacity: 0;
+  transition: opacity 150ms ease;
+}
+
+.doc-row--expanded .doc-row__track--bottom {
+  opacity: 1;
+}
+
+
+/* ============================================
+   CATEGORY ICON
+   32×32 — uses icon sprite at icon--s size
+   ============================================ */
+
+.doc-row__icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--icon-primary);
+}
+
+
+/* ============================================
+   HEADER CONTENT
+   Right side: label + button. Carries the
+   row's border-bottom so it aligns with children.
+   ============================================ */
+
+.doc-row__content {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  align-self: stretch;
+  border-bottom: var(--border-s) solid var(--border-color-primary);
+  min-width: 0;
+}
+
+.doc-row__label {
+  flex: 1;
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  font-weight: var(--font-weight-bold);
+  line-height: 20px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  min-width: 0;
+}
+
+
+/* ============================================
+   COUNT / DOWNLOAD BUTTON
+   Download icon + item count number.
+   ============================================ */
+
+.doc-row__count-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-x-small);
+  padding: 6px var(--gap-small); /* 6px — no token between xx-small(4) and x-small(8) */
+  background: var(--bg-primary);
+  border: var(--border-s) solid var(--border-color-primary);
+  border-radius: var(--radius-small);
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  font-weight: var(--font-weight-bold);
+  line-height: 20px;
+  color: var(--text-primary);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.doc-row__count-btn:hover {
+  background: var(--bg-secondary);
+}
+
+.doc-row__count-icon {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  color: var(--icon-primary);
+  fill: currentColor;
+}
+
+
+/* ============================================
+   CHILDREN CONTAINER
+   Hidden when collapsed, flex-column when expanded.
+   Left-padded to align children after the track column.
+   26px = track-col width (2px track + 32px icon centred)
+   ============================================ */
+
+.doc-row__children {
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 26px; /* aligns children under content, not icon */
+  width: 100%;
+}
+
+.doc-row--expanded .doc-row__children {
+  display: flex;
+}
+
+
+/* ============================================
+   CHILD ROW
+   Each individual document item: track + content.
+   ============================================ */
+
+.doc-row__child {
+  display: flex;
+  align-items: stretch;
+  gap: 24px; /* no token — sits between gap-large(24) exactly */
+  width: 100%;
+}
+
+
+/* ============================================
+   CHILD TRACK COLUMN
+   top-track (16px fixed) → dot (12px) → bottom-track (flex)
+   ============================================ */
+
+.doc-row__child-track {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.doc-row__child-track-top {
+  width: 2px;
+  height: 16px; /* fixed — positions dot at correct vertical rhythm */
+  background: var(--bg-disabled);
+  flex-shrink: 0;
+}
+
+.doc-row__child-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bg-disabled);
+  flex-shrink: 0;
+}
+
+.doc-row__child-track-bottom {
+  width: 2px;
+  flex: 1;
+  background: var(--bg-disabled);
+  min-height: 0;
+}
+
+/* Last child — bottom track hidden (no item below) */
+.doc-row__child:last-child .doc-row__child-track-bottom {
+  opacity: 0;
+}
+
+
+/* ============================================
+   CHILD CONTENT
+   Text + download button. Double border matches
+   the row rhythm without extra wrappers.
+   ============================================ */
+
+.doc-row__child-content {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-small);
+  flex: 1;
+  padding: var(--gap-small) var(--gap-medium) var(--gap-small) 0;
+  border-top: var(--border-s) solid var(--border-color-primary);
+  border-bottom: var(--border-s) solid var(--border-color-primary);
+  min-width: 0;
+}
+
+.doc-row__child-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xx-small);
+  flex: 1;
+  min-width: 0;
+}
+
+.doc-row__child-name {
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  font-weight: var(--font-weight-bold);
+  line-height: 20px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  margin: 0;
+}
+
+.doc-row__child-meta {
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  font-weight: var(--font-weight-regular);
+  line-height: 20px;
+  color: var(--text-pressed);
+  white-space: nowrap;
+  margin: 0;
+}
+
+
+/* ============================================
+   DOWNLOAD BUTTON (icon only)
+   Same shape as count button, no text.
+   ============================================ */
+
+.doc-row__download-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px var(--gap-small);
+  background: var(--bg-primary);
+  border: var(--border-s) solid var(--border-color-primary);
+  border-radius: var(--radius-small);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.doc-row__download-btn:hover {
+  background: var(--bg-secondary);
+}
+
+.doc-row__download-icon {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  color: var(--icon-primary);
+  fill: currentColor;
+}
+
+
+/* ============================================
+   DARK MODE
+   Semantic tokens handle text/bg/border.
+   Track and dot use --bg-disabled which remaps
+   in dark context — no explicit overrides needed.
+   ============================================ */

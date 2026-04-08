@@ -6,18 +6,20 @@
    ============================================ */
 
 
-/* --- Base --- */
+/* --- Base ---
+   Height is driven by padding + line-height per size class.
+   Default padding matches .btn--large so unsized buttons stay at 48px. */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--gap-x-small);
-  height: 48px;
-  padding: 0 var(--gap-large);
+  padding: var(--gap-small) var(--gap-large);
   font-family: inherit;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1;
+  font-size: var(--font-size-subtitle-2);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-subtitle-2);
+  letter-spacing: var(--letter-spacing-normal);
   white-space: nowrap;
   text-decoration: none;
   border: none;
@@ -38,11 +40,58 @@
 
 
 /* ============================================
+   SIZE VARIANTS
+   Additive — combine with shape and hierarchy classes.
+   e.g. class="btn btn--pill btn--primary btn--medium"
+
+   | Size   | Height | padding                      | font / line-height |
+   |--------|--------|------------------------------|--------------------|
+   | Large  | 48px   | var(--gap-small) all sides   | 16px / 24px        |
+   | Medium | 32px   | 6px var(--gap-xx-small)      | 14px / 20px        |
+   | Small  | 24px   | var(--gap-xx-small) all sides| 12px / 16px        |
+   | Link   | auto   | 0                            | 12px / 16px        |
+   ============================================ */
+
+.btn--large  {
+  padding: var(--gap-small) var(--gap-large);
+  font-size: var(--font-size-subtitle-2);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-subtitle-2);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+.btn--medium { 
+  padding: var(--gap-x-small) var(--gap-medium); 
+  font-size: var(--font-size-subtitle-3);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-subtitle-3);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+
+.btn--small  { 
+  padding: var(--gap-xx-small) var(--gap-small);     
+  font-size: var(--font-size-subtitle-4);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-subtitle-4);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+.btn--link   { 
+  padding: 0; 
+  font-size: var(--font-size-subtitle-4); 
+  line-height: var(--line-height-subtitle-4); 
+  height: auto; 
+}
+  
+
+
+/* ============================================
    SHAPE VARIANTS
    ============================================ */
 
 .btn--pill    { border-radius: var(--radius-round); }
-.btn--rounded { border-radius: var(--radius-medium); }
+.btn--rounded { border-radius: var(--radius-small); }
 
 
 /* ============================================
@@ -91,7 +140,7 @@
 
 .btn--primary {
   background: var(--bg-brand-aqua);
-  color: var(--colour-navy-70);
+  color: var(--text-black-fixed);
 }
 .btn--primary:hover:not(:disabled)         { background: var(--bg-aqua-active); }
 .btn--primary:active:not(:disabled)        { background: var(--bg-brand-aqua-pressed); }
@@ -112,7 +161,7 @@
    ============================================ */
 
 .btn--secondary {
-  background: transparent;
+  background: var(--bg-primary);
   color: var(--text-primary);
   box-shadow: inset 0 0 0 var(--border-s) var(--border-color-primary);
 }
@@ -128,17 +177,18 @@
 }
 
 .dark .btn--secondary {
-  color: var(--colour-white);
-  box-shadow: inset 0 0 0 var(--border-s) var(--colour-navy-40);
+  color: var(--text-primary);
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-primary);
 }
-.dark .btn--secondary:hover:not(:disabled)         { background: var(--colour-navy-50); }
-.dark .btn--secondary:active:not(:disabled)        { background: var(--colour-navy-40); }
+.dark .btn--secondary:hover:not(:disabled)         { background: var(--bg-secondary); }
+.dark .btn--secondary:active:not(:disabled)        { background: var(--bg-pressed); }
 .dark .btn--secondary:focus-visible:not(:disabled) {
-  box-shadow: inset 0 0 0 var(--border-s) var(--colour-navy-40);
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-primary);
 }
 .dark .btn--secondary:disabled {
-  color: var(--colour-navy-40);
-  box-shadow: inset 0 0 0 var(--border-s) var(--colour-navy-40);
+  color: var(--text-disabled);
+  background: transparent;
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-primary);
 }
 
 
@@ -148,27 +198,28 @@
    ============================================ */
 
 .btn--tertiary {
-  background: var(--bg-brand-navy);
-  color: var(--colour-white);
+  background: transparent;
+  color: var(--text-primary);
+  border: solid var(--border-s) var(--border-color-on-light);
 }
-.btn--tertiary:hover:not(:disabled)         { background: var(--colour-navy-60); }
-.btn--tertiary:active:not(:disabled)        { background: var(--colour-navy-50); }
-.btn--tertiary:focus-visible:not(:disabled) { background: var(--bg-brand-navy); }
+
+.btn--tertiary:hover:not(:disabled)         { background: transparent; }
+.btn--tertiary:active:not(:disabled)        { background: transparent; }
+.btn--tertiary:focus-visible:not(:disabled) { background: transparent; }
 .btn--tertiary:disabled {
-  background: var(--bg-disabled);
+  /* background: var(--bg-disabled); */
   color: var(--text-disabled);
 }
 
 .dark .btn--tertiary {
-  background: var(--colour-white);
-  color: var(--colour-navy-70);
+  color: var(--text-primary);
 }
-.dark .btn--tertiary:hover:not(:disabled)         { background: var(--colour-grey-20); }
-.dark .btn--tertiary:active:not(:disabled)        { background: var(--colour-grey-40); }
-.dark .btn--tertiary:focus-visible:not(:disabled) { background: var(--colour-white); }
+.dark .btn--tertiary:hover:not(:disabled)         { background: transparent; }
+.dark .btn--tertiary:active:not(:disabled)        { background: transparent; }
+.dark .btn--tertiary:focus-visible:not(:disabled) { background: transparent; }
 .dark .btn--tertiary:disabled {
-  background: var(--colour-navy-40);
-  color: var(--colour-navy-30);
+  background: transparent;
+  color: var(--text-disabled);
 }
 
 
@@ -200,7 +251,7 @@
 /* Tertiary text — uses default text colour */
 .btn--text-tertiary              { color: var(--text-primary); }
 .btn--text-tertiary:hover:not(:disabled) {
-  color: var(--colour-navy-40);
+  color: var(--text-primary);
   text-decoration: underline;
 }
 .btn--text-tertiary:active:not(:disabled) { color: var(--colour-navy-50); }

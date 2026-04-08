@@ -1,0 +1,132 @@
+/* ============================================
+   SEARCH INPUT
+   Depends on: tokens/tokens.css
+               components/input/input.css
+   The .search class extends .input —
+   apply both classes to the <input> element.
+   All .input-group, .input-field, .input-label,
+   .input-message etc. are reused from input.css.
+   ============================================ */
+
+
+/* ============================================
+   SEARCH INPUT ELEMENT
+   Extends .input — only properties that differ
+   ============================================ */
+
+.search {
+  font-family: var(--font-family-base);
+  font-size: 16px;
+  font-weight: var(--font-weight-regular);
+  line-height: 24px;
+  background: var(--bg-primary);
+}
+
+/* Right padding — leave space for the icon */
+.search--icon-right {
+  padding-right: 44px;
+}
+
+/* Remove browser-default search cancel button */
+.search::-webkit-search-cancel-button { -webkit-appearance: none; }
+.search::-webkit-search-decoration    { -webkit-appearance: none; }
+
+
+/* ============================================
+   STATE OVERRIDES
+   ============================================ */
+
+/* Hover — inset shadow simulates thicker border without shifting content */
+.search:hover:not(:disabled):not(:focus) {
+  border-color: var(--border-color-active);
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-active);
+}
+
+/* Focused — inset shadow + outer focus ring */
+.search:focus {
+  border-color: var(--border-color-active);
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-active), 0 0 0 var(--border-focused) var(--border-color-focused);
+}
+
+
+/* ============================================
+   ERROR STATE
+   Mirrors .input-group--error pattern for search
+   ============================================ */
+
+.input-group--search-error .search {
+  background: var(--bg-negative);
+  border-color: var(--border-color-negative);
+}
+
+.input-group--search-error .search:hover:not(:disabled):not(:focus) {
+  border-color: var(--border-color-negative);
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-negative);
+}
+
+.input-group--search-error .search:focus {
+  border-color: var(--border-color-negative);
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-negative), 0 0 0 var(--border-focused) var(--colour-red-70-10);
+}
+
+.input-group--search-error .input-label       { color: var(--text-negative); }
+.input-group--search-error .input-message__icon { color: var(--icon-negative); }
+.input-group--search-error .input-message__text { color: var(--text-negative); }
+
+
+/* ============================================
+   SEARCH ICON
+   Positioned inside the field on the right.
+   The <span> (search) and <button> (clear) both
+   use this base class for shared positioning.
+   ============================================ */
+
+.search__icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: var(--gap-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--number-20);
+  height: var(--number-20);
+  color: var(--icon-secondary);
+  pointer-events: none;
+}
+
+/* Ensure [hidden] wins over display:flex — browser default is lower specificity */
+.search__icon[hidden] { display: none; }
+
+/* Search (magnifier) icon — visible on default and hover */
+.search__icon--search {
+  /* inherits all .search__icon defaults */
+}
+
+/* Clear (×) icon — visible on focused and error */
+.search__icon--clear {
+  pointer-events: all;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--icon-secondary);
+  font-family: inherit;
+}
+
+.search__icon--clear:hover { color: var(--icon-primary); }
+
+/* Error state — clear icon takes negative colour */
+.input-group--search-error .search__icon--clear { color: var(--icon-negative); }
+
+
+/* ============================================
+   DARK MODE
+   ============================================ */
+
+/* Search bg follows input pattern — transparent in dark */
+.dark .search                                    { background: transparent; }
+.dark .search:hover:not(:disabled):not(:focus)   { border-color: var(--border-color-active); box-shadow: inset 0 0 0 var(--border-s) var(--border-color-active); }
+
+/* Error: dark bg-negative is already remapped by tokens (.dark overrides --bg-negative) */
+.dark .input-group--search-error .search         { background: var(--bg-negative); }

@@ -1,0 +1,158 @@
+<!-- ============================================
+     PRICE COMPARISON COMPONENT SNIPPETS
+     Copy what you need into a screen or index.html
+     Requires: tokens/tokens.css
+               tokens/typography.css
+               components/comparison-tile/comparison-tile.css
+               components/price-comparison/price-comparison.css
+
+     Tiles use <label> + <input type="radio"> so
+     mutual exclusion is handled natively by the
+     browser — no JavaScript needed.
+     Give all tiles in a group the same name="".
+     ============================================ -->
+
+
+<!-- ============================================================
+     1. Single tile (desktop)
+     ============================================================ -->
+
+<div class="price-comparison">
+  <div class="price-comparison__card">
+    <div class="price-comparison__heading">
+      <p class="price-comparison__heading-title">Title</p>
+      <p class="price-comparison__heading-sub">Sub text</p>
+    </div>
+    <div class="price-comparison__tiles">
+
+      <label class="comparison-tile comparison-tile--large" for="pc-single-comprehensive">
+        <div class="comparison-tile__header">
+          <input class="comparison-tile__input" type="radio" id="pc-single-comprehensive" name="pc-single" checked>
+          <span class="comparison-tile__radio-control"></span>
+          <span class="comparison-tile__title text-subtitle-1">Comprehensive</span>
+        </div>
+        <div class="comparison-tile__body">
+          <p class="comparison-tile__price text-title-1-bold">
+            £299 <span class="comparison-tile__period text-subtitle-1">/year</span>
+          </p>
+          <p class="comparison-tile__sub text-subtitle-1">or £27.50/month</p>
+          <p class="comparison-tile__support text-body-2">Includes breakdown cover and legal protection</p>
+        </div>
+      </label>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     2. Two tiles — first selected (desktop)
+     ============================================================ -->
+
+<div class="price-comparison">
+  <div class="price-comparison__card">
+    <div class="price-comparison__heading">
+      <p class="price-comparison__heading-title">Choose your cover</p>
+      <p class="price-comparison__heading-sub">Select the policy that suits you best</p>
+    </div>
+    <div class="price-comparison__tiles">
+
+      <!-- First tile — selected -->
+      <label class="comparison-tile comparison-tile--large" for="pc-two-a-comprehensive">
+        <div class="comparison-tile__header">
+          <input class="comparison-tile__input" type="radio" id="pc-two-a-comprehensive" name="pc-two-a" checked>
+          <span class="comparison-tile__radio-control"></span>
+          <span class="comparison-tile__title text-subtitle-1">Comprehensive</span>
+          <span class="price-comparison__badge">Best value</span>
+        </div>
+        <div class="comparison-tile__body">
+          <p class="comparison-tile__price text-title-1-bold">
+            £299 <span class="comparison-tile__period text-subtitle-1">/year</span>
+          </p>
+          <p class="comparison-tile__sub text-subtitle-1">or £27.50/month</p>
+          <p class="comparison-tile__support text-body-2">Includes breakdown cover and legal protection</p>
+        </div>
+      </label>
+
+      <!-- Second tile — unselected -->
+      <label class="comparison-tile comparison-tile--large" for="pc-two-a-tpft">
+        <div class="comparison-tile__header">
+          <input class="comparison-tile__input" type="radio" id="pc-two-a-tpft" name="pc-two-a">
+          <span class="comparison-tile__radio-control"></span>
+          <span class="comparison-tile__title text-subtitle-1">Third Party Fire &amp; Theft</span>
+        </div>
+        <div class="comparison-tile__body">
+          <p class="comparison-tile__price text-title-1-bold">
+            £189 <span class="comparison-tile__period text-subtitle-1">/year</span>
+          </p>
+          <p class="comparison-tile__sub text-subtitle-1">or £17.25/month</p>
+          <p class="comparison-tile__support text-body-2">Basic protection for fire, theft and third party damage</p>
+        </div>
+      </label>
+
+    </div>
+
+    <!-- Optional discount code -->
+    <div class="price-comparison__discount">
+      <div class="price-comparison__discount-inner">
+        <div class="input-group">
+          <label class="input-label" for="discount-code">Add a discount code</label>
+          <div class="input-field">
+            <input class="input" type="text" id="discount-code" placeholder="Enter discount code">
+          </div>
+        </div>
+        <button class="btn btn--rounded btn--secondary btn--large" type="button">Apply code</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ============================================================
+     3. Mobile variant — add .price-comparison--mobile
+     Use .comparison-tile--small for compact tile padding
+     ============================================================ -->
+
+<div class="price-comparison price-comparison--mobile">
+  <div class="price-comparison__card">
+    <div class="price-comparison__heading">
+      <p class="price-comparison__heading-title">Choose your cover</p>
+      <p class="price-comparison__heading-sub">Select the policy that suits you best</p>
+    </div>
+    <div class="price-comparison__tiles price-comparison__tiles--mobile">
+
+      <label class="comparison-tile comparison-tile--small" for="pc-mob-comprehensive">
+        <div class="comparison-tile__header">
+          <input class="comparison-tile__input" type="radio" id="pc-mob-comprehensive" name="pc-mob" checked>
+          <span class="comparison-tile__radio-control"></span>
+          <span class="comparison-tile__title text-subtitle-2">Comprehensive</span>
+          <span class="price-comparison__badge">Best value</span>
+        </div>
+        <div class="comparison-tile__body">
+          <p class="comparison-tile__price text-title-2-bold">
+            £299 <span class="comparison-tile__period text-subtitle-2">/year</span>
+          </p>
+          <p class="comparison-tile__sub text-subtitle-2">or £27.50/month</p>
+          <p class="comparison-tile__support text-body-3">Includes breakdown cover and legal protection</p>
+        </div>
+      </label>
+
+      <label class="comparison-tile comparison-tile--small" for="pc-mob-tpft">
+        <div class="comparison-tile__header">
+          <input class="comparison-tile__input" type="radio" id="pc-mob-tpft" name="pc-mob">
+          <span class="comparison-tile__radio-control"></span>
+          <span class="comparison-tile__title text-subtitle-2">Third Party Fire &amp; Theft</span>
+        </div>
+        <div class="comparison-tile__body">
+          <p class="comparison-tile__price text-title-2-bold">
+            £189 <span class="comparison-tile__period text-subtitle-2">/year</span>
+          </p>
+          <p class="comparison-tile__sub text-subtitle-2">or £17.25/month</p>
+          <p class="comparison-tile__support text-body-3">Basic protection for fire, theft and third party damage</p>
+        </div>
+      </label>
+
+    </div>
+  </div>
+</div>

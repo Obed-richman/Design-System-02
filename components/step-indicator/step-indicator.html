@@ -1,0 +1,84 @@
+<!-- ============================================================
+     STEP INDICATOR — all 6 variants
+     Sub-component of Onboarding Steps.
+     Used inside .onboarding-steps__progress.
+     Requires: tokens/tokens.css
+               components/step-indicator/step-indicator.css
+               icons/icons.css
+     ============================================================ -->
+
+
+<!-- 1. Incomplete — Desktop -->
+<div class="step-indicator">
+  <div class="step-indicator__circle">
+    <span class="step-indicator__number">1</span>
+  </div>
+  <span class="step-indicator__label">Details</span>
+  <div class="step-indicator__track">
+    <div class="step-indicator__track-fill"></div>
+  </div>
+</div>
+
+
+<!-- 2. Active — Desktop -->
+<div class="step-indicator step-indicator--active">
+  <div class="step-indicator__circle">
+    <span class="step-indicator__number">1</span>
+  </div>
+  <span class="step-indicator__label">Details</span>
+  <div class="step-indicator__track">
+    <div class="step-indicator__track-fill"></div>
+  </div>
+</div>
+
+
+<!-- 3. Completed — Desktop -->
+<div class="step-indicator step-indicator--completed">
+  <div class="step-indicator__circle">
+    <svg class="step-indicator__tick" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+      <use href="../../icons/icons.svg#icon-tick"></use>
+    </svg>
+  </div>
+  <span class="step-indicator__label">Details</span>
+  <div class="step-indicator__track">
+    <div class="step-indicator__track-fill"></div>
+  </div>
+</div>
+
+
+<!-- 4. Incomplete — Mobile -->
+<div class="step-indicator step-indicator--mobile">
+  <div class="step-indicator__circle">
+    <span class="step-indicator__number">1</span>
+  </div>
+  <span class="step-indicator__label">Details</span>
+  <div class="step-indicator__track">
+    <div class="step-indicator__track-fill"></div>
+  </div>
+</div>
+
+
+<!-- 5. Active — Mobile -->
+<div class="step-indicator step-indicator--mobile step-indicator--active">
+  <div class="step-indicator__circle">
+    <span class="step-indicator__number">1</span>
+  </div>
+  <span class="step-indicator__label">Details</span>
+  <div class="step-indicator__track">
+    <div class="step-indicator__track-fill"></div>
+  </div>
+</div>
+
+
+<!-- 6. Completed — Mobile -->
+<div class="step-indicator step-indicator--mobile step-indicator--completed">
+  <div class="step-indicator__circle">
+    <svg class="step-indicator__tick" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+      <use href="../../icons/icons.svg#icon-tick"></use>
+    </svg>
+  </div>
+  <span class="step-indicator__label">Details</span>
+  <div class="step-indicator__track">
+    <div class="step-indicator__track-fill"></div>
+  </div>
+</div>
