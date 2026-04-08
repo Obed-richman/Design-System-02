@@ -1,0 +1,117 @@
+/* ============================================
+   FONT FACE — Modern Era
+   Place font files in: fonts/ (project root)
+   Load this stylesheet BEFORE tokens.css so
+   --font-family-base resolves immediately.
+
+   Usage: font files live at ../fonts/ relative
+          to this file in tokens/
+   ============================================ */
+
+
+/* --- Light (300) --- */
+@font-face {
+  font-family: 'Modern Era';
+  src: url('../fonts/ModernEra-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Modern Era';
+  src: url('../fonts/ModernEra-LightItalic.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+
+/* --- Regular (400) --- */
+@font-face {
+  font-family: 'Modern Era';
+  src: url('../fonts/ModernEra-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Modern Era';
+  src: url('../fonts/ModernEra-Italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+
+/* --- Medium (500) --- */
+@font-face {
+  font-family: 'Modern Era';
+  src: url('../fonts/ModernEra-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Modern Era';
+  src: url('../fonts/ModernEra-MediumItalic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+
+/* --- Bold (700) --- */
+@font-face {
+  font-family: 'Modern Era';
+  src: url('../fonts/ModernEra-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Modern Era';
+  src: url('../fonts/ModernEra-BoldItalic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+
+/* --- Extra Bold (800) --- */
+@font-face {
+  font-family: 'Modern Era';
+  src: url('../fonts/ModernEra-ExtraBold.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Modern Era';
+  src: url('../fonts/ModernEra-ExtraBoldItalic.otf') format('opentype');
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+
+/* --- Black (900) --- */
+@font-face {
+  font-family: 'Modern Era';
+  src: url('../fonts/ModernEra-Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Modern Era';
+  src: url('../fonts/ModernEra-BlackItalic.otf') format('opentype');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}

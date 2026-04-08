@@ -4,6 +4,14 @@
    ============================================ */
 
 
+/* Set Modern Era as the default typeface for all elements.
+   Components inherit this via the cascade — no per-component
+   font-family declaration needed. */
+body {
+  font-family: var(--font-family-base);
+}
+
+
 /* ============================================
    PRIMITIVE TOKENS
    Raw values — don't use these directly
@@ -204,6 +212,16 @@
   --frame-container: 343px;
   --frame-content: 327px;
 
+  /* --- Icon sizes --- */
+  --icon-size-3xs:  12px;
+  --icon-size-xxs:  16px;
+  --icon-size-xs:   24px;
+  --icon-size-s:    32px;
+  --icon-size-m:    48px;
+  --icon-size-l:    64px;
+  --icon-size-xl:   72px;
+  --icon-size-xxl:  96px;
+
 }
 
 
@@ -252,7 +270,7 @@
   --bg-primary: var(--colour-white);
   --bg-secondary: var(--colour-grey-20);
   --bg-tertiary: var(--colour-black-10);
-  --bg-primary-subtle: var(--colour-ecru-20);
+  --bg-primary-subtle: var(--colour-navy-10);
   --bg-pressed: var(--colour-grey-40);
   --bg-disabled: var(--colour-grey-40);
   --bg-brand-aqua: var(--colour-aqua-40);
@@ -356,7 +374,7 @@
   --bg-tertiary: var(--colour-white);
   --bg-primary-subtle: var(--colour-black-20);
   --bg-pressed: var(--colour-grey-70);
-  --bg-disabled: var(--colour-black-10);
+  --bg-disabled: var(--colour-black-30);
   --bg-brand-aqua: var(--colour-aqua-40);
   --bg-brand-aqua-pressed: var(--colour-aqua-50);
   --bg-aqua-active: var(--colour-aqua-30);
