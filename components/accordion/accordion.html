@@ -1,129 +1,537 @@
 <!-- ============================================
      ACCORDION COMPONENT SNIPPETS
      Copy what you need into a screen or index.html
+
      Requires: tokens/tokens.css
-               icons/icons.css + icons/icons.svg
+               icons/icons.css
                components/accordion/accordion.css
-     ============================================ -->
+
+     Modifiers:
+       .accordion--expanded    — body visible, chevron rotated
+       .accordion--segmented   — gap-large between fields (spacious)
+       .accordion--wrapped     — info rows wrap at narrower widths
+
+     Optional body slots (include any combination):
+       .accordion__alert       — warning banner
+       .accordion__top-text    — bold intro line
+       .accordion__rows        — info grid (key/value fields)
+       .accordion__notes       — textarea
+       .accordion__checkbox-row — checkbox + label
+       .accordion__document-preview — document placeholder
+       .accordion__footer      — action buttons row
+   ============================================ -->
 
 
-<!-- Default · Collapsed (mobile) -->
-<details class="accordion">
-  <summary class="accordion__title">
-    <span class="accordion__title-text">Title</span>
-    <span class="accordion__chevron accordion__chevron--down">
-      <svg width="12" height="7"><use href="../../icons/icons.svg#icon-chevron-small-down"></use></svg>
-    </span>
-    <span class="accordion__chevron accordion__chevron--up">
-      <svg width="12" height="7"><use href="../../icons/icons.svg#icon-chevron-small-up"></use></svg>
-    </span>
-  </summary>
-  <div class="accordion__content">
-    <div class="accordion__body">Content goes here</div>
+<!-- ============================================================
+     1. Collapsed (default state — no modifier)
+     ============================================================ -->
+
+<div class="accordion">
+  <div class="accordion__header">
+    <span class="accordion__title">Section title</span>
+    <div class="accordion__actions">
+      <svg class="accordion__chevron" viewBox="0 0 96 96" aria-hidden="true">
+        <use href="../../icons/icons.svg#icon-chevron-small-down"></use>
+      </svg>
+    </div>
   </div>
-</details>
+</div>
 
 
-<!-- Default · Expanded (mobile) -->
-<details class="accordion" open>
-  <summary class="accordion__title">
-    <span class="accordion__title-text">Title</span>
-    <span class="accordion__chevron accordion__chevron--down">
-      <svg width="12" height="7"><use href="../../icons/icons.svg#icon-chevron-small-down"></use></svg>
-    </span>
-    <span class="accordion__chevron accordion__chevron--up">
-      <svg width="12" height="7"><use href="../../icons/icons.svg#icon-chevron-small-up"></use></svg>
-    </span>
-  </summary>
-  <div class="accordion__content">
-    <div class="accordion__body">Content goes here</div>
+<!-- ============================================================
+     2. Expanded / Default
+        Fields fill equal width (flex: 1 per field)
+     ============================================================ -->
+
+<div class="accordion accordion--expanded">
+  <div class="accordion__header">
+    <span class="accordion__title">Section title</span>
+    <div class="accordion__actions">
+      <svg class="accordion__chevron" viewBox="0 0 96 96" aria-hidden="true">
+        <use href="../../icons/icons.svg#icon-chevron-small-down"></use>
+      </svg>
+    </div>
   </div>
-</details>
+  <div class="accordion__body">
+    <div class="accordion__rows">
 
+      <div class="accordion__row">
+        <div class="accordion__field">
+          <span class="accordion__field-label">Policy number</span>
+          <span class="accordion__field-value">POL-00123</span>
+        </div>
+        <div class="accordion__field">
+          <span class="accordion__field-label">Owner</span>
+          <span class="accordion__field-value">James Morrison</span>
+        </div>
+        <div class="accordion__field">
+          <span class="accordion__field-label">Start date</span>
+          <span class="accordion__field-value">12 Jan 2026</span>
+        </div>
+        <div class="accordion__field">
+          <span class="accordion__field-label">Status</span>
+          <span class="accordion__field-value">Active</span>
+        </div>
+      </div>
 
-<!-- Error · Collapsed (mobile) -->
-<details class="accordion accordion--error">
-  <summary class="accordion__title">
-    <span class="accordion__title-text">Title</span>
-    <span class="accordion__chevron accordion__chevron--down">
-      <svg width="12" height="7"><use href="../../icons/icons.svg#icon-chevron-small-down"></use></svg>
-    </span>
-    <span class="accordion__chevron accordion__chevron--up">
-      <svg width="12" height="7"><use href="../../icons/icons.svg#icon-chevron-small-up"></use></svg>
-    </span>
-  </summary>
-  <div class="accordion__content">
-    <div class="accordion__body">Information</div>
+      <div class="accordion__row">
+        <div class="accordion__field">
+          <span class="accordion__field-label">Vehicle</span>
+          <span class="accordion__field-value">VW Golf 2021</span>
+        </div>
+        <div class="accordion__field">
+          <span class="accordion__field-label">Registration</span>
+          <span class="accordion__field-value">AB21 XYZ</span>
+        </div>
+        <div class="accordion__field">
+          <span class="accordion__field-label">Cover type</span>
+          <span class="accordion__field-value">Comprehensive</span>
+        </div>
+        <div class="accordion__field">
+          <span class="accordion__field-label">Premium</span>
+          <span class="accordion__field-value">£1,200.00</span>
+        </div>
+      </div>
+
+    </div>
   </div>
-</details>
+</div>
 
 
-<!-- Error · Expanded (mobile) -->
-<details class="accordion accordion--error" open>
-  <summary class="accordion__title">
-    <span class="accordion__title-text">Title</span>
-    <span class="accordion__chevron accordion__chevron--down">
-      <svg width="12" height="7"><use href="../../icons/icons.svg#icon-chevron-small-down"></use></svg>
-    </span>
-    <span class="accordion__chevron accordion__chevron--up">
-      <svg width="12" height="7"><use href="../../icons/icons.svg#icon-chevron-small-up"></use></svg>
-    </span>
-  </summary>
-  <div class="accordion__content">
-    <div class="accordion__body">Information</div>
+<!-- ============================================================
+     3. Expanded / Default / Wrapped
+        Same as Default but rows wrap (2×2 grid at narrower widths)
+     ============================================================ -->
+
+<div class="accordion accordion--expanded accordion--wrapped">
+  <div class="accordion__header">
+    <span class="accordion__title">Section title</span>
+    <div class="accordion__actions">
+      <svg class="accordion__chevron" viewBox="0 0 96 96" aria-hidden="true">
+        <use href="../../icons/icons.svg#icon-chevron-small-down"></use>
+      </svg>
+    </div>
   </div>
-</details>
+  <div class="accordion__body">
+    <div class="accordion__rows">
 
+      <div class="accordion__row">
+        <div class="accordion__field">
+          <span class="accordion__field-label">Policy number</span>
+          <span class="accordion__field-value">POL-00123</span>
+        </div>
+        <div class="accordion__field">
+          <span class="accordion__field-label">Owner</span>
+          <span class="accordion__field-value">James Morrison</span>
+        </div>
+        <div class="accordion__field">
+          <span class="accordion__field-label">Start date</span>
+          <span class="accordion__field-value">12 Jan 2026</span>
+        </div>
+        <div class="accordion__field">
+          <span class="accordion__field-label">Status</span>
+          <span class="accordion__field-value">Active</span>
+        </div>
+      </div>
 
-<!-- With icon · Collapsed (mobile) -->
-<details class="accordion">
-  <summary class="accordion__title">
-    <span class="accordion__title-icon">
-      <svg class="icon icon--md icon--primary"><use href="../../icons/icons.svg#icon-information"></use></svg>
-    </span>
-    <span class="accordion__title-text">Title</span>
-    <span class="accordion__chevron accordion__chevron--down">
-      <svg width="12" height="7"><use href="../../icons/icons.svg#icon-chevron-small-down"></use></svg>
-    </span>
-    <span class="accordion__chevron accordion__chevron--up">
-      <svg width="12" height="7"><use href="../../icons/icons.svg#icon-chevron-small-up"></use></svg>
-    </span>
-  </summary>
-  <div class="accordion__content">
-    <div class="accordion__body">Content goes here</div>
+      <div class="accordion__row">
+        <div class="accordion__field">
+          <span class="accordion__field-label">Vehicle</span>
+          <span class="accordion__field-value">VW Golf 2021</span>
+        </div>
+        <div class="accordion__field">
+          <span class="accordion__field-label">Registration</span>
+          <span class="accordion__field-value">AB21 XYZ</span>
+        </div>
+        <div class="accordion__field">
+          <span class="accordion__field-label">Cover type</span>
+          <span class="accordion__field-value">Comprehensive</span>
+        </div>
+        <div class="accordion__field">
+          <span class="accordion__field-label">Premium</span>
+          <span class="accordion__field-value">£1,200.00</span>
+        </div>
+      </div>
+
+    </div>
   </div>
-</details>
+</div>
 
 
-<!-- Desktop · Collapsed -->
-<details class="accordion accordion--desktop">
-  <summary class="accordion__title">
-    <span class="accordion__title-text">Title</span>
-    <span class="accordion__chevron accordion__chevron--down">
-      <svg width="12" height="7"><use href="../../icons/icons.svg#icon-chevron-small-down"></use></svg>
-    </span>
-    <span class="accordion__chevron accordion__chevron--up">
-      <svg width="12" height="7"><use href="../../icons/icons.svg#icon-chevron-small-up"></use></svg>
-    </span>
-  </summary>
-  <div class="accordion__content">
-    <div class="accordion__body">Content goes here</div>
+<!-- ============================================================
+     4. Expanded / Segmented
+        gap-large between fields — columns are spaced apart
+     ============================================================ -->
+
+<div class="accordion accordion--expanded accordion--segmented">
+  <div class="accordion__header">
+    <span class="accordion__title">Section title</span>
+    <div class="accordion__actions">
+      <svg class="accordion__chevron" viewBox="0 0 96 96" aria-hidden="true">
+        <use href="../../icons/icons.svg#icon-chevron-small-down"></use>
+      </svg>
+    </div>
   </div>
-</details>
+  <div class="accordion__body">
+    <div class="accordion__rows">
 
+      <div class="accordion__row">
+        <div class="accordion__field">
+          <span class="accordion__field-label">Policy number</span>
+          <span class="accordion__field-value">POL-00123</span>
+        </div>
+        <div class="accordion__field">
+          <span class="accordion__field-label">Owner</span>
+          <span class="accordion__field-value">James Morrison</span>
+        </div>
+        <div class="accordion__field">
+          <span class="accordion__field-label">Start date</span>
+          <span class="accordion__field-value">12 Jan 2026</span>
+        </div>
+        <div class="accordion__field">
+          <span class="accordion__field-label">Status</span>
+          <span class="accordion__field-value">Active</span>
+        </div>
+      </div>
 
-<!-- Desktop · Expanded -->
-<details class="accordion accordion--desktop" open>
-  <summary class="accordion__title">
-    <span class="accordion__title-text">Title</span>
-    <span class="accordion__chevron accordion__chevron--down">
-      <svg width="12" height="7"><use href="../../icons/icons.svg#icon-chevron-small-down"></use></svg>
-    </span>
-    <span class="accordion__chevron accordion__chevron--up">
-      <svg width="12" height="7"><use href="../../icons/icons.svg#icon-chevron-small-up"></use></svg>
-    </span>
-  </summary>
-  <div class="accordion__content">
-    <div class="accordion__body">Content goes here</div>
+      <div class="accordion__row">
+        <div class="accordion__field">
+          <span class="accordion__field-label">Vehicle</span>
+          <span class="accordion__field-value">VW Golf 2021</span>
+        </div>
+        <div class="accordion__field">
+          <span class="accordion__field-label">Registration</span>
+          <span class="accordion__field-value">AB21 XYZ</span>
+        </div>
+        <div class="accordion__field">
+          <span class="accordion__field-label">Cover type</span>
+          <span class="accordion__field-value">Comprehensive</span>
+        </div>
+        <div class="accordion__field">
+          <span class="accordion__field-label">Premium</span>
+          <span class="accordion__field-value">£1,200.00</span>
+        </div>
+      </div>
+
+    </div>
   </div>
-</details>
+</div>
+
+
+<!-- ============================================================
+     5. Expanded / Segmented / Wrapped
+        Segmented spacing + rows wrap at narrower widths
+     ============================================================ -->
+
+<div class="accordion accordion--expanded accordion--segmented accordion--wrapped">
+  <div class="accordion__header">
+    <span class="accordion__title">Section title</span>
+    <div class="accordion__actions">
+      <svg class="accordion__chevron" viewBox="0 0 96 96" aria-hidden="true">
+        <use href="../../icons/icons.svg#icon-chevron-small-down"></use>
+      </svg>
+    </div>
+  </div>
+  <div class="accordion__body">
+    <div class="accordion__rows">
+
+      <div class="accordion__row">
+        <div class="accordion__field">
+          <span class="accordion__field-label">Policy number</span>
+          <span class="accordion__field-value">POL-00123</span>
+        </div>
+        <div class="accordion__field">
+          <span class="accordion__field-label">Owner</span>
+          <span class="accordion__field-value">James Morrison</span>
+        </div>
+        <div class="accordion__field">
+          <span class="accordion__field-label">Start date</span>
+          <span class="accordion__field-value">12 Jan 2026</span>
+        </div>
+        <div class="accordion__field">
+          <span class="accordion__field-label">Status</span>
+          <span class="accordion__field-value">Active</span>
+        </div>
+      </div>
+
+      <div class="accordion__row">
+        <div class="accordion__field">
+          <span class="accordion__field-label">Vehicle</span>
+          <span class="accordion__field-value">VW Golf 2021</span>
+        </div>
+        <div class="accordion__field">
+          <span class="accordion__field-label">Registration</span>
+          <span class="accordion__field-value">AB21 XYZ</span>
+        </div>
+        <div class="accordion__field">
+          <span class="accordion__field-label">Cover type</span>
+          <span class="accordion__field-value">Comprehensive</span>
+        </div>
+        <div class="accordion__field">
+          <span class="accordion__field-label">Premium</span>
+          <span class="accordion__field-value">£1,200.00</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     KITCHEN SINK — all optional body slots enabled
+     Demonstrates every slot that can appear inside .accordion__body
+     ============================================================ -->
+
+<div class="accordion accordion--expanded">
+  <div class="accordion__header">
+    <span class="accordion__title">Section title — all slots</span>
+    <div class="accordion__actions">
+      <svg class="accordion__chevron" viewBox="0 0 96 96" aria-hidden="true">
+        <use href="../../icons/icons.svg#icon-chevron-small-down"></use>
+      </svg>
+    </div>
+  </div>
+  <div class="accordion__body">
+
+    <!-- Alert — top -->
+    <p class="accordion__alert accordion__alert--top">
+      This policy has an outstanding action that requires your attention before it can be processed.
+    </p>
+
+    <!-- Top text -->
+    <p class="accordion__top-text">Policy information</p>
+
+    <!-- Info rows -->
+    <div class="accordion__rows">
+      <div class="accordion__row">
+        <div class="accordion__field">
+          <span class="accordion__field-label">Policy number</span>
+          <span class="accordion__field-value">POL-00123</span>
+        </div>
+        <div class="accordion__field">
+          <span class="accordion__field-label">Owner</span>
+          <span class="accordion__field-value">James Morrison</span>
+        </div>
+        <div class="accordion__field">
+          <span class="accordion__field-label">Start date</span>
+          <span class="accordion__field-value">12 Jan 2026</span>
+        </div>
+        <div class="accordion__field">
+          <span class="accordion__field-label">Status</span>
+          <span class="accordion__field-value">Active</span>
+        </div>
+      </div>
+      <div class="accordion__row">
+        <div class="accordion__field">
+          <span class="accordion__field-label">Vehicle</span>
+          <span class="accordion__field-value">VW Golf 2021</span>
+        </div>
+        <div class="accordion__field">
+          <span class="accordion__field-label">Registration</span>
+          <span class="accordion__field-value">AB21 XYZ</span>
+        </div>
+        <div class="accordion__field">
+          <span class="accordion__field-label">Cover type</span>
+          <span class="accordion__field-value">Comprehensive</span>
+        </div>
+        <div class="accordion__field">
+          <span class="accordion__field-label">Premium</span>
+          <span class="accordion__field-value">£1,200.00</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notes textarea -->
+    <div class="accordion__notes">
+      <textarea placeholder="Text goes here"></textarea>
+    </div>
+
+    <!-- Checkbox + label -->
+    <div class="accordion__checkbox-row">
+      <input type="checkbox" class="accordion__checkbox" id="accordion-checkbox-ks" />
+      <label class="accordion__checkbox-label" for="accordion-checkbox-ks">I confirm the information above is correct</label>
+    </div>
+
+    <!-- Document preview -->
+    <div class="accordion__document-preview">
+      <span class="accordion__document-preview-text">Document preview not available</span>
+      <button class="accordion__document-preview-btn">View document</button>
+    </div>
+
+    <!-- Alert — bottom -->
+    <p class="accordion__alert accordion__alert--bottom">
+      Please review all fields before submitting.
+    </p>
+
+    <!-- Footer buttons -->
+    <div class="accordion__footer">
+      <button class="accordion__footer-btn accordion__footer-btn--secondary">Cancel</button>
+      <button class="accordion__footer-btn accordion__footer-btn--primary">Save changes</button>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ============================================================
+     6. Accordion / Table — Collapsed
+     ============================================================ -->
+
+<div class="accordion accordion--table">
+  <div class="accordion__header">
+    <span class="accordion__title">Section title</span>
+    <div class="accordion__actions">
+      <svg class="accordion__chevron" viewBox="0 0 96 96" aria-hidden="true">
+        <use href="../../icons/icons.svg#icon-chevron-small-down"></use>
+      </svg>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     7. Accordion / Table — Expanded
+        Requires: tokens/tokens.css
+                  components/badge/badge.css
+                  components/table/table.css
+                  components/accordion/accordion.css
+                  icons/icons.css
+     ============================================================ -->
+
+<div class="accordion accordion--table accordion--expanded">
+  <div class="accordion__header">
+    <span class="accordion__title">Section title</span>
+    <div class="accordion__actions">
+      <svg class="accordion__chevron" viewBox="0 0 96 96" aria-hidden="true">
+        <use href="../../icons/icons.svg#icon-chevron-small-down"></use>
+      </svg>
+    </div>
+  </div>
+  <div class="accordion__body">
+    <div class="table">
+
+      <!-- Header row -->
+      <div class="table__head">
+        <div class="table__cell"><span class="table__cell-text">Name</span></div>
+        <div class="table__cell"><span class="table__cell-text">Reference</span></div>
+        <div class="table__cell"><span class="table__cell-text">Owner</span></div>
+        <div class="table__cell table__cell--fixed table__cell--badge"><span class="table__cell-text">Status</span></div>
+        <div class="table__cell"><span class="table__cell-text">Date</span></div>
+        <div class="table__cell table__cell--action">
+          <button class="table__quick-action" aria-label="Column actions">
+            <svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-vertical-ellipsis"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Row 1 — Processing (grey) -->
+      <div class="table__row">
+        <div class="table__cell"><button class="table__cell-link">POL-00123</button></div>
+        <div class="table__cell"><span class="table__cell-text">REF-4829</span></div>
+        <div class="table__cell"><span class="table__cell-text">James Morrison</span></div>
+        <div class="table__cell table__cell--fixed table__cell--badge">
+          <span class="badge badge--disabled">Processing</span>
+        </div>
+        <div class="table__cell"><span class="table__cell-text">12 Jan 2026</span></div>
+        <div class="table__cell table__cell--action">
+          <button class="table__quick-action" aria-label="Row actions">
+            <svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-vertical-ellipsis"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Row 2 — Active (green) -->
+      <div class="table__row">
+        <div class="table__cell"><button class="table__cell-link">POL-00124</button></div>
+        <div class="table__cell"><span class="table__cell-text">REF-4830</span></div>
+        <div class="table__cell"><span class="table__cell-text">Maria Mitchell</span></div>
+        <div class="table__cell table__cell--fixed table__cell--badge">
+          <span class="badge badge--low">Active</span>
+        </div>
+        <div class="table__cell"><span class="table__cell-text">15 Jan 2026</span></div>
+        <div class="table__cell table__cell--action">
+          <button class="table__quick-action" aria-label="Row actions">
+            <svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-vertical-ellipsis"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Row 3 — Pending (yellow) -->
+      <div class="table__row">
+        <div class="table__cell"><button class="table__cell-link">POL-00125</button></div>
+        <div class="table__cell"><span class="table__cell-text">REF-4831</span></div>
+        <div class="table__cell"><span class="table__cell-text">Thomas Hill</span></div>
+        <div class="table__cell table__cell--fixed table__cell--badge">
+          <span class="badge badge--medium">Pending</span>
+        </div>
+        <div class="table__cell"><span class="table__cell-text">18 Jan 2026</span></div>
+        <div class="table__cell table__cell--action">
+          <button class="table__quick-action" aria-label="Row actions">
+            <svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-vertical-ellipsis"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Row 4 — Cancelled (red) -->
+      <div class="table__row">
+        <div class="table__cell"><button class="table__cell-link">POL-00126</button></div>
+        <div class="table__cell"><span class="table__cell-text">REF-4832</span></div>
+        <div class="table__cell"><span class="table__cell-text">Sarah Clarke</span></div>
+        <div class="table__cell table__cell--fixed table__cell--badge">
+          <span class="badge badge--high">Cancelled</span>
+        </div>
+        <div class="table__cell"><span class="table__cell-text">22 Jan 2026</span></div>
+        <div class="table__cell table__cell--action">
+          <button class="table__quick-action" aria-label="Row actions">
+            <svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-vertical-ellipsis"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Row 5 — Inactive (outline) -->
+      <div class="table__row">
+        <div class="table__cell"><button class="table__cell-link">POL-00127</button></div>
+        <div class="table__cell"><span class="table__cell-text">REF-4833</span></div>
+        <div class="table__cell"><span class="table__cell-text">Olivia Bennett</span></div>
+        <div class="table__cell table__cell--fixed table__cell--badge">
+          <span class="badge badge--inactive">Inactive</span>
+        </div>
+        <div class="table__cell"><span class="table__cell-text">28 Jan 2026</span></div>
+        <div class="table__cell table__cell--action">
+          <button class="table__quick-action" aria-label="Row actions">
+            <svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-vertical-ellipsis"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<script>
+  // Accordion — toggle expand/collapse
+  // Copy this script block into your screen file
+
+  (function() {
+    document.querySelectorAll('.accordion__header').forEach(function(header) {
+      header.addEventListener('click', function() {
+        var accordion = header.closest('.accordion');
+        if (accordion) accordion.classList.toggle('accordion--expanded');
+      });
+    });
+  })();
+</script>

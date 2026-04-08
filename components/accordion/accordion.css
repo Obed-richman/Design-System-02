@@ -1,140 +1,349 @@
 /* ============================================
    ACCORDION COMPONENT
-   Depends on: tokens/tokens.css, icons/icons.css
+   Depends on: tokens/tokens.css
+               icons/icons.css
    No hardcoded values — all tokens referenced
    from tokens.css
 
-   Usage:
-   <details class="accordion">
-     <summary class="accordion__title">...</summary>
-     <div class="accordion__content">...</div>
-   </details>
+   Variants:
+     Default (no modifier)  — collapsed
+     .accordion--expanded   — body visible, chevron rotated
+     .accordion--segmented  — gap-large between fields (vs flex: 1)
+     .accordion--wrapped    — flex-wrap on info rows
    ============================================ */
 
 
-/* --- Base --- */
+/* ============================================
+   BASE
+   ============================================ */
+
 .accordion {
   background: var(--bg-primary);
-  border-radius: var(--radius-medium);
+  border-radius: var(--radius-small);
   overflow: hidden;
   width: 100%;
-  border: var(--border-s) solid var(--border-color-primary);
-  transition: background 120ms ease, border-color 120ms ease;
 }
 
 
 /* ============================================
-   STATES
+   HEADER
+   Clickable title bar — always visible.
+   Border-bottom is transparent when collapsed,
+   visible when expanded.
    ============================================ */
 
-.accordion:not([open]):not(.accordion--error):hover {
-  border-color: var(--border-color-secondary);
-}
-
-.accordion--error {
-  border-color: var(--border-color-negative);
-}
-
-
-/* ============================================
-   TITLE (summary)
-   ============================================ */
-
-.accordion__title {
+.accordion__header {
   display: flex;
   align-items: center;
-  gap: var(--gap-medium);
-  padding: var(--gap-medium);
-  list-style: none;
+  justify-content: space-between;
+  padding: var(--gap-small) var(--gap-medium);
+  background: var(--bg-primary);
+  border-bottom: var(--border-s) solid transparent;
+  border-radius: var(--radius-small) var(--radius-small) 0 0;
+  box-shadow: 0px -1px 2px 0px rgba(229, 229, 229, 0.24);
   cursor: pointer;
   user-select: none;
 }
 
-/* Hide native details disclosure triangle */
-.accordion__title::-webkit-details-marker { display: none; }
-.accordion__title::marker              { display: none; }
-
-.accordion__title:active {
-  background: var(--bg-pressed);
+.accordion--expanded .accordion__header {
+  border-bottom-color: var(--border-color-primary);
 }
 
-.accordion__title-icon {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-}
-
-.accordion__title-text {
-  flex: 1;
-  font-size: 18px;
-  font-weight: 700;
+.accordion__title {
+  font-family: var(--font-family-base);
+  font-size: 16px;
+  font-weight: var(--font-weight-bold);
   line-height: 24px;
   color: var(--text-primary);
+  white-space: nowrap;
+  margin: 0;
 }
 
-
-/* ============================================
-   CHEVRON
-   ============================================ */
-
-.accordion__chevron {
-  flex-shrink: 0;
+/* Right side of header — chevron + optional action buttons */
+.accordion__actions {
   display: flex;
   align-items: center;
-  color: var(--icon-primary);
+  gap: var(--gap-medium);
 }
 
-.accordion__chevron svg {
+.accordion__chevron {
+  width: 12px;
+  height: 12px;
+  color: var(--icon-primary);
+  fill: currentColor;
+  transition: transform 200ms ease;
+  flex-shrink: 0;
   display: block;
 }
 
-.accordion__chevron--up   { display: none; }
-.accordion__chevron--down { display: flex; }
-
-.accordion[open] .accordion__chevron--up   { display: flex; }
-.accordion[open] .accordion__chevron--down { display: none; }
+.accordion--expanded .accordion__chevron {
+  transform: rotate(180deg);
+}
 
 
 /* ============================================
-   CONTENT
+   BODY
+   Hidden when collapsed, flex-column when expanded.
    ============================================ */
-
-.accordion__content {
-  background: var(--bg-primary);
-  border-top: var(--border-s) solid var(--border-color-primary);
-  padding: var(--gap-medium) var(--gap-medium) var(--number-16);
-}
 
 .accordion__body {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  color: var(--text-primary);
-  padding: var(--gap-medium) 0;
+  display: none;
+  flex-direction: column;
+  gap: var(--gap-medium);
+  padding: var(--gap-small) var(--gap-medium);
+  width: 100%;
+}
+
+.accordion--expanded .accordion__body {
+  display: flex;
 }
 
 
 /* ============================================
-   DESKTOP VARIANT
+   INFO ROWS
+   Wrapper + individual row + field (key/value cell)
    ============================================ */
 
-.accordion--desktop .accordion__title {
-  padding: var(--gap-medium) var(--gap-large);
+.accordion__rows {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
-.accordion--desktop .accordion__content {
-  padding: var(--gap-medium) var(--gap-large) var(--number-16);
+.accordion__row {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* Segmented: explicit gap between fields */
+.accordion--segmented .accordion__row {
+  gap: var(--gap-large);
+}
+
+/* Wrapped: rows wrap at narrower widths */
+.accordion--wrapped .accordion__row {
+  flex-wrap: wrap;
+}
+
+.accordion__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-x-small);
+  flex: 1;
+  min-width: 277px;
+  padding: var(--gap-small) 0;
+  border-bottom: var(--border-s) solid var(--border-color-primary);
+}
+
+/* Empty spacer fields — no content, no border */
+.accordion__field:empty {
+  border-bottom: none;
+}
+
+.accordion__field-label {
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  font-weight: var(--font-weight-regular);
+  line-height: 20px;
+  color: var(--text-pressed);
+  white-space: nowrap;
+  margin: 0;
+}
+
+.accordion__field-value {
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  font-weight: var(--font-weight-bold);
+  line-height: 20px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  margin: 0;
+}
+
+
+/* ============================================
+   OPTIONAL BODY SLOTS
+   Any of these can be included inside .accordion__body
+   ============================================ */
+
+/* Alert — warning banner, can appear at top or bottom */
+.accordion__alert {
+  background: var(--bg-warning);
+  border: var(--border-s) solid var(--border-color-warning-subtle);
+  border-radius: var(--radius-medium);
+  padding: var(--gap-medium);
+  width: 100%;
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  font-weight: var(--font-weight-regular);
+  line-height: 20px;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+/* Top text — bold intro line */
+.accordion__top-text {
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  font-weight: var(--font-weight-bold);
+  line-height: 20px;
+  color: var(--text-primary);
+  width: 100%;
+  margin: 0;
+}
+
+/* Notes — scrollable textarea */
+.accordion__notes {
+  width: 100%;
+  max-width: 581px;
+}
+
+.accordion__notes textarea {
+  width: 100%;
+  height: 64px;
+  background: var(--bg-primary-subtle);
+  border: var(--border-s) solid var(--border-color-primary);
+  border-radius: var(--radius-small);
+  padding: var(--gap-x-small);
+  font-family: var(--font-family-base);
+  font-size: 12px;
+  font-weight: var(--font-weight-regular);
+  line-height: 16px;
+  color: var(--text-primary);
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.accordion__notes textarea::placeholder {
+  color: var(--text-disabled);
+}
+
+/* Checkbox row */
+.accordion__checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-x-small);
+  width: 100%;
+}
+
+.accordion__checkbox {
+  width: 20px;
+  height: 20px;
+  border: var(--border-m) solid var(--border-color-secondary);
+  border-radius: var(--radius-x-small);
+  flex-shrink: 0;
+  appearance: none;
+  cursor: pointer;
+}
+
+.accordion__checkbox:checked {
+  background: var(--bg-brand-aqua);
+  border-color: var(--border-color-active);
+}
+
+.accordion__checkbox-label {
+  font-family: var(--font-family-base);
+  font-size: 16px;
+  font-weight: var(--font-weight-bold);
+  line-height: 24px;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+/* Document preview — placeholder block */
+.accordion__document-preview {
+  background: var(--bg-primary-subtle);
+  border: var(--border-s) solid var(--border-color-primary);
+  border-radius: var(--radius-small);
+  height: 200px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-x-small);
+  box-sizing: border-box;
+}
+
+.accordion__document-preview-text {
+  font-family: var(--font-family-base);
+  font-size: 12px;
+  font-weight: var(--font-weight-regular);
+  line-height: 16px;
+  color: var(--text-disabled);
+  white-space: nowrap;
+}
+
+.accordion__document-preview-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-x-small);
+  padding: var(--gap-xx-small) var(--gap-x-small);
+  background: var(--bg-brand-aqua);
+  border: none;
+  border-radius: var(--radius-small);
+  font-family: var(--font-family-base);
+  font-size: 11px;
+  font-weight: var(--font-weight-medium);
+  line-height: 16px;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+/* Footer buttons */
+.accordion__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--gap-medium);
+  width: 100%;
+}
+
+.accordion__footer-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-x-small);
+  padding: var(--gap-xx-small) var(--gap-x-small);
+  border-radius: var(--radius-small);
+  font-family: var(--font-family-base);
+  font-size: 11px;
+  font-weight: var(--font-weight-medium);
+  line-height: 16px;
+  color: var(--text-primary);
+  cursor: pointer;
+  border: none;
+}
+
+.accordion__footer-btn--secondary {
+  background: var(--bg-primary);
+  border: var(--border-s) solid var(--border-color-primary);
+}
+
+.accordion__footer-btn--primary {
+  background: var(--bg-brand-aqua);
+}
+
+
+/* ============================================
+   TABLE VARIANT
+   When the accordion body contains a .table,
+   remove horizontal padding so rows run edge-to-edge.
+   Vertical padding remains.
+   ============================================ */
+
+.accordion--table .accordion__body {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 
 /* ============================================
    DARK MODE
+   Semantic tokens handle most overrides.
+   Shadow stays the same.
    ============================================ */
 
-.dark .accordion--error {
-  border-color: var(--border-color-negative);
-}
-
-.dark .accordion:not([open]):not(.accordion--error):hover {
-  border-color: var(--border-color-secondary);
+.dark .accordion__header {
+  box-shadow: 0px -1px 2px 0px rgba(229, 229, 229, 0.08);
 }
