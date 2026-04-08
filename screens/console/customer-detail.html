@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Console — Customer Detail</title>
+
+  <!-- Tokens first -->
+  <link rel="stylesheet" href="../../tokens/tokens.css">
+  <link rel="stylesheet" href="../../tokens/typography.css">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="../../icons/icons.css">
+
+  <!-- Components -->
+  <link rel="stylesheet" href="../../components/side-nav/side-nav.css">
+  <link rel="stylesheet" href="../../components/input/input.css">
+  <link rel="stylesheet" href="../../components/input/textarea.css">
+  <link rel="stylesheet" href="../../components/input/search.css">
+  <link rel="stylesheet" href="../../components/button/button.css">
+  <link rel="stylesheet" href="../../components/tab-item/tab-item.css">
+  <link rel="stylesheet" href="../../components/tabs/tabs.css">
+  <link rel="stylesheet" href="../../components/accordion/accordion.css">
+  <link rel="stylesheet" href="../../components/table/table.css">
+  <link rel="stylesheet" href="../../components/badge/badge.css">
+
+  <style>
+    /* ============================================
+       customer-detail.html — screen-specific styles
+       ============================================ */
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: var(--bg-primary);
+      font-family: var(--font-family-base);
+    }
+
+    /* ---- Root layout ---- */
+
+    .screen {
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+      background-color: var(--bg-primary-subtle);
+    }
+
+    .screen-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    /* ---- Header bar ---- */
+
+    .header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--gap-x-small) var(--gap-medium);
+      background: var(--bg-primary);
+      border-bottom: var(--border-s) solid var(--border-color-primary);
+      flex-shrink: 0;
+    }
+
+    .header-bar__search {
+      width: 300px;
+      display: flex;
+      align-items: center;
+      gap: var(--gap-x-small);
+      padding: 6px var(--gap-x-small);
+      background: var(--bg-primary-subtle);
+      border: var(--border-s) solid var(--border-color-primary);
+      border-radius: var(--radius-small);
+    }
+
+    .header-bar__search-input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      font-family: var(--font-family-base);
+      font-size: 14px;
+      font-weight: var(--font-weight-regular);
+      line-height: 20px;
+      color: var(--text-primary);
+      outline: none;
+    }
+
+    .header-bar__search-input::placeholder {
+      color: var(--text-disabled);
+    }
+
+    .header-bar__right {
+      display: flex;
+      align-items: center;
+      gap: var(--gap-x-large);
+    }
+
+    .header-bar__notification {
+      position: relative;
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .header-bar__notification-dot {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 6px;
+      height: 6px;
+      border-radius: var(--radius-round);
+      background: var(--icon-negative);
+    }
+
+    .header-bar__profile {
+      display: flex;
+      align-items: center;
+      gap: var(--gap-xx-small);
+      cursor: pointer;
+    }
+
+    .header-bar__avatar {
+      width: 24px;
+      height: 24px;
+      border-radius: var(--radius-round);
+      background: var(--bg-brand-light-purple);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-family-base);
+      font-size: 12px;
+      font-weight: var(--font-weight-bold);
+      line-height: 1;
+      color: var(--text-on-colour);
+      flex-shrink: 0;
+    }
+
+    /* ---- Page header row ---- */
+
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--gap-small) var(--gap-medium);
+      background: var(--bg-primary);
+      /* border-bottom: var(--border-s) solid var(--border-color-primary); */
+      flex-shrink: 0;
+    }
+
+    .page-header__left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .page-header__name {
+      font-family: var(--font-family-base);
+      font-size: 18px;
+      font-weight: var(--font-weight-bold);
+      line-height: 24px;
+      color: var(--text-primary);
+      margin: 0;
+    }
+
+    .page-header__right {
+      display: flex;
+      align-items: center;
+      gap: var(--gap-medium);
+    }
+
+    /* Back button */
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--gap-x-small);
+      padding: var(--gap-xx-small) var(--gap-x-small);
+      background: var(--bg-primary);
+      border: var(--border-s) solid var(--border-color-primary);
+      border-radius: var(--radius-small);
+      font-family: var(--font-family-base);
+      font-size: 11px;
+      font-weight: var(--font-weight-medium);
+      line-height: 16px;
+      color: var(--text-primary);
+      cursor: pointer;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .btn-back:hover { background: var(--bg-secondary); }
+
+    /* Delete button */
+    .btn-delete {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--gap-x-small);
+      padding: var(--gap-xx-small) var(--gap-x-small);
+      background: var(--bg-primary);
+      border: var(--border-s) solid var(--border-color-negative);
+      border-radius: var(--radius-small);
+      font-family: var(--font-family-base);
+      font-size: 11px;
+      font-weight: var(--font-weight-medium);
+      line-height: 16px;
+      color: var(--text-negative);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .btn-delete:hover { background: var(--bg-negative); }
+
+    /* Action buttons — shared base */
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--gap-x-small);
+      padding: var(--gap-xx-small) var(--gap-x-small);
+      background: var(--bg-primary);
+      border: var(--border-s) solid var(--border-color-primary);
+      border-radius: var(--radius-small);
+      font-family: var(--font-family-base);
+      font-size: 11px;
+      font-weight: var(--font-weight-medium);
+      line-height: 16px;
+      color: var(--text-primary);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .btn-action:hover { background: var(--bg-secondary); }
+
+    /* Edit details — aqua fill */
+    .btn-action--primary {
+      background: var(--bg-brand-aqua);
+      border: none;
+    }
+
+    .btn-action--primary:hover { background: var(--bg-aqua-active); }
+
+    /* ---- Tab bar — overrides ---- */
+
+    /* Top border separates tab bar from page header */
+    .tabs--underline {
+      border-top: var(--border-s) solid var(--border-color-primary);
+    }
+
+    /* 1px right border on every tab item for separation */
+    .tabs__list .tab-item--underline {
+      border-right: var(--border-s) solid var(--border-color-primary);
+    }
+
+    /* First tab also gets a left border */
+    .tabs__list .tab-item--underline:first-of-type {
+      border-left: var(--border-s) solid var(--border-color-primary);
+    }
+
+    /* No corner radius on tab items */
+    .tabs__list .tab-item--underline {
+      border-radius: 0;
+    }
+
+    /* Active tab — information background + purple indicator at 3px */
+    .tab-item--underline.tab-item--active,
+    .tab-item--underline[aria-selected="true"] {
+      background: var(--bg-information);
+    }
+
+    .tab-item--underline.tab-item--active::after,
+    .tab-item--underline[aria-selected="true"]::after {
+      background: var(--icon-link-pressed);
+      height: 3px;
+    }
+
+    /* Left spacer before first tab */
+    .tabs__spacer-left {
+      width: var(--gap-medium);
+      flex-shrink: 0;
+    }
+
+    /* Right spacer fills remaining space */
+    .tabs__spacer-right {
+      flex: 1;
+    }
+
+    /* ---- Accordion: no border on fields in the last row,
+            only when nothing follows the rows (no notes, footer, etc.) ---- */
+
+    .accordion__rows:last-child .accordion__row:last-child .accordion__field {
+      border-bottom: none;
+    }
+
+    /* ---- Accordion header hover ---- */
+
+    .accordion__header {
+      transition: background 150ms ease;
+    }
+
+    .accordion__header:hover {
+      background: var(--colour-grey-10); /* #FBFBFB */
+    }
+
+    /* ---- Content area ---- */
+
+    .content-area {
+      flex: 1;
+      overflow-y: auto;
+      padding: var(--gap-medium);
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap-x-small);
+    }
+
+    /* Prevent accordions from shrinking to fit — let them overflow so the area scrolls */
+    .content-area > .accordion {
+      flex-shrink: 0;
+    }
+
+    /* Tab panels — hidden by default, display:contents makes wrapper invisible to layout */
+    .tab-panel { display: none; }
+    .tab-panel--active { display: contents; }
+
+    .content-area::-webkit-scrollbar       { width: 6px; }
+    .content-area::-webkit-scrollbar-track { background: transparent; }
+    .content-area::-webkit-scrollbar-thumb { background: var(--colour-grey-40); border-radius: var(--radius-round); }
+
+    /* ---- Side nav group accordion ---- */
+
+    .side-nav__group-items {
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap-xx-small);
+      overflow: hidden;
+      max-height: 500px;
+      transition: max-height 200ms ease, opacity 200ms ease;
+      opacity: 1;
+    }
+
+    .side-nav__group-items--collapsed {
+      max-height: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Delete confirmation modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      background: rgba(39, 37, 45, 0.40);
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-overlay--visible {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--bg-primary);
+      border-radius: 12px;
+      width: 300px;
+      padding: var(--gap-medium);
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap-medium);
+    }
+
+    .modal__text {
+      font-family: var(--font-family-base);
+      font-size: 16px;
+      font-weight: var(--font-weight-regular);
+      line-height: 24px;
+      color: var(--text-primary);
+      margin: 0;
+    }
+
+    .modal__customer-name {
+      color: var(--text-link);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .modal__divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border-color-primary);
+      flex-shrink: 0;
+    }
+
+    .modal__actions {
+      display: flex;
+      gap: var(--gap-medium);
+      align-items: center;
+      width: 100%;
+    }
+
+    .modal__btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px var(--gap-small);
+      border-radius: var(--radius-small);
+      font-family: var(--font-family-base);
+      font-size: 14px;
+      font-weight: var(--font-weight-bold);
+      line-height: 20px;
+      color: var(--text-primary);
+      cursor: pointer;
+      border: none;
+      white-space: nowrap;
+    }
+
+    .modal__btn--cancel {
+      background: var(--bg-primary);
+      border: var(--border-s) solid var(--border-color-primary);
+    }
+
+    .modal__btn--cancel:hover { background: var(--bg-secondary); }
+
+    .modal__btn--confirm {
+      background: var(--bg-brand-aqua);
+    }
+
+    .modal__btn--confirm:hover { background: var(--bg-aqua-active); }
+
+    .modal__actions .btn { flex: 1; }
+  </style>
+
+</head>
+<body>
+
+<div class="screen">
+
+  <!-- ============================================================
+       SIDE NAVIGATION — Customers active
+       ============================================================ -->
+  <nav class="side-nav" id="side-nav">
+
+    <div class="side-nav__header">
+      <div class="side-nav__brand">
+        <svg class="side-nav__brand-icon" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-zego-logomark"></use>
+        </svg>
+        <span class="side-nav__brand-name">Console</span>
+      </div>
+      <button class="side-nav__toggle" aria-label="Collapse navigation">
+        <svg class="side-nav__toggle-icon" viewBox="0 0 7 12" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-chevron-small-left"></use>
+        </svg>
+      </button>
+    </div>
+
+    <div class="side-nav__body">
+
+      <!-- Section 1: main items -->
+      <div class="side-nav__section">
+
+        <div class="side-nav__item">
+          <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-home"></use>
+          </svg>
+          <span class="side-nav__item-label">Home</span>
+        </div>
+
+        <div class="side-nav__item">
+          <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-policy"></use>
+          </svg>
+          <span class="side-nav__item-label">My tasks</span>
+        </div>
+
+        <!-- Active: Customers -->
+        <div class="side-nav__item side-nav__item--active">
+          <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-passenger"></use>
+          </svg>
+          <span class="side-nav__item-label">Customers</span>
+        </div>
+
+        <div class="side-nav__item">
+          <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-documents"></use>
+          </svg>
+          <span class="side-nav__item-label">Policies</span>
+        </div>
+
+        <div class="side-nav__item">
+          <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-discount"></use>
+          </svg>
+          <span class="side-nav__item-label">Quotes</span>
+        </div>
+
+        <div class="side-nav__item">
+          <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-claim-type"></use>
+          </svg>
+          <span class="side-nav__item-label">Claims</span>
+        </div>
+
+      </div>
+
+      <!-- Section 2: Agents -->
+      <div class="side-nav__section">
+
+        <div class="side-nav__group-label side-nav__group-label--open" data-group="agents">
+          AGENTS
+          <svg class="side-nav__group-chevron" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-chevron-down"></use>
+          </svg>
+        </div>
+
+        <div class="side-nav__group-items">
+          <div class="side-nav__item">
+            <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-customer"></use>
+            </svg>
+            <span class="side-nav__item-label">Agents</span>
+          </div>
+
+          <div class="side-nav__item">
+            <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-cursor"></use>
+            </svg>
+            <span class="side-nav__item-label">Workflows</span>
+          </div>
+
+          <div class="side-nav__item">
+            <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-folder"></use>
+            </svg>
+            <span class="side-nav__item-label">Training</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Section 3: Internal Tools -->
+      <div class="side-nav__section">
+
+        <div class="side-nav__group-label side-nav__group-label--open" data-group="internal-tools">
+          INTERNAL TOOLS
+          <svg class="side-nav__group-chevron" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-chevron-down"></use>
+          </svg>
+        </div>
+
+        <div class="side-nav__group-items">
+          <div class="side-nav__item">
+            <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-connection-issue"></use>
+            </svg>
+            <span class="side-nav__item-label">Apps</span>
+          </div>
+
+          <div class="side-nav__item">
+            <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-inbox"></use>
+            </svg>
+            <span class="side-nav__item-label">Logs</span>
+          </div>
+
+          <div class="side-nav__item">
+            <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-upload"></use>
+            </svg>
+            <span class="side-nav__item-label">Importer</span>
+            <svg class="side-nav__item-chevron" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-chevron-down"></use>
+            </svg>
+          </div>
+
+          <div class="side-nav__sub-items">
+            <div class="side-nav__item">
+              <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                <use href="../../icons/icons.svg#icon-mail"></use>
+              </svg>
+              <span class="side-nav__item-label">Invoice</span>
+            </div>
+            <div class="side-nav__item">
+              <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                <use href="../../icons/icons.svg#icon-policy"></use>
+              </svg>
+              <span class="side-nav__item-label">Report</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="side-nav__footer">
+      <div class="side-nav__item">
+        <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-settings"></use>
+        </svg>
+        <span class="side-nav__item-label">Settings</span>
+      </div>
+    </div>
+
+  </nav><!-- /.side-nav -->
+
+
+  <!-- ============================================================
+       MAIN CONTENT
+       ============================================================ -->
+  <main class="screen-main">
+
+    <!-- ---- Header bar ---- -->
+    <div class="header-bar">
+
+      <div class="input-field search-wrapper" style="position: relative; width: 300px;">
+        <input
+          type="search"
+          class="input search search--icon-right"
+          placeholder="Search across all sections..."
+          aria-label="Global search"
+        />
+        <span class="search__icon search__icon--search" aria-hidden="true">
+          <svg class="icon icon--xxs icon--secondary" viewBox="0 0 96 96" fill="currentColor">
+            <use href="../../icons/icons.svg#icon-search"></use>
+          </svg>
+        </span>
+      </div>
+
+      <div class="header-bar__right">
+
+        <button class="btn btn--pill btn--secondary btn--small" id="btn-theme" type="button">☾ Dark</button>
+
+        <div class="header-bar__notification" aria-label="Notifications">
+          <svg class="icon icon--xs icon--primary" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-notification"></use>
+          </svg>
+          <span class="header-bar__notification-dot" aria-hidden="true"></span>
+        </div>
+
+        <div class="header-bar__profile" aria-label="User menu">
+          <div class="header-bar__avatar" aria-hidden="true">U</div>
+          <svg class="icon icon--3xs icon--secondary" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-chevron-down"></use>
+          </svg>
+        </div>
+
+      </div>
+    </div><!-- /.header-bar -->
+
+
+    <!-- ---- Page header ---- -->
+    <div class="page-header">
+
+      <div class="page-header__left">
+        <button class="btn btn--rounded btn--secondary btn--medium" type="button" aria-label="Back to customers" id="btn-back">
+          <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-arrow-left"></use>
+          </svg>
+          Back
+        </button>
+        <h1 class="page-header__name">Sarah Mitchell</h1>
+      </div>
+
+      <div class="page-header__right">
+        <button class="btn btn--rounded btn--secondary btn--medium" type="button" id="btn-delete">
+          <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-delete"></use>
+          </svg>
+          Delete
+        </button>
+        <button class="btn btn--rounded btn--secondary btn--medium" type="button">
+          <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-add"></use>
+          </svg>
+          New quote
+        </button>
+        <button class="btn btn--rounded btn--secondary btn--medium" type="button">
+          <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-add"></use>
+          </svg>
+          New claim
+        </button>
+        <button class="btn btn--rounded btn--primary btn--medium" type="button">
+          <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-edit"></use>
+          </svg>
+          Edit details
+        </button>
+      </div>
+
+    </div><!-- /.page-header -->
+
+
+    <!-- ---- Tab bar ---- -->
+    <div class="tabs tabs--underline tabs--compact" style="flex-shrink: 0;">
+      <div class="tabs__list" role="tablist">
+        <div class="tabs__spacer-left" aria-hidden="true"></div>
+        <button class="tab-item tab-item--underline tab-item--small tab-item--active" role="tab" aria-selected="true" data-panel="tab-details">Details</button>
+        <button class="tab-item tab-item--underline tab-item--small" role="tab" aria-selected="false" data-panel="tab-policies">Policies</button>
+        <button class="tab-item tab-item--underline tab-item--small" role="tab" aria-selected="false">Quotes</button>
+        <button class="tab-item tab-item--underline tab-item--small" role="tab" aria-selected="false">Claims</button>
+        <button class="tab-item tab-item--underline tab-item--small" role="tab" aria-selected="false">Convictions</button>
+        <button class="tab-item tab-item--underline tab-item--small" role="tab" aria-selected="false">Payments</button>
+        <button class="tab-item tab-item--underline tab-item--small" role="tab" aria-selected="false">Loans</button>
+        <button class="tab-item tab-item--underline tab-item--small" role="tab" aria-selected="false">Cards</button>
+        <button class="tab-item tab-item--underline tab-item--small" role="tab" aria-selected="false">Documents</button>
+        <button class="tab-item tab-item--underline tab-item--small" role="tab" aria-selected="false">Activities</button>
+        <div class="tabs__spacer-right" aria-hidden="true"></div>
+      </div>
+    </div>
+
+
+    <!-- ---- Tab panels ---- -->
+    <div id="tab-details" class="tab-panel tab-panel--active">
+    <!-- ---- Content area ---- -->
+    <div class="content-area">
+
+
+      <!-- Accordion 1: Customer details — EXPANDED -->
+      <div class="accordion accordion--expanded accordion--segmented">
+        <div class="accordion__header">
+          <span class="accordion__title">Customer details</span>
+          <div class="accordion__actions">
+            <svg class="accordion__chevron" viewBox="0 0 96 96" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-chevron-small-down"></use>
+            </svg>
+          </div>
+        </div>
+        <div class="accordion__body">
+          <div class="accordion__rows">
+
+            <!-- Row 1 -->
+            <div class="accordion__row">
+              <div class="accordion__field">
+                <span class="accordion__field-label">Customer Number</span>
+                <span class="accordion__field-value">CUST-2025-001</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Customer Name</span>
+                <span class="accordion__field-value">Sarah Mitchell</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Phone Number</span>
+                <span class="accordion__field-value">+1 (555) 234-5678</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Email</span>
+                <span class="accordion__field-value">sarah.mitchell@email.com</span>
+              </div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="accordion__row">
+              <div class="accordion__field">
+                <span class="accordion__field-label">Date of Birth</span>
+                <span class="accordion__field-value">15 / 03 / 1988</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Address</span>
+                <span class="accordion__field-value">142 Maple Street, Boston, MA 02108</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label" style="color: var(--text-pressed);">Country</span>
+                <span class="accordion__field-value" style="color: var(--text-pressed);">United Kingdom</span>
+              </div>
+              <div class="accordion__field"></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Accordion 2: Vulnerabilities — EXPANDED -->
+      <div class="accordion accordion--expanded accordion--segmented">
+        <div class="accordion__header">
+          <span class="accordion__title">Vulnerabilities</span>
+          <div class="accordion__actions">
+            <svg class="accordion__chevron" viewBox="0 0 96 96" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-chevron-small-down"></use>
+            </svg>
+          </div>
+        </div>
+        <div class="accordion__body">
+          <div class="accordion__rows">
+            <div class="accordion__row">
+              <div class="accordion__field">
+                <span class="accordion__field-label">Language barrier</span>
+                <div class="accordion__field-value">
+                  <span class="badge badge--inactive badge--square">Yes</span>
+                </div>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Non-tech savvy customer</span>
+                <div class="accordion__field-value">
+                  <span class="badge badge--inactive badge--square">Yes</span>
+                </div>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Financial difficulties</span>
+                <div class="accordion__field-value">
+                  <span class="badge badge--inactive badge--square">Yes</span>
+                </div>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Preferred language</span>
+                <span class="accordion__field-value">United Kingdom</span>
+              </div>
+            </div>
+          </div>
+          <div class="accordion__notes">
+            <div class="input-group">
+              <label class="input-label" for="vulnerabilities-notes">Notes</label>
+              <div class="input-field">
+                <textarea class="input textarea" id="vulnerabilities-notes" placeholder="Text goes here"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Accordion 3: Identity check — EXPANDED -->
+      <div class="accordion accordion--expanded accordion--segmented">
+        <div class="accordion__header">
+          <span class="accordion__title">Identity check</span>
+          <div class="accordion__actions">
+            <svg class="accordion__chevron" viewBox="0 0 96 96" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-chevron-small-down"></use>
+            </svg>
+          </div>
+        </div>
+        <div class="accordion__body">
+          <div class="accordion__rows">
+            <div class="accordion__row">
+              <div class="accordion__field">
+                <span class="accordion__field-label">Status</span>
+                <div class="accordion__field-value">
+                  <span class="badge badge--low badge--square">Verified</span>
+                </div>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Results</span>
+                <div class="accordion__field-value">
+                  <span class="badge badge--low badge--square">Pass</span>
+                </div>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Method</span>
+                <span class="accordion__field-value">Document verification</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Date</span>
+                <span class="accordion__field-value">15 / 03 / 1988</span>
+              </div>
+            </div>
+            <div class="accordion__row">
+              <div class="accordion__field">
+                <span class="accordion__field-label">Provider</span>
+                <span class="accordion__field-value">Verif</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Document</span>
+                <div class="accordion__field-value" style="display:flex;align-items:center;gap:var(--gap-x-small);">
+                  <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" style="color:var(--icon-primary);flex-shrink:0;" aria-hidden="true">
+                    <use href="../../icons/icons.svg#icon-documents"></use>
+                  </svg>
+                  <span style="color:var(--text-link);font-weight:var(--font-weight-bold);">Passport_Sarah_Mitchel_PDF</span>
+                </div>
+              </div>
+              <div class="accordion__field"></div>
+              <div class="accordion__field"></div>
+            </div>
+          </div>
+          <div class="accordion__footer">
+            <button class="btn btn--rounded btn--secondary btn--medium" type="button">
+              <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                <use href="../../icons/icons.svg#icon-link"></use>
+              </svg>
+              Send document check link
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Accordion 4: Credit check — EXPANDED -->
+      <div class="accordion accordion--expanded accordion--segmented">
+        <div class="accordion__header">
+          <span class="accordion__title">Credit check</span>
+          <div class="accordion__actions">
+            <svg class="accordion__chevron" viewBox="0 0 96 96" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-chevron-small-down"></use>
+            </svg>
+          </div>
+        </div>
+        <div class="accordion__body">
+          <div class="accordion__rows">
+            <div class="accordion__row">
+              <div class="accordion__field">
+                <span class="accordion__field-label">Status</span>
+                <div class="accordion__field-value">
+                  <span class="badge badge--low badge--square">Complete</span>
+                </div>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Credit check</span>
+                <div class="accordion__field-value">
+                  <span class="badge badge--low badge--square">Approved</span>
+                </div>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Date checked</span>
+                <span class="accordion__field-value">15 / 03 / 1988</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Provider</span>
+                <span class="accordion__field-value">Experian</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Accordion 5: Sanction check — EXPANDED -->
+      <div class="accordion accordion--expanded accordion--segmented">
+        <div class="accordion__header">
+          <span class="accordion__title">Sanction check</span>
+          <div class="accordion__actions">
+            <svg class="accordion__chevron" viewBox="0 0 96 96" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-chevron-small-down"></use>
+            </svg>
+          </div>
+        </div>
+        <div class="accordion__body">
+          <div class="accordion__rows">
+            <div class="accordion__row">
+              <div class="accordion__field">
+                <span class="accordion__field-label">Status</span>
+                <div class="accordion__field-value">
+                  <span class="badge badge--low badge--square">Clear</span>
+                </div>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Results</span>
+                <div class="accordion__field-value">
+                  <span class="badge badge--low badge--square">No match</span>
+                </div>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Date checked</span>
+                <span class="accordion__field-value">15 / 03 / 1988</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Provider</span>
+                <span class="accordion__field-value">Dow Jones Risk &amp; Compliance</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div><!-- /.content-area -->
+    </div><!-- /#tab-details -->
+
+    <div id="tab-policies" class="tab-panel">
+      <div class="content-area">
+        <div class="table">
+
+          <!-- Header -->
+          <div class="table__head">
+            <div class="table__cell"><span class="table__cell-text">Policy number</span></div>
+            <div class="table__cell"><span class="table__cell-text">Product</span></div>
+            <div class="table__cell"><span class="table__cell-text">VRN</span></div>
+            <div class="table__cell"><span class="table__cell-text">Created date</span></div>
+            <div class="table__cell"><span class="table__cell-text">Expired date</span></div>
+            <div class="table__cell"><span class="table__cell-text">Status</span></div>
+          </div>
+
+          <!-- Row 1 -->
+          <div class="table__row">
+            <div class="table__cell"><button class="table__cell-link">POL-2025-001</button></div>
+            <div class="table__cell"><span class="table__cell-text">Business Van Insurance</span></div>
+            <div class="table__cell"><span class="table__cell-text">AB12 CDE</span></div>
+            <div class="table__cell"><span class="table__cell-text">15 / 03 / 2024</span></div>
+            <div class="table__cell"><span class="table__cell-text">15 / 03 / 2025</span></div>
+            <div class="table__cell table__cell--badge">
+              <span class="badge badge--low badge--square">Active</span>
+            </div>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="table__row">
+            <div class="table__cell"><button class="table__cell-link">POL-2024-047</button></div>
+            <div class="table__cell"><span class="table__cell-text">Business Van Insurance</span></div>
+            <div class="table__cell"><span class="table__cell-text">AB12 CDE</span></div>
+            <div class="table__cell"><span class="table__cell-text">10 / 06 / 2023</span></div>
+            <div class="table__cell"><span class="table__cell-text">10 / 06 / 2024</span></div>
+            <div class="table__cell table__cell--badge">
+              <span class="badge badge--high badge--square">Expired</span>
+            </div>
+          </div>
+
+          <!-- Row 3 -->
+          <div class="table__row">
+            <div class="table__cell"><button class="table__cell-link">POL-2024-012</button></div>
+            <div class="table__cell"><span class="table__cell-text">Business Van Insurance</span></div>
+            <div class="table__cell"><span class="table__cell-text">AB12 CDE</span></div>
+            <div class="table__cell"><span class="table__cell-text">01 / 01 / 2024</span></div>
+            <div class="table__cell"><span class="table__cell-text">01 / 01 / 2025</span></div>
+            <div class="table__cell table__cell--badge">
+              <span class="badge badge--low badge--square">Active</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div><!-- /#tab-policies -->
+
+  </main>
+
+</div><!-- /.screen -->
+
+<script>
+  // ============================================
+  // Side nav — expand/collapse + active state + sub-nav + group accordion
+  // ============================================
+  (function() {
+    var nav      = document.querySelector('.side-nav');
+    var toggle   = nav ? nav.querySelector('.side-nav__toggle') : null;
+    var toggleIcon = toggle ? toggle.querySelector('use') : null;
+
+    if (toggle) {
+      toggle.addEventListener('click', function() {
+        var collapsed = nav.classList.toggle('side-nav--collapsed');
+        if (toggleIcon) {
+          toggleIcon.setAttribute('href',
+            collapsed
+              ? '../../icons/icons.svg#icon-chevron-small-right'
+              : '../../icons/icons.svg#icon-chevron-small-left'
+          );
+        }
+        toggle.setAttribute('aria-label', collapsed ? 'Expand navigation' : 'Collapse navigation');
+      });
+    }
+
+    if (nav) {
+      nav.querySelectorAll('.side-nav__item').forEach(function(item) {
+        item.addEventListener('click', function() {
+          nav.querySelectorAll('.side-nav__item').forEach(function(i) {
+            i.classList.remove('side-nav__item--active');
+          });
+          item.classList.add('side-nav__item--active');
+
+          var subItems = item.nextElementSibling;
+          if (subItems && subItems.classList.contains('side-nav__sub-items')) {
+            var isOpen = subItems.classList.toggle('side-nav__sub-items--open');
+            var chevron = item.querySelector('.side-nav__item-chevron');
+            if (chevron) chevron.classList.toggle('side-nav__item-chevron--open', isOpen);
+          }
+        });
+      });
+
+      // Group label accordion (AGENTS / INTERNAL TOOLS)
+      nav.querySelectorAll('.side-nav__group-label').forEach(function(label) {
+        label.addEventListener('click', function() {
+          var isOpen = label.classList.toggle('side-nav__group-label--open');
+          var groupItems = label.nextElementSibling;
+          if (groupItems && groupItems.classList.contains('side-nav__group-items')) {
+            groupItems.classList.toggle('side-nav__group-items--collapsed', !isOpen);
+          }
+        });
+      });
+    }
+  })();
+
+  // ============================================
+  // Accordion — expand/collapse
+  // ============================================
+  (function() {
+    document.querySelectorAll('.accordion__header').forEach(function(header) {
+      header.addEventListener('click', function() {
+        var accordion = header.closest('.accordion');
+        if (accordion) accordion.classList.toggle('accordion--expanded');
+      });
+    });
+  })();
+
+  // ============================================
+  // Dark / light mode toggle
+  // ============================================
+  var themeBtn = document.getElementById('btn-theme');
+  if (themeBtn) {
+    themeBtn.addEventListener('click', function() {
+      var screen = document.querySelector('.screen');
+      var isDark = screen.classList.toggle('dark');
+      themeBtn.textContent = isDark ? '☀ Light' : '☾ Dark';
+    });
+  }
+
+  // ============================================
+  // Back button — navigate to customers.html
+  // ============================================
+  var backBtn = document.getElementById('btn-back');
+  if (backBtn) {
+    backBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.location.href = 'customers.html';
+    });
+  }
+
+  // ============================================
+  // Tab switching
+  // ============================================
+  document.querySelectorAll('.tab-item--underline').forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      // Update active tab
+      document.querySelectorAll('.tab-item--underline').forEach(function(t) {
+        t.classList.remove('tab-item--active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      tab.classList.add('tab-item--active');
+      tab.setAttribute('aria-selected', 'true');
+
+      // Show matching panel, hide others
+      var target = tab.getAttribute('data-panel');
+      document.querySelectorAll('.tab-panel').forEach(function(panel) {
+        panel.classList.remove('tab-panel--active');
+      });
+      if (target) {
+        var el = document.getElementById(target);
+        if (el) el.classList.add('tab-panel--active');
+      }
+    });
+  });
+</script>
+
+<!-- Delete confirmation modal -->
+<div id="delete-modal-overlay" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="delete-modal-title" aria-hidden="true">
+  <div class="modal">
+    <div class="modal__body">
+      <p id="delete-modal-title" class="modal__text">
+        Are you sure you want to delete
+        <span class="modal__customer-name">Sarah Mitchell</span>
+        as a customer?
+      </p>
+    </div>
+    <div class="modal__divider" aria-hidden="true"></div>
+    <div class="modal__actions">
+      <button class="btn btn--rounded btn--secondary btn--medium" id="delete-modal-cancel" type="button">Cancel</button>
+      <button class="btn btn--rounded btn--primary btn--medium" id="delete-modal-confirm" type="button">Delete</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    var overlay = document.getElementById('delete-modal-overlay');
+
+    function openDeleteModal() {
+      overlay.classList.add('modal-overlay--visible');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.getElementById('delete-modal-cancel').focus();
+    }
+
+    function closeDeleteModal() {
+      overlay.classList.remove('modal-overlay--visible');
+      overlay.setAttribute('aria-hidden', 'true');
+    }
+
+    document.getElementById('btn-delete').addEventListener('click', function() {
+      openDeleteModal();
+    });
+
+    document.getElementById('delete-modal-cancel').addEventListener('click', function() {
+      closeDeleteModal();
+    });
+
+    document.getElementById('delete-modal-confirm').addEventListener('click', function() {
+      closeDeleteModal();
+    });
+
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) closeDeleteModal();
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && overlay.classList.contains('modal-overlay--visible')) {
+        closeDeleteModal();
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

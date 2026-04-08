@@ -1,0 +1,1646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Console — Customers</title>
+
+  <!-- Tokens first -->
+  <link rel="stylesheet" href="../../tokens/tokens.css">
+  <link rel="stylesheet" href="../../tokens/typography.css">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="../../icons/icons.css">
+
+  <!-- Components — dependencies before dependents -->
+  <link rel="stylesheet" href="../../components/side-nav/side-nav.css">
+  <link rel="stylesheet" href="../../components/input/input.css">
+  <link rel="stylesheet" href="../../components/input/search.css">
+  <link rel="stylesheet" href="../../components/divider/divider.css">
+  <link rel="stylesheet" href="../../components/input/date-picker.css">
+  <link rel="stylesheet" href="../../components/badge/badge.css">
+  <link rel="stylesheet" href="../../components/checkbox/checkbox.css">
+  <link rel="stylesheet" href="../../components/input/filter-select.css">
+  <link rel="stylesheet" href="../../components/button/button.css">
+  <link rel="stylesheet" href="../../components/table/table.css">
+
+  <style>
+    /* ============================================
+       Console.html — screen-specific styles only
+       ============================================ */
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: var(--bg-primary);
+      font-family: var(--font-family-base);
+    }
+
+    /* ---- Root layout — side nav + main column ---- */
+
+    .screen {
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+      background-color: var(--bg-primary-subtle);
+    }
+
+    .screen-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    /* ---- Header bar ---- */
+
+    .header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--gap-x-small) var(--gap-medium);
+      background: var(--bg-primary);
+      border-bottom: var(--border-s) solid var(--border-color-primary);
+      flex-shrink: 0;
+    }
+
+    .header-bar__search {
+      width: 300px;
+      display: flex;
+      align-items: center;
+      gap: var(--gap-x-small);
+      padding: 6px var(--gap-x-small);
+      border: var(--border-s) solid var(--border-color-primary);
+      border-radius: var(--radius-small);
+    }
+
+    .header-bar__search-input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      font-family: var(--font-family-base);
+      font-size: 14px;
+      font-weight: var(--font-weight-regular);
+      line-height: 20px;
+      color: var(--text-primary);
+      outline: none;
+    }
+
+    .header-bar__search-input::placeholder {
+      color: var(--text-disabled);
+    }
+
+    .header-bar__right {
+      display: flex;
+      align-items: center;
+      gap: var(--gap-x-large);
+    }
+
+    .header-bar__notification {
+      position: relative;
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .header-bar__notification-dot {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 6px;
+      height: 6px;
+      border-radius: var(--radius-round);
+      background: var(--icon-negative);
+    }
+
+    .header-bar__profile {
+      display: flex;
+      align-items: center;
+      gap: var(--gap-xx-small);
+      cursor: pointer;
+    }
+
+    .header-bar__avatar {
+      width: 24px;
+      height: 24px;
+      border-radius: var(--radius-round);
+      background: var(--bg-brand-light-purple);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-family-base);
+      font-size: 12px;
+      font-weight: var(--font-weight-bold);
+      line-height: 1;
+      color: var(--text-on-colour);
+      flex-shrink: 0;
+    }
+
+    /* ---- Page controls (header + control bar) ---- */
+
+    .page-controls {
+      padding: 0 var(--gap-medium);
+      background: var(--bg-primary);
+      border-bottom: var(--border-s) solid var(--border-color-primary);
+      flex-shrink: 0;
+    }
+
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--gap-small) 0;
+    }
+
+    .page-header__title {
+      font-family: var(--font-family-base);
+      font-size: 18px;
+      font-weight: var(--font-weight-bold);
+      line-height: 24px;
+      color: var(--text-primary);
+      margin: 0;
+    }
+
+    .btn-add-customer {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--gap-x-small);
+      padding: var(--gap-xx-small) var(--gap-x-small);
+      background: var(--bg-brand-aqua);
+      border: none;
+      border-radius: var(--radius-small);
+      font-family: var(--font-family-base);
+      font-size: 11px;
+      font-weight: var(--font-weight-medium);
+      line-height: 16px;
+      color: var(--text-primary);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn-add-customer:hover {
+      background: var(--bg-aqua-active);
+    }
+
+    .control-bar {
+      display: flex;
+      align-items: center;
+      gap: var(--gap-x-small);
+      padding-bottom: var(--gap-small);
+    }
+
+    /* Control bar search wrapper — positions the icon */
+    .control-bar__search {
+      position: relative;
+      width: 300px;
+      flex-shrink: 0;
+    }
+
+    /* Date picker width override */
+    .control-bar .date-picker {
+      width: 300px;
+      flex-shrink: 0;
+    }
+
+    /* Filter select — wide enough for 5 badge tags */
+    .control-bar .filter-select {
+      width: auto;
+      flex-shrink: 0;
+      min-width: 200px;
+    }
+
+    /* Allow tags to wrap onto a second line if needed */
+    .control-bar .filter-select__tags {
+      flex-wrap: wrap;
+    }
+
+    /* ---- Table area ---- */
+
+    .table-area {
+      flex: 1;
+      overflow-y: auto;
+      /* No padding-top — prevents rows leaking into the gap above the sticky
+         header. Top spacing is handled by margin-top on the table instead. */
+      padding: 0 var(--gap-medium) var(--gap-medium);
+    }
+
+    /* overflow:clip clips content to the border-box (restores the rounded-
+       corner clipping that overflow:hidden gave us) but — unlike hidden —
+       does NOT create a new block formatting context, so position:sticky
+       still works relative to .table-area. */
+    .table-area .table {
+      overflow: clip;
+      margin-top: var(--gap-medium); /* visual top gap that scrolls away normally */
+    }
+
+    .table-area .table__head {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+
+    /* ---- Sort icons in table header ---- */
+
+    .sort-icon {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      flex-shrink: 0;
+      margin-left: var(--gap-xx-small);
+    }
+
+    .sort-icon__chevron {
+      display: block;
+      width: 0;
+      height: 0;
+      border-left: 3px solid transparent;
+      border-right: 3px solid transparent;
+    }
+
+    .sort-icon__up {
+      border-bottom: 4px solid var(--text-disabled);
+    }
+
+    .sort-icon__down {
+      border-top: 4px solid var(--text-disabled);
+    }
+
+    /* Header cells need flex to align text + sort icon */
+    .table__head .table__cell {
+      gap: var(--gap-xx-small);
+    }
+
+    /* ---- Side nav group accordion ---- */
+
+    .side-nav__group-items {
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap-xx-small);
+      overflow: hidden;
+      max-height: 500px;
+      transition: max-height 200ms ease, opacity 200ms ease;
+      opacity: 1;
+    }
+
+    .side-nav__group-items--collapsed {
+      max-height: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Scrollbar for table area */
+    .table-area::-webkit-scrollbar       { width: 6px; }
+    .table-area::-webkit-scrollbar-track { background: transparent; }
+    .table-area::-webkit-scrollbar-thumb { background: var(--colour-grey-40); border-radius: var(--radius-round); }
+
+    /* Row action popup */
+    .row-popup {
+      position: fixed;
+      z-index: 200;
+      background: var(--bg-primary);
+      border-radius: 12px;
+      box-shadow: 0px 0px 16px 8px rgba(39,37,45,0.08), 0px 1px 3px 0px rgba(0,0,0,0.1);
+      padding: var(--gap-x-small);
+      min-width: 132px;
+      display: none;
+      flex-direction: column;
+    }
+
+    .row-popup--visible {
+      display: flex;
+    }
+
+    /* Items use side-nav__item for hover — only add button reset + separator here */
+    .row-popup__item {
+      border: none;
+      border-bottom: var(--border-s) solid var(--border-color-primary);
+      border-radius: var(--radius-small);
+      width: 100%;
+      text-align: left;
+      font-family: var(--font-family-base);
+      padding: var(--gap-x-small);
+
+    }
+
+    .row-popup__item:last-child {
+      border-bottom: none;
+    }
+
+    /* Delete confirmation modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      background: rgba(39, 37, 45, 0.40);
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-overlay--visible {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--bg-primary);
+      border-radius: 12px;
+      width: 300px;
+      padding: var(--gap-medium);
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap-medium);
+    }
+
+    .modal__body {
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap-x-small);
+      width: 100%;
+    }
+
+    .modal__text {
+      font-family: var(--font-family-base);
+      font-size: 16px;
+      font-weight: var(--font-weight-regular);
+      line-height: 24px;
+      color: var(--text-primary);
+      margin: 0;
+    }
+
+    .modal__customer-name {
+      color: var(--text-link);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .modal__divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border-color-primary);
+      flex-shrink: 0;
+    }
+
+    .modal__actions {
+      display: flex;
+      gap: var(--gap-medium);
+      align-items: center;
+      width: 100%;
+    }
+
+    .modal__btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px var(--gap-small);
+      border-radius: var(--radius-small);
+      font-family: var(--font-family-base);
+      font-size: 14px;
+      font-weight: var(--font-weight-bold);
+      line-height: 20px;
+      color: var(--text-primary);
+      cursor: pointer;
+      border: none;
+      white-space: nowrap;
+    }
+
+    .modal__btn--cancel {
+      background: var(--bg-primary);
+      border: var(--border-s) solid var(--border-color-primary);
+    }
+
+    .modal__btn--cancel:hover { background: var(--bg-secondary); }
+
+    .modal__btn--confirm {
+      background: var(--bg-brand-aqua);
+    }
+
+    .modal__btn--confirm:hover { background: var(--bg-aqua-active); }
+
+    .modal__actions .btn { flex: 1; }
+  </style>
+
+</head>
+<body>
+
+<div class="screen">
+
+  <!-- ============================================================
+       SIDE NAVIGATION
+       Customers is the active item.
+       ============================================================ -->
+  <nav class="side-nav" id="side-nav">
+
+    <div class="side-nav__header">
+      <div class="side-nav__brand">
+        <svg class="side-nav__brand-icon" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-zego-logomark"></use>
+        </svg>
+        <span class="side-nav__brand-name">Console</span>
+      </div>
+      <button class="side-nav__toggle" aria-label="Collapse navigation">
+        <svg class="side-nav__toggle-icon" viewBox="0 0 7 12" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-chevron-small-left"></use>
+        </svg>
+      </button>
+    </div>
+
+    <div class="side-nav__body">
+
+      <!-- Section 1: main items -->
+      <div class="side-nav__section">
+
+        <div class="side-nav__item">
+          <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-home"></use>
+          </svg>
+          <span class="side-nav__item-label">Home</span>
+        </div>
+
+        <div class="side-nav__item">
+          <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-policy"></use>
+          </svg>
+          <span class="side-nav__item-label">My tasks</span>
+        </div>
+
+        <!-- Active item -->
+        <div class="side-nav__item side-nav__item--active">
+          <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-passenger"></use>
+          </svg>
+          <span class="side-nav__item-label">Customers</span>
+        </div>
+
+        <div class="side-nav__item">
+          <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-documents"></use>
+          </svg>
+          <span class="side-nav__item-label">Policies</span>
+        </div>
+
+        <div class="side-nav__item">
+          <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-discount"></use>
+          </svg>
+          <span class="side-nav__item-label">Quotes</span>
+        </div>
+
+        <div class="side-nav__item">
+          <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-claim-type"></use>
+          </svg>
+          <span class="side-nav__item-label">Claims</span>
+        </div>
+
+      </div>
+
+      <!-- Section 2: Agents -->
+      <div class="side-nav__section">
+
+        <div class="side-nav__group-label side-nav__group-label--open" data-group="agents">
+          AGENTS
+          <svg class="side-nav__group-chevron" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-chevron-down"></use>
+          </svg>
+        </div>
+
+        <div class="side-nav__group-items">
+          <div class="side-nav__item">
+            <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-customer"></use>
+            </svg>
+            <span class="side-nav__item-label">Agents</span>
+          </div>
+
+          <div class="side-nav__item">
+            <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-cursor"></use>
+            </svg>
+            <span class="side-nav__item-label">Workflows</span>
+          </div>
+
+          <div class="side-nav__item">
+            <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-folder"></use>
+            </svg>
+            <span class="side-nav__item-label">Training</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Section 3: Internal Tools -->
+      <div class="side-nav__section">
+
+        <div class="side-nav__group-label side-nav__group-label--open" data-group="internal-tools">
+          INTERNAL TOOLS
+          <svg class="side-nav__group-chevron" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-chevron-down"></use>
+          </svg>
+        </div>
+
+        <div class="side-nav__group-items">
+          <div class="side-nav__item">
+            <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-connection-issue"></use>
+            </svg>
+            <span class="side-nav__item-label">Apps</span>
+          </div>
+
+          <div class="side-nav__item">
+            <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-inbox"></use>
+            </svg>
+            <span class="side-nav__item-label">Logs</span>
+          </div>
+
+          <div class="side-nav__item">
+            <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-upload"></use>
+            </svg>
+            <span class="side-nav__item-label">Importer</span>
+            <svg class="side-nav__item-chevron" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-chevron-down"></use>
+            </svg>
+          </div>
+
+          <div class="side-nav__sub-items">
+            <div class="side-nav__item">
+              <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                <use href="../../icons/icons.svg#icon-mail"></use>
+              </svg>
+              <span class="side-nav__item-label">Invoice</span>
+            </div>
+            <div class="side-nav__item">
+              <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                <use href="../../icons/icons.svg#icon-policy"></use>
+              </svg>
+              <span class="side-nav__item-label">Report</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="side-nav__footer">
+      <div class="side-nav__item">
+        <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-settings"></use>
+        </svg>
+        <span class="side-nav__item-label">Settings</span>
+      </div>
+    </div>
+
+  </nav><!-- /.side-nav -->
+
+
+  <!-- ============================================================
+       MAIN CONTENT
+       ============================================================ -->
+  <main class="screen-main">
+
+    <!-- ---- Header bar ---- -->
+    <div class="header-bar">
+
+      <!-- Search input -->
+      <div class="input-field search-wrapper" style="position: relative; width: 300px;">
+        <input
+          type="search"
+          class="input search search--icon-right"
+          placeholder="Global search..."
+          aria-label="Search customers"
+        />
+        <span class="search__icon search__icon--search" aria-hidden="true">
+          <svg class="icon icon--xxs icon--secondary" viewBox="0 0 96 96" fill="currentColor">
+            <use href="../../icons/icons.svg#icon-search"></use>
+          </svg>
+        </span>
+      </div>
+
+      <!-- Right: notifications + profile -->
+      <div class="header-bar__right">
+
+        <!-- Notification bell -->
+        <div class="header-bar__notification" aria-label="Notifications">
+          <svg class="icon icon--xs icon--primary" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-notification"></use>
+          </svg>
+          <span class="header-bar__notification-dot" aria-hidden="true"></span>
+        </div>
+
+        <!-- User profile -->
+        <div class="header-bar__profile" aria-label="User menu">
+          <div class="header-bar__avatar" aria-hidden="true">U</div>
+          <svg class="icon icon--3xs icon--secondary" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-chevron-down"></use>
+          </svg>
+        </div>
+
+      </div>
+    </div><!-- /.header-bar -->
+
+
+    <!-- ---- Page controls ---- -->
+    <div class="page-controls">
+
+      <!-- Page header row -->
+      <div class="page-header">
+        <h1 class="page-header__title">Customers</h1>
+        <div>
+
+          <button class="btn btn--rounded btn--primary btn--medium">
+            <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-add"></use>
+            </svg>
+            Add customer
+          </button>
+
+        </div>
+      </div>
+
+      <!-- Control bar: search + date picker + filter -->
+      <div class="control-bar">
+
+        <!-- Search input -->
+        <div class="control-bar__search">
+          <input
+            type="search"
+            class="input search search--icon-right"
+            placeholder="Search by name, email or ID"
+            aria-label="Search customers"
+          >
+          <span class="search__icon search__icon--search" aria-hidden="true">
+            <svg class="icon icon--xxs icon--secondary" viewBox="0 0 96 96" fill="currentColor">
+              <use href="../../icons/icons.svg#icon-search"></use>
+            </svg>
+          </span>
+        </div>
+
+        <!-- Date picker — pre-populated -->
+        <div class="date-picker date-picker--populated">
+          <button class="date-picker__trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Select date range">
+            <span class="date-picker__trigger-text">Jan 21, 2026  →  Jan 30, 2026</span>
+            <svg class="icon icon--xxs icon--secondary" viewBox="0 0 96 96" fill="currentColor">
+              <use href="../../icons/icons.svg#icon-calendar"></use>
+            </svg>
+          </button>
+          <div class="date-picker__dropdown" role="dialog" aria-label="Date picker">
+            <div class="date-picker__month-nav">
+              <button class="date-picker__month-prev" aria-label="Previous month" type="button">
+                <svg viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                  <use href="../../icons/icons.svg#icon-arrow-left"></use>
+                </svg>
+              </button>
+              <span class="date-picker__month-label">January 2026</span>
+              <button class="date-picker__month-next" aria-label="Next month" type="button">
+                <svg viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                  <use href="../../icons/icons.svg#icon-arrow-right"></use>
+                </svg>
+              </button>
+            </div>
+            <div class="date-picker__grid" role="grid"></div>
+            <div class="date-picker__footer">
+              <div class="divider divider--simple"><span class="divider__line"></span></div>
+              <div class="date-picker__actions">
+                <button class="date-picker__clear" type="button">Clear</button>
+                <button class="date-picker__apply" type="button">Apply</button>
+              </div>
+            </div>
+          </div>
+        </div><!-- /.date-picker -->
+
+        <!-- Filter select — all 5 statuses pre-selected -->
+        <!-- Note: trigger is a <div> not <button> because it contains interactive children
+             (the × remove buttons on each tag). Nesting <button> inside <button> is invalid
+             HTML and causes browsers to eject the inner buttons out of the trigger. -->
+        <div class="filter-select filter-select--populated" role="combobox" aria-haspopup="listbox" aria-expanded="false">
+          <div class="filter-select__trigger" role="button" tabindex="0" aria-label="Filter by Status">
+            <span class="filter-select__label">Status</span>
+            <span class="filter-select__divider" aria-hidden="true"></span>
+            <span class="filter-select__placeholder">Select to filter..</span>
+            <!-- Tags are rendered by JS from the pre-checked checkboxes below -->
+            <div class="filter-select__tags" aria-label="Selected filters"></div>
+            <svg class="filter-select__chevron" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-chevron-down"></use>
+            </svg>
+          </div>
+
+          <div class="filter-select__dropdown" role="listbox" aria-label="Status filters">
+            <div class="filter-select__options">
+
+              <label class="filter-select__option" data-value="Processing" role="option" aria-selected="true">
+                <span class="checkbox filter-select__option-checkbox">
+                  <input type="checkbox" class="checkbox__input" value="Processing" checked>
+                  <span class="checkbox__control"></span>
+                </span>
+                <span class="filter-select__option-badge badge badge--disabled badge--square">Processing</span>
+              </label>
+
+              <label class="filter-select__option" data-value="Active" role="option" aria-selected="true">
+                <span class="checkbox filter-select__option-checkbox">
+                  <input type="checkbox" class="checkbox__input" value="Active" checked>
+                  <span class="checkbox__control"></span>
+                </span>
+                <span class="filter-select__option-badge badge badge--low badge--square">Active</span>
+              </label>
+
+              <label class="filter-select__option" data-value="Pending" role="option" aria-selected="true">
+                <span class="checkbox filter-select__option-checkbox">
+                  <input type="checkbox" class="checkbox__input" value="Pending" checked>
+                  <span class="checkbox__control"></span>
+                </span>
+                <span class="filter-select__option-badge badge badge--medium badge--square">Pending</span>
+              </label>
+
+              <label class="filter-select__option" data-value="Cancelled" role="option" aria-selected="true">
+                <span class="checkbox filter-select__option-checkbox">
+                  <input type="checkbox" class="checkbox__input" value="Cancelled" checked>
+                  <span class="checkbox__control"></span>
+                </span>
+                <span class="filter-select__option-badge badge badge--high badge--square">Cancelled</span>
+              </label>
+
+              <label class="filter-select__option" data-value="Inactive" role="option" aria-selected="true">
+                <span class="checkbox filter-select__option-checkbox">
+                  <input type="checkbox" class="checkbox__input" value="Inactive" checked>
+                  <span class="checkbox__control"></span>
+                </span>
+                <span class="filter-select__option-badge badge badge--inactive badge--square">Inactive</span>
+              </label>
+
+            </div>
+            <div class="filter-select__footer">
+              <div class="divider divider--simple"><span class="divider__line"></span></div>
+              <div class="filter-select__actions">
+                <button class="filter-select__clear" type="button">Clear</button>
+                <button class="filter-select__apply" type="button">Apply</button>
+              </div>
+            </div>
+          </div>
+        </div><!-- /.filter-select -->
+
+      </div><!-- /.control-bar -->
+
+    </div><!-- /.page-controls -->
+
+
+    <!-- ---- Table area ---- -->
+    <div class="table-area">
+
+      <div class="table">
+
+        <!-- Header row — 7 data columns + 1 action column -->
+        <div class="table__head">
+          <div class="table__cell">
+            <span class="table__cell-text">Customer number</span>
+            <span class="sort-icon" aria-hidden="true">
+              <span class="sort-icon__chevron sort-icon__up"></span>
+              <span class="sort-icon__chevron sort-icon__down"></span>
+            </span>
+          </div>
+          <div class="table__cell">
+            <span class="table__cell-text">Name</span>
+            <span class="sort-icon" aria-hidden="true">
+              <span class="sort-icon__chevron sort-icon__up"></span>
+              <span class="sort-icon__chevron sort-icon__down"></span>
+            </span>
+          </div>
+          <div class="table__cell">
+            <span class="table__cell-text">VRN</span>
+            <span class="sort-icon" aria-hidden="true">
+              <span class="sort-icon__chevron sort-icon__up"></span>
+              <span class="sort-icon__chevron sort-icon__down"></span>
+            </span>
+          </div>
+          <div class="table__cell">
+            <span class="table__cell-text">Created by</span>
+            <span class="sort-icon" aria-hidden="true">
+              <span class="sort-icon__chevron sort-icon__up"></span>
+              <span class="sort-icon__chevron sort-icon__down"></span>
+            </span>
+          </div>
+          <div class="table__cell table__cell--fixed table__cell--badge">
+            <span class="table__cell-text">Status</span>
+            <span class="sort-icon" aria-hidden="true">
+              <span class="sort-icon__chevron sort-icon__up"></span>
+              <span class="sort-icon__chevron sort-icon__down"></span>
+            </span>
+          </div>
+          <div class="table__cell">
+            <span class="table__cell-text">Created</span>
+            <span class="sort-icon" aria-hidden="true">
+              <span class="sort-icon__chevron sort-icon__up"></span>
+              <span class="sort-icon__chevron sort-icon__down"></span>
+            </span>
+          </div>
+          <div class="table__cell">
+            <span class="table__cell-text">Updated</span>
+            <span class="sort-icon" aria-hidden="true">
+              <span class="sort-icon__chevron sort-icon__up"></span>
+              <span class="sort-icon__chevron sort-icon__down"></span>
+            </span>
+          </div>
+          <div class="table__cell table__cell--action"></div>
+        </div>
+
+        <!-- Row 1 — Processing -->
+        <div class="table__row" data-updated="2026-02-18">
+          <div class="table__cell"><button class="table__cell-link">#CUS-00123</button></div>
+          <div class="table__cell"><span class="table__cell-text">Sarah Mitchell</span></div>
+          <div class="table__cell"><span class="table__cell-text">AB12 CDE</span></div>
+          <div class="table__cell"><span class="table__cell-text">J. Walsh</span></div>
+          <div class="table__cell table__cell--fixed table__cell--badge"><span class="badge badge--disabled badge--square">Processing</span></div>
+          <div class="table__cell"><span class="table__cell-text">21 Jan 2026</span></div>
+          <div class="table__cell"><span class="table__cell-text">18 Feb 2026</span></div>
+          <div class="table__cell table__cell--action"><button class="table__quick-action" aria-label="Row actions"><svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="../../icons/icons.svg#icon-vertical-ellipsis"></use></svg></button></div>
+        </div>
+
+        <!-- Row 2 — Active -->
+        <div class="table__row" data-updated="2026-02-03">
+          <div class="table__cell"><button class="table__cell-link">#CUS-00124</button></div>
+          <div class="table__cell"><span class="table__cell-text">James Thornton</span></div>
+          <div class="table__cell"><span class="table__cell-text">XY34 FGH</span></div>
+          <div class="table__cell"><span class="table__cell-text">M. Patel</span></div>
+          <div class="table__cell table__cell--fixed table__cell--badge"><span class="badge badge--low badge--square">Active</span></div>
+          <div class="table__cell"><span class="table__cell-text">20 Jan 2026</span></div>
+          <div class="table__cell"><span class="table__cell-text">3 Feb 2026</span></div>
+          <div class="table__cell table__cell--action"><button class="table__quick-action" aria-label="Row actions"><svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="../../icons/icons.svg#icon-vertical-ellipsis"></use></svg></button></div>
+        </div>
+
+        <!-- Row 3 — Pending -->
+        <div class="table__row" data-updated="2026-01-24">
+          <div class="table__cell"><button class="table__cell-link">#CUS-00125</button></div>
+          <div class="table__cell"><span class="table__cell-text">Emily Roberts</span></div>
+          <div class="table__cell"><span class="table__cell-text">LM56 NOP</span></div>
+          <div class="table__cell"><span class="table__cell-text">J. Walsh</span></div>
+          <div class="table__cell table__cell--fixed table__cell--badge"><span class="badge badge--medium badge--square">Pending</span></div>
+          <div class="table__cell"><span class="table__cell-text">19 Jan 2026</span></div>
+          <div class="table__cell"><span class="table__cell-text">24 Jan 2026</span></div>
+          <div class="table__cell table__cell--action"><button class="table__quick-action" aria-label="Row actions"><svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="../../icons/icons.svg#icon-vertical-ellipsis"></use></svg></button></div>
+        </div>
+
+        <!-- Row 4 — Cancelled -->
+        <div class="table__row" data-updated="2026-01-09">
+          <div class="table__cell"><button class="table__cell-link">#CUS-00126</button></div>
+          <div class="table__cell"><span class="table__cell-text">Daniel Hughes</span></div>
+          <div class="table__cell"><span class="table__cell-text">QR78 STU</span></div>
+          <div class="table__cell"><span class="table__cell-text">S. Lee</span></div>
+          <div class="table__cell table__cell--fixed table__cell--badge"><span class="badge badge--high badge--square">Cancelled</span></div>
+          <div class="table__cell"><span class="table__cell-text">18 Jan 2026</span></div>
+          <div class="table__cell"><span class="table__cell-text">9 Jan 2026</span></div>
+          <div class="table__cell table__cell--action"><button class="table__quick-action" aria-label="Row actions"><svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="../../icons/icons.svg#icon-vertical-ellipsis"></use></svg></button></div>
+        </div>
+
+        <!-- Row 5 — Active -->
+        <div class="table__row" data-updated="2025-12-28">
+          <div class="table__cell"><button class="table__cell-link">#CUS-00127</button></div>
+          <div class="table__cell"><span class="table__cell-text">Priya Sharma</span></div>
+          <div class="table__cell"><span class="table__cell-text">VW90 XYZ</span></div>
+          <div class="table__cell"><span class="table__cell-text">M. Patel</span></div>
+          <div class="table__cell table__cell--fixed table__cell--badge"><span class="badge badge--low badge--square">Active</span></div>
+          <div class="table__cell"><span class="table__cell-text">17 Jan 2026</span></div>
+          <div class="table__cell"><span class="table__cell-text">28 Dec 2025</span></div>
+          <div class="table__cell table__cell--action"><button class="table__quick-action" aria-label="Row actions"><svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="../../icons/icons.svg#icon-vertical-ellipsis"></use></svg></button></div>
+        </div>
+
+        <!-- Row 6 — Processing -->
+        <div class="table__row" data-updated="2025-12-11">
+          <div class="table__cell"><button class="table__cell-link">#CUS-00128</button></div>
+          <div class="table__cell"><span class="table__cell-text">Tom Clarke</span></div>
+          <div class="table__cell"><span class="table__cell-text">BC11 DEF</span></div>
+          <div class="table__cell"><span class="table__cell-text">S. Lee</span></div>
+          <div class="table__cell table__cell--fixed table__cell--badge"><span class="badge badge--disabled badge--square">Processing</span></div>
+          <div class="table__cell"><span class="table__cell-text">16 Jan 2026</span></div>
+          <div class="table__cell"><span class="table__cell-text">11 Dec 2025</span></div>
+          <div class="table__cell table__cell--action"><button class="table__quick-action" aria-label="Row actions"><svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="../../icons/icons.svg#icon-vertical-ellipsis"></use></svg></button></div>
+        </div>
+
+        <!-- Row 7 — Inactive -->
+        <div class="table__row" data-updated="2025-11-29">
+          <div class="table__cell"><button class="table__cell-link">#CUS-00129</button></div>
+          <div class="table__cell"><span class="table__cell-text">Aisha Okonkwo</span></div>
+          <div class="table__cell"><span class="table__cell-text">GH22 IJK</span></div>
+          <div class="table__cell"><span class="table__cell-text">J. Walsh</span></div>
+          <div class="table__cell table__cell--fixed table__cell--badge"><span class="badge badge--inactive badge--square">Inactive</span></div>
+          <div class="table__cell"><span class="table__cell-text">15 Jan 2026</span></div>
+          <div class="table__cell"><span class="table__cell-text">29 Nov 2025</span></div>
+          <div class="table__cell table__cell--action"><button class="table__quick-action" aria-label="Row actions"><svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="../../icons/icons.svg#icon-vertical-ellipsis"></use></svg></button></div>
+        </div>
+
+        <!-- Row 8 — Cancelled -->
+        <div class="table__row" data-updated="2025-11-14">
+          <div class="table__cell"><button class="table__cell-link">#CUS-00130</button></div>
+          <div class="table__cell"><span class="table__cell-text">Marcus Webb</span></div>
+          <div class="table__cell"><span class="table__cell-text">LN33 MNO</span></div>
+          <div class="table__cell"><span class="table__cell-text">M. Patel</span></div>
+          <div class="table__cell table__cell--fixed table__cell--badge"><span class="badge badge--high badge--square">Cancelled</span></div>
+          <div class="table__cell"><span class="table__cell-text">14 Jan 2026</span></div>
+          <div class="table__cell"><span class="table__cell-text">14 Nov 2025</span></div>
+          <div class="table__cell table__cell--action"><button class="table__quick-action" aria-label="Row actions"><svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="../../icons/icons.svg#icon-vertical-ellipsis"></use></svg></button></div>
+        </div>
+
+        <!-- Row 9 — Active -->
+        <div class="table__row" data-updated="2025-10-30">
+          <div class="table__cell"><button class="table__cell-link">#CUS-00131</button></div>
+          <div class="table__cell"><span class="table__cell-text">Olivia Green</span></div>
+          <div class="table__cell"><span class="table__cell-text">PQ44 RST</span></div>
+          <div class="table__cell"><span class="table__cell-text">S. Lee</span></div>
+          <div class="table__cell table__cell--fixed table__cell--badge"><span class="badge badge--low badge--square">Active</span></div>
+          <div class="table__cell"><span class="table__cell-text">13 Jan 2026</span></div>
+          <div class="table__cell"><span class="table__cell-text">30 Oct 2025</span></div>
+          <div class="table__cell table__cell--action"><button class="table__quick-action" aria-label="Row actions"><svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="../../icons/icons.svg#icon-vertical-ellipsis"></use></svg></button></div>
+        </div>
+
+        <!-- Row 10 — Processing -->
+        <div class="table__row" data-updated="2025-10-07">
+          <div class="table__cell"><button class="table__cell-link">#CUS-00132</button></div>
+          <div class="table__cell"><span class="table__cell-text">Ben Fitzgerald</span></div>
+          <div class="table__cell"><span class="table__cell-text">UV55 WXY</span></div>
+          <div class="table__cell"><span class="table__cell-text">J. Walsh</span></div>
+          <div class="table__cell table__cell--fixed table__cell--badge"><span class="badge badge--disabled badge--square">Processing</span></div>
+          <div class="table__cell"><span class="table__cell-text">12 Jan 2026</span></div>
+          <div class="table__cell"><span class="table__cell-text">7 Oct 2025</span></div>
+          <div class="table__cell table__cell--action"><button class="table__quick-action" aria-label="Row actions"><svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="../../icons/icons.svg#icon-vertical-ellipsis"></use></svg></button></div>
+        </div>
+
+        <!-- Row 11 — Pending -->
+        <div class="table__row" data-updated="2025-09-22">
+          <div class="table__cell"><button class="table__cell-link">#CUS-00133</button></div>
+          <div class="table__cell"><span class="table__cell-text">Natalie Brennan</span></div>
+          <div class="table__cell"><span class="table__cell-text">ZA66 BCD</span></div>
+          <div class="table__cell"><span class="table__cell-text">M. Patel</span></div>
+          <div class="table__cell table__cell--fixed table__cell--badge"><span class="badge badge--medium badge--square">Pending</span></div>
+          <div class="table__cell"><span class="table__cell-text">11 Jan 2026</span></div>
+          <div class="table__cell"><span class="table__cell-text">22 Sep 2025</span></div>
+          <div class="table__cell table__cell--action"><button class="table__quick-action" aria-label="Row actions"><svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="../../icons/icons.svg#icon-vertical-ellipsis"></use></svg></button></div>
+        </div>
+
+        <!-- Row 12 — Cancelled -->
+        <div class="table__row" data-updated="2025-09-05">
+          <div class="table__cell"><button class="table__cell-link">#CUS-00134</button></div>
+          <div class="table__cell"><span class="table__cell-text">Ryan Kowalski</span></div>
+          <div class="table__cell"><span class="table__cell-text">EF77 GHI</span></div>
+          <div class="table__cell"><span class="table__cell-text">S. Lee</span></div>
+          <div class="table__cell table__cell--fixed table__cell--badge"><span class="badge badge--high badge--square">Cancelled</span></div>
+          <div class="table__cell"><span class="table__cell-text">10 Jan 2026</span></div>
+          <div class="table__cell"><span class="table__cell-text">5 Sep 2025</span></div>
+          <div class="table__cell table__cell--action"><button class="table__quick-action" aria-label="Row actions"><svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="../../icons/icons.svg#icon-vertical-ellipsis"></use></svg></button></div>
+        </div>
+
+        <!-- Row 13 — Active -->
+        <div class="table__row" data-updated="2025-08-18">
+          <div class="table__cell"><button class="table__cell-link">#CUS-00135</button></div>
+          <div class="table__cell"><span class="table__cell-text">Zoe Macintosh</span></div>
+          <div class="table__cell"><span class="table__cell-text">JK88 LMN</span></div>
+          <div class="table__cell"><span class="table__cell-text">J. Walsh</span></div>
+          <div class="table__cell table__cell--fixed table__cell--badge"><span class="badge badge--low badge--square">Active</span></div>
+          <div class="table__cell"><span class="table__cell-text">9 Jan 2026</span></div>
+          <div class="table__cell"><span class="table__cell-text">18 Aug 2025</span></div>
+          <div class="table__cell table__cell--action"><button class="table__quick-action" aria-label="Row actions"><svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="../../icons/icons.svg#icon-vertical-ellipsis"></use></svg></button></div>
+        </div>
+
+        <!-- Row 14 — Inactive -->
+        <div class="table__row" data-updated="2025-07-31">
+          <div class="table__cell"><button class="table__cell-link">#CUS-00136</button></div>
+          <div class="table__cell"><span class="table__cell-text">Leon Baptiste</span></div>
+          <div class="table__cell"><span class="table__cell-text">OP99 QRS</span></div>
+          <div class="table__cell"><span class="table__cell-text">M. Patel</span></div>
+          <div class="table__cell table__cell--fixed table__cell--badge"><span class="badge badge--inactive badge--square">Inactive</span></div>
+          <div class="table__cell"><span class="table__cell-text">8 Jan 2026</span></div>
+          <div class="table__cell"><span class="table__cell-text">31 Jul 2025</span></div>
+          <div class="table__cell table__cell--action"><button class="table__quick-action" aria-label="Row actions"><svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="../../icons/icons.svg#icon-vertical-ellipsis"></use></svg></button></div>
+        </div>
+
+        <!-- Row 15 — Processing -->
+        <div class="table__row" data-updated="2025-07-02">
+          <div class="table__cell"><button class="table__cell-link">#CUS-00137</button></div>
+          <div class="table__cell"><span class="table__cell-text">Hannah Sterling</span></div>
+          <div class="table__cell"><span class="table__cell-text">TU00 VWX</span></div>
+          <div class="table__cell"><span class="table__cell-text">S. Lee</span></div>
+          <div class="table__cell table__cell--fixed table__cell--badge"><span class="badge badge--disabled badge--square">Processing</span></div>
+          <div class="table__cell"><span class="table__cell-text">7 Jan 2026</span></div>
+          <div class="table__cell"><span class="table__cell-text">2 Jul 2025</span></div>
+          <div class="table__cell table__cell--action"><button class="table__quick-action" aria-label="Row actions"><svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="../../icons/icons.svg#icon-vertical-ellipsis"></use></svg></button></div>
+        </div>
+
+        <!-- Row 16 — Cancelled -->
+        <div class="table__row" data-updated="2025-06-14">
+          <div class="table__cell"><button class="table__cell-link">#CUS-00138</button></div>
+          <div class="table__cell"><span class="table__cell-text">Callum Reid</span></div>
+          <div class="table__cell"><span class="table__cell-text">YZ11 ABC</span></div>
+          <div class="table__cell"><span class="table__cell-text">J. Walsh</span></div>
+          <div class="table__cell table__cell--fixed table__cell--badge"><span class="badge badge--high badge--square">Cancelled</span></div>
+          <div class="table__cell"><span class="table__cell-text">6 Jan 2026</span></div>
+          <div class="table__cell"><span class="table__cell-text">14 Jun 2025</span></div>
+          <div class="table__cell table__cell--action"><button class="table__quick-action" aria-label="Row actions"><svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="../../icons/icons.svg#icon-vertical-ellipsis"></use></svg></button></div>
+        </div>
+
+        <!-- Row 17 — Pending -->
+        <div class="table__row" data-updated="2025-05-20">
+          <div class="table__cell"><button class="table__cell-link">#CUS-00139</button></div>
+          <div class="table__cell"><span class="table__cell-text">Mei Lin</span></div>
+          <div class="table__cell"><span class="table__cell-text">DE22 FGH</span></div>
+          <div class="table__cell"><span class="table__cell-text">M. Patel</span></div>
+          <div class="table__cell table__cell--fixed table__cell--badge"><span class="badge badge--medium badge--square">Pending</span></div>
+          <div class="table__cell"><span class="table__cell-text">5 Jan 2026</span></div>
+          <div class="table__cell"><span class="table__cell-text">20 May 2025</span></div>
+          <div class="table__cell table__cell--action"><button class="table__quick-action" aria-label="Row actions"><svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="../../icons/icons.svg#icon-vertical-ellipsis"></use></svg></button></div>
+        </div>
+
+        <!-- Row 18 — Inactive -->
+        <div class="table__row" data-updated="2025-04-08">
+          <div class="table__cell"><button class="table__cell-link">#CUS-00140</button></div>
+          <div class="table__cell"><span class="table__cell-text">George Adeyemi</span></div>
+          <div class="table__cell"><span class="table__cell-text">IJ33 KLM</span></div>
+          <div class="table__cell"><span class="table__cell-text">S. Lee</span></div>
+          <div class="table__cell table__cell--fixed table__cell--badge"><span class="badge badge--inactive badge--square">Inactive</span></div>
+          <div class="table__cell"><span class="table__cell-text">4 Jan 2026</span></div>
+          <div class="table__cell"><span class="table__cell-text">8 Apr 2025</span></div>
+          <div class="table__cell table__cell--action"><button class="table__quick-action" aria-label="Row actions"><svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="../../icons/icons.svg#icon-vertical-ellipsis"></use></svg></button></div>
+        </div>
+
+      </div><!-- /.table -->
+
+    </div><!-- /.table-area -->
+
+  </main><!-- /.screen-main -->
+
+</div><!-- /.screen -->
+
+
+<!-- Row action popup menu -->
+<div id="row-action-popup" class="row-popup" role="menu" aria-hidden="true">
+  <button class="side-nav__item row-popup__item" role="menuitem" id="row-popup-view">
+    <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+      <use href="../../icons/icons.svg#icon-search"></use>
+    </svg>
+    <span class="side-nav__item-label">Quick view</span>
+  </button>
+  <button class="side-nav__item row-popup__item" role="menuitem" id="row-popup-delete">
+    <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+      <use href="../../icons/icons.svg#icon-delete"></use>
+    </svg>
+    <span class="side-nav__item-label">Delete customer</span>
+  </button>
+</div>
+
+<!-- Delete confirmation modal -->
+<div id="delete-modal-overlay" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="delete-modal-title" aria-hidden="true">
+  <div class="modal">
+    <div class="modal__body">
+      <p id="delete-modal-title" class="modal__text">
+        Are you sure you want to delete
+        <span class="modal__customer-name" id="delete-modal-name">this customer</span>
+        as a customer?
+      </p>
+    </div>
+    <div class="modal__divider" aria-hidden="true"></div>
+    <div class="modal__actions">
+      <button class="btn btn--rounded btn--secondary btn--medium" id="delete-modal-cancel" type="button">Cancel</button>
+      <button class="btn btn--rounded btn--primary btn--medium" id="delete-modal-confirm" type="button">Delete</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+
+  // ============================================================
+  // SIDE NAV — toggle expanded/collapsed, active state, sub-nav
+  // ============================================================
+
+  var nav    = document.querySelector('.side-nav');
+  var toggle = nav ? nav.querySelector('.side-nav__toggle') : null;
+  var toggleIcon = toggle ? toggle.querySelector('use') : null;
+
+  if (toggle) {
+    toggle.addEventListener('click', function() {
+      var collapsed = nav.classList.toggle('side-nav--collapsed');
+      if (toggleIcon) {
+        toggleIcon.setAttribute('href',
+          collapsed
+            ? '../../icons/icons.svg#icon-chevron-small-right'
+            : '../../icons/icons.svg#icon-chevron-small-left'
+        );
+      }
+      toggle.setAttribute('aria-label', collapsed ? 'Expand navigation' : 'Collapse navigation');
+    });
+  }
+
+  if (nav) {
+    // Group label accordion — collapse/expand the items below each label
+    nav.querySelectorAll('.side-nav__group-label').forEach(function(label) {
+      label.addEventListener('click', function() {
+        var isOpen = label.classList.toggle('side-nav__group-label--open');
+        var groupItems = label.nextElementSibling;
+        if (groupItems && groupItems.classList.contains('side-nav__group-items')) {
+          groupItems.classList.toggle('side-nav__group-items--collapsed', !isOpen);
+        }
+      });
+    });
+
+    nav.querySelectorAll('.side-nav__item').forEach(function(item) {
+      item.addEventListener('click', function() {
+        nav.querySelectorAll('.side-nav__item').forEach(function(i) {
+          i.classList.remove('side-nav__item--active');
+        });
+        item.classList.add('side-nav__item--active');
+
+        var subItems = item.nextElementSibling;
+        if (subItems && subItems.classList.contains('side-nav__sub-items')) {
+          var isOpen = subItems.classList.toggle('side-nav__sub-items--open');
+          var chevron = item.querySelector('.side-nav__item-chevron');
+          if (chevron) chevron.classList.toggle('side-nav__item-chevron--open', isOpen);
+        }
+      });
+    });
+  }
+
+
+  // ============================================================
+  // DATE PICKER — calendar, range selection, apply/clear
+  // ============================================================
+
+  document.querySelectorAll('.date-picker').forEach(function(picker) {
+    var trigger     = picker.querySelector('.date-picker__trigger');
+    var dropdown    = picker.querySelector('.date-picker__dropdown');
+    var monthLabel  = picker.querySelector('.date-picker__month-label');
+    var prevBtn     = picker.querySelector('.date-picker__month-prev');
+    var nextBtn     = picker.querySelector('.date-picker__month-next');
+    var grid        = picker.querySelector('.date-picker__grid');
+    var clearBtn    = picker.querySelector('.date-picker__clear');
+    var applyBtn    = picker.querySelector('.date-picker__apply');
+    var triggerText = picker.querySelector('.date-picker__trigger-text');
+
+    if (!trigger || !grid) return;
+
+    var currentDate = new Date();
+    var viewYear    = currentDate.getFullYear();
+    var viewMonth   = currentDate.getMonth();
+    var rangeStart  = null;
+    var rangeEnd    = null;
+    var selecting   = false;
+
+    var MONTHS = ['January','February','March','April','May','June',
+                  'July','August','September','October','November','December'];
+
+    function formatRange(start, end) {
+      var opts = { month: 'short', day: 'numeric', year: 'numeric' };
+      return start.toLocaleDateString('en-US', opts) + ' \u2192 ' + end.toLocaleDateString('en-US', opts);
+    }
+
+    function isSameDay(a, b) {
+      return a && b && a.toDateString() === b.toDateString();
+    }
+
+    function renderGrid() {
+      if (!monthLabel) return;
+      monthLabel.textContent = MONTHS[viewMonth] + ' ' + viewYear;
+      grid.innerHTML = '';
+
+      var headers = document.createElement('div');
+      headers.className = 'date-picker__day-headers';
+      ['M','T','W','T','F','S','S'].forEach(function(d) {
+        var h = document.createElement('div');
+        h.className = 'date-picker__day-header';
+        h.textContent = d;
+        headers.appendChild(h);
+      });
+      grid.appendChild(headers);
+
+      var firstDay    = new Date(viewYear, viewMonth, 1).getDay();
+      var startOffset = (firstDay === 0) ? 6 : firstDay - 1;
+      var daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+      var totalCells  = Math.ceil((startOffset + daysInMonth) / 7) * 7;
+
+      var week = document.createElement('div');
+      week.className = 'date-picker__week';
+
+      for (var i = 0; i < totalCells; i++) {
+        var dayNum = i - startOffset + 1;
+        var cell   = document.createElement('button');
+        cell.className = 'date-picker__day';
+        cell.type = 'button';
+
+        if (dayNum < 1 || dayNum > daysInMonth) {
+          cell.classList.add('date-picker__day--empty');
+          cell.setAttribute('aria-hidden', 'true');
+          cell.disabled = true;
+          cell.textContent = '\u00A0';
+        } else {
+          var thisDate = new Date(viewYear, viewMonth, dayNum);
+          cell.textContent = dayNum;
+
+          if (isSameDay(thisDate, currentDate)) {
+            cell.classList.add('date-picker__day--today');
+          }
+
+          var start = rangeStart ? new Date(rangeStart) : null;
+          var end   = rangeEnd   ? new Date(rangeEnd)   : null;
+          if (start && isSameDay(thisDate, start)) cell.classList.add('date-picker__day--range-start');
+          if (end   && isSameDay(thisDate, end))   cell.classList.add('date-picker__day--range-end');
+          if (start && end && thisDate > start && thisDate < end) cell.classList.add('date-picker__day--in-range');
+
+          (function(date) {
+            cell.addEventListener('click', function() {
+              var s = rangeStart ? new Date(rangeStart) : null;
+              if (!selecting || (s && rangeEnd)) {
+                rangeStart = date;
+                rangeEnd   = null;
+                selecting  = true;
+              } else {
+                if (s && date < s) {
+                  rangeEnd   = new Date(s);
+                  rangeStart = date;
+                } else {
+                  rangeEnd = date;
+                }
+                selecting = false;
+              }
+              renderGrid();
+            });
+          }(thisDate));
+        }
+
+        week.appendChild(cell);
+
+        if ((i + 1) % 7 === 0) {
+          grid.appendChild(week);
+          week = document.createElement('div');
+          week.className = 'date-picker__week';
+        }
+      }
+    }
+
+    trigger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = picker.classList.toggle('date-picker--open');
+      trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      if (isOpen) renderGrid();
+    });
+
+    if (dropdown) {
+      dropdown.addEventListener('click', function(e) {
+        e.stopPropagation();
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function() {
+        viewMonth--;
+        if (viewMonth < 0) { viewMonth = 11; viewYear--; }
+        renderGrid();
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function() {
+        viewMonth++;
+        if (viewMonth > 11) { viewMonth = 0; viewYear++; }
+        renderGrid();
+      });
+    }
+
+    if (applyBtn) {
+      applyBtn.addEventListener('click', function() {
+        if (rangeStart && rangeEnd) {
+          triggerText.textContent = formatRange(new Date(rangeStart), new Date(rangeEnd));
+          picker.classList.add('date-picker--populated');
+          dateRange.start = new Date(rangeStart);
+          dateRange.end   = new Date(rangeEnd);
+          // Set end to end-of-day so inclusive date comparison works
+          dateRange.end.setHours(23, 59, 59, 999);
+        }
+        picker.classList.remove('date-picker--open');
+        trigger.setAttribute('aria-expanded', 'false');
+        applyFilters();
+      });
+    }
+
+    if (clearBtn) {
+      clearBtn.addEventListener('click', function() {
+        rangeStart = null;
+        rangeEnd   = null;
+        selecting  = false;
+        triggerText.textContent = 'Select date range';
+        picker.classList.remove('date-picker--populated', 'date-picker--open');
+        trigger.setAttribute('aria-expanded', 'false');
+        dateRange.start = null;
+        dateRange.end   = null;
+        applyFilters();
+      });
+    }
+
+    document.addEventListener('click', function() {
+      picker.classList.remove('date-picker--open');
+      trigger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+
+  // ============================================================
+  // SHARED FILTER STATE — used by both search and filter-select
+  // ============================================================
+
+  var activeStatuses = new Set(); // statuses committed via filter-select
+  var searchQuery    = '';        // live text from control-bar search
+  var dateRange      = { start: null, end: null }; // updated-date range from date picker
+
+  function applyFilters() {
+    var q = searchQuery.toLowerCase();
+    document.querySelectorAll('.table__row:not(.table__row--error)').forEach(function(row) {
+      var badge  = row.querySelector('.badge');
+      var status = badge ? badge.textContent.trim() : '';
+
+      var statusMatch = activeStatuses.size === 0 || activeStatuses.has(status);
+      var searchMatch = q === '' || row.textContent.toLowerCase().indexOf(q) !== -1;
+
+      var dateMatch = true;
+      if (dateRange.start && dateRange.end) {
+        var iso = row.getAttribute('data-updated');
+        if (iso) {
+          var rowDate = new Date(iso);
+          dateMatch = rowDate >= dateRange.start && rowDate <= dateRange.end;
+        }
+      }
+
+      row.style.display = (statusMatch && searchMatch && dateMatch) ? '' : 'none';
+    });
+  }
+
+
+  // ============================================================
+  // CONTROL BAR SEARCH — real-time keyword filter
+  // ============================================================
+
+  var controlSearch = document.querySelector('.control-bar__search .input');
+  if (controlSearch) {
+    controlSearch.addEventListener('input', function() {
+      searchQuery = controlSearch.value;
+      applyFilters();
+    });
+  }
+
+
+  // ============================================================
+  // FILTER SELECT — checkbox options, tags, apply/clear
+  // ============================================================
+
+  var BADGE_CLASSES = {
+    'Processing': 'badge--disabled',
+    'Active':     'badge--low',
+    'Pending':    'badge--medium',
+    'Cancelled':  'badge--high',
+    'Inactive':   'badge--inactive'
+  };
+
+  document.querySelectorAll('.filter-select').forEach(function(fs) {
+    var trigger  = fs.querySelector('.filter-select__trigger');
+    var dropdown = fs.querySelector('.filter-select__dropdown');
+    var options  = fs.querySelectorAll('.filter-select__option');
+    var tagsWrap = fs.querySelector('.filter-select__tags');
+    var clearBtn = fs.querySelector('.filter-select__clear');
+    var applyBtn = fs.querySelector('.filter-select__apply');
+
+    if (!trigger || !dropdown) return;
+
+    var selected = new Set();
+    var pending  = new Set();
+
+    // Initialise from pre-checked inputs
+    options.forEach(function(option) {
+      var input = option.querySelector('.checkbox__input');
+      if (input && input.checked) selected.add(option.getAttribute('data-value'));
+    });
+    if (selected.size > 0) {
+      fs.classList.add('filter-select--populated');
+      renderTags();
+      activeStatuses = new Set(selected);
+      applyFilters();
+    }
+
+    trigger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = fs.classList.toggle('filter-select--open');
+      fs.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      if (isOpen) {
+        pending = new Set(selected);
+        syncCheckboxes();
+      }
+    });
+
+    dropdown.addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+
+    options.forEach(function(option) {
+      var input = option.querySelector('.checkbox__input');
+      option.addEventListener('click', function(e) {
+        if (e.target !== input) {
+          if (input) input.checked = !input.checked;
+        }
+        var value = option.getAttribute('data-value');
+        if (input && input.checked) {
+          pending.add(value);
+        } else {
+          pending.delete(value);
+        }
+        if (input) option.setAttribute('aria-selected', input.checked ? 'true' : 'false');
+        e.preventDefault();
+      });
+    });
+
+    applyBtn.addEventListener('click', function() {
+      selected = new Set(pending);
+      renderTags();
+      fs.classList.toggle('filter-select--populated', selected.size > 0);
+      fs.classList.remove('filter-select--open');
+      fs.setAttribute('aria-expanded', 'false');
+      activeStatuses = new Set(selected);
+      applyFilters();
+    });
+
+    clearBtn.addEventListener('click', function() {
+      selected.clear();
+      pending.clear();
+      syncCheckboxes();
+      renderTags();
+      fs.classList.remove('filter-select--populated', 'filter-select--open');
+      fs.setAttribute('aria-expanded', 'false');
+      activeStatuses.clear();
+      applyFilters();
+    });
+
+    tagsWrap.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var removeBtn = e.target.closest('.filter-select__tag-remove');
+      if (!removeBtn) return;
+      var value = removeBtn.closest('.filter-select__tag').getAttribute('data-value');
+      selected.delete(value);
+      renderTags();
+      fs.classList.toggle('filter-select--populated', selected.size > 0);
+      activeStatuses = new Set(selected);
+      applyFilters();
+    });
+
+    document.addEventListener('click', function() {
+      fs.classList.remove('filter-select--open');
+      fs.setAttribute('aria-expanded', 'false');
+    });
+
+    function syncCheckboxes() {
+      options.forEach(function(option) {
+        var value = option.getAttribute('data-value');
+        var input = option.querySelector('.checkbox__input');
+        if (input) input.checked = pending.has(value);
+        option.setAttribute('aria-selected', pending.has(value) ? 'true' : 'false');
+      });
+    }
+
+    function renderTags() {
+      tagsWrap.innerHTML = '';
+      selected.forEach(function(value) {
+        var badgeClass = BADGE_CLASSES[value] || '';
+        var tag = document.createElement('div');
+        tag.className = 'filter-select__tag badge badge--square ' + badgeClass;
+        tag.setAttribute('data-value', value);
+        tag.innerHTML =
+          '<span class="filter-select__tag-label">' + value + '</span>' +
+          '<button class="filter-select__tag-remove" aria-label="Remove ' + value + '" type="button">\u00D7</button>';
+        tagsWrap.appendChild(tag);
+      });
+    }
+  });
+
+})();
+
+  // Navigate to customer detail on row link click
+  document.querySelectorAll('.table__cell-link').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.location.href = 'customer-detail.html';
+    });
+  });
+
+  // ============================================
+  // Row action popup
+  // ============================================
+  (function() {
+    var popup  = document.getElementById('row-action-popup');
+    var active = null;
+
+    function openPopup(btn) {
+      var rect = btn.getBoundingClientRect();
+
+      popup.style.top  = (rect.bottom + 4) + 'px';
+      popup.style.left = (rect.right - popup.offsetWidth || rect.left) + 'px';
+
+      popup.classList.add('row-popup--visible');
+      popup.setAttribute('aria-hidden', 'false');
+      active = btn;
+
+      requestAnimationFrame(function() {
+        var popupRect = popup.getBoundingClientRect();
+        var left = rect.right - popupRect.width;
+        if (left < 8) left = 8;
+        popup.style.left = left + 'px';
+      });
+    }
+
+    function closePopup() {
+      popup.classList.remove('row-popup--visible');
+      popup.setAttribute('aria-hidden', 'true');
+      active = null;
+    }
+
+    document.querySelectorAll('.table__quick-action').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (active === btn) {
+          closePopup();
+        } else {
+          openPopup(btn);
+        }
+      });
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!popup.contains(e.target)) {
+        closePopup();
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closePopup();
+    });
+
+    document.getElementById('row-popup-view').addEventListener('click', function() {
+      closePopup();
+      window.location.href = 'customer-detail.html';
+    });
+
+    document.getElementById('row-popup-delete').addEventListener('click', function() {
+      var customerName = 'this customer';
+      if (active) {
+        var row = active.closest('.table__row');
+        if (row) {
+          var nameCell = row.querySelector('.table__cell-text');
+          if (nameCell) customerName = nameCell.textContent.trim();
+        }
+      }
+      document.getElementById('delete-modal-name').textContent = customerName;
+      closePopup();
+      window.openDeleteModal();
+    });
+
+  })();
+
+  // ============================================
+  // Delete confirmation modal
+  // ============================================
+  (function() {
+    var overlay = document.getElementById('delete-modal-overlay');
+
+    function openDeleteModal() {
+      overlay.classList.add('modal-overlay--visible');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.getElementById('delete-modal-cancel').focus();
+    }
+
+    function closeDeleteModal() {
+      overlay.classList.remove('modal-overlay--visible');
+      overlay.setAttribute('aria-hidden', 'true');
+    }
+
+    window.openDeleteModal = openDeleteModal;
+
+    document.getElementById('delete-modal-cancel').addEventListener('click', function() {
+      closeDeleteModal();
+    });
+
+    document.getElementById('delete-modal-confirm').addEventListener('click', function() {
+      closeDeleteModal();
+    });
+
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) closeDeleteModal();
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && overlay.classList.contains('modal-overlay--visible')) {
+        closeDeleteModal();
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

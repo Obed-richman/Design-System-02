@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Screen title</title>
+
+  <!-- Design system tokens — always load first -->
+  <link rel="stylesheet" href="../../tokens/tokens.css">
+  <link rel="stylesheet" href="../../tokens/typography.css">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="../../icons/icons.css">
+
+  <!-- Components — uncomment what this screen needs -->
+  <!-- <link rel="stylesheet" href="../../components/side-nav/side-nav.css"> -->
+  <!-- <link rel="stylesheet" href="../../components/button/button.css"> -->
+  <!-- <link rel="stylesheet" href="../../components/input/input.css"> -->
+  <!-- <link rel="stylesheet" href="../../components/input/search.css"> -->
+  <!-- <link rel="stylesheet" href="../../components/input/date-picker.css"> -->
+  <!-- <link rel="stylesheet" href="../../components/input/filter-select.css"> -->
+  <!-- <link rel="stylesheet" href="../../components/badge/badge.css"> -->
+  <!-- <link rel="stylesheet" href="../../components/table/table.css"> -->
+  <!-- <link rel="stylesheet" href="../../components/accordion/accordion.css"> -->
+  <!-- <link rel="stylesheet" href="../../components/document-row/document-row.css"> -->
+  <!-- <link rel="stylesheet" href="../../components/tabs/tabs.css"> -->
+  <!-- <link rel="stylesheet" href="../../components/checkbox/checkbox.css"> -->
+  <!-- <link rel="stylesheet" href="../../components/alert/alert.css"> -->
+  <!-- <link rel="stylesheet" href="../../components/divider/divider.css"> -->
+
+  <style>
+    /* ============================================
+       [Screen name] — screen-specific styles
+       Shared layout patterns are defined here.
+       Component styles stay in their own files.
+    ============================================ */
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: var(--bg-primary);
+      font-family: var(--font-family-base);
+    }
+
+    /* Two-column shell: side nav + main content */
+    .screen {
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .screen-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    /* Scrollable content area */
+    .content-area {
+      flex: 1;
+      overflow-y: auto;
+      padding: var(--gap-medium);
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap-medium);
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="screen">
+
+  <!-- Side navigation — copy from components/side-nav/side-nav.html -->
+  <!-- Set the active item with .side-nav__item--active on the correct .side-nav__item -->
+  <!-- <nav class="side-nav" role="navigation" aria-label="Main navigation">
+    ...
+  </nav> -->
+
+  <div class="screen-main">
+
+    <!-- Header bar — global search + user avatar + notifications -->
+    <!-- Copy header bar pattern from screens/console/customers.html -->
+
+    <!-- Page header — title + action buttons -->
+    <!-- <div class="page-controls"> ... </div> -->
+
+    <!-- Main scrollable content -->
+    <main class="content-area">
+
+      <!-- Page content goes here -->
+
+    </main>
+
+  </div>
+
+</div><!-- /.screen -->
+
+<script>
+  // ============================================
+  // [Screen name] — JavaScript
+  // Copy JS from component HTML files as needed.
+  // Each block is wrapped in an IIFE to avoid
+  // variable collisions.
+  // ============================================
+
+  // Side nav toggle (copy from side-nav.html)
+  // (function() { ... })();
+
+  // Accordion toggle (copy from accordion.html)
+  // (function() { ... })();
+
+  // Date picker (copy from date-picker.html)
+  // (function() { ... })();
+
+  // Filter select (copy from filter-select.html)
+  // (function() { ... })();
+
+</script>
+</body>
+</html>

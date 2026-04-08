@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Screen Name</title>
 
+  <!-- 0. Fonts — must load before tokens -->
+  <link rel="stylesheet" href="../tokens/fonts.css" />
+
   <!-- 1. Tokens — always first -->
   <link rel="stylesheet" href="../tokens/tokens.css" />
 
@@ -17,7 +20,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: var(--font-family-base);
       background: var(--bg-primary);
       color: var(--text-primary);
       min-height: 100vh;
