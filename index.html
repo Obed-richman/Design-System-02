@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Design System</title>
 
+  <!-- 0. Fonts — must load before tokens -->
+  <link rel="stylesheet" href="../tokens/fonts.css" />
+
   <!-- 1. Tokens — always first -->
   <link rel="stylesheet" href="../tokens/tokens.css" />
   <link rel="stylesheet" href="../tokens/typography.css" />
@@ -15,6 +18,9 @@
   <!-- 3. Components — add/remove as needed -->
   <link rel="stylesheet" href="components/button/button.css" />
   <link rel="stylesheet" href="components/input/input.css" />
+  <link rel="stylesheet" href="components/input/date-picker.css" />
+  <link rel="stylesheet" href="components/input/filter-select.css" />
+  <link rel="stylesheet" href="components/input/search.css" />
   <link rel="stylesheet" href="components/input/textarea.css" />
   <link rel="stylesheet" href="components/toggle/toggle.css" />
   <link rel="stylesheet" href="components/toggle-card/toggle-card.css" />
@@ -35,6 +41,16 @@
   <link rel="stylesheet" href="components/status/status.css" />
   <link rel="stylesheet" href="components/divider/divider.css" />
   <link rel="stylesheet" href="components/address/address.css" />
+  <link rel="stylesheet" href="components/icon-badge/icon-badge.css" />
+  <link rel="stylesheet" href="components/side-nav/side-nav.css" />
+  <link rel="stylesheet" href="components/table/table.css" />
+  <link rel="stylesheet" href="components/document-row/document-row.css" />
+  <link rel="stylesheet" href="components/input/search.css" />
+  <link rel="stylesheet" href="components/price-comparison/price-comparison.css" />
+  <link rel="stylesheet" href="components/tooltip/tooltip.css" />
+  <link rel="stylesheet" href="components/registration-plate/registration-plate.css" />
+  <link rel="stylesheet" href="components/onboarding-steps/onboarding-steps.css" />
+  <link rel="stylesheet" href="components/step-indicator/step-indicator.css" />
 
   <style>
     /* Sandbox layout only — not part of any component */
@@ -42,7 +58,7 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: var(--bg-secondary);
+      background: var(--base-white);
       color: var(--text-primary);
       min-height: 100vh;
       padding: var(--gap-x-large);
@@ -93,17 +109,82 @@
       color: var(--text-disabled);
       width: 100%;
     }
+
+    /* Search filtering */
+    .section--hidden {
+      display: none;
+    }
+
+    .section-label mark,
+    .row-label mark {
+      background: var(--bg-brand-aqua);
+      color: var(--colour-navy-70);
+      border-radius: var(--radius-x-small);
+      padding: 0 2px;
+    }
+
+    .sandbox-no-results {
+      font-size: 14px;
+      color: var(--text-disabled);
+      padding: var(--gap-large) 0;
+      text-align: center;
+      width: 100%;
+    }
+
+    .sandbox-no-results__term {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
   </style>
+
 </head>
 <body>
 
   <header class="sandbox-header">
+
     <div>
       <h1>Component Sandbox</h1>
       <p>index.html — add components here to preview them</p>
     </div>
-    <button class="toggle" onclick="document.body.classList.toggle('dark'); this.textContent = document.body.classList.contains('dark') ? '☀ Light' : '☾ Dark'">☾ Dark</button>
+
+    <button class="btn btn--pill btn--secondary" onclick="document.body.classList.toggle('dark'); this.textContent = document.body.classList.contains('dark') ? '☀ Light' : '☾ Dark'">☾ Dark</button>
+  
+
   </header>
+
+  <!-- ==============================
+       SEARCH
+       Paste button snippets from components/input/search.html
+  ============================== -->
+  <div class="input-group" style="margin-bottom: var(--gap-x-large);">
+      <label class="input-label" for="search-default">Search</label>
+      <div class="input-field search-wrapper">
+        <input
+          class="input search search--icon-right sandbox-search"
+          id="search-default"
+          type="search"
+          placeholder="Search for components..."
+          autocomplete="off"
+        />
+        <!-- Search icon — visible by default, hidden when focused -->
+        <span class="search__icon search__icon--search" aria-hidden="true">
+          <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+            <use href="../../icons/icons.svg#icon-search"></use>
+          </svg>
+        </span>
+        <!-- Clear icon — hidden by default, shown when focused -->
+        <button class="search__icon search__icon--clear" aria-label="Clear search" hidden>
+          <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+            <use href="../../icons/icons.svg#icon-close"></use>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+
+  <p class="sandbox-no-results" hidden>
+    No components found for "<span class="sandbox-no-results__term"></span>"
+  </p>
 
 
   <!-- ==============================
@@ -141,6 +222,14 @@
     </div>
 
     <div class="row">
+      <span class="row-label">Sizes · Primary</span>
+      <button class="btn btn--pill btn--primary btn--large">Large</button>
+      <button class="btn btn--pill btn--primary btn--medium">Medium</button>
+      <button class="btn btn--pill btn--primary btn--small">Small</button>
+    </div>
+
+
+    <div class="row">
       <span class="row-label">FAB</span>
       <button class="btn btn--fab btn--primary" aria-label="Search">
         <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-search"></use></svg>
@@ -164,26 +253,38 @@
       <button class="btn btn--text btn--text-primary" disabled>Disabled</button>
     </div>
 
+  </section>
+
+
+  <!-- ==============================
+       ICONS
+  ============================== -->
+  <section class="section">
+    <p class="section-label">Icons</p>
+
     <div class="row">
-      <span class="row-label">Forced states · Hover</span>
-      <button class="btn btn--pill btn--primary btn--hover">Primary</button>
-      <button class="btn btn--pill btn--secondary btn--hover">Secondary</button>
-      <button class="btn btn--pill btn--tertiary btn--hover">Tertiary</button>
+      <span class="row-label">Size scale</span>
+      <svg class="icon icon--3xs icon--primary" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-close"></use></svg>
+      <svg class="icon icon--xxs icon--primary" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-close"></use></svg>
+      <svg class="icon icon--xs icon--primary" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-close"></use></svg>
+      <svg class="icon icon--s icon--primary" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-close"></use></svg>
+      <svg class="icon icon--m icon--primary" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-close"></use></svg>
+      <svg class="icon icon--l icon--primary" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-close"></use></svg>
+      <svg class="icon icon--xl icon--primary" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-close"></use></svg>
+      <svg class="icon icon--xxl icon--primary" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-close"></use></svg>
     </div>
 
     <div class="row">
-      <span class="row-label">Forced states · Active</span>
-      <button class="btn btn--pill btn--primary btn--active">Primary</button>
-      <button class="btn btn--pill btn--secondary btn--active">Secondary</button>
-      <button class="btn btn--pill btn--tertiary btn--active">Tertiary</button>
+      <span class="row-label">Colour variants (xs)</span>
+      <svg class="icon icon--xs icon--primary" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-close"></use></svg>
+      <svg class="icon icon--xs icon--secondary" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-close"></use></svg>
+      <svg class="icon icon--xs icon--brand" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-close"></use></svg>
+      <svg class="icon icon--xs icon--positive" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-close"></use></svg>
+      <svg class="icon icon--xs icon--negative" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-close"></use></svg>
+      <svg class="icon icon--xs icon--warning" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-close"></use></svg>
+      <svg class="icon icon--xs icon--disabled" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-close"></use></svg>
     </div>
 
-    <div class="row">
-      <span class="row-label">Forced states · Focused</span>
-      <button class="btn btn--pill btn--primary btn--focused">Primary</button>
-      <button class="btn btn--pill btn--secondary btn--focused">Secondary</button>
-      <button class="btn btn--pill btn--tertiary btn--focused">Tertiary</button>
-    </div>
   </section>
 
 
@@ -311,6 +412,204 @@
       </div>
 
     </div>
+
+    <!-- Search -->
+    <div class="row" style="flex-direction: column; max-width: 400px; gap: var(--gap-medium);">
+      <span class="row-label">Search</span>
+
+      <!-- Default state -->
+      <div class="input-group">
+        <label class="input-label" for="idx-search-default">Search</label>
+        <div class="input-field search-wrapper">
+          <input class="input search search--icon-right" id="idx-search-default" type="search" placeholder="Search..." autocomplete="off" />
+          <span class="search__icon search__icon--search" aria-hidden="true">
+            <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+              <use href="icons/icons.svg#icon-search"></use>
+            </svg>
+          </span>
+          <button class="search__icon search__icon--clear" aria-label="Clear search" hidden>
+            <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+              <use href="icons/icons.svg#icon-close"></use>
+            </svg>
+          </button>
+        </div>
+        <div class="input-message">
+          <span class="input-message__text">We'll search across all policies and claims</span>
+        </div>
+      </div>
+
+      <!-- Error state -->
+      <div class="input-group input-group--search-error">
+        <label class="input-label" for="idx-search-error">Search</label>
+        <div class="input-field search-wrapper">
+          <input class="input search search--icon-right" id="idx-search-error" type="search" value="lamborghini huracan" autocomplete="off" />
+          <span class="search__icon search__icon--search" aria-hidden="true" hidden>
+            <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+              <use href="icons/icons.svg#icon-search"></use>
+            </svg>
+          </span>
+          <button class="search__icon search__icon--clear" aria-label="Clear search">
+            <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+              <use href="icons/icons.svg#icon-close"></use>
+            </svg>
+          </button>
+        </div>
+        <div class="input-message">
+          <svg class="icon icon--md input-message__icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="icons/icons.svg#icon-caution"></use>
+          </svg>
+          <span class="input-message__text">Sorry, we couldn't find the results</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==============================
+       DATE PICKER
+  ============================== -->
+  <section class="section">
+    <p class="section-label">Date Picker</p>
+
+    <div class="row" style="flex-direction: column; align-items: stretch; max-width: 300px; gap: var(--gap-large); padding-bottom: 300px;">
+
+      <span class="row-label">Date picker — default</span>
+      <div class="date-picker">
+        <button class="date-picker__trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          <span class="date-picker__trigger-text">Select date range</span>
+          <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+            <use href="../../icons/icons.svg#icon-calendar"></use>
+          </svg>
+        </button>
+        <div class="date-picker__dropdown" role="dialog" aria-label="Date picker">
+          <div class="date-picker__month-nav">
+            <button class="date-picker__month-prev" aria-label="Previous month" type="button">
+              <svg viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-arrow-left"></use></svg>
+            </button>
+            <span class="date-picker__month-label">January 2026</span>
+            <button class="date-picker__month-next" aria-label="Next month" type="button">
+              <svg viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-arrow-right"></use></svg>
+            </button>
+          </div>
+          <div class="date-picker__grid" role="grid"></div>
+          <div class="date-picker__footer">
+            <div class="divider divider--simple"><span class="divider__line"></span></div>
+            <div class="date-picker__actions">
+              <button class="date-picker__clear" type="button">Clear</button>
+              <button class="date-picker__apply" type="button">Apply</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <span class="row-label">Date picker — populated</span>
+      <div class="date-picker date-picker--populated">
+        <button class="date-picker__trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          <span class="date-picker__trigger-text">Jan 21, 2026 → Jan 30, 2026</span>
+          <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+            <use href="../../icons/icons.svg#icon-calendar"></use>
+          </svg>
+        </button>
+        <div class="date-picker__dropdown" role="dialog" aria-label="Date picker">
+          <div class="date-picker__month-nav">
+            <button class="date-picker__month-prev" aria-label="Previous month" type="button">
+              <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+                <use href="../../icons/icons.svg#icon-arrow-left"></use>
+              </svg>
+            </button>
+            <span class="date-picker__month-label">January 2026</span>
+            <button class="date-picker__month-next" aria-label="Next month" type="button">
+              <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+                <use href="../../icons/icons.svg#icon-arrow-right"></use>
+              </svg>
+            </button>
+          </div>
+          <div class="date-picker__grid" role="grid"></div>
+          <div class="date-picker__footer">
+            <div class="divider divider--simple"><span class="divider__line"></span></div>
+            <div class="date-picker__actions">
+              <button class="date-picker__clear" type="button">Clear</button>
+              <button class="date-picker__apply" type="button">Apply</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ==============================
+       FILTER SELECT
+  ============================== -->
+  <section class="section">
+    <p class="section-label">Filter Select</p>
+
+    <div class="row" style="flex-direction: column; align-items: flex-start; max-width: 450px; gap: var(--gap-large); padding-bottom: 280px;">
+
+      <span class="row-label">Filter select — empty</span>
+      <div class="filter-select" role="combobox" aria-haspopup="listbox" aria-expanded="false" style="width: 240px;">
+        <button class="filter-select__trigger" type="button" aria-label="Filter by Status">
+          <span class="filter-select__label">Status</span>
+          <span class="filter-select__divider" aria-hidden="true"></span>
+          <span class="filter-select__placeholder">Select to filter..</span>
+          <div class="filter-select__tags" aria-label="Selected filters"></div>
+          <svg class="filter-select__chevron" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="icons/icons.svg#icon-chevron-down"></use>
+          </svg>
+        </button>
+        <div class="filter-select__dropdown" role="listbox">
+          <div class="filter-select__options">
+            <label class="filter-select__option" data-value="Processing">
+              <span class="checkbox filter-select__option-checkbox">
+                <input type="checkbox" class="checkbox__input" value="Processing" />
+                <span class="checkbox__control"></span>
+              </span>
+              <span class="filter-select__option-badge badge badge--disabled">Processing</span>
+            </label>
+            <label class="filter-select__option" data-value="Pending">
+              <span class="checkbox filter-select__option-checkbox">
+                <input type="checkbox" class="checkbox__input" value="Pending" />
+                <span class="checkbox__control"></span>
+              </span>
+              <span class="filter-select__option-badge badge badge--medium">Pending</span>
+            </label>
+            <label class="filter-select__option" data-value="Active">
+              <span class="checkbox filter-select__option-checkbox">
+                <input type="checkbox" class="checkbox__input" value="Active" />
+                <span class="checkbox__control"></span>
+              </span>
+              <span class="filter-select__option-badge badge badge--low">Active</span>
+            </label>
+            <label class="filter-select__option" data-value="Cancelled">
+              <span class="checkbox filter-select__option-checkbox">
+                <input type="checkbox" class="checkbox__input" value="Cancelled" />
+                <span class="checkbox__control"></span>
+              </span>
+              <span class="filter-select__option-badge badge badge--high">Cancelled</span>
+            </label>
+            <label class="filter-select__option" data-value="Inactive">
+              <span class="checkbox filter-select__option-checkbox">
+                <input type="checkbox" class="checkbox__input" value="Inactive" />
+                <span class="checkbox__control"></span>
+              </span>
+              <span class="filter-select__option-badge badge badge--inactive">Inactive</span>
+            </label>
+          </div>
+          <div class="filter-select__footer">
+            <div class="divider divider--simple"><span class="divider__line"></span></div>
+            <div class="filter-select__actions">
+              <button class="filter-select__clear" type="button">Clear</button>
+              <button class="filter-select__apply" type="button">Apply</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
   </section>
 
 
@@ -701,32 +1000,32 @@
       <span class="row-label">Icon + Text · Default / Selected / Error / Disabled</span>
       <button class="selector-item selector-item--icon-text">
         <span class="selector-item__icon">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M13 11a4 4 0 0 1 4 4v1H3v-1a4 4 0 0 1 4-4h6ZM10 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm5-1v2m0 2v2M16 3h2M14 3h-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+            <use href="../../icons/icons.svg#icon-caution"></use>
           </svg>
         </span>
         <span class="selector-item__text">Text</span>
       </button>
       <button class="selector-item selector-item--icon-text selector-item--selected">
         <span class="selector-item__icon">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M13 11a4 4 0 0 1 4 4v1H3v-1a4 4 0 0 1 4-4h6ZM10 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm5-1v2m0 2v2M16 3h2M14 3h-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+            <use href="../../icons/icons.svg#icon-caution"></use>
           </svg>
         </span>
         <span class="selector-item__text">Text</span>
       </button>
       <button class="selector-item selector-item--icon-text selector-item--error">
         <span class="selector-item__icon">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M13 11a4 4 0 0 1 4 4v1H3v-1a4 4 0 0 1 4-4h6ZM10 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm5-1v2m0 2v2M16 3h2M14 3h-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+            <use href="../../icons/icons.svg#icon-caution"></use>
           </svg>
         </span>
         <span class="selector-item__text">Text</span>
       </button>
       <button class="selector-item selector-item--icon-text selector-item--disabled" disabled>
         <span class="selector-item__icon">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M13 11a4 4 0 0 1 4 4v1H3v-1a4 4 0 0 1 4-4h6ZM10 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm5-1v2m0 2v2M16 3h2M14 3h-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+            <use href="../../icons/icons.svg#icon-caution"></use>
           </svg>
         </span>
         <span class="selector-item__text">Text</span>
@@ -784,8 +1083,8 @@
         </span>
         <span class="selector-item__text">New drivers</span>
         <span class="selector-item__chevron" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M7.5 5l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+            <use href="../../icons/icons.svg#icon-caution"></use>
           </svg>
         </span>
       </button>
@@ -795,8 +1094,8 @@
         </span>
         <span class="selector-item__text">New drivers</span>
         <span class="selector-item__chevron" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M7.5 5l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg class="icon icon--sm" viewBox="0 0 96 96" fill="currentColor">
+            <use href="../../icons/icons.svg#icon-caution"></use>
           </svg>
         </span>
       </button>
@@ -1281,109 +1580,548 @@
   <section class="section">
     <p class="section-label">Accordion</p>
 
-    <div class="row" style="flex-direction: column; align-items: stretch; max-width: 480px; gap: var(--gap-small);">
+    <div class="row" style="flex-direction: column; gap: var(--gap-large); max-width: 1260px;">
 
-      <span class="row-label">Mobile · Collapsed / Expanded / Error collapsed / Error expanded</span>
+      <span class="row-label">Collapsed</span>
 
-      <details class="accordion">
-        <summary class="accordion__title">
-          <span class="accordion__title-text">Title</span>
-          <span class="accordion__chevron accordion__chevron--down">
-            <svg width="12" height="7"><use href="icons/icons.svg#icon-chevron-small-down"></use></svg>
-          </span>
-          <span class="accordion__chevron accordion__chevron--up">
-            <svg width="12" height="7"><use href="icons/icons.svg#icon-chevron-small-up"></use></svg>
-          </span>
-        </summary>
-        <div class="accordion__content"><div class="accordion__body">Content goes here</div></div>
-      </details>
+      <div class="accordion">
+        <div class="accordion__header">
+          <span class="accordion__title">Section title</span>
+          <div class="accordion__actions">
+            <svg class="accordion__chevron" viewBox="0 0 96 96" aria-hidden="true">
+              <use href="icons/icons.svg#icon-chevron-small-down"></use>
+            </svg>
+          </div>
+        </div>
+      </div>
 
-      <details class="accordion" open>
-        <summary class="accordion__title">
-          <span class="accordion__title-text">Title</span>
-          <span class="accordion__chevron accordion__chevron--down">
-            <svg width="12" height="7"><use href="icons/icons.svg#icon-chevron-small-down"></use></svg>
-          </span>
-          <span class="accordion__chevron accordion__chevron--up">
-            <svg width="12" height="7"><use href="icons/icons.svg#icon-chevron-small-up"></use></svg>
-          </span>
-        </summary>
-        <div class="accordion__content"><div class="accordion__body">Content goes here</div></div>
-      </details>
+      <span class="row-label">Expanded — Default</span>
 
-      <details class="accordion accordion--error">
-        <summary class="accordion__title">
-          <span class="accordion__title-text">Title</span>
-          <span class="accordion__chevron accordion__chevron--down">
-            <svg width="12" height="7"><use href="icons/icons.svg#icon-chevron-small-down"></use></svg>
-          </span>
-          <span class="accordion__chevron accordion__chevron--up">
-            <svg width="12" height="7"><use href="icons/icons.svg#icon-chevron-small-up"></use></svg>
-          </span>
-        </summary>
-        <div class="accordion__content"><div class="accordion__body">Information</div></div>
-      </details>
+      <div class="accordion accordion--expanded">
+        <div class="accordion__header">
+          <span class="accordion__title">Section title</span>
+          <div class="accordion__actions">
+            <svg class="accordion__chevron" viewBox="0 0 96 96" aria-hidden="true">
+              <use href="icons/icons.svg#icon-chevron-small-down"></use>
+            </svg>
+          </div>
+        </div>
+        <div class="accordion__body">
+          <div class="accordion__rows">
+            <div class="accordion__row">
+              <div class="accordion__field">
+                <span class="accordion__field-label">Policy number</span>
+                <span class="accordion__field-value">POL-00123</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Owner</span>
+                <span class="accordion__field-value">James Morrison</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Start date</span>
+                <span class="accordion__field-value">12 Jan 2026</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Status</span>
+                <span class="accordion__field-value">Active</span>
+              </div>
+            </div>
+            <div class="accordion__row">
+              <div class="accordion__field">
+                <span class="accordion__field-label">Vehicle</span>
+                <span class="accordion__field-value">VW Golf 2021</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Registration</span>
+                <span class="accordion__field-value">AB21 XYZ</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Cover type</span>
+                <span class="accordion__field-value">Comprehensive</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Premium</span>
+                <span class="accordion__field-value">£1,200.00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <details class="accordion accordion--error" open>
-        <summary class="accordion__title">
-          <span class="accordion__title-text">Title</span>
-          <span class="accordion__chevron accordion__chevron--down">
-            <svg width="12" height="7"><use href="icons/icons.svg#icon-chevron-small-down"></use></svg>
-          </span>
-          <span class="accordion__chevron accordion__chevron--up">
-            <svg width="12" height="7"><use href="icons/icons.svg#icon-chevron-small-up"></use></svg>
-          </span>
-        </summary>
-        <div class="accordion__content"><div class="accordion__body">Information</div></div>
-      </details>
+      <span class="row-label">Expanded — Default / Wrapped</span>
+
+      <div class="accordion accordion--expanded accordion--wrapped">
+        <div class="accordion__header">
+          <span class="accordion__title">Section title</span>
+          <div class="accordion__actions">
+            <svg class="accordion__chevron" viewBox="0 0 96 96" aria-hidden="true">
+              <use href="icons/icons.svg#icon-chevron-small-down"></use>
+            </svg>
+          </div>
+        </div>
+        <div class="accordion__body">
+          <div class="accordion__rows">
+            <div class="accordion__row">
+              <div class="accordion__field">
+                <span class="accordion__field-label">Policy number</span>
+                <span class="accordion__field-value">POL-00123</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Owner</span>
+                <span class="accordion__field-value">James Morrison</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Start date</span>
+                <span class="accordion__field-value">12 Jan 2026</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Status</span>
+                <span class="accordion__field-value">Active</span>
+              </div>
+            </div>
+            <div class="accordion__row">
+              <div class="accordion__field">
+                <span class="accordion__field-label">Vehicle</span>
+                <span class="accordion__field-value">VW Golf 2021</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Registration</span>
+                <span class="accordion__field-value">AB21 XYZ</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Cover type</span>
+                <span class="accordion__field-value">Comprehensive</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Premium</span>
+                <span class="accordion__field-value">£1,200.00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <span class="row-label">Expanded — Segmented</span>
+
+      <div class="accordion accordion--expanded accordion--segmented">
+        <div class="accordion__header">
+          <span class="accordion__title">Section title</span>
+          <div class="accordion__actions">
+            <svg class="accordion__chevron" viewBox="0 0 96 96" aria-hidden="true">
+              <use href="icons/icons.svg#icon-chevron-small-down"></use>
+            </svg>
+          </div>
+        </div>
+        <div class="accordion__body">
+          <div class="accordion__rows">
+            <div class="accordion__row">
+              <div class="accordion__field">
+                <span class="accordion__field-label">Policy number</span>
+                <span class="accordion__field-value">POL-00123</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Owner</span>
+                <span class="accordion__field-value">James Morrison</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Start date</span>
+                <span class="accordion__field-value">12 Jan 2026</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Status</span>
+                <span class="accordion__field-value">Active</span>
+              </div>
+            </div>
+            <div class="accordion__row">
+              <div class="accordion__field">
+                <span class="accordion__field-label">Vehicle</span>
+                <span class="accordion__field-value">VW Golf 2021</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Registration</span>
+                <span class="accordion__field-value">AB21 XYZ</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Cover type</span>
+                <span class="accordion__field-value">Comprehensive</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Premium</span>
+                <span class="accordion__field-value">£1,200.00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <span class="row-label">Expanded — With all slots (alert, top text, rows, notes, checkbox, document preview, footer buttons)</span>
+
+      <div class="accordion accordion--expanded">
+        <div class="accordion__header">
+          <span class="accordion__title">Section title — all slots</span>
+          <div class="accordion__actions">
+            <svg class="accordion__chevron" viewBox="0 0 96 96" aria-hidden="true">
+              <use href="icons/icons.svg#icon-chevron-small-down"></use>
+            </svg>
+          </div>
+        </div>
+        <div class="accordion__body">
+          <p class="accordion__alert accordion__alert--top">This policy has an outstanding action that requires your attention before it can be processed.</p>
+          <p class="accordion__top-text">Policy information</p>
+          <div class="accordion__rows">
+            <div class="accordion__row">
+              <div class="accordion__field">
+                <span class="accordion__field-label">Policy number</span>
+                <span class="accordion__field-value">POL-00123</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Owner</span>
+                <span class="accordion__field-value">James Morrison</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Start date</span>
+                <span class="accordion__field-value">12 Jan 2026</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Status</span>
+                <span class="accordion__field-value">Active</span>
+              </div>
+            </div>
+            <div class="accordion__row">
+              <div class="accordion__field">
+                <span class="accordion__field-label">Vehicle</span>
+                <span class="accordion__field-value">VW Golf 2021</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Registration</span>
+                <span class="accordion__field-value">AB21 XYZ</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Cover type</span>
+                <span class="accordion__field-value">Comprehensive</span>
+              </div>
+              <div class="accordion__field">
+                <span class="accordion__field-label">Premium</span>
+                <span class="accordion__field-value">£1,200.00</span>
+              </div>
+            </div>
+          </div>
+          <div class="accordion__notes">
+            <textarea placeholder="Text goes here"></textarea>
+          </div>
+          <div class="accordion__checkbox-row">
+            <input type="checkbox" class="accordion__checkbox" id="accordion-sandbox-cb" />
+            <label class="accordion__checkbox-label" for="accordion-sandbox-cb">I confirm the information above is correct</label>
+          </div>
+          <div class="accordion__document-preview">
+            <span class="accordion__document-preview-text">Document preview not available</span>
+            <button class="accordion__document-preview-btn">View document</button>
+          </div>
+          <p class="accordion__alert accordion__alert--bottom">Please review all fields before submitting.</p>
+          <div class="accordion__footer">
+            <button class="accordion__footer-btn accordion__footer-btn--secondary">Cancel</button>
+            <button class="accordion__footer-btn accordion__footer-btn--primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+
+      <span class="row-label">Accordion Table — Collapsed</span>
+
+      <div class="accordion accordion--table">
+        <div class="accordion__header">
+          <span class="accordion__title">Section title</span>
+          <div class="accordion__actions">
+            <svg class="accordion__chevron" viewBox="0 0 96 96" aria-hidden="true">
+              <use href="icons/icons.svg#icon-chevron-small-down"></use>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <span class="row-label">Accordion Table — Expanded</span>
+
+      <div class="accordion accordion--table accordion--expanded">
+        <div class="accordion__header">
+          <span class="accordion__title">Section title</span>
+          <div class="accordion__actions">
+            <svg class="accordion__chevron" viewBox="0 0 96 96" aria-hidden="true">
+              <use href="icons/icons.svg#icon-chevron-small-down"></use>
+            </svg>
+          </div>
+        </div>
+        <div class="accordion__body">
+          <div class="table">
+            <div class="table__head">
+              <div class="table__cell"><span class="table__cell-text">Name</span></div>
+              <div class="table__cell"><span class="table__cell-text">Reference</span></div>
+              <div class="table__cell"><span class="table__cell-text">Owner</span></div>
+              <div class="table__cell table__cell--fixed table__cell--badge"><span class="table__cell-text">Status</span></div>
+              <div class="table__cell"><span class="table__cell-text">Date</span></div>
+              <div class="table__cell table__cell--action">
+                <button class="table__quick-action" aria-label="Column actions">
+                  <svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                    <use href="icons/icons.svg#icon-vertical-ellipsis"></use>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="table__row">
+              <div class="table__cell"><button class="table__cell-link">POL-00123</button></div>
+              <div class="table__cell"><span class="table__cell-text">REF-4829</span></div>
+              <div class="table__cell"><span class="table__cell-text">James Morrison</span></div>
+              <div class="table__cell table__cell--fixed table__cell--badge"><span class="badge badge--disabled">Processing</span></div>
+              <div class="table__cell"><span class="table__cell-text">12 Jan 2026</span></div>
+              <div class="table__cell table__cell--action">
+                <button class="table__quick-action" aria-label="Row actions">
+                  <svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                    <use href="icons/icons.svg#icon-vertical-ellipsis"></use>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="table__row">
+              <div class="table__cell"><button class="table__cell-link">POL-00124</button></div>
+              <div class="table__cell"><span class="table__cell-text">REF-4830</span></div>
+              <div class="table__cell"><span class="table__cell-text">Maria Mitchell</span></div>
+              <div class="table__cell table__cell--fixed table__cell--badge"><span class="badge badge--low">Active</span></div>
+              <div class="table__cell"><span class="table__cell-text">15 Jan 2026</span></div>
+              <div class="table__cell table__cell--action">
+                <button class="table__quick-action" aria-label="Row actions">
+                  <svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                    <use href="icons/icons.svg#icon-vertical-ellipsis"></use>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="table__row">
+              <div class="table__cell"><button class="table__cell-link">POL-00125</button></div>
+              <div class="table__cell"><span class="table__cell-text">REF-4831</span></div>
+              <div class="table__cell"><span class="table__cell-text">Thomas Hill</span></div>
+              <div class="table__cell table__cell--fixed table__cell--badge"><span class="badge badge--medium">Pending</span></div>
+              <div class="table__cell"><span class="table__cell-text">18 Jan 2026</span></div>
+              <div class="table__cell table__cell--action">
+                <button class="table__quick-action" aria-label="Row actions">
+                  <svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                    <use href="icons/icons.svg#icon-vertical-ellipsis"></use>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="table__row">
+              <div class="table__cell"><button class="table__cell-link">POL-00126</button></div>
+              <div class="table__cell"><span class="table__cell-text">REF-4832</span></div>
+              <div class="table__cell"><span class="table__cell-text">Sarah Clarke</span></div>
+              <div class="table__cell table__cell--fixed table__cell--badge"><span class="badge badge--high">Cancelled</span></div>
+              <div class="table__cell"><span class="table__cell-text">22 Jan 2026</span></div>
+              <div class="table__cell table__cell--action">
+                <button class="table__quick-action" aria-label="Row actions">
+                  <svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                    <use href="icons/icons.svg#icon-vertical-ellipsis"></use>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="table__row">
+              <div class="table__cell"><button class="table__cell-link">POL-00127</button></div>
+              <div class="table__cell"><span class="table__cell-text">REF-4833</span></div>
+              <div class="table__cell"><span class="table__cell-text">Olivia Bennett</span></div>
+              <div class="table__cell table__cell--fixed table__cell--badge"><span class="badge badge--inactive">Inactive</span></div>
+              <div class="table__cell"><span class="table__cell-text">28 Jan 2026</span></div>
+              <div class="table__cell table__cell--action">
+                <button class="table__quick-action" aria-label="Row actions">
+                  <svg class="table__quick-action-icon icon icon--3xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                    <use href="icons/icons.svg#icon-vertical-ellipsis"></use>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div>
+  </section>
 
-    <div class="row" style="flex-direction: column; align-items: stretch; max-width: 480px; gap: var(--gap-small); margin-top: var(--gap-medium);">
 
-      <span class="row-label">With icon · Desktop collapsed / expanded</span>
+  <!-- ==============================
+       DOCUMENT ROW
+  ============================== -->
+  <section class="section">
+    <p class="section-label">Document Row</p>
 
-      <details class="accordion">
-        <summary class="accordion__title">
-          <span class="accordion__title-icon">
-            <svg class="icon icon--md icon--primary"><use href="icons/icons.svg#icon-information"></use></svg>
-          </span>
-          <span class="accordion__title-text">Title</span>
-          <span class="accordion__chevron accordion__chevron--down">
-            <svg width="12" height="7"><use href="icons/icons.svg#icon-chevron-small-down"></use></svg>
-          </span>
-          <span class="accordion__chevron accordion__chevron--up">
-            <svg width="12" height="7"><use href="icons/icons.svg#icon-chevron-small-up"></use></svg>
-          </span>
-        </summary>
-        <div class="accordion__content"><div class="accordion__body">Content goes here</div></div>
-      </details>
+    <div class="row" style="flex-direction: column; gap: var(--gap-large); max-width: 1200px;">
 
-      <details class="accordion accordion--desktop">
-        <summary class="accordion__title">
-          <span class="accordion__title-text">Title</span>
-          <span class="accordion__chevron accordion__chevron--down">
-            <svg width="12" height="7"><use href="icons/icons.svg#icon-chevron-small-down"></use></svg>
-          </span>
-          <span class="accordion__chevron accordion__chevron--up">
-            <svg width="12" height="7"><use href="icons/icons.svg#icon-chevron-small-up"></use></svg>
-          </span>
-        </summary>
-        <div class="accordion__content"><div class="accordion__body">Content goes here</div></div>
-      </details>
+      <span class="row-label">Collapsed</span>
 
-      <details class="accordion accordion--desktop" open>
-        <summary class="accordion__title">
-          <span class="accordion__title-text">Title</span>
-          <span class="accordion__chevron accordion__chevron--down">
-            <svg width="12" height="7"><use href="icons/icons.svg#icon-chevron-small-down"></use></svg>
-          </span>
-          <span class="accordion__chevron accordion__chevron--up">
-            <svg width="12" height="7"><use href="icons/icons.svg#icon-chevron-small-up"></use></svg>
-          </span>
-        </summary>
-        <div class="accordion__content"><div class="accordion__body">Content goes here</div></div>
-      </details>
+      <div class="doc-row">
+        <div class="doc-row__header">
+          <div class="doc-row__track-col">
+            <div class="doc-row__track doc-row__track--top"></div>
+            <div class="doc-row__icon">
+              <svg class="icon icon--s" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                <use href="icons/icons.svg#icon-documents"></use>
+              </svg>
+            </div>
+            <div class="doc-row__track doc-row__track--bottom"></div>
+          </div>
+          <div class="doc-row__content">
+            <span class="doc-row__label">Loan agreements</span>
+            <button class="doc-row__count-btn" type="button" aria-label="Download all 4 documents">
+              <svg class="doc-row__count-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                <use href="icons/icons.svg#icon-download"></use>
+              </svg>
+              4
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <span class="row-label">Expanded</span>
+
+      <div class="doc-row doc-row--expanded">
+        <div class="doc-row__header">
+          <div class="doc-row__track-col">
+            <div class="doc-row__track doc-row__track--top"></div>
+            <div class="doc-row__icon">
+              <svg class="icon icon--s" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                <use href="icons/icons.svg#icon-documents"></use>
+              </svg>
+            </div>
+            <div class="doc-row__track doc-row__track--bottom"></div>
+          </div>
+          <div class="doc-row__content">
+            <span class="doc-row__label">Loan agreements</span>
+            <button class="doc-row__count-btn" type="button" aria-label="Download all 4 documents">
+              <svg class="doc-row__count-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                <use href="icons/icons.svg#icon-download"></use>
+              </svg>
+              4
+            </button>
+          </div>
+        </div>
+        <div class="doc-row__children">
+          <div class="doc-row__child">
+            <div class="doc-row__child-track">
+              <div class="doc-row__child-track-top"></div>
+              <div class="doc-row__child-dot"></div>
+              <div class="doc-row__child-track-bottom"></div>
+            </div>
+            <div class="doc-row__child-content">
+              <div class="doc-row__child-text">
+                <span class="doc-row__child-name">Credit Agreement Contract</span>
+                <span class="doc-row__child-meta">PDF · 645 KB · Jan 15, 2024</span>
+              </div>
+              <button class="doc-row__download-btn" type="button" aria-label="Download Credit Agreement Contract">
+                <svg class="doc-row__download-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                  <use href="icons/icons.svg#icon-download"></use>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="doc-row__child">
+            <div class="doc-row__child-track">
+              <div class="doc-row__child-track-top"></div>
+              <div class="doc-row__child-dot"></div>
+              <div class="doc-row__child-track-bottom"></div>
+            </div>
+            <div class="doc-row__child-content">
+              <div class="doc-row__child-text">
+                <span class="doc-row__child-name">Terms &amp; Conditions</span>
+                <span class="doc-row__child-meta">PDF · 645 KB · Jan 15, 2024</span>
+              </div>
+              <button class="doc-row__download-btn" type="button" aria-label="Download Terms and Conditions">
+                <svg class="doc-row__download-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                  <use href="icons/icons.svg#icon-download"></use>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="doc-row__child">
+            <div class="doc-row__child-track">
+              <div class="doc-row__child-track-top"></div>
+              <div class="doc-row__child-dot"></div>
+              <div class="doc-row__child-track-bottom"></div>
+            </div>
+            <div class="doc-row__child-content">
+              <div class="doc-row__child-text">
+                <span class="doc-row__child-name">Payment Schedule</span>
+                <span class="doc-row__child-meta">PDF · 312 KB · Jan 15, 2024</span>
+              </div>
+              <button class="doc-row__download-btn" type="button" aria-label="Download Payment Schedule">
+                <svg class="doc-row__download-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                  <use href="icons/icons.svg#icon-download"></use>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="doc-row__child">
+            <div class="doc-row__child-track">
+              <div class="doc-row__child-track-top"></div>
+              <div class="doc-row__child-dot"></div>
+              <div class="doc-row__child-track-bottom"></div>
+            </div>
+            <div class="doc-row__child-content">
+              <div class="doc-row__child-text">
+                <span class="doc-row__child-name">Direct Debit Mandate</span>
+                <span class="doc-row__child-meta">PDF · 198 KB · Jan 15, 2024</span>
+              </div>
+              <button class="doc-row__download-btn" type="button" aria-label="Download Direct Debit Mandate">
+                <svg class="doc-row__download-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                  <use href="icons/icons.svg#icon-download"></use>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <span class="row-label">Multiple groups</span>
+
+      <div class="doc-row">
+        <div class="doc-row__header">
+          <div class="doc-row__track-col">
+            <div class="doc-row__track doc-row__track--top"></div>
+            <div class="doc-row__icon">
+              <svg class="icon icon--s" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                <use href="icons/icons.svg#icon-documents"></use>
+              </svg>
+            </div>
+            <div class="doc-row__track doc-row__track--bottom"></div>
+          </div>
+          <div class="doc-row__content">
+            <span class="doc-row__label">Insurance certificates</span>
+            <button class="doc-row__count-btn" type="button" aria-label="Download all 2 documents">
+              <svg class="doc-row__count-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                <use href="icons/icons.svg#icon-download"></use>
+              </svg>
+              2
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="doc-row">
+        <div class="doc-row__header">
+          <div class="doc-row__track-col">
+            <div class="doc-row__track doc-row__track--top"></div>
+            <div class="doc-row__icon">
+              <svg class="icon icon--s" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                <use href="icons/icons.svg#icon-documents"></use>
+              </svg>
+            </div>
+            <div class="doc-row__track doc-row__track--bottom"></div>
+          </div>
+          <div class="doc-row__content">
+            <span class="doc-row__label">Vehicle documents</span>
+            <button class="doc-row__count-btn" type="button" aria-label="Download all 3 documents">
+              <svg class="doc-row__count-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                <use href="icons/icons.svg#icon-download"></use>
+              </svg>
+              3
+            </button>
+          </div>
+        </div>
+      </div>
 
     </div>
   </section>
@@ -2064,7 +2802,577 @@
   </section>
 
 
+  <section class="section">
+    <p class="section-label">Icon Badge</p>
+
+    <div class="row">
+      <span class="row-label">Colour variants (XXL)</span>
+      <div class="icon-badge icon-badge--xxl icon-badge--purple">
+        <svg class="icon-badge__icon" viewBox="0 0 96 96" fill="currentColor">
+          <use href="icons/icons.svg#icon-policy"></use>
+        </svg>
+      </div>
+      <div class="icon-badge icon-badge--xxl icon-badge--navy">
+        <svg class="icon-badge__icon" viewBox="0 0 96 96" fill="currentColor">
+          <use href="icons/icons.svg#icon-policy"></use>
+        </svg>
+      </div>
+      <div class="icon-badge icon-badge--xxl icon-badge--aqua">
+        <svg class="icon-badge__icon" viewBox="0 0 96 96" fill="currentColor">
+          <use href="icons/icons.svg#icon-policy"></use>
+        </svg>
+      </div>
+    </div>
+
+    <div class="row">
+      <span class="row-label">Sizes (purple)</span>
+      <div class="icon-badge icon-badge--xxl icon-badge--purple">
+        <svg class="icon-badge__icon" viewBox="0 0 96 96" fill="currentColor">
+          <use href="icons/icons.svg#icon-personal-car"></use>
+        </svg>
+      </div>
+      <div class="icon-badge icon-badge--xl icon-badge--purple">
+        <svg class="icon-badge__icon" viewBox="0 0 96 96" fill="currentColor">
+          <use href="icons/icons.svg#icon-personal-car"></use>
+        </svg>
+      </div>
+      <div class="icon-badge icon-badge--l icon-badge--purple">
+        <svg class="icon-badge__icon" viewBox="0 0 96 96" fill="currentColor">
+          <use href="icons/icons.svg#icon-personal-car"></use>
+        </svg>
+      </div>
+      <div class="icon-badge icon-badge--m icon-badge--purple">
+        <svg class="icon-badge__icon" viewBox="0 0 96 96" fill="currentColor">
+          <use href="icons/icons.svg#icon-personal-car"></use>
+        </svg>
+      </div>
+    </div>
+
+    <div class="row">
+      <span class="row-label">In context</span>
+      <div class="icon-badge icon-badge--xxl icon-badge--purple">
+        <svg class="icon-badge__icon" viewBox="0 0 96 96" fill="currentColor">
+          <use href="icons/icons.svg#icon-policy"></use>
+        </svg>
+      </div>
+      <div class="icon-badge icon-badge--xxl icon-badge--navy">
+        <svg class="icon-badge__icon" viewBox="0 0 96 96" fill="currentColor">
+          <use href="icons/icons.svg#icon-personal-car"></use>
+        </svg>
+      </div>
+      <div class="icon-badge icon-badge--xxl icon-badge--aqua">
+        <svg class="icon-badge__icon" viewBox="0 0 96 96" fill="currentColor">
+          <use href="icons/icons.svg#icon-driving"></use>
+        </svg>
+      </div>
+      <div class="icon-badge icon-badge--xl icon-badge--purple">
+        <svg class="icon-badge__icon" viewBox="0 0 96 96" fill="currentColor">
+          <use href="icons/icons.svg#icon-mail"></use>
+        </svg>
+      </div>
+      <div class="icon-badge icon-badge--l icon-badge--navy">
+        <svg class="icon-badge__icon" viewBox="0 0 96 96" fill="currentColor">
+          <use href="icons/icons.svg#icon-idea"></use>
+        </svg>
+      </div>
+    </div>
+
+  </section>
+
+
+  <section class="section">
+    <p class="section-label">Side Navigation</p>
+
+    <div class="row" style="align-items: flex-start;">
+      <span class="row-label" style="width: 100%;">Expanded / Collapsed</span>
+
+      <div style="height: 500px; overflow: hidden; border: var(--border-s) solid var(--border-color-primary); border-radius: var(--radius-small); display: flex;">
+
+        <!-- Expanded state -->
+        <nav class="side-nav" id="side-nav-sandbox">
+
+          <div class="side-nav__header">
+            <div class="side-nav__brand">
+              <svg class="side-nav__brand-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                <use href="icons/icons.svg#icon-pbs"></use>
+              </svg>
+              <span class="side-nav__brand-name">Console</span>
+            </div>
+            <button class="side-nav__toggle" aria-label="Collapse navigation">
+              <svg class="side-nav__toggle-icon" viewBox="0 0 7 12" fill="currentColor" aria-hidden="true">
+                <use href="icons/icons.svg#icon-chevron-small-left"></use>
+              </svg>
+            </button>
+          </div>
+
+          <div class="side-nav__body">
+
+            <div class="side-nav__section">
+              <div class="side-nav__item">
+                <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-correct"></use></svg>
+                <span class="side-nav__item-label">Home</span>
+              </div>
+              <div class="side-nav__item">
+                <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-tick"></use></svg>
+                <span class="side-nav__item-label">My tasks</span>
+              </div>
+              <div class="side-nav__item side-nav__item--active">
+                <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-additional-user"></use></svg>
+                <span class="side-nav__item-label">Customers</span>
+              </div>
+              <div class="side-nav__item">
+                <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-policy"></use></svg>
+                <span class="side-nav__item-label">Policies</span>
+              </div>
+              <div class="side-nav__item">
+                <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-discount"></use></svg>
+                <span class="side-nav__item-label">Quotes</span>
+              </div>
+              <div class="side-nav__item">
+                <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-caution"></use></svg>
+                <span class="side-nav__item-label">Claims</span>
+              </div>
+            </div>
+
+            <div class="side-nav__section">
+              <div class="side-nav__group-label side-nav__group-label--open">
+                AGENTS
+                <svg class="side-nav__group-chevron" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-chevron-down"></use></svg>
+              </div>
+              <div class="side-nav__item">
+                <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-pbs"></use></svg>
+                <span class="side-nav__item-label">Agents</span>
+              </div>
+              <div class="side-nav__item">
+                <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-arrow-right"></use></svg>
+                <span class="side-nav__item-label">Workflows</span>
+              </div>
+              <div class="side-nav__item">
+                <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-idea"></use></svg>
+                <span class="side-nav__item-label">Training</span>
+              </div>
+            </div>
+
+            <div class="side-nav__section">
+              <div class="side-nav__group-label side-nav__group-label--open">
+                INTERNAL TOOLS
+                <svg class="side-nav__group-chevron" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-chevron-down"></use></svg>
+              </div>
+              <div class="side-nav__item">
+                <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-information"></use></svg>
+                <span class="side-nav__item-label">Apps</span>
+              </div>
+              <div class="side-nav__item">
+                <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-stop"></use></svg>
+                <span class="side-nav__item-label">Logs</span>
+              </div>
+              <div class="side-nav__item">
+                <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-driving"></use></svg>
+                <span class="side-nav__item-label">Importer</span>
+                <svg class="side-nav__item-chevron" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-chevron-down"></use></svg>
+              </div>
+              <div class="side-nav__sub-items">
+                <div class="side-nav__item">
+                  <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-mail"></use></svg>
+                  <span class="side-nav__item-label">Invoice</span>
+                </div>
+                <div class="side-nav__item">
+                  <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-policy"></use></svg>
+                  <span class="side-nav__item-label">Report</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="side-nav__footer">
+            <div class="side-nav__item">
+              <svg class="side-nav__item-icon" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-caution"></use></svg>
+              <span class="side-nav__item-label">Settings</span>
+            </div>
+          </div>
+
+        </nav>
+
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ==============================
+       TABLE
+  ============================== -->
+  <section class="section">
+    <p class="section-label">Table</p>
+
+    <div class="row" style="flex-direction: column; overflow-x: auto; gap: var(--gap-large);">
+      <span class="row-label">With title block + all row variants</span>
+
+      <div class="table">
+        <div class="table__title-block">
+          <span class="table__title-block-heading">Policies</span>
+          <span class="table__title-block-support">Showing all active and pending policies</span>
+        </div>
+
+        <div class="table__head">
+          <div class="table__cell"><span class="table__cell-text">Name</span></div>
+          <div class="table__cell"><span class="table__cell-text">Owner</span></div>
+          <div class="table__cell"><span class="table__cell-text">Reference</span></div>
+          <div class="table__cell table__cell--fixed table__cell--badge"><span class="table__cell-text">Status</span></div>
+          <div class="table__cell"><span class="table__cell-text">Date</span></div>
+          <div class="table__cell"><span class="table__cell-text">Amount</span></div>
+          <div class="table__cell table__cell--action">
+            <button class="table__quick-action" aria-label="Column actions">&#8942;</button>
+          </div>
+        </div>
+
+        <div class="table__row">
+          <div class="table__cell"><button class="table__cell-link">POL-00123</button></div>
+          <div class="table__cell"><span class="table__cell-text">James Morrison</span></div>
+          <div class="table__cell"><span class="table__cell-text">REF-4829</span></div>
+          <div class="table__cell table__cell--fixed table__cell--badge"><span class="badge badge--disabled">Processing</span></div>
+          <div class="table__cell"><span class="table__cell-text">12 Jan 2026</span></div>
+          <div class="table__cell"><span class="table__cell-text">£1,200.00</span></div>
+          <div class="table__cell table__cell--action"><button class="table__quick-action" aria-label="Row actions">&#8942;</button></div>
+        </div>
+
+        <div class="table__row">
+          <div class="table__cell"><button class="table__cell-link">POL-00124</button></div>
+          <div class="table__cell">
+            <div class="table__cell-avatar"><span class="table__cell-avatar-initials">MM</span></div>
+            <span class="table__cell-text">Maria Mitchell</span>
+          </div>
+          <div class="table__cell"><span class="table__cell-text">REF-4830</span></div>
+          <div class="table__cell table__cell--fixed table__cell--badge"><span class="badge badge--low">Active</span></div>
+          <div class="table__cell"><span class="table__cell-text">15 Jan 2026</span></div>
+          <div class="table__cell"><span class="table__cell-text">£850.00</span></div>
+          <div class="table__cell table__cell--action"><button class="table__quick-action" aria-label="Row actions">&#8942;</button></div>
+        </div>
+
+        <div class="table__row table__row--hover">
+          <div class="table__cell"><button class="table__cell-link">POL-00125</button></div>
+          <div class="table__cell"><span class="table__cell-text">Thomas Hill</span></div>
+          <div class="table__cell"><span class="table__cell-text">REF-4831</span></div>
+          <div class="table__cell table__cell--fixed table__cell--badge"><span class="badge badge--high">Cancelled</span></div>
+          <div class="table__cell"><span class="table__cell-text">18 Jan 2026</span></div>
+          <div class="table__cell"><span class="table__cell-text">£450.00</span></div>
+          <div class="table__cell table__cell--action"><button class="table__quick-action" aria-label="Row actions">&#8942;</button></div>
+        </div>
+
+        <div class="table__row">
+          <div class="table__cell"><button class="table__cell-link">POL-00126</button></div>
+          <div class="table__cell"><span class="table__cell-text">Sarah Clarke</span></div>
+          <div class="table__cell"><span class="table__cell-text">REF-4832</span></div>
+          <div class="table__cell table__cell--fixed table__cell--badge"><span class="badge badge--medium">Pending</span></div>
+          <div class="table__cell"><span class="table__cell-text">22 Jan 2026</span></div>
+          <div class="table__cell"><span class="table__cell-text">£2,100.00</span></div>
+          <div class="table__cell table__cell--action"><button class="table__quick-action" aria-label="Row actions">&#8942;</button></div>
+        </div>
+
+        <div class="table__row table__row--error">
+          <div class="table__cell"><span class="table__cell-text">No information found</span></div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================
+       PRICE COMPARISON
+       ============================================================ -->
+  <section class="section">
+    <p class="section-label">Price Comparison</p>
+    <div class="row" style="flex-direction: column; gap: var(--gap-x-large); max-width: 960px;">
+
+      <span class="row-label">Single tile</span>
+      <div class="price-comparison">
+        <div class="price-comparison__card">
+          <div class="price-comparison__heading">
+            <p class="price-comparison__heading-title">Title</p>
+            <p class="price-comparison__heading-sub">Sub text</p>
+          </div>
+          <div class="price-comparison__tiles">
+            <label class="comparison-tile comparison-tile--large" for="idx-single-comprehensive">
+              <div class="comparison-tile__header">
+                <input class="comparison-tile__input" type="radio" id="idx-single-comprehensive" name="idx-single" checked>
+                <span class="comparison-tile__radio-control"></span>
+                <span class="comparison-tile__title text-subtitle-1">Comprehensive</span>
+              </div>
+              <div class="comparison-tile__body">
+                <p class="comparison-tile__price text-title-1-bold">
+                  £299 <span class="comparison-tile__period text-subtitle-1">/year</span>
+                </p>
+                <p class="comparison-tile__sub text-subtitle-1">or £27.50/month</p>
+                <p class="comparison-tile__support text-body-2">Includes breakdown cover and legal protection</p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <span class="row-label">Two tiles — first selected</span>
+      <div class="price-comparison">
+        <div class="price-comparison__card">
+          <div class="price-comparison__heading">
+            <p class="price-comparison__heading-title">Choose your cover</p>
+            <p class="price-comparison__heading-sub">Select the policy that suits you best</p>
+          </div>
+          <div class="price-comparison__tiles">
+            <label class="comparison-tile comparison-tile--large" for="idx-two-a-comprehensive">
+              <div class="comparison-tile__header">
+                <input class="comparison-tile__input" type="radio" id="idx-two-a-comprehensive" name="idx-two-a" checked>
+                <span class="comparison-tile__radio-control"></span>
+                <span class="comparison-tile__title text-subtitle-1">Comprehensive</span>
+                <span class="price-comparison__badge">Best value</span>
+              </div>
+              <div class="comparison-tile__body">
+                <p class="comparison-tile__price text-title-1-bold">
+                  £299 <span class="comparison-tile__period text-subtitle-1">/year</span>
+                </p>
+                <p class="comparison-tile__sub text-subtitle-1">or £27.50/month</p>
+                <p class="comparison-tile__support text-body-2">Includes breakdown cover and legal protection</p>
+              </div>
+            </label>
+            <label class="comparison-tile comparison-tile--large" for="idx-two-a-tpft">
+              <div class="comparison-tile__header">
+                <input class="comparison-tile__input" type="radio" id="idx-two-a-tpft" name="idx-two-a">
+                <span class="comparison-tile__radio-control"></span>
+                <span class="comparison-tile__title text-subtitle-1">Third Party Fire &amp; Theft</span>
+              </div>
+              <div class="comparison-tile__body">
+                <p class="comparison-tile__price text-title-1-bold">
+                  £189 <span class="comparison-tile__period text-subtitle-1">/year</span>
+                </p>
+                <p class="comparison-tile__sub text-subtitle-1">or £17.25/month</p>
+                <p class="comparison-tile__support text-body-2">Basic protection for fire, theft and third party damage</p>
+              </div>
+            </label>
+          </div>
+          <div class="price-comparison__discount">
+            <div class="price-comparison__discount-inner">
+              <div class="input-group">
+                <label class="input-label" for="discount-code">Add a discount code</label>
+                <div class="input-field">
+                  <input class="input" type="text" id="discount-code" placeholder="Enter discount code">
+                </div>
+              </div>
+              <button class="btn btn--rounded btn--secondary btn--large" type="button">Apply code</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <span class="row-label">Two tiles — second selected</span>
+      <div class="price-comparison">
+        <div class="price-comparison__card">
+          <div class="price-comparison__heading">
+            <p class="price-comparison__heading-title">Choose your cover</p>
+            <p class="price-comparison__heading-sub">Select the policy that suits you best</p>
+          </div>
+          <div class="price-comparison__tiles">
+            <label class="comparison-tile comparison-tile--large" for="idx-two-b-comprehensive">
+              <div class="comparison-tile__header">
+                <input class="comparison-tile__input" type="radio" id="idx-two-b-comprehensive" name="idx-two-b">
+                <span class="comparison-tile__radio-control"></span>
+                <span class="comparison-tile__title text-subtitle-1">Comprehensive</span>
+                <span class="price-comparison__badge">Best value</span>
+              </div>
+              <div class="comparison-tile__body">
+                <p class="comparison-tile__price text-title-1-bold">
+                  £299 <span class="comparison-tile__period text-subtitle-1">/year</span>
+                </p>
+                <p class="comparison-tile__sub text-subtitle-1">or £27.50/month</p>
+                <p class="comparison-tile__support text-body-2">Includes breakdown cover and legal protection</p>
+              </div>
+            </label>
+            <label class="comparison-tile comparison-tile--large" for="idx-two-b-tpft">
+              <div class="comparison-tile__header">
+                <input class="comparison-tile__input" type="radio" id="idx-two-b-tpft" name="idx-two-b" checked>
+                <span class="comparison-tile__radio-control"></span>
+                <span class="comparison-tile__title text-subtitle-1">Third Party Fire &amp; Theft</span>
+              </div>
+              <div class="comparison-tile__body">
+                <p class="comparison-tile__price text-title-1-bold">
+                  £189 <span class="comparison-tile__period text-subtitle-1">/year</span>
+                </p>
+                <p class="comparison-tile__sub text-subtitle-1">or £17.25/month</p>
+                <p class="comparison-tile__support text-body-2">Basic protection for fire, theft and third party damage</p>
+              </div>
+            </label>
+          </div>
+          <div class="price-comparison__discount">
+            <div class="price-comparison__discount-inner">
+              <div class="input-group">
+                <label class="input-label" for="discount-code">Add a discount code</label>
+                <div class="input-field">
+                  <input class="input" type="text" id="discount-code" placeholder="Enter discount code">
+                </div>
+              </div>
+              <button class="btn btn--rounded btn--secondary btn--large" type="button">Apply code</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <span class="row-label">Mobile</span>
+      <div class="price-comparison price-comparison--mobile">
+        <div class="price-comparison__card">
+          <div class="price-comparison__heading">
+            <p class="price-comparison__heading-title">Choose your cover</p>
+            <p class="price-comparison__heading-sub">Select the policy that suits you best</p>
+          </div>
+          <div class="price-comparison__tiles price-comparison__tiles--mobile">
+            <label class="comparison-tile comparison-tile--small" for="idx-mob-comprehensive">
+              <div class="comparison-tile__header">
+                <input class="comparison-tile__input" type="radio" id="idx-mob-comprehensive" name="idx-mob" checked>
+                <span class="comparison-tile__radio-control"></span>
+                <span class="comparison-tile__title text-subtitle-2">Comprehensive</span>
+                <span class="price-comparison__badge">Best value</span>
+              </div>
+              <div class="comparison-tile__body">
+                <p class="comparison-tile__price text-title-2-bold">
+                  £299 <span class="comparison-tile__period text-subtitle-2">/year</span>
+                </p>
+                <p class="comparison-tile__sub text-subtitle-2">or £27.50/month</p>
+                <p class="comparison-tile__support text-body-3">Includes breakdown cover and legal protection</p>
+              </div>
+            </label>
+            <label class="comparison-tile comparison-tile--small" for="idx-mob-tpft">
+              <div class="comparison-tile__header">
+                <input class="comparison-tile__input" type="radio" id="idx-mob-tpft" name="idx-mob">
+                <span class="comparison-tile__radio-control"></span>
+                <span class="comparison-tile__title text-subtitle-2">Third Party Fire &amp; Theft</span>
+              </div>
+              <div class="comparison-tile__body">
+                <p class="comparison-tile__price text-title-2-bold">
+                  £189 <span class="comparison-tile__period text-subtitle-2">/year</span>
+                </p>
+                <p class="comparison-tile__sub text-subtitle-2">or £17.25/month</p>
+                <p class="comparison-tile__support text-body-3">Basic protection for fire, theft and third party damage</p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
   <script>
+    // ============================================
+    // Component sandbox search / filter
+    // ============================================
+    (function () {
+      const searchInput   = document.querySelector('.sandbox-search');
+      if (!searchInput) return;
+
+      const noResults     = document.querySelector('.sandbox-no-results');
+      const noResultsTerm = document.querySelector('.sandbox-no-results__term');
+      const sections      = Array.from(document.querySelectorAll('.section'));
+
+      // Store original label text so we can restore it when clearing
+      sections.forEach(function (section) {
+        var label = section.querySelector('.section-label');
+        var rows  = Array.from(section.querySelectorAll('.row-label'));
+        if (label) label.dataset.originalText = label.textContent;
+        rows.forEach(function (row) { row.dataset.originalText = row.textContent; });
+      });
+
+      function escapeRegex(str) {
+        return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      }
+
+      function highlightText(element, term) {
+        var original = element.dataset.originalText || element.textContent;
+        if (!term) { element.textContent = original; return; }
+        var regex = new RegExp('(' + escapeRegex(term) + ')', 'gi');
+        element.innerHTML = original.replace(regex, '<mark>$1</mark>');
+      }
+
+      function filterSections(query) {
+        var term         = query.trim().toLowerCase();
+        var visibleCount = 0;
+
+        sections.forEach(function (section) {
+          var label     = section.querySelector('.section-label');
+          var rowLabels = Array.from(section.querySelectorAll('.row-label'));
+
+          var labelText = (label ? label.dataset.originalText || label.textContent : '').toLowerCase();
+          var rowTexts  = rowLabels.map(function (r) {
+            return (r.dataset.originalText || r.textContent).toLowerCase();
+          });
+
+          var matches = !term
+            || labelText.includes(term)
+            || rowTexts.some(function (t) { return t.includes(term); });
+
+          if (matches) {
+            section.classList.remove('section--hidden');
+            visibleCount++;
+            if (label) highlightText(label, term);
+            rowLabels.forEach(function (row) { highlightText(row, term); });
+          } else {
+            section.classList.add('section--hidden');
+            if (label) label.textContent = label.dataset.originalText || label.textContent;
+            rowLabels.forEach(function (row) {
+              row.textContent = row.dataset.originalText || row.textContent;
+            });
+          }
+        });
+
+        if (noResults) {
+          if (term && visibleCount === 0) {
+            if (noResultsTerm) noResultsTerm.textContent = query.trim();
+            noResults.hidden = false;
+          } else {
+            noResults.hidden = true;
+          }
+        }
+
+        if (term) window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      searchInput.addEventListener('input', function () {
+        filterSections(searchInput.value);
+      });
+
+      searchInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          searchInput.value = '';
+          filterSections('');
+          searchInput.blur();
+        }
+      });
+    }());
+
+    // ==============================
+    // Document Row
+    // ==============================
+    (function() {
+      document.querySelectorAll('.doc-row__header').forEach(function(header) {
+        header.addEventListener('click', function() {
+          var row = header.closest('.doc-row');
+          if (row) row.classList.toggle('doc-row--expanded');
+        });
+      });
+    })();
+
+    // ==============================
+    // Accordion
+    // ==============================
+    (function() {
+      document.querySelectorAll('.accordion__header').forEach(function(header) {
+        header.addEventListener('click', function() {
+          var accordion = header.closest('.accordion');
+          if (accordion) accordion.classList.toggle('accordion--expanded');
+        });
+      });
+    })();
+
     // ==============================
     // Navigation
     // ==============================
@@ -2320,7 +3628,791 @@
 
       checkFields();
     }());
+
+    // ==============================
+    // Search bar
+    // ==============================
+    document.querySelectorAll('.search-wrapper').forEach(function(wrapper) {
+      const input      = wrapper.querySelector('.search');
+      const iconSearch = wrapper.querySelector('.search__icon--search');
+      const iconClear  = wrapper.querySelector('.search__icon--clear');
+      const group      = wrapper.closest('.input-group');
+
+      if (!input) return;
+
+      input.addEventListener('focus', function() {
+        if (iconSearch) iconSearch.hidden = true;
+        if (iconClear)  iconClear.hidden  = false;
+      });
+
+      input.addEventListener('blur', function() {
+        if (!input.value.trim()) {
+          if (iconSearch) iconSearch.hidden = false;
+          if (iconClear)  iconClear.hidden  = true;
+        }
+      });
+
+      if (iconClear) {
+        iconClear.addEventListener('click', function() {
+          input.value = '';
+          input.dispatchEvent(new Event('input'));
+          input.focus();
+          if (group) group.classList.remove('input-group--search-error');
+        });
+      }
+    });
+
+    // ==============================
+    // Side nav — sandbox instance
+    // ==============================
+    (function() {
+      const nav    = document.querySelector('#side-nav-sandbox');
+      const toggle = nav ? nav.querySelector('.side-nav__toggle') : null;
+      const toggleIcon = toggle ? toggle.querySelector('use') : null;
+
+      if (toggle) {
+        toggle.addEventListener('click', function() {
+          const collapsed = nav.classList.toggle('side-nav--collapsed');
+          if (toggleIcon) {
+            toggleIcon.setAttribute('href',
+              collapsed
+                ? 'icons/icons.svg#icon-chevron-small-right'
+                : 'icons/icons.svg#icon-chevron-small-left'
+            );
+          }
+          toggle.setAttribute('aria-label', collapsed ? 'Expand navigation' : 'Collapse navigation');
+        });
+      }
+
+      if (nav) {
+        nav.querySelectorAll('.side-nav__item').forEach(function(item) {
+          item.addEventListener('click', function() {
+            nav.querySelectorAll('.side-nav__item').forEach(function(i) {
+              i.classList.remove('side-nav__item--active');
+            });
+            item.classList.add('side-nav__item--active');
+
+            const subItems = item.nextElementSibling;
+            if (subItems && subItems.classList.contains('side-nav__sub-items')) {
+              const isOpen = subItems.classList.toggle('side-nav__sub-items--open');
+              const chevron = item.querySelector('.side-nav__item-chevron');
+              if (chevron) chevron.classList.toggle('side-nav__item-chevron--open', isOpen);
+            }
+          });
+        });
+      }
+    }());
+
+    // ==============================
+    // Date Picker
+    // ==============================
+    (function() {
+      document.querySelectorAll('.date-picker').forEach(function(picker) {
+        var trigger     = picker.querySelector('.date-picker__trigger');
+        var monthLabel  = picker.querySelector('.date-picker__month-label');
+        var prevBtn     = picker.querySelector('.date-picker__month-prev');
+        var nextBtn     = picker.querySelector('.date-picker__month-next');
+        var grid        = picker.querySelector('.date-picker__grid');
+        var clearBtn    = picker.querySelector('.date-picker__clear');
+        var applyBtn    = picker.querySelector('.date-picker__apply');
+        var triggerText = picker.querySelector('.date-picker__trigger-text');
+        var dropdown    = picker.querySelector('.date-picker__dropdown');
+
+        if (!trigger || !grid) return;
+
+        var today      = new Date();
+        var viewYear   = today.getFullYear();
+        var viewMonth  = today.getMonth();
+        var rangeStart = null;
+        var rangeEnd   = null;
+        var selecting  = false;
+
+        var MONTHS = ['January','February','March','April','May','June',
+                      'July','August','September','October','November','December'];
+
+        function formatRange(s, e) {
+          var opts = { month: 'short', day: 'numeric', year: 'numeric' };
+          return s.toLocaleDateString('en-US', opts) + ' \u2192 ' + e.toLocaleDateString('en-US', opts);
+        }
+
+        function isSameDay(a, b) { return a && b && a.toDateString() === b.toDateString(); }
+
+        function renderGrid() {
+          if (monthLabel) monthLabel.textContent = MONTHS[viewMonth] + ' ' + viewYear;
+          grid.innerHTML = '';
+
+          var headers = document.createElement('div');
+          headers.className = 'date-picker__day-headers';
+          ['M','T','W','T','F','S','S'].forEach(function(d) {
+            var h = document.createElement('div');
+            h.className = 'date-picker__day-header';
+            h.textContent = d;
+            headers.appendChild(h);
+          });
+          grid.appendChild(headers);
+
+          var firstDay    = new Date(viewYear, viewMonth, 1).getDay();
+          var startOffset = (firstDay === 0) ? 6 : firstDay - 1;
+          var daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+          var totalCells  = Math.ceil((startOffset + daysInMonth) / 7) * 7;
+          var week = document.createElement('div');
+          week.className = 'date-picker__week';
+
+          for (var i = 0; i < totalCells; i++) {
+            var dayNum = i - startOffset + 1;
+            var cell   = document.createElement('button');
+            cell.className = 'date-picker__day';
+            cell.type = 'button';
+
+            if (dayNum < 1 || dayNum > daysInMonth) {
+              cell.classList.add('date-picker__day--empty');
+              cell.setAttribute('aria-hidden', 'true');
+              cell.disabled = true;
+              cell.textContent = '\u00A0';
+            } else {
+              var thisDate = new Date(viewYear, viewMonth, dayNum);
+              cell.textContent = dayNum;
+              if (isSameDay(thisDate, today)) cell.classList.add('date-picker__day--today');
+              var s = rangeStart ? new Date(rangeStart) : null;
+              var e = rangeEnd   ? new Date(rangeEnd)   : null;
+              if (s && isSameDay(thisDate, s)) cell.classList.add('date-picker__day--range-start');
+              if (e && isSameDay(thisDate, e)) cell.classList.add('date-picker__day--range-end');
+              if (s && e && thisDate > s && thisDate < e) cell.classList.add('date-picker__day--in-range');
+
+              (function(date) {
+                cell.addEventListener('click', function() {
+                  var st = rangeStart ? new Date(rangeStart) : null;
+                  if (!selecting || (st && rangeEnd)) {
+                    rangeStart = date; rangeEnd = null; selecting = true;
+                  } else {
+                    if (st && date < st) { rangeEnd = new Date(st); rangeStart = date; }
+                    else { rangeEnd = date; }
+                    selecting = false;
+                  }
+                  renderGrid();
+                });
+              }(thisDate));
+            }
+
+            week.appendChild(cell);
+            if ((i + 1) % 7 === 0) {
+              grid.appendChild(week);
+              week = document.createElement('div');
+              week.className = 'date-picker__week';
+            }
+          }
+        }
+
+        trigger.addEventListener('click', function(ev) {
+          ev.stopPropagation();
+          var isOpen = picker.classList.toggle('date-picker--open');
+          trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          if (isOpen) renderGrid();
+        });
+
+        if (dropdown) dropdown.addEventListener('click', function(ev) { ev.stopPropagation(); });
+
+        if (prevBtn) prevBtn.addEventListener('click', function() {
+          viewMonth--; if (viewMonth < 0) { viewMonth = 11; viewYear--; } renderGrid();
+        });
+
+        if (nextBtn) nextBtn.addEventListener('click', function() {
+          viewMonth++; if (viewMonth > 11) { viewMonth = 0; viewYear++; } renderGrid();
+        });
+
+        if (applyBtn) applyBtn.addEventListener('click', function() {
+          if (rangeStart && rangeEnd) {
+            triggerText.textContent = formatRange(new Date(rangeStart), new Date(rangeEnd));
+            picker.classList.add('date-picker--populated');
+          }
+          picker.classList.remove('date-picker--open');
+          trigger.setAttribute('aria-expanded', 'false');
+        });
+
+        if (clearBtn) clearBtn.addEventListener('click', function() {
+          rangeStart = null; rangeEnd = null; selecting = false;
+          triggerText.textContent = 'Select date range';
+          picker.classList.remove('date-picker--populated', 'date-picker--open');
+          trigger.setAttribute('aria-expanded', 'false');
+        });
+
+        document.addEventListener('click', function() {
+          picker.classList.remove('date-picker--open');
+          trigger.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }());
+
+    // ==============================
+    // Filter Select
+    // ==============================
+    (function() {
+      var BADGE_CLASSES = {
+        'Processing': 'badge--disabled',
+        'Pending':    'badge--medium',
+        'Active':     'badge--low',
+        'Cancelled':  'badge--high',
+        'Inactive':   'badge--inactive'
+      };
+
+      document.querySelectorAll('.filter-select').forEach(function(fs) {
+        var trigger  = fs.querySelector('.filter-select__trigger');
+        var dropdown = fs.querySelector('.filter-select__dropdown');
+        var options  = fs.querySelectorAll('.filter-select__option');
+        var tagsWrap = fs.querySelector('.filter-select__tags');
+        var clearBtn = fs.querySelector('.filter-select__clear');
+        var applyBtn = fs.querySelector('.filter-select__apply');
+
+        if (!trigger || !dropdown) return;
+
+        var selected = new Set();
+        var pending  = new Set();
+
+        // Initialise from pre-checked inputs
+        options.forEach(function(option) {
+          var input = option.querySelector('.checkbox__input');
+          if (input && input.checked) selected.add(option.getAttribute('data-value'));
+        });
+        if (selected.size > 0) { fs.classList.add('filter-select--populated'); renderTags(); }
+
+        trigger.addEventListener('click', function(e) {
+          e.stopPropagation();
+          var isOpen = fs.classList.toggle('filter-select--open');
+          fs.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          if (isOpen) { pending = new Set(selected); syncCheckboxes(); }
+        });
+
+        dropdown.addEventListener('click', function(e) { e.stopPropagation(); });
+
+        options.forEach(function(option) {
+          var input = option.querySelector('.checkbox__input');
+          option.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (input) input.checked = !input.checked;
+            var value = option.getAttribute('data-value');
+            if (input && input.checked) { pending.add(value); } else { pending.delete(value); }
+            option.setAttribute('aria-selected', (input && input.checked) ? 'true' : 'false');
+          });
+        });
+
+        if (applyBtn) applyBtn.addEventListener('click', function() {
+          selected = new Set(pending);
+          renderTags();
+          fs.classList.toggle('filter-select--populated', selected.size > 0);
+          fs.classList.remove('filter-select--open');
+          fs.setAttribute('aria-expanded', 'false');
+        });
+
+        if (clearBtn) clearBtn.addEventListener('click', function() {
+          selected.clear(); pending.clear(); syncCheckboxes(); renderTags();
+          fs.classList.remove('filter-select--populated', 'filter-select--open');
+          fs.setAttribute('aria-expanded', 'false');
+        });
+
+        if (tagsWrap) tagsWrap.addEventListener('click', function(e) {
+          var removeBtn = e.target.closest('.filter-select__tag-remove');
+          if (!removeBtn) return;
+          var value = removeBtn.closest('.filter-select__tag').getAttribute('data-value');
+          selected.delete(value);
+          renderTags();
+          fs.classList.toggle('filter-select--populated', selected.size > 0);
+        });
+
+        document.addEventListener('click', function() {
+          fs.classList.remove('filter-select--open');
+          fs.setAttribute('aria-expanded', 'false');
+        });
+
+        function syncCheckboxes() {
+          options.forEach(function(option) {
+            var value = option.getAttribute('data-value');
+            var input = option.querySelector('.checkbox__input');
+            if (input) input.checked = pending.has(value);
+            option.setAttribute('aria-selected', pending.has(value) ? 'true' : 'false');
+          });
+        }
+
+        function renderTags() {
+          if (!tagsWrap) return;
+          tagsWrap.innerHTML = '';
+          selected.forEach(function(value) {
+            var badgeClass = BADGE_CLASSES[value] || '';
+            var tag = document.createElement('div');
+            tag.className = 'filter-select__tag badge ' + badgeClass;
+            tag.setAttribute('data-value', value);
+            tag.innerHTML =
+              '<span class="filter-select__tag-label">' + value + '</span>' +
+              '<button class="filter-select__tag-remove" aria-label="Remove ' + value + '" type="button">\u00D7</button>';
+            tagsWrap.appendChild(tag);
+          });
+        }
+      });
+    }());
   </script>
+
+  <!-- ==============================
+       REGISTRATION PLATE
+  ============================== -->
+  <section class="section">
+    <p class="section-label">Registration Plate</p>
+    <div class="row" style="align-items: flex-end; gap: var(--gap-large);">
+
+      <div style="display:flex;flex-direction:column;gap:var(--gap-small);align-items:center;">
+        <span class="row-label">Large</span>
+        <div class="registration-plate">
+          <p class="registration-plate__text">SH48 HSA</p>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:var(--gap-small);align-items:center;">
+        <span class="row-label">Medium</span>
+        <div class="registration-plate registration-plate--medium">
+          <p class="registration-plate__text">SH48 HSA</p>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:var(--gap-small);align-items:center;">
+        <span class="row-label">Small</span>
+        <div class="registration-plate registration-plate--small">
+          <p class="registration-plate__text">SH48 HSA</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       TOOLTIP
+       ============================================================ -->
+  <section class="section">
+    <p class="section-label">Tooltip</p>
+
+    <div class="row">
+      <span class="row-label">Arrow right / Arrow left</span>
+      <div class="tooltip tooltip--arrow-right">
+        <div class="tooltip__body">
+          <p class="tooltip__text">Tooltip text content goes here</p>
+        </div>
+      </div>
+      <div class="tooltip tooltip--arrow-left">
+        <div class="tooltip__body">
+          <p class="tooltip__text">Tooltip text content goes here</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <span class="row-label">Arrow down — center / start / end</span>
+      <div class="tooltip tooltip--arrow-down" style="width: 280px;">
+        <div class="tooltip__body">
+          <p class="tooltip__text">Center arrow</p>
+        </div>
+      </div>
+      <div class="tooltip tooltip--arrow-down tooltip--pos-start" style="width: 280px;">
+        <div class="tooltip__body">
+          <p class="tooltip__text">Start arrow</p>
+        </div>
+      </div>
+      <div class="tooltip tooltip--arrow-down tooltip--pos-end" style="width: 280px;">
+        <div class="tooltip__body">
+          <p class="tooltip__text">End arrow</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <span class="row-label">Arrow up — center / start / end</span>
+      <div class="tooltip tooltip--arrow-up" style="width: 280px;">
+        <div class="tooltip__body">
+          <p class="tooltip__text">Center arrow</p>
+        </div>
+      </div>
+      <div class="tooltip tooltip--arrow-up tooltip--pos-start" style="width: 280px;">
+        <div class="tooltip__body">
+          <p class="tooltip__text">Start arrow</p>
+        </div>
+      </div>
+      <div class="tooltip tooltip--arrow-up tooltip--pos-end" style="width: 280px;">
+        <div class="tooltip__body">
+          <p class="tooltip__text">End arrow</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="background: var(--bg-brand-navy); padding: var(--gap-medium); border-radius: var(--radius-small);">
+      <span class="row-label" style="color: var(--colour-navy-30);">Dark background — tooltip stays dark (fixed tokens)</span>
+      <div class="tooltip tooltip--arrow-right">
+        <div class="tooltip__body">
+          <p class="tooltip__text">Tooltip on dark bg</p>
+        </div>
+      </div>
+      <div class="tooltip tooltip--arrow-down" style="width: 240px;">
+        <div class="tooltip__body">
+          <p class="tooltip__text">Arrow down on dark bg</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ==============================
+       STEP INDICATOR
+  ============================== -->
+  <section class="section">
+    <p class="section-label">Step Indicator</p>
+    <div class="row" style="background: var(--bg-brand-navy); padding: var(--gap-large); border-radius: var(--radius-small); gap: var(--gap-x-large); align-items: flex-start;">
+
+      <div style="display:flex;flex-direction:column;gap:var(--gap-small);align-items:center;">
+        <span class="row-label" style="color:white;">Incomplete</span>
+        <div class="step-indicator">
+          <div class="step-indicator__circle">
+            <span class="step-indicator__number">1</span>
+          </div>
+          <span class="step-indicator__label">Details</span>
+          <div class="step-indicator__track">
+            <div class="step-indicator__track-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:var(--gap-small);align-items:center;">
+        <span class="row-label" style="color:white;">Active</span>
+        <div class="step-indicator step-indicator--active">
+          <div class="step-indicator__circle">
+            <span class="step-indicator__number">1</span>
+          </div>
+          <span class="step-indicator__label">Details</span>
+          <div class="step-indicator__track">
+            <div class="step-indicator__track-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:var(--gap-small);align-items:center;">
+        <span class="row-label" style="color:white;">Completed</span>
+        <div class="step-indicator step-indicator--completed">
+          <div class="step-indicator__circle">
+            <svg class="step-indicator__tick" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+              <use href="icons/icons.svg#icon-tick"></use>
+            </svg>
+          </div>
+          <span class="step-indicator__label">Details</span>
+          <div class="step-indicator__track">
+            <div class="step-indicator__track-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:var(--gap-small);align-items:center;">
+        <span class="row-label" style="color:white;">Incomplete — Mobile</span>
+        <div class="step-indicator step-indicator--mobile">
+          <div class="step-indicator__circle">
+            <span class="step-indicator__number">1</span>
+          </div>
+          <span class="step-indicator__label">Details</span>
+          <div class="step-indicator__track">
+            <div class="step-indicator__track-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:var(--gap-small);align-items:center;">
+        <span class="row-label" style="color:white;">Active — Mobile</span>
+        <div class="step-indicator step-indicator--mobile step-indicator--active">
+          <div class="step-indicator__circle">
+            <span class="step-indicator__number">1</span>
+          </div>
+          <span class="step-indicator__label">Details</span>
+          <div class="step-indicator__track">
+            <div class="step-indicator__track-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:var(--gap-small);align-items:center;">
+        <span class="row-label" style="color:white;">Completed — Mobile</span>
+        <div class="step-indicator step-indicator--mobile step-indicator--completed">
+          <div class="step-indicator__circle">
+            <svg class="step-indicator__tick" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+              <use href="icons/icons.svg#icon-tick"></use>
+            </svg>
+          </div>
+          <span class="step-indicator__label">Details</span>
+          <div class="step-indicator__track">
+            <div class="step-indicator__track-fill"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==============================
+       ONBOARDING STEPS
+  ============================== -->
+  <section class="section" style="padding: 0; overflow: hidden;">
+    <p class="section-label" style="padding: var(--gap-x-large) var(--gap-x-large) 0;">Onboarding Steps</p>
+
+    <div class="row" style="margin: 0; flex-direction: column; align-items: stretch; gap: var(--gap-medium); padding: 0 var(--gap-x-large) var(--gap-x-large);">
+      <span class="row-label">Desktop · Quote (stage 1 active)</span>
+    </div>
+    <div class="onboarding-steps">
+      <div class="onboarding-steps__progress">
+        <div class="step-indicator step-indicator--active">
+          <div class="step-indicator__circle"><span class="step-indicator__number">1</span></div>
+          <span class="step-indicator__label">Quote</span>
+          <div class="step-indicator__track"><div class="step-indicator__track-fill"></div></div>
+        </div>
+        <div class="step-indicator">
+          <div class="step-indicator__circle"><span class="step-indicator__number">2</span></div>
+          <span class="step-indicator__label">Details</span>
+          <div class="step-indicator__track"><div class="step-indicator__track-fill"></div></div>
+        </div>
+        <div class="step-indicator">
+          <div class="step-indicator__circle"><span class="step-indicator__number">3</span></div>
+          <span class="step-indicator__label">Review</span>
+          <div class="step-indicator__track"><div class="step-indicator__track-fill"></div></div>
+        </div>
+        <div class="step-indicator">
+          <div class="step-indicator__circle"><span class="step-indicator__number">4</span></div>
+          <span class="step-indicator__label">Payment</span>
+          <div class="step-indicator__track"><div class="step-indicator__track-fill"></div></div>
+        </div>
+      </div>
+      <div class="onboarding-steps__text onboarding-steps__text--quote">
+        <h1 class="onboarding-steps__heading">Get your instant quote</h1>
+        <img class="onboarding-steps__partner" src="" alt="Partner logo" />
+      </div>
+    </div>
+
+    <div style="padding: var(--gap-medium) var(--gap-x-large) 0;"><span class="row-label">Desktop · Details (stage 2 active)</span></div>
+    <div class="onboarding-steps">
+      <div class="onboarding-steps__progress">
+        <div class="step-indicator step-indicator--completed">
+          <div class="step-indicator__circle"><svg class="step-indicator__tick" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-tick-small"></use></svg></div>
+          <span class="step-indicator__label">Quote</span>
+          <div class="step-indicator__track"><div class="step-indicator__track-fill"></div></div>
+        </div>
+        <div class="step-indicator step-indicator--active">
+          <div class="step-indicator__circle"><span class="step-indicator__number">2</span></div>
+          <span class="step-indicator__label">Details</span>
+          <div class="step-indicator__track"><div class="step-indicator__track-fill"></div></div>
+        </div>
+        <div class="step-indicator">
+          <div class="step-indicator__circle"><span class="step-indicator__number">3</span></div>
+          <span class="step-indicator__label">Review</span>
+          <div class="step-indicator__track"><div class="step-indicator__track-fill"></div></div>
+        </div>
+        <div class="step-indicator">
+          <div class="step-indicator__circle"><span class="step-indicator__number">4</span></div>
+          <span class="step-indicator__label">Payment</span>
+          <div class="step-indicator__track"><div class="step-indicator__track-fill"></div></div>
+        </div>
+      </div>
+      <div class="onboarding-steps__text onboarding-steps__text--details">
+        <span class="onboarding-steps__reg">AB12 CDE</span>
+        <h1 class="onboarding-steps__heading">Your details</h1>
+        <p class="onboarding-steps__sub">Tell us about yourself and your vehicle so we can find the right cover.</p>
+      </div>
+    </div>
+
+    <div style="padding: var(--gap-medium) var(--gap-x-large) 0;"><span class="row-label">Desktop · Review (stage 3 active)</span></div>
+    <div class="onboarding-steps">
+      <div class="onboarding-steps__progress">
+        <div class="step-indicator step-indicator--completed">
+          <div class="step-indicator__circle"><svg class="step-indicator__tick" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-tick-small"></use></svg></div>
+          <span class="step-indicator__label">Quote</span>
+          <div class="step-indicator__track"><div class="step-indicator__track-fill"></div></div>
+        </div>
+        <div class="step-indicator step-indicator--completed">
+          <div class="step-indicator__circle"><svg class="step-indicator__tick" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-tick-small"></use></svg></div>
+          <span class="step-indicator__label">Details</span>
+          <div class="step-indicator__track"><div class="step-indicator__track-fill"></div></div>
+        </div>
+        <div class="step-indicator step-indicator--active">
+          <div class="step-indicator__circle"><span class="step-indicator__number">3</span></div>
+          <span class="step-indicator__label">Review</span>
+          <div class="step-indicator__track"><div class="step-indicator__track-fill"></div></div>
+        </div>
+        <div class="step-indicator">
+          <div class="step-indicator__circle"><span class="step-indicator__number">4</span></div>
+          <span class="step-indicator__label">Payment</span>
+          <div class="step-indicator__track"><div class="step-indicator__track-fill"></div></div>
+        </div>
+      </div>
+      <div class="onboarding-steps__text onboarding-steps__text--review">
+        <span class="onboarding-steps__reg">AB12 CDE</span>
+        <h1 class="onboarding-steps__heading">Review your quote</h1>
+        <p class="onboarding-steps__sub">Check everything looks right before you pay.</p>
+      </div>
+    </div>
+
+    <div style="padding: var(--gap-medium) var(--gap-x-large) 0;"><span class="row-label">Desktop · Payment (stage 4 active)</span></div>
+    <div class="onboarding-steps">
+      <div class="onboarding-steps__progress">
+        <div class="step-indicator step-indicator--completed">
+          <div class="step-indicator__circle"><svg class="step-indicator__tick" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-tick-small"></use></svg></div>
+          <span class="step-indicator__label">Quote</span>
+          <div class="step-indicator__track"><div class="step-indicator__track-fill"></div></div>
+        </div>
+        <div class="step-indicator step-indicator--completed">
+          <div class="step-indicator__circle"><svg class="step-indicator__tick" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-tick-small"></use></svg></div>
+          <span class="step-indicator__label">Details</span>
+          <div class="step-indicator__track"><div class="step-indicator__track-fill"></div></div>
+        </div>
+        <div class="step-indicator step-indicator--completed">
+          <div class="step-indicator__circle"><svg class="step-indicator__tick" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-tick-small"></use></svg></div>
+          <span class="step-indicator__label">Review</span>
+          <div class="step-indicator__track"><div class="step-indicator__track-fill"></div></div>
+        </div>
+        <div class="step-indicator step-indicator--active">
+          <div class="step-indicator__circle"><span class="step-indicator__number">4</span></div>
+          <span class="step-indicator__label">Payment</span>
+          <div class="step-indicator__track"><div class="step-indicator__track-fill"></div></div>
+        </div>
+      </div>
+      <div class="onboarding-steps__text onboarding-steps__text--payment">
+        <span class="onboarding-steps__reg">AB12 CDE</span>
+        <h1 class="onboarding-steps__heading">Secure payment</h1>
+        <p class="onboarding-steps__sub">Complete your purchase and your cover starts immediately.</p>
+      </div>
+    </div>
+
+    <div style="padding: var(--gap-medium) var(--gap-x-large) 0;"><span class="row-label">Mobile · Quote (stage 1 active)</span></div>
+    <div style="display: flex; justify-content: center; padding: var(--gap-large) var(--gap-x-large);">
+      <div class="onboarding-steps onboarding-steps--mobile">
+        <div class="onboarding-steps__progress">
+          <div class="step-indicator step-indicator--mobile step-indicator--active">
+            <div class="step-indicator__circle"><span class="step-indicator__number">1</span></div>
+            <span class="step-indicator__label">Quote</span>
+            <div class="step-indicator__track"><div class="step-indicator__track-fill"></div></div>
+          </div>
+          <div class="step-indicator step-indicator--mobile">
+            <div class="step-indicator__circle"><span class="step-indicator__number">2</span></div>
+            <span class="step-indicator__label">Details</span>
+            <div class="step-indicator__track"><div class="step-indicator__track-fill"></div></div>
+          </div>
+          <div class="step-indicator step-indicator--mobile">
+            <div class="step-indicator__circle"><span class="step-indicator__number">3</span></div>
+            <span class="step-indicator__label">Review</span>
+            <div class="step-indicator__track"><div class="step-indicator__track-fill"></div></div>
+          </div>
+          <div class="step-indicator step-indicator--mobile">
+            <div class="step-indicator__circle"><span class="step-indicator__number">4</span></div>
+            <span class="step-indicator__label">Payment</span>
+            <div class="step-indicator__track"><div class="step-indicator__track-fill"></div></div>
+          </div>
+        </div>
+        <div class="onboarding-steps__text onboarding-steps__text--quote">
+          <h1 class="onboarding-steps__heading">Get your instant quote</h1>
+          <img class="onboarding-steps__partner" src="" alt="Partner logo" />
+        </div>
+      </div>
+    </div>
+
+    <div style="padding: 0 var(--gap-x-large);"><span class="row-label">Mobile · Details (stage 2 active)</span></div>
+    <div style="display: flex; justify-content: center; padding: var(--gap-large) var(--gap-x-large);">
+      <div class="onboarding-steps onboarding-steps--mobile">
+        <div class="onboarding-steps__progress">
+          <div class="step-indicator step-indicator--mobile step-indicator--completed">
+            <div class="step-indicator__circle"><svg class="step-indicator__tick" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-tick-small"></use></svg></div>
+            <span class="step-indicator__label">Quote</span>
+            <div class="step-indicator__track"><div class="step-indicator__track-fill"></div></div>
+          </div>
+          <div class="step-indicator step-indicator--mobile step-indicator--active">
+            <div class="step-indicator__circle"><span class="step-indicator__number">2</span></div>
+            <span class="step-indicator__label">Details</span>
+            <div class="step-indicator__track"><div class="step-indicator__track-fill"></div></div>
+          </div>
+          <div class="step-indicator step-indicator--mobile">
+            <div class="step-indicator__circle"><span class="step-indicator__number">3</span></div>
+            <span class="step-indicator__label">Review</span>
+            <div class="step-indicator__track"><div class="step-indicator__track-fill"></div></div>
+          </div>
+          <div class="step-indicator step-indicator--mobile">
+            <div class="step-indicator__circle"><span class="step-indicator__number">4</span></div>
+            <span class="step-indicator__label">Payment</span>
+            <div class="step-indicator__track"><div class="step-indicator__track-fill"></div></div>
+          </div>
+        </div>
+        <div class="onboarding-steps__text onboarding-steps__text--details">
+          <span class="onboarding-steps__reg">AB12 CDE</span>
+          <h1 class="onboarding-steps__heading">Your details</h1>
+          <p class="onboarding-steps__sub">Tell us about yourself and your vehicle so we can find the right cover.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding: 0 var(--gap-x-large);"><span class="row-label">Mobile · Review (stage 3 active)</span></div>
+    <div style="display: flex; justify-content: center; padding: var(--gap-large) var(--gap-x-large);">
+      <div class="onboarding-steps onboarding-steps--mobile">
+        <div class="onboarding-steps__progress">
+          <div class="step-indicator step-indicator--mobile step-indicator--completed">
+            <div class="step-indicator__circle"><svg class="step-indicator__tick" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-tick-small"></use></svg></div>
+            <span class="step-indicator__label">Quote</span>
+            <div class="step-indicator__track"><div class="step-indicator__track-fill"></div></div>
+          </div>
+          <div class="step-indicator step-indicator--mobile step-indicator--completed">
+            <div class="step-indicator__circle"><svg class="step-indicator__tick" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-tick-small"></use></svg></div>
+            <span class="step-indicator__label">Details</span>
+            <div class="step-indicator__track"><div class="step-indicator__track-fill"></div></div>
+          </div>
+          <div class="step-indicator step-indicator--mobile step-indicator--active">
+            <div class="step-indicator__circle"><span class="step-indicator__number">3</span></div>
+            <span class="step-indicator__label">Review</span>
+            <div class="step-indicator__track"><div class="step-indicator__track-fill"></div></div>
+          </div>
+          <div class="step-indicator step-indicator--mobile">
+            <div class="step-indicator__circle"><span class="step-indicator__number">4</span></div>
+            <span class="step-indicator__label">Payment</span>
+            <div class="step-indicator__track"><div class="step-indicator__track-fill"></div></div>
+          </div>
+        </div>
+        <div class="onboarding-steps__text onboarding-steps__text--review">
+          <span class="onboarding-steps__reg">AB12 CDE</span>
+          <h1 class="onboarding-steps__heading">Review your quote</h1>
+          <p class="onboarding-steps__sub">Check everything looks right before you pay.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding: 0 var(--gap-x-large);"><span class="row-label">Mobile · Payment (stage 4 active)</span></div>
+    <div style="display: flex; justify-content: center; padding: var(--gap-large) var(--gap-x-large);">
+      <div class="onboarding-steps onboarding-steps--mobile">
+        <div class="onboarding-steps__progress">
+          <div class="step-indicator step-indicator--mobile step-indicator--completed">
+            <div class="step-indicator__circle"><svg class="step-indicator__tick" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-tick-small"></use></svg></div>
+            <span class="step-indicator__label">Quote</span>
+            <div class="step-indicator__track"><div class="step-indicator__track-fill"></div></div>
+          </div>
+          <div class="step-indicator step-indicator--mobile step-indicator--completed">
+            <div class="step-indicator__circle"><svg class="step-indicator__tick" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-tick-small"></use></svg></div>
+            <span class="step-indicator__label">Details</span>
+            <div class="step-indicator__track"><div class="step-indicator__track-fill"></div></div>
+          </div>
+          <div class="step-indicator step-indicator--mobile step-indicator--completed">
+            <div class="step-indicator__circle"><svg class="step-indicator__tick" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-tick-small"></use></svg></div>
+            <span class="step-indicator__label">Review</span>
+            <div class="step-indicator__track"><div class="step-indicator__track-fill"></div></div>
+          </div>
+          <div class="step-indicator step-indicator--mobile step-indicator--active">
+            <div class="step-indicator__circle"><span class="step-indicator__number">4</span></div>
+            <span class="step-indicator__label">Payment</span>
+            <div class="step-indicator__track"><div class="step-indicator__track-fill"></div></div>
+          </div>
+        </div>
+        <div class="onboarding-steps__text onboarding-steps__text--payment">
+          <span class="onboarding-steps__reg">AB12 CDE</span>
+          <h1 class="onboarding-steps__heading">Secure payment</h1>
+          <p class="onboarding-steps__sub">Complete your purchase and your cover starts immediately.</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
 
 </body>
 </html>
