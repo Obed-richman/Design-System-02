@@ -1,0 +1,425 @@
+/* ============================================
+   NAVIGATION BAR
+   Depends on: tokens/tokens.css
+   No hardcoded values — token variables only.
+   Structural layout dimensions without a token
+   equivalent (noted inline) are the only
+   exceptions, consistent with button.css
+   practice for values outside the token scale.
+   ============================================ */
+
+
+/* ============================================
+   NAV BAR — Base
+   Full-width pill on a 1280px content wrapper.
+   Height fixed at 80px (--number-80).
+   ============================================ */
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-large);
+  height: var(--number-80);
+  padding: 0 var(--gap-large);
+  background: var(--bg-brand-navy);
+  border-radius: var(--radius-x-large);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+/* ============================================
+   NAV BAR — Elements
+   ============================================ */
+
+/* --- Logo --- */
+
+.nav-bar__logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--text-on-colour);
+  text-decoration: none;
+}
+
+.nav-bar__logo-icon {
+  display: block;
+  /* 110×32: Zego wordmark natural dimensions — no token equivalent for width */
+  width: 110px;
+  height: var(--number-32);
+  fill: currentColor;
+}
+
+
+/* --- Nav links list --- */
+
+.nav-bar__links {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-large);
+  flex: 1;
+  justify-content: flex-start;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Individual nav link
+   Static variant: rendered as <div> or <a> — cursor: default
+   Dropdown variant: rendered as <button> — cursor: pointer (via modifier) */
+.nav-bar__link {
+  display: inline-flex;
+  align-items: center;
+  /* 6px vertical padding matches Figma spec; closest token is --gap-xx-small (4px) */
+  padding: var(--gap-xx-small) var(--gap-x-small);
+  font-family: inherit;
+  font-size: var(--font-size-subtitle-2);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-subtitle-2);
+  color: var(--text-on-colour);
+  border-radius: var(--radius-round);
+  background: transparent;
+  border: none;
+  cursor: default;
+  white-space: nowrap;
+  text-decoration: none;
+  outline: none;
+  user-select: none;
+  transition: background 200ms ease-in-out, color 200ms ease-in-out;
+}
+
+
+/* --- CTA button area --- */
+
+.nav-bar__ctas {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-medium);
+  /* 280px: Figma-specified CTA group width — no token equivalent */
+  width: 280px;
+  flex-shrink: 0;
+}
+
+/* Shared CTA base — both login and quote share these */
+.nav-bar__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 0;
+  padding: var(--gap-small);
+  font-family: inherit;
+  font-size: var(--font-size-subtitle-2);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-subtitle-2);
+  border-radius: var(--radius-round);
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  outline: none;
+  transition: background 150ms ease, box-shadow 150ms ease;
+}
+
+/* Login — outline on-colour (white border, transparent fill) */
+.nav-bar__cta--login {
+  background: transparent;
+  color: var(--text-on-colour);
+  box-shadow: inset 0 0 0 var(--border-s) var(--border-color-on-colour);
+}
+
+/* Get a quote — aqua fill */
+.nav-bar__cta--quote {
+  background: var(--bg-brand-aqua);
+  color: var(--text-black-fixed);
+  box-shadow: none;
+}
+
+
+/* ============================================
+   NAV BAR — Variants
+   ============================================ */
+
+/* Dropdown open: nav links behave as interactive buttons */
+.nav-bar--dropdown-open .nav-bar__link {
+  cursor: pointer;
+}
+
+/* Active link — aqua highlight colour when dropdown is open */
+.nav-bar--dropdown-open .nav-bar__link.is-active {
+  color: var(--text-link-on-dark);
+}
+
+
+/* ============================================
+   NAV BAR — States
+   ============================================ */
+
+/* Nav link hover + press — only meaningful in dropdown variant */
+.nav-bar--dropdown-open .nav-bar__link:hover {
+  /* background: var(--colour-white-10); */
+}
+
+.nav-bar--dropdown-open .nav-bar__link:active {
+  background: var(--colour-white-20);
+}
+
+.nav-bar--dropdown-open .nav-bar__link:focus-visible {
+  outline: var(--border-focused) solid var(--border-color-focused);
+  outline-offset: 2px;
+}
+
+/* CTA: Login */
+.nav-bar__cta--login:hover:not(:disabled) {
+  background: var(--colour-white-10);
+}
+
+.nav-bar__cta--login:active:not(:disabled) {
+  background: var(--colour-white-20);
+}
+
+.nav-bar__cta--login:focus-visible {
+  outline: var(--border-focused) solid var(--border-color-focused);
+  outline-offset: 2px;
+}
+
+/* CTA: Get a quote */
+.nav-bar__cta--quote:hover:not(:disabled) {
+  background: var(--bg-aqua-active);
+}
+
+.nav-bar__cta--quote:active:not(:disabled) {
+  background: var(--bg-brand-aqua-pressed);
+}
+
+.nav-bar__cta--quote:focus-visible {
+  outline: var(--border-focused) solid var(--border-color-focused);
+  outline-offset: 2px;
+}
+
+
+/* ============================================
+   DROPDOWN MEGA MENU PANEL (.nav-dropdown)
+   Separate block — rendered below the nav bar
+   when .nav-bar--dropdown-open is applied.
+   ============================================ */
+
+
+/* --- Base --- */
+
+.nav-dropdown {
+  display: flex;
+  flex-direction: row;
+  gap: var(--gap-large);
+  background: var(--bg-primary);
+  border-bottom: var(--border-s) solid var(--border-color-primary);
+  border-radius: var(--radius-x-large);
+  overflow: hidden;
+  /* Shadow: Figma value 0 25px 50px -12px rgba(0,0,0,0.25)
+     No shadow tokens in tokens.css — shadow-xx-large not defined. */
+  box-shadow: 0 25px 50px -12px var(--colour-black-10-20);
+
+  /* Hidden by default — JS adds .is-open to reveal */
+  opacity: 0;
+  transform: translateY(calc(var(--gap-x-small) * -1));
+  pointer-events: none;
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+/* Open state — toggled by JS on hover */
+.nav-dropdown.is-open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+
+/* --- Elements --- */
+
+/* Left two content columns */
+.nav-dropdown__column {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  /* Each column min-width: combined left area = 343px per Figma (171px each) */
+  min-width: 171px;
+  padding: var(--gap-large) 0;
+  gap: var(--gap-medium);
+}
+
+/* First column needs left padding to breathe from the dropdown edge */
+.nav-dropdown__column:first-child {
+  padding-left: var(--gap-large);
+}
+
+/* Column header — title + divider padding */
+.nav-dropdown__column-header {
+  padding: 0 var(--gap-medium);
+}
+
+/* Column title */
+.nav-dropdown__column-title {
+  font-family: inherit;
+  font-size: var(--font-size-title-4);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-title-4);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--text-primary);
+}
+
+/* Tile list wrapper */
+.nav-dropdown__tiles {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Individual tile — link or button */
+.nav-dropdown__tile {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--gap-medium);
+  padding: var(--gap-medium);
+  border-radius: var(--radius-medium);
+  background: transparent;
+  /* Transparent border reserves space to prevent layout shift on hover */
+  border: var(--border-s) solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  outline: none;
+  transition: background 200ms ease-in-out, border-color 200ms ease-in-out;
+}
+
+.nav-dropdown__tile:focus-visible {
+  outline: var(--border-focused) solid var(--border-color-focused);
+  outline-offset: 2px;
+}
+
+/* Tile icon slot — optical top-align with first text line */
+.nav-dropdown__tile-icon {
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  padding-top: var(--gap-xx-small);
+}
+
+/* Override icon size inside tile — chevron is non-square (7×12 viewbox) */
+.nav-dropdown__tile-chevron .icon {
+  width: var(--gap-x-small);   /* 8px ≈ Figma 6.9px */
+  height: var(--gap-small);    /* 12px ≈ Figma 11.5px */
+}
+
+/* Tile text block */
+.nav-dropdown__tile-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xx-small);
+  flex: 1;
+}
+
+.nav-dropdown__tile-title {
+  font-family: inherit;
+  font-size: var(--font-size-subtitle-2);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-subtitle-2);
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.nav-dropdown__tile-desc {
+  font-family: inherit;
+  font-size: var(--font-size-subtitle-3);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-subtitle-3);
+  color: var(--text-primary);
+}
+
+/* Tile chevron — optically top-aligned */
+.nav-dropdown__tile-chevron {
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  padding-top: var(--gap-xx-small);
+  color: var(--text-primary);
+}
+
+/* Aside column — Delivery Guides */
+.nav-dropdown__column--aside {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
+  /* 430px: Figma-specified Delivery Guides column width — no token equivalent */
+  width: 430px;
+  flex-shrink: 0;
+  padding: var(--gap-large);
+  background: var(--bg-brand-ecru);
+  border-left: var(--border-m) solid var(--border-color-primary);
+  align-self: stretch;
+}
+
+/* Guide tile titles — no description line */
+.nav-dropdown__column--aside .nav-dropdown__tile-title {
+  white-space: normal;
+}
+
+
+/* ============================================
+   DROPDOWN — Tile states
+   ============================================ */
+
+/* Hover — aqua tint bg + active border */
+.nav-dropdown__tile:hover {
+  background: var(--colour-aqua-20);
+  border-color: var(--border-color-active);
+}
+
+/* Active — same visual as hover (forced .is-active class) */
+.nav-dropdown__tile.is-active {
+  background: var(--colour-aqua-20);
+  border-color: var(--border-color-active);
+}
+
+/* Pressed — one step deeper aqua */
+.nav-dropdown__tile:active {
+  background: var(--colour-aqua-30);
+  border-color: var(--border-color-active);
+}
+
+
+/* ============================================
+   DARK MODE
+   The nav bar is always navy — its on-colour
+   tokens are already correct for dark surfaces.
+   The dropdown panel uses semantic tokens that
+   respond to the .dark class.
+   ============================================ */
+
+.dark .nav-dropdown {
+  background: var(--bg-primary);
+  border-bottom-color: var(--border-color-primary);
+}
+
+.dark .nav-dropdown__column-title,
+.dark .nav-dropdown__tile-title,
+.dark .nav-dropdown__tile-desc,
+.dark .nav-dropdown__tile-chevron {
+  color: var(--text-primary);
+}
+
+.dark .nav-dropdown__column--aside {
+  background: var(--bg-brand-ecru);
+  border-left-color: var(--border-color-primary);
+}
+
+.dark .nav-dropdown__tile:hover,
+.dark .nav-dropdown__tile.is-active {
+  background: var(--colour-aqua-20);
+  border-color: var(--border-color-active);
+}
+
+.dark .nav-dropdown__tile:active {
+  background: var(--colour-aqua-30);
+  border-color: var(--border-color-active);
+}

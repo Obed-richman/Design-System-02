@@ -1,0 +1,201 @@
+/* ============================================
+   TRUSTPILOT LOCKUP
+   Depends on: tokens/tokens.css
+   No hardcoded values — token variables only.
+   Fixed design dimensions (star strip widths,
+   logo sizes, stacked lockup width) are noted
+   inline — no applicable token equivalent exists.
+   ============================================ */
+
+
+/* ============================================
+   TP-STARS — Five-star rating strip
+   ============================================ */
+
+/* --- Base --- */
+
+.tp-stars {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.tp-stars__star {
+  display: block;
+  flex-shrink: 0;
+}
+
+
+/* --- Size modifiers --- */
+
+.tp-stars--large {
+  /* 132×24px: Figma star strip dimensions — no token equivalent for 132px */
+  width: 132px;
+  height: var(--number-24);
+}
+
+.tp-stars--large .tp-stars__star {
+  /* 24×24px: matches --icon-size-xs */
+  width: var(--number-24);
+  height: var(--number-24);
+}
+
+.tp-stars--small {
+  /* 88×16px: Figma star strip dimensions — no token equivalent for 88px */
+  width: var(--number-88);
+  height: var(--number-16);
+}
+
+.tp-stars--small .tp-stars__star {
+  /* 16×16px: matches --icon-size-xxs */
+  width: var(--number-16);
+  height: var(--number-16);
+}
+
+
+/* ============================================
+   TP-SOCIAL — Trustpilot logo badge
+   Green star icon + "Trustpilot" wordmark
+   ============================================ */
+
+/* --- Base --- */
+
+.tp-social {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--gap-xx-small);
+  flex-shrink: 0;
+}
+
+.tp-social__icon {
+  display: block;
+  flex-shrink: 0;
+}
+
+.tp-social__wordmark {
+  display: block;
+  flex-shrink: 0;
+}
+
+
+/* --- Size modifiers --- */
+
+.tp-social--large .tp-social__icon {
+  /* 33×32px: Figma Trustpilot star icon — no token equivalent for 33px */
+  width: 33px;
+  height: var(--number-32);
+}
+
+.tp-social--large .tp-social__wordmark {
+  /* 108×23px: Figma Trustpilot wordmark — no token equivalent */
+  width: 108px;
+  height: 23px;
+  /* 10px top offset: optical alignment per Figma spec — no token equivalent */
+  padding-top: 10px;
+}
+
+.tp-social--small .tp-social__icon {
+  /* 24×24px: matches --icon-size-xs */
+  width: var(--number-24);
+  height: var(--number-24);
+}
+
+.tp-social--small .tp-social__wordmark {
+  /* 70×15px: Figma small wordmark — no token equivalent */
+  width: 70px;
+  height: 15px;
+  /* 6px top offset: optical alignment per Figma spec — no token equivalent */
+  padding-top: var(--gap-xx-small);
+}
+
+
+/* ============================================
+   TP-LOCKUP — Assembled rating lockup
+   ============================================ */
+
+/* --- Base --- */
+
+.tp-lockup {
+  display: flex;
+}
+
+.tp-lockup__text,
+.tp-lockup__rating,
+.tp-lockup__subtext {
+  font-family: inherit;
+  color: var(--text-primary);
+  white-space: nowrap;
+  letter-spacing: var(--letter-spacing-normal);
+  margin: 0;
+}
+
+.tp-lockup__text strong,
+.tp-lockup__subtext strong {
+  font-weight: var(--font-weight-bold);
+}
+
+
+/* --- Size modifiers --- */
+
+/* Inline size: text scales with the lockup size modifier */
+.tp-lockup--inline.tp-lockup--large .tp-lockup__text,
+.tp-lockup--inline.tp-lockup--large .tp-lockup__rating,
+.tp-lockup--inline.tp-lockup--large .tp-lockup__subtext {
+  font-size: var(--font-size-body-1);
+  line-height: var(--line-height-body-1);
+}
+
+.tp-lockup--inline.tp-lockup--small .tp-lockup__text,
+.tp-lockup--inline.tp-lockup--small .tp-lockup__rating,
+.tp-lockup--inline.tp-lockup--small .tp-lockup__subtext {
+  font-size: var(--font-size-body-3);
+  line-height: var(--line-height-body-3);
+}
+
+/* Stacked size: text is always body-1 (18px) regardless of size modifier —
+   the size modifier on stacked only affects gap and content element sizing */
+.tp-lockup--stacked .tp-lockup__text,
+.tp-lockup--stacked .tp-lockup__rating,
+.tp-lockup--stacked .tp-lockup__subtext {
+  font-size: var(--font-size-body-1);
+  line-height: var(--line-height-body-1);
+}
+
+
+/* --- Layout modifiers --- */
+
+.tp-lockup--inline {
+  flex-direction: row;
+  align-items: center;
+}
+
+.tp-lockup--inline.tp-lockup--large { gap: var(--gap-small); }
+.tp-lockup--inline.tp-lockup--small { gap: var(--gap-x-small); }
+
+.tp-lockup--stacked {
+  flex-direction: column;
+}
+
+/* 312px: Figma-specified width for stacked large lockup — no token equivalent */
+.tp-lockup--stacked.tp-lockup--large { gap: var(--gap-xx-small); width: 312px; }
+.tp-lockup--stacked.tp-lockup--small { gap: var(--gap-x-small); }
+
+
+/* --- Alignment modifiers --- */
+
+.tp-lockup--left   { align-items: flex-start; text-align: left; }
+.tp-lockup--centre { align-items: center;     text-align: center; }
+.tp-lockup--right  { align-items: flex-end;   text-align: right; }
+
+
+/* ============================================
+   DARK MODE
+   No dark mode variants specified in Figma.
+   Text elements use var(--text-primary) which
+   inverts correctly via semantic tokens.
+   Star and wordmark SVGs use baked-in brand
+   fills and do not respond to colour theming —
+   no dark overrides are needed or appropriate.
+   ============================================ */

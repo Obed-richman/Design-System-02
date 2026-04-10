@@ -1,0 +1,321 @@
+<!-- ============================================
+     HERO SECTION COMPONENT SNIPPETS
+     Copy what you need into a screen or index.html.
+     Requires: tokens/tokens.css
+               components/button/button.css
+               components/trustpilot-lockup/trustpilot-lockup.css
+               components/image-size/image-size.css  (Inset Image variant only)
+               components/hero/hero.css
+     ============================================ -->
+
+
+<!-- ============================================================
+     VARIANT 1 — Half Image
+     Image fills the right half of the section, edge-to-edge, no radius.
+     Apply your own background colour directly on .hero--half-image
+     e.g. style="background: var(--bg-brand-ecru)" or a utility class.
+     ============================================================ -->
+
+<section class="hero hero--half-image" style="background: var(--bg-brand-ecru)">
+
+  <!-- Content column -->
+  <div class="hero__content">
+
+    <!-- Partner logo (optional — remove if not needed) -->
+    <img class="hero__partner-logo" src="" alt="Partner logo" style="width:163px;height:32px;">
+
+    <!-- SEO heading -->
+    <p class="hero__seo">SEO HEADING 16PX</p>
+
+    <!-- Display heading -->
+    <h1 class="hero__heading">Display Heading 48px</h1>
+
+    <!-- Large body paragraph -->
+    <p class="hero__body">Large paragraph 24px – placeholder body copy goes here</p>
+
+    <!-- Bullet points -->
+    <ul class="hero__bullets" role="list">
+      <li class="hero__bullet">
+        <span class="hero__bullet-icon">
+          <svg class="icon icon--xs" viewBox="0 0 96 96" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-tick"></use>
+          </svg>
+        </span>
+        <span class="hero__bullet-text">Bullet point one</span>
+      </li>
+      <li class="hero__bullet">
+        <span class="hero__bullet-icon">
+          <svg class="icon icon--xs" viewBox="0 0 96 96" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-tick"></use>
+          </svg>
+        </span>
+        <span class="hero__bullet-text">Bullet point two</span>
+      </li>
+      <li class="hero__bullet">
+        <span class="hero__bullet-icon">
+          <svg class="icon icon--xs" viewBox="0 0 96 96" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-tick"></use>
+          </svg>
+        </span>
+        <span class="hero__bullet-text">Bullet point three</span>
+      </li>
+    </ul>
+
+    <!-- Buttons + text link -->
+    <div class="hero__actions">
+      <div class="hero__buttons">
+        <div class="hero__btn">
+          <button class="btn btn--pill btn--primary btn--full" type="button">Get a quote</button>
+        </div>
+        <div class="hero__btn">
+          <button class="btn btn--pill btn--tertiary btn--full" type="button">Learn more</button>
+        </div>
+      </div>
+      <a class="hero__link" href="#">
+        <p>Find out more</p>
+        <svg class="icon icon--xxs" viewBox="0 0 96 96" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-arrow-right"></use>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Trustpilot lockup -->
+    <div class="hero__trustpilot">
+      <div class="tp-lockup tp-lockup--stacked tp-lockup--large tp-lockup--stars tp-lockup--left">
+        <p class="tp-lockup__text"><strong>Excellent</strong><span class="tp-lockup__subtext"> - 2,243 reviews on Trustpilot</span></p>
+        <div class="tp-stars tp-stars--large" aria-label="4.5 out of 5 stars">
+          <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-trustpilot-full-star"></use>
+          </svg>
+          <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-trustpilot-full-star"></use>
+          </svg>
+          <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-trustpilot-full-star"></use>
+          </svg>
+          <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-trustpilot-full-star"></use>
+          </svg>
+          <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-trustpilot-half-star"></use>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /hero__content -->
+
+  <!-- Right image — fills remaining width, full section height, no radius -->
+  <div class="hero__image-half">
+    <img src="https://placehold.co/700x1024" alt="Hero background image">
+  </div>
+
+</section><!-- /hero--half-image -->
+
+
+<!-- ============================================================
+     VARIANT 2 — Inset Image
+     Image is a contained 628×837px portrait with border-radius.
+     Uses .image-size component — image-size.css must be linked.
+     Apply your own background colour directly on .hero--inset-image.
+     ============================================================ -->
+
+<section class="hero hero--inset-image" style="background: var(--bg-primary)">
+
+  <!-- Content column (no partner logo in Inset Image variant) -->
+  <div class="hero__content">
+
+    <!-- SEO heading -->
+    <p class="hero__seo">SEO HEADING 16PX</p>
+
+    <!-- Display heading -->
+    <h1 class="hero__heading">Display Heading 48px</h1>
+
+    <!-- Large body paragraph -->
+    <p class="hero__body">Large paragraph 24px – placeholder body copy goes here</p>
+
+    <!-- Bullet points -->
+    <ul class="hero__bullets" role="list">
+      <li class="hero__bullet">
+        <span class="hero__bullet-icon">
+          <svg class="icon icon--xs" viewBox="0 0 96 96" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-tick"></use>
+          </svg>
+        </span>
+        <span class="hero__bullet-text">Bullet point one</span>
+      </li>
+      <li class="hero__bullet">
+        <span class="hero__bullet-icon">
+          <svg class="icon icon--xs" viewBox="0 0 96 96" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-tick"></use>
+          </svg>
+        </span>
+        <span class="hero__bullet-text">Bullet point two</span>
+      </li>
+      <li class="hero__bullet">
+        <span class="hero__bullet-icon">
+          <svg class="icon icon--xs" viewBox="0 0 96 96" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-tick"></use>
+          </svg>
+        </span>
+        <span class="hero__bullet-text">Bullet point three</span>
+      </li>
+    </ul>
+
+    <!-- Buttons + text link -->
+    <div class="hero__actions">
+      <div class="hero__buttons">
+        <div class="hero__btn">
+          <button class="btn btn--pill btn--primary btn--full" type="button">Get a quote</button>
+        </div>
+        <div class="hero__btn">
+          <button class="btn btn--pill btn--tertiary btn--full" type="button">Learn more</button>
+        </div>
+      </div>
+      <a class="hero__link" href="#">
+        <p>Find out more</p>
+        <svg class="icon icon--xxs" viewBox="0 0 96 96" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-arrow-right"></use>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Trustpilot lockup -->
+    <div class="hero__trustpilot">
+      <div class="tp-lockup tp-lockup--stacked tp-lockup--large tp-lockup--stars tp-lockup--left">
+        <p class="tp-lockup__text"><strong>Excellent</strong><span class="tp-lockup__subtext"> - 2,243 reviews on Trustpilot</span></p>
+        <div class="tp-stars tp-stars--large" aria-label="4.5 out of 5 stars">
+          <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-trustpilot-full-star"></use>
+          </svg>
+          <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-trustpilot-full-star"></use>
+          </svg>
+          <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-trustpilot-full-star"></use>
+          </svg>
+          <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-trustpilot-full-star"></use>
+          </svg>
+          <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-trustpilot-half-star"></use>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /hero__content -->
+
+  <!-- Right image — uses image-size component (628×837, portrait, desktop) -->
+  <div class="hero__image-inset">
+    <div class="image-size image-size--portrait image-size--desktop">
+      <img class="image-size__img" src="https://placehold.co/628x837" alt="Hero portrait image">
+    </div>
+  </div>
+
+</section><!-- /hero--inset-image -->
+
+
+<!-- ============================================================
+     VARIANT 3 — Full Image
+     Full-bleed photograph behind all content.
+     No external background colour needed.
+     ============================================================ -->
+
+<section class="hero hero--full-image">
+
+  <!-- Background image layer (absolutely positioned, behind content) -->
+  <div class="hero__bg" aria-hidden="true">
+    <img class="hero__bg-img" src="https://placehold.co/2000x1024" alt="">
+    <div class="hero__bg-overlay"></div>
+  </div>
+
+  <!-- Content column (z-index: 1, sits above background) -->
+  <div class="hero__content">
+
+    <!-- Partner logo (optional) -->
+    <img class="hero__partner-logo" src="" alt="Partner logo" style="width:163px;height:32px;">
+
+    <!-- SEO heading -->
+    <p class="hero__seo">SEO HEADING 16PX</p>
+
+    <!-- Display heading -->
+    <h1 class="hero__heading">Display Heading 48px</h1>
+
+    <!-- Large body paragraph -->
+    <p class="hero__body">Large paragraph 24px – placeholder body copy goes here</p>
+
+    <!-- Bullet points -->
+    <ul class="hero__bullets" role="list">
+      <li class="hero__bullet">
+        <span class="hero__bullet-icon">
+          <svg class="icon icon--xs" viewBox="0 0 96 96" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-tick"></use>
+          </svg>
+        </span>
+        <span class="hero__bullet-text">Bullet point one</span>
+      </li>
+      <li class="hero__bullet">
+        <span class="hero__bullet-icon">
+          <svg class="icon icon--xs" viewBox="0 0 96 96" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-tick"></use>
+          </svg>
+        </span>
+        <span class="hero__bullet-text">Bullet point two</span>
+      </li>
+      <li class="hero__bullet">
+        <span class="hero__bullet-icon">
+          <svg class="icon icon--xs" viewBox="0 0 96 96" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-tick"></use>
+          </svg>
+        </span>
+        <span class="hero__bullet-text">Bullet point three</span>
+      </li>
+    </ul>
+
+    <!-- Buttons + text link (gap is wider on Full Image — handled in CSS) -->
+    <div class="hero__actions">
+      <div class="hero__buttons">
+        <div class="hero__btn">
+          <button class="btn btn--pill btn--primary btn--full" type="button">Get a quote</button>
+        </div>
+        <div class="hero__btn">
+          <!-- .btn--tertiary border and text colour flipped to white by hero CSS override -->
+          <button class="btn btn--pill btn--tertiary btn--full" type="button">Learn more</button>
+        </div>
+      </div>
+      <a class="hero__link" href="#">
+        <p>Find out more</p>
+        <svg class="icon icon--xxs" viewBox="0 0 96 96" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-arrow-right"></use>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Trustpilot lockup — text flipped to white by hero CSS override -->
+    <div class="hero__trustpilot">
+      <div class="tp-lockup tp-lockup--stacked tp-lockup--large tp-lockup--stars tp-lockup--left">
+        <p class="tp-lockup__text"><strong>Excellent</strong><span class="tp-lockup__subtext"> - 2,243 reviews on Trustpilot</span></p>
+        <div class="tp-stars tp-stars--large" aria-label="4.5 out of 5 stars">
+          <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-trustpilot-full-star"></use>
+          </svg>
+          <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-trustpilot-full-star"></use>
+          </svg>
+          <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-trustpilot-full-star"></use>
+          </svg>
+          <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-trustpilot-full-star"></use>
+          </svg>
+          <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-trustpilot-half-star"></use>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /hero__content -->
+
+</section><!-- /hero--full-image -->

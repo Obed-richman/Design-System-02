@@ -51,6 +51,11 @@
   <link rel="stylesheet" href="components/registration-plate/registration-plate.css" />
   <link rel="stylesheet" href="components/onboarding-steps/onboarding-steps.css" />
   <link rel="stylesheet" href="components/step-indicator/step-indicator.css" />
+  <link rel="stylesheet" href="components/navigation-bar/navigation-bar.css" />
+  <link rel="stylesheet" href="components/trustpilot-lockup/trustpilot-lockup.css" />
+  <link rel="stylesheet" href="components/image-size/image-size.css" />
+  <link rel="stylesheet" href="components/hero/hero.css" />
+  <link rel="stylesheet" href="components/fca-banner/fca-banner.css" />
 
   <style>
     /* Sandbox layout only — not part of any component */
@@ -283,6 +288,21 @@
       <svg class="icon icon--xs icon--negative" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-close"></use></svg>
       <svg class="icon icon--xs icon--warning" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-close"></use></svg>
       <svg class="icon icon--xs icon--disabled" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-close"></use></svg>
+    </div>
+
+    <div class="row">
+      <span class="row-label">Product icons</span>
+      <svg class="icon icon--xs icon--primary" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-personal-car"></use></svg>
+      <svg class="icon icon--xs icon--primary" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-car-delivery"></use></svg>
+      <svg class="icon icon--xs icon--primary" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-scooter"></use></svg>
+    </div>
+
+    <div class="row">
+      <span class="row-label">Work provider</span>
+      <svg class="icon icon--xs" viewBox="0 0 24 24"><use href="icons/icons.svg#icon-deliveroo"></use></svg>
+      <svg class="icon icon--xs" viewBox="0 0 24 24"><use href="icons/icons.svg#icon-uber"></use></svg>
+      <svg class="icon icon--xs" viewBox="0 0 24 24"><use href="icons/icons.svg#icon-uber-eats"></use></svg>
+      <svg class="icon icon--xs" viewBox="0 0 24 24"><use href="icons/icons.svg#icon-just-eat"></use></svg>
     </div>
 
   </section>
@@ -4413,6 +4433,662 @@
     </div>
 
   </section>
+
+
+  <!-- ==============================
+       NAVIGATION BAR
+       Paste nav bar snippets from components/navigation-bar/navigation-bar.html
+  ============================== -->
+  <section class="section">
+    <p class="section-label">Navigation Bar</p>
+
+    <!-- Row 1: Default nav bar — static links, no dropdown -->
+    <div class="row" style="display: block; padding: var(--gap-medium); background: var(--bg-brand-navy); border-radius: var(--radius-small);">
+      <span class="row-label" style="color: var(--text-on-colour);">Default (no dropdown)</span>
+
+      <nav class="nav-bar" aria-label="Main navigation">
+        <a class="nav-bar__logo" href="#" aria-label="Zego — home">
+          <svg class="nav-bar__logo-icon" viewBox="0 0 110 32" fill="currentColor" aria-hidden="true">
+            <use href="icons/icons.svg#icon-zego-logo"></use>
+          </svg>
+        </a>
+        <ul class="nav-bar__links" role="list">
+          <li><a class="nav-bar__link" href="#">Products</a></li>
+          <li><a class="nav-bar__link" href="#">Delivery</a></li>
+          <li><a class="nav-bar__link" href="#">About us</a></li>
+          <li><a class="nav-bar__link" href="#">Blog</a></li>
+        </ul>
+        <div class="nav-bar__ctas">
+          <button class="nav-bar__cta nav-bar__cta--login" type="button">Login</button>
+          <button class="nav-bar__cta nav-bar__cta--quote" type="button">Get a quote</button>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Row 2: Nav bar with dropdown open — Delivery link active, mega menu visible -->
+    <div class="row" style="display: block; padding: var(--gap-medium); background: var(--bg-brand-navy); border-radius: var(--radius-small);">
+      <span class="row-label" style="color: var(--text-on-colour);">Dropdown open (Delivery active)</span>
+
+      <nav class="nav-bar" id="main-nav" aria-label="Main navigation">
+        <a class="nav-bar__logo" href="#" aria-label="Zego — home">
+          <svg class="nav-bar__logo-icon" viewBox="0 0 110 32" fill="currentColor" aria-hidden="true">
+            <use href="icons/icons.svg#icon-zego-logo"></use>
+          </svg>
+        </a>
+        <ul class="nav-bar__links" role="list">
+          <li><button class="nav-bar__link" type="button" aria-expanded="false" data-nav-link>Products</button></li>
+          <li><button class="nav-bar__link" type="button" aria-expanded="false" data-nav-link>Delivery</button></li>
+          <li><button class="nav-bar__link" type="button" aria-expanded="false" data-nav-link>About us</button></li>
+          <li><button class="nav-bar__link" type="button" aria-expanded="false" data-nav-link>Blog</button></li>
+        </ul>
+        <div class="nav-bar__ctas">
+          <button class="nav-bar__cta nav-bar__cta--login" type="button">Login</button>
+          <button class="nav-bar__cta nav-bar__cta--quote" type="button">Get a quote</button>
+        </div>
+      </nav>
+
+      <div class="nav-dropdown" id="nav-dropdown" role="region" aria-label="Delivery products menu" style="margin-top: var(--gap-medium);">
+
+        <!-- Column 1: Car -->
+        <div class="nav-dropdown__column">
+          <div class="nav-dropdown__column-header">
+            <h2 class="nav-dropdown__column-title">Car</h2>
+          </div>
+          <ul class="nav-dropdown__tiles" role="list">
+            <li>
+              <a class="nav-dropdown__tile is-active" href="#">
+                <div class="nav-dropdown__tile-icon">
+                  <svg class="icon icon--xxs icon--primary" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-car-delivery"></use></svg>
+                </div>
+                <div class="nav-dropdown__tile-text">
+                  <span class="nav-dropdown__tile-title">Car Delivery Insurance</span>
+                  <span class="nav-dropdown__tile-desc">Flexible car insurance for food delivery and courier work</span>
+                </div>
+                <div class="nav-dropdown__tile-chevron" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 7 12" fill="currentColor"><use href="icons/icons.svg#icon-chevron-small-right"></use></svg>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="nav-dropdown__tile" href="#">
+                <div class="nav-dropdown__tile-icon">
+                  <svg class="icon icon--xxs" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-deliveroo"></use></svg>
+                </div>
+                <div class="nav-dropdown__tile-text">
+                  <span class="nav-dropdown__tile-title">Deliveroo Insurance</span>
+                  <span class="nav-dropdown__tile-desc">Flexible delivery insurance for Deliveroo drivers and riders.</span>
+                </div>
+                <div class="nav-dropdown__tile-chevron" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 7 12" fill="currentColor"><use href="icons/icons.svg#icon-chevron-small-right"></use></svg>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="nav-dropdown__tile" href="#">
+                <div class="nav-dropdown__tile-icon">
+                  <svg class="icon icon--xxs" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-uber-eats"></use></svg>
+                </div>
+                <div class="nav-dropdown__tile-text">
+                  <span class="nav-dropdown__tile-title">Uber Eats Delivery Insurance</span>
+                  <span class="nav-dropdown__tile-desc">Flexible delivery insurance for Uber Eats drivers and riders.</span>
+                </div>
+                <div class="nav-dropdown__tile-chevron" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 7 12" fill="currentColor"><use href="icons/icons.svg#icon-chevron-small-right"></use></svg>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Column 2: Scooter -->
+        <div class="nav-dropdown__column">
+          <div class="nav-dropdown__column-header">
+            <h2 class="nav-dropdown__column-title">Scooter</h2>
+          </div>
+          <ul class="nav-dropdown__tiles" role="list">
+            <li>
+              <a class="nav-dropdown__tile" href="#">
+                <div class="nav-dropdown__tile-icon">
+                  <svg class="icon icon--xxs icon--primary" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-scooter"></use></svg>
+                </div>
+                <div class="nav-dropdown__tile-text">
+                  <span class="nav-dropdown__tile-title">Scooter Delivery Insurance</span>
+                  <span class="nav-dropdown__tile-desc">Scooter and motorbike insurance for delivery work and personal riding.</span>
+                </div>
+                <div class="nav-dropdown__tile-chevron" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 7 12" fill="currentColor"><use href="icons/icons.svg#icon-chevron-small-right"></use></svg>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="nav-dropdown__tile" href="#">
+                <div class="nav-dropdown__tile-icon">
+                  <svg class="icon icon--xxs" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-just-eat"></use></svg>
+                </div>
+                <div class="nav-dropdown__tile-text">
+                  <span class="nav-dropdown__tile-title">Just Eat Delivery Insurance</span>
+                  <span class="nav-dropdown__tile-desc">Flexible delivery insurance for Just Eat drivers and riders.</span>
+                </div>
+                <div class="nav-dropdown__tile-chevron" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 7 12" fill="currentColor"><use href="icons/icons.svg#icon-chevron-small-right"></use></svg>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Delivery Guides (aside) -->
+        <div class="nav-dropdown__column nav-dropdown__column--aside">
+          <div class="nav-dropdown__column-header">
+            <h2 class="nav-dropdown__column-title">Delivery Guides</h2>
+          </div>
+          <ul class="nav-dropdown__tiles" role="list">
+            <li>
+              <a class="nav-dropdown__tile is-active" href="#">
+                <div class="nav-dropdown__tile-text">
+                  <span class="nav-dropdown__tile-title">What Insurance do I need to deliver food?</span>
+                </div>
+                <div class="nav-dropdown__tile-chevron" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 7 12" fill="currentColor"><use href="icons/icons.svg#icon-chevron-small-right"></use></svg>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="nav-dropdown__tile" href="#">
+                <div class="nav-dropdown__tile-text">
+                  <span class="nav-dropdown__tile-title">What is Hire &amp; Reward Insurance?</span>
+                </div>
+                <div class="nav-dropdown__tile-chevron" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 7 12" fill="currentColor"><use href="icons/icons.svg#icon-chevron-small-right"></use></svg>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="nav-dropdown__tile" href="#">
+                <div class="nav-dropdown__tile-text">
+                  <span class="nav-dropdown__tile-title">Does Private Hire cover delivery?</span>
+                </div>
+                <div class="nav-dropdown__tile-chevron" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 7 12" fill="currentColor"><use href="icons/icons.svg#icon-chevron-small-right"></use></svg>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="nav-dropdown__tile" href="#">
+                <div class="nav-dropdown__tile-text">
+                  <span class="nav-dropdown__tile-title">5 Most popular cars for delivery</span>
+                </div>
+                <div class="nav-dropdown__tile-chevron" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 7 12" fill="currentColor"><use href="icons/icons.svg#icon-chevron-small-right"></use></svg>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div><!-- /nav-dropdown -->
+    </div>
+
+  </section>
+
+  <!-- ============================================================
+       TRUSTPILOT LOCKUP
+       ============================================================ -->
+  <section class="section">
+    <h2 class="section__title">Trustpilot Lockup</h2>
+
+    <!-- Inline variants -->
+    <h3 class="section__subtitle">Inline</h3>
+
+    <div class="section__row" style="display:flex; flex-direction:column; gap:24px; align-items:flex-start;">
+
+      <!-- Inline · Stars · Large · Centre -->
+      <div>
+        <p class="section__label">Inline · Stars · Large · Centre</p>
+        <div class="tp-lockup tp-lockup--inline tp-lockup--large tp-lockup--stars tp-lockup--centre">
+          <span class="tp-lockup__text"><strong>Excellent</strong></span>
+          <div class="tp-stars tp-stars--large" aria-label="4.5 out of 5 stars">
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-half-star"></use></svg>
+          </div>
+          <span class="tp-lockup__text">Trustpilot</span>
+        </div>
+      </div>
+
+      <!-- Inline · Stars · Small · Centre -->
+      <div>
+        <p class="section__label">Inline · Stars · Small · Centre</p>
+        <div class="tp-lockup tp-lockup--inline tp-lockup--small tp-lockup--stars tp-lockup--centre">
+          <span class="tp-lockup__text"><strong>Excellent</strong></span>
+          <div class="tp-stars tp-stars--small" aria-label="4.5 out of 5 stars">
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-half-star"></use></svg>
+          </div>
+          <span class="tp-lockup__text">Trustpilot</span>
+        </div>
+      </div>
+
+      <!-- Inline · Logo · Large · Centre -->
+      <div>
+        <p class="section__label">Inline · Logo · Large · Centre</p>
+        <div class="tp-lockup tp-lockup--inline tp-lockup--large tp-lockup--logo tp-lockup--centre">
+          <span class="tp-lockup__text"><strong>Excellent</strong></span>
+          <span class="tp-lockup__rating">4.5 out of 5</span>
+          <div class="tp-social tp-social--large">
+            <svg class="tp-social__icon" viewBox="0 0 33 32" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-star"></use></svg>
+            <svg class="tp-social__wordmark" viewBox="37 10 108 23" aria-label="Trustpilot"><use href="icons/icons.svg#icon-trustpilot-wordmark"></use></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Inline · Logo · Small · Centre -->
+      <div>
+        <p class="section__label">Inline · Logo · Small · Centre</p>
+        <div class="tp-lockup tp-lockup--inline tp-lockup--small tp-lockup--logo tp-lockup--centre">
+          <span class="tp-lockup__text"><strong>Excellent</strong></span>
+          <span class="tp-lockup__rating">4.5 out of 5</span>
+          <div class="tp-social tp-social--small">
+            <svg class="tp-social__icon" viewBox="0 0 33 32" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-star"></use></svg>
+            <svg class="tp-social__wordmark" viewBox="37 10 108 23" aria-label="Trustpilot"><use href="icons/icons.svg#icon-trustpilot-wordmark"></use></svg>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /inline variants -->
+
+    <!-- Stacked variants -->
+    <h3 class="section__subtitle" style="margin-top:32px;">Stacked</h3>
+
+    <div class="section__row" style="display:flex; flex-direction:column; gap:32px; align-items:flex-start;">
+
+      <!-- Stacked · Stars · Large · Centre -->
+      <div>
+        <p class="section__label">Stacked · Stars · Large · Centre</p>
+        <div class="tp-lockup tp-lockup--stacked tp-lockup--large tp-lockup--stars tp-lockup--centre">
+          <p class="tp-lockup__text"><strong>Excellent</strong><span class="tp-lockup__subtext"> - 2,243 reviews on Trustpilot</span></p>
+          <div class="tp-stars tp-stars--large" aria-label="4.5 out of 5 stars">
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-half-star"></use></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stacked · Stars · Large · Left -->
+      <div>
+        <p class="section__label">Stacked · Stars · Large · Left</p>
+        <div class="tp-lockup tp-lockup--stacked tp-lockup--large tp-lockup--stars tp-lockup--left">
+          <p class="tp-lockup__text"><strong>Excellent</strong><span class="tp-lockup__subtext"> - 2,243 reviews on Trustpilot</span></p>
+          <div class="tp-stars tp-stars--large" aria-label="4.5 out of 5 stars">
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-half-star"></use></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stacked · Stars · Large · Right -->
+      <div>
+        <p class="section__label">Stacked · Stars · Large · Right</p>
+        <div class="tp-lockup tp-lockup--stacked tp-lockup--large tp-lockup--stars tp-lockup--right">
+          <p class="tp-lockup__text"><strong>Excellent</strong><span class="tp-lockup__subtext"> - 2,243 reviews on Trustpilot</span></p>
+          <div class="tp-stars tp-stars--large" aria-label="4.5 out of 5 stars">
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-half-star"></use></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stacked · Both · Small · Left (stars are large — intentional per Figma) -->
+      <div>
+        <p class="section__label">Stacked · Both · Small · Left</p>
+        <div class="tp-lockup tp-lockup--stacked tp-lockup--small tp-lockup--both tp-lockup--left">
+          <div class="tp-social tp-social--small">
+            <svg class="tp-social__icon" viewBox="0 0 33 32" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-star"></use></svg>
+            <svg class="tp-social__wordmark" viewBox="37 10 108 23" aria-label="Trustpilot"><use href="icons/icons.svg#icon-trustpilot-wordmark"></use></svg>
+          </div>
+          <div class="tp-stars tp-stars--large" aria-label="4.3 out of 5 stars">
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-half-star"></use></svg>
+          </div>
+          <p class="tp-lockup__subtext">Trustscore <strong>4.3 </strong>|<strong> 15,321 </strong>reviews</p>
+        </div>
+      </div>
+
+    </div><!-- /stacked variants -->
+
+  </section><!-- /Trustpilot Lockup -->
+
+
+  <!-- ============================================================
+       IMAGE SIZE
+       ============================================================ -->
+  <section class="section">
+    <h2 class="section__title">Image Size</h2>
+
+    <!-- Desktop variants -->
+    <h3 class="section__subtitle">Desktop</h3>
+    <div class="section__row" style="display:flex; flex-wrap:wrap; gap:24px; align-items:flex-start;">
+
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div class="image-size image-size--portrait image-size--desktop">
+          <img class="image-size__img" src="https://placehold.co/628x837" alt="[Descriptive alt text here]">
+        </div>
+        <p class="section__label">Portrait · Desktop · 628×837</p>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div class="image-size image-size--square image-size--desktop">
+          <img class="image-size__img" src="https://placehold.co/628x628" alt="[Descriptive alt text here]">
+        </div>
+        <p class="section__label">Square · Desktop · 628×628</p>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div class="image-size image-size--landscape image-size--desktop">
+          <img class="image-size__img" src="https://placehold.co/628x419" alt="[Descriptive alt text here]">
+        </div>
+        <p class="section__label">Landscape · Desktop · 628×419</p>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div class="image-size image-size--full-bleed image-size--desktop">
+          <img class="image-size__img" src="https://placehold.co/1008x560" alt="[Descriptive alt text here]">
+        </div>
+        <p class="section__label">Full Bleed · Desktop · 1008×auto</p>
+      </div>
+
+    </div>
+
+    <!-- Mobile variants -->
+    <h3 class="section__subtitle" style="margin-top:32px;">Mobile</h3>
+    <div class="section__row" style="display:flex; flex-wrap:wrap; gap:24px; align-items:flex-start;">
+
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div class="image-size image-size--portrait image-size--mobile">
+          <img class="image-size__img" src="https://placehold.co/327x436" alt="[Descriptive alt text here]">
+        </div>
+        <p class="section__label">Portrait · Mobile · 327×436</p>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div class="image-size image-size--square image-size--mobile">
+          <img class="image-size__img" src="https://placehold.co/327x327" alt="[Descriptive alt text here]">
+        </div>
+        <p class="section__label">Square · Mobile · 327×327</p>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div class="image-size image-size--landscape image-size--mobile">
+          <img class="image-size__img" src="https://placehold.co/327x218" alt="[Descriptive alt text here]">
+        </div>
+        <p class="section__label">Landscape · Mobile · 327×218</p>
+      </div>
+
+    </div>
+
+  </section><!-- /Image Size -->
+
+
+  <!-- ============================================================
+       HERO
+       Heroes are full-width (1440px fixed) — they sit outside
+       any section max-width wrapper.
+       ============================================================ -->
+  <section class="section">
+    <h2 class="section__title">Hero</h2>
+  </section>
+
+  <!-- Hero: Half Image -->
+  <p class="section__label" style="padding: 8px 24px 0;">Half Image</p>
+  <section class="hero hero--half-image" style="background: var(--bg-brand-ecru)">
+    <div class="hero__content">
+      <img class="hero__partner-logo" src="" alt="Partner logo" style="width:163px;height:32px;background:var(--bg-disabled);border-radius:4px;">
+      <p class="hero__seo">SEO HEADING 16PX</p>
+      <h1 class="hero__heading">Display Heading 48px</h1>
+      <p class="hero__body">Large paragraph 24px – placeholder body copy goes here</p>
+      <ul class="hero__bullets" role="list">
+        <li class="hero__bullet">
+          <span class="hero__bullet-icon"><svg class="icon icon--xs" viewBox="0 0 96 96" aria-hidden="true"><use href="icons/icons.svg#icon-tick"></use></svg></span>
+          <span class="hero__bullet-text">Bullet point one</span>
+        </li>
+        <li class="hero__bullet">
+          <span class="hero__bullet-icon"><svg class="icon icon--xs" viewBox="0 0 96 96" aria-hidden="true"><use href="icons/icons.svg#icon-tick"></use></svg></span>
+          <span class="hero__bullet-text">Bullet point two</span>
+        </li>
+        <li class="hero__bullet">
+          <span class="hero__bullet-icon"><svg class="icon icon--xs" viewBox="0 0 96 96" aria-hidden="true"><use href="icons/icons.svg#icon-tick"></use></svg></span>
+          <span class="hero__bullet-text">Bullet point three</span>
+        </li>
+      </ul>
+      <div class="hero__actions">
+        <div class="hero__buttons">
+          <div class="hero__btn"><button class="btn btn--pill btn--primary btn--full" type="button">Get a quote</button></div>
+          <div class="hero__btn"><button class="btn btn--pill btn--tertiary btn--full" type="button">Learn more</button></div>
+        </div>
+        <a class="hero__link" href="#">
+          <p>Find out more</p>
+          <svg class="icon icon--xxs" viewBox="0 0 96 96" aria-hidden="true"><use href="icons/icons.svg#icon-arrow-right"></use></svg>
+        </a>
+      </div>
+      <div class="hero__trustpilot">
+        <div class="tp-lockup tp-lockup--stacked tp-lockup--large tp-lockup--stars tp-lockup--left">
+          <p class="tp-lockup__text"><strong>Excellent</strong><span class="tp-lockup__subtext"> - 2,243 reviews on Trustpilot</span></p>
+          <div class="tp-stars tp-stars--large" aria-label="4.5 out of 5 stars">
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-half-star"></use></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero__image-half">
+      <img src="https://placehold.co/700x1024" alt="Hero background image">
+    </div>
+  </section>
+
+  <!-- Hero: Inset Image -->
+  <p class="section__label" style="padding: 24px 24px 0;">Inset Image</p>
+  <section class="hero hero--inset-image" style="background: var(--bg-primary)">
+    <div class="hero__content">
+      <p class="hero__seo">SEO HEADING 16PX</p>
+      <h1 class="hero__heading">Display Heading 48px</h1>
+      <p class="hero__body">Large paragraph 24px – placeholder body copy goes here</p>
+      <ul class="hero__bullets" role="list">
+        <li class="hero__bullet">
+          <span class="hero__bullet-icon"><svg class="icon icon--xs" viewBox="0 0 96 96" aria-hidden="true"><use href="icons/icons.svg#icon-tick"></use></svg></span>
+          <span class="hero__bullet-text">Bullet point one</span>
+        </li>
+        <li class="hero__bullet">
+          <span class="hero__bullet-icon"><svg class="icon icon--xs" viewBox="0 0 96 96" aria-hidden="true"><use href="icons/icons.svg#icon-tick"></use></svg></span>
+          <span class="hero__bullet-text">Bullet point two</span>
+        </li>
+        <li class="hero__bullet">
+          <span class="hero__bullet-icon"><svg class="icon icon--xs" viewBox="0 0 96 96" aria-hidden="true"><use href="icons/icons.svg#icon-tick"></use></svg></span>
+          <span class="hero__bullet-text">Bullet point three</span>
+        </li>
+      </ul>
+      <div class="hero__actions">
+        <div class="hero__buttons">
+          <div class="hero__btn"><button class="btn btn--pill btn--primary btn--full" type="button">Get a quote</button></div>
+          <div class="hero__btn"><button class="btn btn--pill btn--tertiary btn--full" type="button">Learn more</button></div>
+        </div>
+        <a class="hero__link" href="#">
+          <p>Find out more</p>
+          <svg class="icon icon--xxs" viewBox="0 0 96 96" aria-hidden="true"><use href="icons/icons.svg#icon-arrow-right"></use></svg>
+        </a>
+      </div>
+      <div class="hero__trustpilot">
+        <div class="tp-lockup tp-lockup--stacked tp-lockup--large tp-lockup--stars tp-lockup--left">
+          <p class="tp-lockup__text"><strong>Excellent</strong><span class="tp-lockup__subtext"> - 2,243 reviews on Trustpilot</span></p>
+          <div class="tp-stars tp-stars--large" aria-label="4.5 out of 5 stars">
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-half-star"></use></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero__image-inset">
+      <div class="image-size image-size--portrait image-size--desktop">
+        <img class="image-size__img" src="https://placehold.co/628x837" alt="Hero portrait image">
+      </div>
+    </div>
+  </section>
+
+  <!-- Hero: Full Image -->
+  <p class="section__label" style="padding: 24px 24px 0;">Full Image</p>
+  <section class="hero hero--full-image">
+    <div class="hero__bg" aria-hidden="true">
+      <img class="hero__bg-img" src="https://placehold.co/2000x1024" alt="">
+      <div class="hero__bg-overlay"></div>
+    </div>
+    <div class="hero__content">
+      <img class="hero__partner-logo" src="" alt="Partner logo" style="width:163px;height:32px;background:var(--colour-white-20);border-radius:4px;">
+      <p class="hero__seo">SEO HEADING 16PX</p>
+      <h1 class="hero__heading">Display Heading 48px</h1>
+      <p class="hero__body">Large paragraph 24px – placeholder body copy goes here</p>
+      <ul class="hero__bullets" role="list">
+        <li class="hero__bullet">
+          <span class="hero__bullet-icon"><svg class="icon icon--xs" viewBox="0 0 96 96" aria-hidden="true"><use href="icons/icons.svg#icon-tick"></use></svg></span>
+          <span class="hero__bullet-text">Bullet point one</span>
+        </li>
+        <li class="hero__bullet">
+          <span class="hero__bullet-icon"><svg class="icon icon--xs" viewBox="0 0 96 96" aria-hidden="true"><use href="icons/icons.svg#icon-tick"></use></svg></span>
+          <span class="hero__bullet-text">Bullet point two</span>
+        </li>
+        <li class="hero__bullet">
+          <span class="hero__bullet-icon"><svg class="icon icon--xs" viewBox="0 0 96 96" aria-hidden="true"><use href="icons/icons.svg#icon-tick"></use></svg></span>
+          <span class="hero__bullet-text">Bullet point three</span>
+        </li>
+      </ul>
+      <div class="hero__actions">
+        <div class="hero__buttons">
+          <div class="hero__btn"><button class="btn btn--pill btn--primary btn--full" type="button">Get a quote</button></div>
+          <div class="hero__btn"><button class="btn btn--pill btn--tertiary btn--full" type="button">Learn more</button></div>
+        </div>
+        <a class="hero__link" href="#">
+          <p>Find out more</p>
+          <svg class="icon icon--xxs" viewBox="0 0 96 96" aria-hidden="true"><use href="icons/icons.svg#icon-arrow-right"></use></svg>
+        </a>
+      </div>
+      <div class="hero__trustpilot">
+        <div class="tp-lockup tp-lockup--stacked tp-lockup--large tp-lockup--stars tp-lockup--left">
+          <p class="tp-lockup__text"><strong>Excellent</strong><span class="tp-lockup__subtext"> - 2,243 reviews on Trustpilot</span></p>
+          <div class="tp-stars tp-stars--large" aria-label="4.5 out of 5 stars">
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-full-star"></use></svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true"><use href="icons/icons.svg#icon-trustpilot-half-star"></use></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FCA Banner
+       ============================================================ -->
+  <section class="section">
+    <h2 class="section__title">FCA Banner</h2>
+
+    <p class="section__label">Desktop</p>
+    <div class="fca-banner fca-banner--desktop" role="region" aria-label="Regulatory information">
+      <div class="fca-banner__content">
+        <svg class="icon icon--xs fca-banner__icon" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+          <use href="icons/icons.svg#icon-lock"></use>
+        </svg>
+        <p class="fca-banner__text">Authorised and regulated by the FCA</p>
+      </div>
+    </div>
+
+    <p class="section__label" style="margin-top: 24px;">Mobile</p>
+    <div style="width: 375px;">
+      <div class="fca-banner fca-banner--mobile" role="region" aria-label="Regulatory information">
+        <div class="fca-banner__content">
+          <svg class="icon icon--xs fca-banner__icon" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+            <use href="icons/icons.svg#icon-lock"></use>
+          </svg>
+          <p class="fca-banner__text">Authorised and regulated by the FCA</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <script>
+    /* Navigation bar — hover behaviour */
+    (function () {
+      const nav      = document.getElementById('main-nav');
+      const dropdown = document.getElementById('nav-dropdown');
+      const links    = nav ? nav.querySelectorAll('[data-nav-link]') : [];
+
+      if (!nav || !dropdown) return;
+
+      let closeTimer = null;
+
+      function openDropdown(activeLink) {
+        clearTimeout(closeTimer);
+        nav.classList.add('nav-bar--dropdown-open');
+        dropdown.classList.add('is-open');
+        links.forEach(function (l) {
+          l.classList.remove('is-active');
+          l.setAttribute('aria-expanded', 'false');
+        });
+        activeLink.classList.add('is-active');
+        activeLink.setAttribute('aria-expanded', 'true');
+      }
+
+      function closeDropdown() {
+        nav.classList.remove('nav-bar--dropdown-open');
+        dropdown.classList.remove('is-open');
+        links.forEach(function (l) {
+          l.classList.remove('is-active');
+          l.setAttribute('aria-expanded', 'false');
+        });
+      }
+
+      function scheduleClose() {
+        closeTimer = setTimeout(closeDropdown, 120);
+      }
+
+      links.forEach(function (link) {
+        link.addEventListener('mouseenter', function () { openDropdown(link); });
+      });
+
+      nav.addEventListener('mouseleave', scheduleClose);
+      nav.addEventListener('mouseenter', function () { clearTimeout(closeTimer); });
+
+      dropdown.addEventListener('mouseenter', function () { clearTimeout(closeTimer); });
+      dropdown.addEventListener('mouseleave', scheduleClose);
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') { clearTimeout(closeTimer); closeDropdown(); }
+      });
+    }());
+  </script>
 
 </body>
 </html>

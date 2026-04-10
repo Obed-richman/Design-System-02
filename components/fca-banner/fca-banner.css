@@ -1,0 +1,95 @@
+/* ============================================
+   FCA BANNER COMPONENT
+   Depends on: tokens/tokens.css
+   No hardcoded values — token variables only.
+   Exceptions: 8px horizontal padding (desktop)
+               and 16px content gap (desktop)
+               are fixed Figma design values with
+               no token equivalents — used as raw px.
+   ============================================ */
+
+
+/* --- Base --- */
+
+.fca-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-brand-ecru);
+  box-sizing: border-box;
+}
+
+
+/* --- Elements --- */
+
+.fca-banner__content {
+  display: flex;
+  align-items: center;
+}
+
+.fca-banner__icon {
+  width: 24px;
+  height: 24px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: block;
+}
+
+.fca-banner__text {
+  font-family: inherit;
+  font-size: var(--font-size-body-1);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-body-1);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-primary);
+  white-space: nowrap;
+  margin: 0;
+}
+
+
+/* --- Desktop variant (.fca-banner--desktop) --- */
+
+.fca-banner--desktop {
+  /* 1440px: Figma full-width screen canvas — no token equivalent */
+  width: 1440px;
+  padding: var(--gap-large) 8px; /* 8px horizontal: fixed Figma design value — no token equivalent */
+}
+
+.fca-banner--desktop .fca-banner__content {
+  flex-direction: row;
+  gap: 16px; /* Fixed Figma design value — no token equivalent */
+  flex-shrink: 0;
+}
+
+.fca-banner--desktop .fca-banner__text {
+  text-align: left;
+}
+
+
+/* --- Mobile variant (.fca-banner--mobile) --- */
+
+.fca-banner--mobile {
+  /* 375px: Figma mobile screen canvas — no token equivalent */
+  width: 375px;
+  padding: var(--gap-large);
+}
+
+.fca-banner--mobile .fca-banner__content {
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--gap-xx-small);
+  width: 100%;
+}
+
+.fca-banner--mobile .fca-banner__text {
+  text-align: center;
+}
+
+
+/* ============================================
+   DARK MODE
+   Dark mode is not specified in Figma for this
+   component — it always sits on the ecru
+   background. No dark mode overrides needed.
+   ============================================ */

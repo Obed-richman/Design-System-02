@@ -1,0 +1,127 @@
+/* ============================================
+   IMAGE SIZE CONTAINER
+   Depends on: tokens/tokens.css
+   No hardcoded hex values — token variables only.
+   Width and height pixel values are fixed Figma
+   design values with no applicable token
+   equivalent — each is noted inline.
+   ============================================ */
+
+
+/* --- Base --- */
+
+.image-size {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--bg-brand-navy);
+  border-radius: var(--radius-medium);
+}
+
+.image-size__img {
+  position: absolute;
+  display: block;
+}
+
+
+/* ============================================
+   SIZE + BREAKPOINT COMBINATIONS
+   Both modifier classes are applied together,
+   e.g. class="image-size image-size--portrait image-size--desktop"
+   ============================================ */
+
+/* Portrait | Desktop | 628 × 837 */
+.image-size--portrait.image-size--desktop {
+  width: 628px;   /* Fixed Figma design value — no token equivalent */
+  height: 837px;  /* Fixed Figma design value — no token equivalent */
+}
+.image-size--portrait.image-size--desktop .image-size__img {
+  width: 199.9%;
+  left: -55.73%;
+  top: 0;
+  height: 100%;
+}
+
+/* Portrait | Mobile | 327 × 436 */
+.image-size--portrait.image-size--mobile {
+  width: 327px;  /* Fixed Figma design value — no token equivalent */
+  height: 436px; /* Fixed Figma design value — no token equivalent */
+}
+.image-size--portrait.image-size--mobile .image-size__img {
+  width: 199.9%;
+  left: -59.71%;
+  top: 0;
+  height: 100%;
+}
+
+/* Square | Desktop | 628 × 628 */
+.image-size--square.image-size--desktop {
+  width: 628px;  /* Fixed Figma design value — no token equivalent */
+  height: 628px; /* Fixed Figma design value — no token equivalent */
+}
+.image-size--square.image-size--desktop .image-size__img {
+  width: 149.93%;
+  left: -29.72%;
+  top: 0;
+  height: 100%;
+}
+
+/* Square | Mobile | 327 × 327 */
+.image-size--square.image-size--mobile {
+  width: 327px;  /* Fixed Figma design value — no token equivalent */
+  height: 327px; /* Fixed Figma design value — no token equivalent */
+}
+.image-size--square.image-size--mobile .image-size__img {
+  width: 149.93%;
+  left: -29.72%;
+  top: 0;
+  height: 100%;
+}
+
+/* Landscape | Desktop | 628 × 419 */
+.image-size--landscape.image-size--desktop {
+  width: 628px;  /* Fixed Figma design value — no token equivalent */
+  height: 419px; /* Fixed Figma design value — no token equivalent */
+}
+.image-size--landscape.image-size--desktop .image-size__img {
+  width: 100%;
+  left: 0;
+  top: -0.02%;
+  height: 100.05%;
+}
+
+/* Landscape | Mobile | 327 × 218 */
+.image-size--landscape.image-size--mobile {
+  width: 327px;  /* Fixed Figma design value — no token equivalent */
+  height: 218px; /* Fixed Figma design value — no token equivalent */
+}
+.image-size--landscape.image-size--mobile .image-size__img {
+  width: 100%;
+  left: 0;
+  top: -0.02%;
+  height: 100.05%;
+}
+
+/* Full Bleed | Desktop | 1008px wide, height driven by image
+   Full-width bleed image — no fixed height, no border-radius.
+   The image fills its container width and sizes naturally. */
+.image-size--full-bleed.image-size--desktop {
+  width: 1008px; /* Fixed Figma design value — no token equivalent */
+  height: auto;
+  border-radius: 0; /* Full bleed: edge-to-edge, no radius per Figma spec */
+}
+.image-size--full-bleed.image-size--desktop .image-size__img {
+  position: static; /* Full bleed: no absolute crop — image fills naturally */
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+
+/* ============================================
+   DARK MODE
+   Not applicable — this component contains
+   only an image and a navy placeholder
+   background. Both are independent of the
+   light/dark semantic token layer.
+   ============================================ */

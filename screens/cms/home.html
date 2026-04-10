@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CMS — Home</title>
+
+  <!-- 0. Fonts — must load before tokens -->
+  <link rel="stylesheet" href="../../tokens/fonts.css">
+
+  <!-- 1. Tokens — always first -->
+  <link rel="stylesheet" href="../../tokens/tokens.css">
+  <link rel="stylesheet" href="../../tokens/typography.css">
+
+  <!-- 2. Icons -->
+  <link rel="stylesheet" href="../../icons/icons.css">
+
+  <!-- 3. Components -->
+  <link rel="stylesheet" href="../../components/navigation-bar/navigation-bar.css">
+  <link rel="stylesheet" href="../../components/button/button.css">
+  <link rel="stylesheet" href="../../components/trustpilot-lockup/trustpilot-lockup.css">
+  <link rel="stylesheet" href="../../components/hero/hero.css">
+
+  <style>
+    /* ============================================
+       CMS Home — screen-specific layout styles
+       Component styles stay in their own files.
+    ============================================ */
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      background: var(--bg-primary);
+      font-family: var(--font-family-base);
+      color: var(--text-primary);
+    }
+
+    /* Page canvas — 1440px centred layout */
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: #F2E9FF;
+    }
+
+    /* Nav header — fixed at top so the hero extends behind it */
+    .page-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: var(--gap-large);
+      z-index: 100;
+    }
+
+    /* 1280px content constraint — nav bar fills this width as a pill */
+    .page-nav-wrapper {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    /* Dropdown floats over page content — absolutely positioned so it
+       doesn't push the page body down when it opens */
+    .page-nav-dropdown {
+      position: absolute;
+      left: 0;
+      right: 0;
+      padding: 0 var(--gap-large);
+      pointer-events: none;
+    }
+
+    .page-nav-dropdown .nav-dropdown {
+      max-width: 1280px;
+      margin: var(--gap-medium) auto 0;
+      pointer-events: auto;
+    }
+
+    /* Page body — content scrolls below the header */
+    .page-body {
+      flex: 1;
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+      padding: var(--gap-xx-large) var(--gap-large);
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap-xx-large);
+    }
+
+    /* Stronger scrim for this image — component default (0.2) is too light */
+    .hero--full-image .hero__bg-overlay {
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    /* Hero full-width override — component default is 1440px fixed;
+       on this screen it stretches to fill the viewport */
+    .hero--full-image {
+      width: 100%;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    /* Override Figma-specific bg image offsets with a simple cover fill
+       so the image scales to fill without stretching */
+    .hero--full-image .hero__bg-img {
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Content wrapper — centres hero content at 1280px to align with nav */
+    .page-hero-content-wrapper {
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 var(--gap-large);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ---- Placeholder content cards ---- */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--gap-large);
+    }
+
+    .card {
+      background: var(--bg-secondary);
+      border-radius: var(--radius-large);
+      padding: var(--gap-x-large);
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap-medium);
+      min-height: 200px;
+    }
+
+    .card__label {
+      font-size: var(--font-size-subtitle-3);
+      font-weight: var(--font-weight-bold);
+      color: var(--text-link);
+    }
+
+    .card__title {
+      font-size: var(--font-size-subtitle-1);
+      font-weight: var(--font-weight-bold);
+      line-height: var(--line-height-subtitle-1);
+      color: var(--text-primary);
+    }
+
+    .card__body {
+      font-size: var(--font-size-body-3);
+      line-height: var(--line-height-body-3);
+      color: var(--text-primary);
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- =============================================
+       PAGE HEADER — Navigation Bar
+  ============================================= -->
+  <header class="page-header">
+
+    <div class="page-nav-wrapper">
+      <nav class="nav-bar" id="main-nav" aria-label="Main navigation">
+
+        <!-- Logo -->
+        <a class="nav-bar__logo" href="#" aria-label="Zego — home">
+          <svg class="nav-bar__logo-icon" viewBox="0 0 110 32" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-zego-logo"></use>
+          </svg>
+        </a>
+
+        <!-- Nav links -->
+        <ul class="nav-bar__links" role="list">
+          <li>
+            <button class="nav-bar__link" type="button" aria-expanded="false" data-nav-link>Car</button>
+          </li>
+          <li>
+            <button class="nav-bar__link" type="button" aria-expanded="false" data-nav-link>Taxi</button>
+          </li>
+          <li>
+            <button class="nav-bar__link" type="button" aria-expanded="false" data-nav-link>Van</button>
+          </li>
+          <li>
+            <button class="nav-bar__link" type="button" aria-expanded="false" data-nav-link>Delivery</button>
+          </li>
+          <li>
+            <button class="nav-bar__link" type="button" aria-expanded="false" data-nav-link>Blog</button>
+          </li>
+          <li>
+            <button class="nav-bar__link" type="button" aria-expanded="false" data-nav-link>More</button>
+          </li>
+        </ul>
+
+        <!-- CTA buttons -->
+        <div class="nav-bar__ctas">
+          <button class="nav-bar__cta nav-bar__cta--login" type="button">Login</button>
+          <button class="nav-bar__cta nav-bar__cta--quote" type="button">Get a quote</button>
+        </div>
+
+      </nav>
+    </div>
+
+    <!-- Mega dropdown — shown when a nav link is active -->
+    <div class="page-nav-dropdown">
+      <div class="nav-dropdown" id="nav-dropdown" role="region" aria-label="Delivery products menu">
+
+        <!-- Column 1: Car -->
+        <div class="nav-dropdown__column">
+          <div class="nav-dropdown__column-header">
+            <h2 class="nav-dropdown__column-title">Car</h2>
+          </div>
+          <ul class="nav-dropdown__tiles" role="list">
+            <li>
+              <a class="nav-dropdown__tile" href="#">
+                <div class="nav-dropdown__tile-icon">
+                  <svg class="icon icon--xxs icon--primary" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                    <use href="../../icons/icons.svg#icon-car-delivery"></use>
+                  </svg>
+                </div>
+                <div class="nav-dropdown__tile-text">
+                  <span class="nav-dropdown__tile-title">Car Delivery Insurance</span>
+                  <span class="nav-dropdown__tile-desc">Flexible car insurance for food delivery and courier work</span>
+                </div>
+                <div class="nav-dropdown__tile-chevron" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 7 12" fill="currentColor">
+                    <use href="../../icons/icons.svg#icon-chevron-small-right"></use>
+                  </svg>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="nav-dropdown__tile" href="#">
+                <div class="nav-dropdown__tile-icon">
+                  <svg class="icon icon--xxs" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="../../icons/icons.svg#icon-deliveroo"></use>
+                  </svg>
+                </div>
+                <div class="nav-dropdown__tile-text">
+                  <span class="nav-dropdown__tile-title">Deliveroo Insurance</span>
+                  <span class="nav-dropdown__tile-desc">Flexible delivery insurance for Deliveroo drivers and riders.</span>
+                </div>
+                <div class="nav-dropdown__tile-chevron" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 7 12" fill="currentColor">
+                    <use href="../../icons/icons.svg#icon-chevron-small-right"></use>
+                  </svg>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="nav-dropdown__tile" href="#">
+                <div class="nav-dropdown__tile-icon">
+                  <svg class="icon icon--xxs" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="../../icons/icons.svg#icon-uber-eats"></use>
+                  </svg>
+                </div>
+                <div class="nav-dropdown__tile-text">
+                  <span class="nav-dropdown__tile-title">Uber Eats Delivery Insurance</span>
+                  <span class="nav-dropdown__tile-desc">Flexible delivery insurance for Uber Eats drivers and riders.</span>
+                </div>
+                <div class="nav-dropdown__tile-chevron" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 7 12" fill="currentColor">
+                    <use href="../../icons/icons.svg#icon-chevron-small-right"></use>
+                  </svg>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Column 2: Scooter -->
+        <div class="nav-dropdown__column">
+          <div class="nav-dropdown__column-header">
+            <h2 class="nav-dropdown__column-title">Scooter</h2>
+          </div>
+          <ul class="nav-dropdown__tiles" role="list">
+            <li>
+              <a class="nav-dropdown__tile" href="#">
+                <div class="nav-dropdown__tile-icon">
+                  <svg class="icon icon--xxs icon--primary" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                    <use href="../../icons/icons.svg#icon-scooter"></use>
+                  </svg>
+                </div>
+                <div class="nav-dropdown__tile-text">
+                  <span class="nav-dropdown__tile-title">Scooter Delivery Insurance</span>
+                  <span class="nav-dropdown__tile-desc">Scooter and motorbike insurance for delivery work and personal riding.</span>
+                </div>
+                <div class="nav-dropdown__tile-chevron" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 7 12" fill="currentColor">
+                    <use href="../../icons/icons.svg#icon-chevron-small-right"></use>
+                  </svg>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="nav-dropdown__tile" href="#">
+                <div class="nav-dropdown__tile-icon">
+                  <svg class="icon icon--xxs" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="../../icons/icons.svg#icon-just-eat"></use>
+                  </svg>
+                </div>
+                <div class="nav-dropdown__tile-text">
+                  <span class="nav-dropdown__tile-title">Just Eat Delivery Insurance</span>
+                  <span class="nav-dropdown__tile-desc">Flexible delivery insurance for Just Eat drivers and riders.</span>
+                </div>
+                <div class="nav-dropdown__tile-chevron" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 7 12" fill="currentColor">
+                    <use href="../../icons/icons.svg#icon-chevron-small-right"></use>
+                  </svg>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Delivery Guides (aside) -->
+        <div class="nav-dropdown__column nav-dropdown__column--aside">
+          <div class="nav-dropdown__column-header">
+            <h2 class="nav-dropdown__column-title">Delivery Guides</h2>
+          </div>
+          <ul class="nav-dropdown__tiles" role="list">
+            <li>
+              <a class="nav-dropdown__tile" href="#">
+                <div class="nav-dropdown__tile-text">
+                  <span class="nav-dropdown__tile-title">What Insurance do I need to deliver food?</span>
+                </div>
+                <div class="nav-dropdown__tile-chevron" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 7 12" fill="currentColor">
+                    <use href="../../icons/icons.svg#icon-chevron-small-right"></use>
+                  </svg>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="nav-dropdown__tile" href="#">
+                <div class="nav-dropdown__tile-text">
+                  <span class="nav-dropdown__tile-title">What is Hire &amp; Reward Insurance?</span>
+                </div>
+                <div class="nav-dropdown__tile-chevron" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 7 12" fill="currentColor">
+                    <use href="../../icons/icons.svg#icon-chevron-small-right"></use>
+                  </svg>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="nav-dropdown__tile" href="#">
+                <div class="nav-dropdown__tile-text">
+                  <span class="nav-dropdown__tile-title">Does Private Hire cover delivery?</span>
+                </div>
+                <div class="nav-dropdown__tile-chevron" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 7 12" fill="currentColor">
+                    <use href="../../icons/icons.svg#icon-chevron-small-right"></use>
+                  </svg>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="nav-dropdown__tile" href="#">
+                <div class="nav-dropdown__tile-text">
+                  <span class="nav-dropdown__tile-title">5 Most popular cars for delivery</span>
+                </div>
+                <div class="nav-dropdown__tile-chevron" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 7 12" fill="currentColor">
+                    <use href="../../icons/icons.svg#icon-chevron-small-right"></use>
+                  </svg>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div><!-- /nav-dropdown -->
+    </div>
+
+  </header>
+
+
+  <!-- =============================================
+       HERO — Full Image (full-width, outside page-body)
+  ============================================= -->
+  <section class="hero hero--full-image">
+
+    <!-- Background image layer -->
+    <div class="hero__bg" aria-hidden="true">
+      <img class="hero__bg-img" src="../../images/Full Bleed Image.jpg" alt="">
+      <div class="hero__bg-overlay"></div>
+    </div>
+
+    <!-- Content column — centred at 1280px to align with nav -->
+    <div class="page-hero-content-wrapper">
+    <div class="hero__content">
+
+      <!-- <p class="hero__seo">Delivery Insurance</p> -->
+      <h1 class="hero__heading">Insurance built for delivery drivers</h1>
+      <p class="hero__body">Flexible cover for food delivery and courier work. Get insured in minutes.</p>
+
+      <ul class="hero__bullets" role="list">
+        <li class="hero__bullet">
+          <span class="hero__bullet-icon">
+            <svg class="icon icon--xs" viewBox="0 0 96 96" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-tick"></use>
+            </svg>
+          </span>
+          <span class="hero__bullet-text">Cover for car, scooter and van</span>
+        </li>
+        <li class="hero__bullet">
+          <span class="hero__bullet-icon">
+            <svg class="icon icon--xs" viewBox="0 0 96 96" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-tick"></use>
+            </svg>
+          </span>
+          <span class="hero__bullet-text">Works with all major platforms</span>
+        </li>
+        <li class="hero__bullet">
+          <span class="hero__bullet-icon">
+            <svg class="icon icon--xs" viewBox="0 0 96 96" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-tick"></use>
+            </svg>
+          </span>
+          <span class="hero__bullet-text">Get insured in minutes</span>
+        </li>
+      </ul>
+
+      <div class="hero__actions">
+        <div class="hero__buttons">
+          <div class="hero__btn">
+            <button class="btn btn--pill btn--primary btn--full" type="button">Get a quote</button>
+          </div>
+          <!-- <div class="hero__btn">
+            <button class="btn btn--pill btn--tertiary btn--full" type="button">Learn more</button>
+          </div> -->
+        </div>
+        <!-- <a class="hero__link" href="#">
+          <p>Find out more</p>
+          <svg class="icon icon--xxs" viewBox="0 0 96 96" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-arrow-right"></use>
+          </svg>
+        </a> -->
+      </div>
+
+      <div class="hero__trustpilot">
+        <div class="tp-lockup tp-lockup--stacked tp-lockup--large tp-lockup--stars tp-lockup--left">
+          <p class="tp-lockup__text"><strong>Excellent</strong><span class="tp-lockup__subtext"> - 2,243 reviews on Trustpilot</span></p>
+          <div class="tp-stars tp-stars--large" aria-label="4.5 out of 5 stars">
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-trustpilot-full-star"></use>
+            </svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-trustpilot-full-star"></use>
+            </svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-trustpilot-full-star"></use>
+            </svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-trustpilot-full-star"></use>
+            </svg>
+            <svg class="tp-stars__star" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-trustpilot-half-star"></use>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /hero__content -->
+    </div><!-- /page-hero-content-wrapper -->
+
+  </section><!-- /hero--full-image -->
+
+
+  <!-- =============================================
+       PAGE BODY — Content below hero
+  ============================================= -->
+  <main class="page-body">
+
+    <!-- Placeholder product cards -->
+    <div class="card-grid">
+      <div class="card">
+        <span class="card__label">Car</span>
+        <p class="card__title">Car Delivery Insurance</p>
+        <p class="card__body">Flexible car insurance covering food delivery and courier work for all major platforms.</p>
+      </div>
+      <div class="card">
+        <span class="card__label">Scooter</span>
+        <p class="card__title">Scooter Delivery Insurance</p>
+        <p class="card__body">Scooter and motorbike insurance for delivery riders who work and ride personally.</p>
+      </div>
+      <div class="card">
+        <span class="card__label">Guides</span>
+        <p class="card__title">Delivery Insurance Guides</p>
+        <p class="card__body">Everything you need to know about Hire &amp; Reward cover and what the law requires.</p>
+      </div>
+    </div>
+
+  </main>
+
+</div><!-- /.page -->
+
+
+<script>
+  /* ============================================
+     Navigation Bar — dropdown toggle
+  ============================================ */
+  (function () {
+    const nav      = document.getElementById('main-nav');
+    const dropdown = document.getElementById('nav-dropdown');
+    const links    = nav ? nav.querySelectorAll('[data-nav-link]') : [];
+
+    if (!nav || !dropdown) return;
+
+    let closeTimer = null;
+
+    function openDropdown(activeLink) {
+      clearTimeout(closeTimer);
+      nav.classList.add('nav-bar--dropdown-open');
+      dropdown.classList.add('is-open');
+      links.forEach(function (l) {
+        l.classList.remove('is-active');
+        l.setAttribute('aria-expanded', 'false');
+      });
+      activeLink.classList.add('is-active');
+      activeLink.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeDropdown() {
+      nav.classList.remove('nav-bar--dropdown-open');
+      dropdown.classList.remove('is-open');
+      links.forEach(function (l) {
+        l.classList.remove('is-active');
+        l.setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    function scheduleClose() {
+      closeTimer = setTimeout(closeDropdown, 120);
+    }
+
+    links.forEach(function (link) {
+      link.addEventListener('mouseenter', function () { openDropdown(link); });
+    });
+
+    nav.addEventListener('mouseleave', scheduleClose);
+    nav.addEventListener('mouseenter', function () { clearTimeout(closeTimer); });
+
+    dropdown.addEventListener('mouseenter', function () { clearTimeout(closeTimer); });
+    dropdown.addEventListener('mouseleave', scheduleClose);
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { clearTimeout(closeTimer); closeDropdown(); }
+    });
+  }());
+</script>
+
+</body>
+</html>

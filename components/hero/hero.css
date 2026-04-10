@@ -1,0 +1,336 @@
+/* ============================================
+   HERO SECTION
+   Depends on: tokens/tokens.css
+               components/trustpilot-lockup/trustpilot-lockup.css
+               components/image-size/image-size.css (Inset Image only)
+   No hardcoded hex values — token variables only.
+   Exception: rgba(0,0,0,0.2) scrim on .hero--full-image
+   (no token equivalent — one-off Figma design value).
+   Fixed pixel dimensions are noted inline.
+   ============================================ */
+
+
+/* ============================================
+   BASE — Shared elements across all variants
+   ============================================ */
+
+/* Shared section base — width and min-height set per variant */
+.hero {
+  display: flex;
+  position: relative;
+  box-sizing: border-box;
+  /* 1440px: Figma full-width section — no token equivalent */
+  width: 1440px;
+}
+
+
+/* --- Content column --- */
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap-large);
+  flex-shrink: 0;
+}
+
+/* Partner logo slot */
+.hero__partner-logo {
+  display: block;
+}
+
+/* SEO line — small pre-heading label */
+.hero__seo {
+  font-family: inherit;
+  font-size: var(--font-size-body-2);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-2);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+/* Display heading */
+.hero__heading {
+  font-family: inherit;
+  font-size: var(--font-size-title-1);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-title-1);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--text-primary);
+  /* Forces h1 to respect content column width while allowing natural wrapping */
+  width: min-content;
+  min-width: 100%;
+  margin: 0;
+}
+
+/* Large body paragraph */
+.hero__body {
+  font-family: inherit;
+  font-size: var(--font-size-title-4);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-title-4);
+  letter-spacing: var(--letter-spacing-snug);
+  color: var(--text-primary);
+  width: min-content;
+  min-width: 100%;
+  margin: 0;
+}
+
+
+/* --- Bullet list --- */
+
+.hero__bullets {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-large);
+}
+
+.hero__bullet {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--gap-medium);
+}
+
+.hero__bullet-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.hero__bullet-text {
+  font-family: inherit;
+  font-size: var(--font-size-body-2);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-2);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-primary);
+  flex: 1 0 0;
+}
+
+
+/* --- Actions: buttons + text link --- */
+
+.hero__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
+}
+
+.hero__buttons {
+  display: flex;
+  flex-direction: row;
+  gap: var(--gap-medium);
+}
+
+/* Fixed-width wrapper around each button — buttons fill the wrapper */
+.hero__btn {
+  /* 213px: Figma design value — no token equivalent */
+  width: 213px;
+}
+
+/* Text link row */
+.hero__link {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--gap-xx-small);
+  text-decoration: none;
+}
+
+.hero__link p {
+  font-family: inherit;
+  font-size: var(--font-size-subtitle-4);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-subtitle-4);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-link);
+  margin: 0;
+}
+
+
+/* --- Trustpilot wrapper --- */
+
+.hero__trustpilot {
+  padding-top: var(--gap-xx-large); /* 40px — var(--gap-xx-large) */
+}
+
+
+/* ============================================
+   HALF IMAGE VARIANT (.hero--half-image)
+   Image fills the right half, edge-to-edge.
+   Background: user-applied externally.
+   ============================================ */
+
+.hero--half-image {
+  flex-direction: row;
+  align-items: center;
+  /* 1024px: Figma design value — no token equivalent */
+  min-height: 1024px;
+  /* 80px left padding only — right side bleeds to edge */
+  padding-left: var(--number-80);
+  /* 80px gap: Figma design value — var(--number-80) */
+  gap: var(--number-80);
+}
+
+.hero--half-image .hero__content {
+  /* 572px: Figma design value — no token equivalent */
+  width: 572px;
+}
+
+/* Right image column — fills remaining width, full section height */
+.hero__image-half {
+  flex: 1 0 0;
+  align-self: stretch;
+  position: relative;
+  overflow: hidden;
+  /* No border-radius — image bleeds to the right edge */
+}
+
+.hero__image-half img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  display: block;
+}
+
+
+/* ============================================
+   INSET IMAGE VARIANT (.hero--inset-image)
+   Image is a contained portrait card.
+   Background: user-applied externally.
+   ============================================ */
+
+.hero--inset-image {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  /* 965px: Figma design value — no token equivalent */
+  min-height: 965px;
+  /* 64px vertical padding: var(--number-64) */
+  padding: var(--number-64) var(--number-80);
+  /* 80px gap: Figma design value — var(--number-80) */
+  gap: var(--number-80);
+}
+
+.hero--inset-image .hero__content {
+  /* 515px: Figma design value — no token equivalent */
+  width: 515px;
+}
+
+/* Image column — uses .image-size component classes; this adds only layout context */
+.hero__image-inset {
+  flex-shrink: 0;
+}
+
+
+/* ============================================
+   FULL IMAGE VARIANT (.hero--full-image)
+   Full-bleed photograph behind content.
+   No external background needed.
+   ============================================ */
+
+.hero--full-image {
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  /* 1024px: Figma design value — no token equivalent */
+  min-height: 1024px;
+  /* 94px vertical = var(--margin-large) at desktop breakpoint */
+  padding: var(--margin-large) var(--number-80);
+}
+
+/* Absolutely positioned full-bleed background image layer */
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.hero__bg-img {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  max-width: none;
+  display: block;
+  /* Figma image offset — exact values, no token equivalent */
+  left: -26.86%;   /* Fixed Figma image offset value */
+  width: 139.23%;  /* Fixed Figma image offset value */
+}
+
+/* Darkening scrim — rgba(0,0,0,0.2) is an exact Figma design value;
+   no token equivalent exists for semi-transparent black overlays. */
+.hero__bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* Content sits above bg layers */
+.hero--full-image .hero__content {
+  position: relative;
+  z-index: 1;
+  /* 460px: Figma design value — no token equivalent */
+  width: 460px;
+}
+
+/* --- Full Image colour overrides (dark photographic surface) --- */
+
+.hero--full-image .hero__seo {
+  color: var(--text-on-colour);
+}
+
+.hero--full-image .hero__heading {
+  color: var(--text-on-colour);
+}
+
+.hero--full-image .hero__body {
+  color: var(--text-on-colour);
+}
+
+.hero--full-image .hero__bullet-text {
+  color: var(--text-on-colour);
+  /* Full Image uses 18px bullet text (16px on light backgrounds) */
+  font-size: var(--font-size-body-1);
+  line-height: var(--line-height-body-1);
+  white-space: nowrap;
+}
+
+/* Button gap is wider on Full Image */
+.hero--full-image .hero__buttons {
+  gap: var(--gap-large);
+}
+
+/* Secondary button flips to white border + white text on dark photo */
+.hero--full-image .btn--tertiary {
+  border-color: var(--border-color-on-colour);
+  color: var(--text-on-colour);
+}
+
+/* Text link flips to on-dark aqua */
+.hero--full-image .hero__link p {
+  color: var(--text-link-on-dark);
+}
+
+/* Trustpilot text colour override for dark surface */
+.hero--full-image .tp-lockup__text,
+.hero--full-image .tp-lockup__subtext {
+  color: var(--text-on-colour);
+}
+
+
+/* ============================================
+   DARK MODE
+   Dark mode is not yet specified for hero
+   sections — no Figma dark mode frames exist.
+   The Full Image variant already handles its
+   own dark-surface text via scoped overrides
+   above; those are self-contained and do not
+   require .dark parent class variants.
+   ============================================ */
