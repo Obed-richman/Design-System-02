@@ -1,0 +1,274 @@
+<!-- ============================================
+     STACKING SCROLL CARDS COMPONENT SNIPPET
+     Copy what you need into a screen or index.html.
+     Requires: tokens/tokens.css
+               components/button/button.css
+               components/stacking-cards/stacking-cards.css
+     ============================================ -->
+
+
+<!-- ============================================================
+     VARIANT — Desktop | Header + stacking scroll cards
+     Cards animate in as the user scrolls through the track.
+     Requires the <script> block below — copy into screen file.
+     ============================================================ -->
+
+<section class="stacking-cards">
+
+  <!-- Section header -->
+  <div class="stacking-cards__header">
+    <h2 class="stacking-cards__heading">The right insurance just for you</h2>
+    <p class="stacking-cards__body">Whether you're delivering parcels for Amazon, driving a private hire taxi, using your van for personal trips, or just want to save on car insurance, we offer the right coverage whenever you need it, all in one place.</p>
+  </div>
+
+  <!-- Scroll track — height set by JS; do not set overflow: hidden -->
+  <div class="stacking-cards__track">
+
+    <!-- Sticky stage — cards are absolutely positioned inside here -->
+    <div class="stacking-cards__stage">
+
+      <!-- =============================================
+           Stacking cards: add more .stacking-cards__card elements to extend the stack.
+           JS automatically calculates scroll height and animation ranges for any number of cards.
+           Each card needs a unique .stacking-cards__card--N modifier for background/shadow overrides.
+      ============================================== -->
+
+      <!-- =============================================
+           Card 1 — Private hire taxi insurance
+           Light purple background, 1248px wide, image uses object-fit: contain + dark scrim
+      ============================================== -->
+      <div class="stacking-cards__card stacking-cards__card--1">
+
+        <!-- Image panel — flush left, dark scrim overlay -->
+        <div class="stacking-card__image">
+          <img class="stacking-card__image-img"
+               src="https://www.figma.com/api/mcp/asset/fb5796d7-8d76-4c44-99a3-7690bfe718b1"
+               alt="Private hire taxi driver">
+          <div class="stacking-card__image-overlay"></div>
+        </div>
+
+        <!-- Text panel -->
+        <div class="stacking-card__text">
+          <p class="stacking-card__seo">PRIVATE HIRE TAXI INSURANCE</p>
+          <h3 class="stacking-card__heading">Your taxi insurance, sorted</h3>
+          <p class="stacking-card__body">Our private hire taxi insurance covers you for work and personal driving. Everything you need in one simple policy. Plus, drive safely and pay less when you renew.</p>
+
+          <ul class="stacking-card__bullets" role="list">
+            <li class="stacking-card__bullet">
+              <span class="stacking-card__bullet-icon" aria-hidden="true">
+                <svg class="icon icon--xs icon--positive" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                  <use href="../../icons/icons.svg#icon-tick"></use>
+                </svg>
+              </span>
+              <span class="stacking-card__bullet-text">Choose monthly or annual insurance to suit you</span>
+            </li>
+            <li class="stacking-card__bullet">
+              <span class="stacking-card__bullet-icon" aria-hidden="true">
+                <svg class="icon icon--xs icon--positive" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                  <use href="../../icons/icons.svg#icon-tick"></use>
+                </svg>
+              </span>
+              <span class="stacking-card__bullet-text">Public liability cover included as standard</span>
+            </li>
+            <li class="stacking-card__bullet">
+              <span class="stacking-card__bullet-icon" aria-hidden="true">
+                <svg class="icon icon--xs icon--positive" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                  <use href="../../icons/icons.svg#icon-tick"></use>
+                </svg>
+              </span>
+              <span class="stacking-card__bullet-text">Keep your policy in your pocket with the app</span>
+            </li>
+          </ul>
+
+          <div class="stacking-card__actions">
+            <a class="btn btn--pill btn--primary stacking-card__cta" href="#">Get a car quote</a>
+            <a class="stacking-card__link" href="#">
+              More on private hire taxi insurance
+              <svg class="stacking-card__link-icon" viewBox="0 0 96 96" aria-hidden="true">
+                <use href="../../icons/icons.svg#icon-arrow-right"></use>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div><!-- /card 1 -->
+
+
+      <!-- =============================================
+           Card 2 — Delivery insurance
+           Warm cream background, 1280px wide, image uses object-fit: cover, no scrim, top shadow
+      ============================================== -->
+      <div class="stacking-cards__card stacking-cards__card--2">
+
+        <!-- Image panel — flush left, no scrim -->
+        <div class="stacking-card__image">
+          <img class="stacking-card__image-img"
+               src="https://www.figma.com/api/mcp/asset/66ccbb7c-f874-4376-8523-c2b1b5877bd8"
+               alt="Delivery driver handing over parcel">
+        </div>
+
+        <!-- Text panel -->
+        <div class="stacking-card__text">
+          <p class="stacking-card__seo">CAR, SCOOTER AND MOTORBIKE DELIVERY INSURANCE</p>
+          <h3 class="stacking-card__heading">Delivery insurance that works around you</h3>
+          <p class="stacking-card__body">Whether you're carrying parcels for Amazon or food for Just Eat, our flexible delivery insurance gives you all the right cover when you need it. All in one app.</p>
+
+          <ul class="stacking-card__bullets" role="list">
+            <li class="stacking-card__bullet">
+              <span class="stacking-card__bullet-icon" aria-hidden="true">
+                <svg class="icon icon--xs icon--positive" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                  <use href="../../icons/icons.svg#icon-tick"></use>
+                </svg>
+              </span>
+              <span class="stacking-card__bullet-text">Get cover by the hour, month or year</span>
+            </li>
+            <li class="stacking-card__bullet">
+              <span class="stacking-card__bullet-icon" aria-hidden="true">
+                <svg class="icon icon--xs icon--positive" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                  <use href="../../icons/icons.svg#icon-tick"></use>
+                </svg>
+              </span>
+              <span class="stacking-card__bullet-text">Work with all the big platforms and providers</span>
+            </li>
+            <li class="stacking-card__bullet">
+              <span class="stacking-card__bullet-icon" aria-hidden="true">
+                <svg class="icon icon--xs icon--positive" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+                  <use href="../../icons/icons.svg#icon-tick"></use>
+                </svg>
+              </span>
+              <span class="stacking-card__bullet-text">Keep your policy in your pocket with the app</span>
+            </li>
+          </ul>
+
+          <div class="stacking-card__actions">
+            <a class="btn btn--pill btn--primary stacking-card__cta" href="#">Get a car quote</a>
+            <a class="stacking-card__link" href="#">
+              Learn more about pay-as-you-go insurance
+              <svg class="stacking-card__link-icon" viewBox="0 0 96 96" aria-hidden="true">
+                <use href="../../icons/icons.svg#icon-arrow-right"></use>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div><!-- /card 2 -->
+
+    </div><!-- /stacking-cards__stage -->
+  </div><!-- /stacking-cards__track -->
+
+</section><!-- /stacking-cards -->
+
+
+<!-- ============================================================
+     STACKING CARDS SCRIPT
+     Copy into screen file — do not include in component HTML file.
+     Supports multiple .stacking-cards instances on the same page —
+     each section is queried and scoped independently.
+     ============================================================ -->
+<script>
+  /* Stacking Cards — scroll-driven card stack animation
+     Each card slides up and enters as the user scrolls.
+     Previous cards shrink and recede into the background.
+     Driven by requestAnimationFrame + scroll listener — no CSS transitions. */
+  (function () {
+
+    function easeOut(t) { return t * (2 - t); }
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+
+    function invLerp(a, b, v) {
+      if (b === a) return 0;
+      return Math.max(0, Math.min(1, (v - a) / (b - a)));
+    }
+
+    var sections = document.querySelectorAll('.stacking-cards');
+
+    sections.forEach(function (section) {
+      var track = section.querySelector('.stacking-cards__track');
+      var stage = section.querySelector('.stacking-cards__stage');
+      var cards = Array.from(section.querySelectorAll('.stacking-cards__card'));
+
+      if (!track || !stage || !cards.length) return;
+
+      /* Reduced motion — static stack, no animation */
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        section.classList.add('stacking-cards--reduced-motion');
+        return;
+      }
+
+      var CARD_SCROLL_HEIGHT = window.innerHeight * 0.9;
+
+      function setup() {
+        track.style.height = (cards.length * CARD_SCROLL_HEIGHT + window.innerHeight) + 'px';
+      }
+
+      function updateCards() {
+        var trackTop    = track.getBoundingClientRect().top;
+        var trackScroll = -trackTop;
+        var maxScroll   = track.offsetHeight - window.innerHeight;
+        var progress    = Math.max(0, Math.min(1, trackScroll / maxScroll));
+        var n = cards.length;
+
+        cards.forEach(function (card, i) {
+          var enterStart = i / n;
+          var enterEnd   = enterStart + (0.3 / n);
+          var exitStart  = (i + 1) / n;
+          var exitEnd    = exitStart + (0.3 / n);
+          var isLast     = i === n - 1;
+
+          var ty      = 0;
+          var scale   = 1;
+          var opacity = 0;
+
+          if (progress < enterStart) {
+            /* Before this card's enter range — hidden below */
+            ty = 100; opacity = 0; scale = 1;
+          } else if (progress <= enterEnd) {
+            /* Entering — slides up, fades in */
+            var t = easeOut(invLerp(enterStart, enterEnd, progress));
+            ty      = lerp(100, 0, t);
+            opacity = lerp(0, 1, t);
+            scale   = 1;
+          } else if (isLast || progress <= exitStart) {
+            /* Resting — fully visible, no transform */
+            ty = 0; opacity = 1; scale = 1;
+          } else if (progress <= exitEnd) {
+            /* Exiting — pushed back by next card entering */
+            var t = easeOut(invLerp(exitStart, exitEnd, progress));
+            ty      = lerp(0, -32, t);
+            scale   = lerp(1, 0.94, t);
+            opacity = lerp(1, 0.6, t);
+          } else {
+            /* Fully exited — static in background */
+            ty = -32; scale = 0.94; opacity = 0.6;
+          }
+
+          card.style.transform = 'translateX(-50%) translateY(' + ty + 'px) scale(' + scale + ')';
+          card.style.opacity   = opacity;
+        });
+      }
+
+      /* rAF-throttled scroll listener — never update DOM directly in the handler */
+      var ticking = false;
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          requestAnimationFrame(function () {
+            updateCards();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+
+      window.addEventListener('resize', function () {
+        CARD_SCROLL_HEIGHT = window.innerHeight * 0.9;
+        setup();
+        updateCards();
+      });
+
+      setup();
+      updateCards(); /* initial paint */
+    });
+
+  }());
+</script>

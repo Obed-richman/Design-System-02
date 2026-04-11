@@ -19,8 +19,7 @@
   display: flex;
   position: relative;
   box-sizing: border-box;
-  /* 1440px: Figma full-width section — no token equivalent */
-  width: 1440px;
+  width: 100%;
 }
 
 

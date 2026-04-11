@@ -1,0 +1,262 @@
+/* ============================================
+   PRODUCT CARDS SECTION
+   Depends on: tokens/tokens.css
+               components/button/button.css
+   No hardcoded values — token variables only.
+   Fixed pixel dimensions are noted inline.
+   ============================================ */
+
+
+/* --- Base --- */
+
+.product-cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-top: var(--number-64);
+  padding-bottom: var(--number-94);
+  background-color: var(--bg-primary);
+  box-sizing: border-box;
+}
+
+/* Inner content row — two-column layout */
+.product-cards__inner {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  /* 1280px: Figma content column width — no token equivalent */
+  width: 1280px;
+  /* 80px: Fixed Figma design value — no token equivalent */
+  gap: 80px;
+}
+
+
+/* ============================================
+   LEFT COLUMN — Sticky intro text
+   ============================================ */
+
+.product-cards__text-col {
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xx-large);
+  align-items: flex-start;
+  position: sticky;
+  top: var(--number-64);
+  align-self: flex-start;
+}
+
+/* Intro text block */
+.product-cards__intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-large);
+}
+
+.product-cards__heading {
+  font-family: inherit;
+  font-size: var(--font-size-title-1);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-title-1);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.product-cards__body {
+  font-family: inherit;
+  font-size: var(--font-size-body-1);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-1);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+
+/* ============================================
+   RIGHT COLUMN — Card grid
+   844px = 2 × 410px cards + 24px gap (Figma values)
+   ============================================ */
+
+.product-cards__grid {
+  /* 844px: Fixed Figma design value — no token equivalent */
+  width: 844px;
+  flex-shrink: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-large);
+}
+
+
+/* ============================================
+   PRODUCT CARD
+   ============================================ */
+
+.product-card {
+  background: var(--bg-brand-ecru);
+  border-radius: var(--radius-large);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* ============================================
+   CARD — Icon area
+   Three layers: back block, front block, badge.
+   Blocks are decorative brand-coloured shapes
+   that sit behind the icon badge.
+   ============================================ */
+
+.product-card__icon-area {
+  position: relative;
+  /* 140px: Fixed Figma design value — no token equivalent */
+  /* height: 140px; */
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding: 24px 0px 0px 24px;
+  overflow: hidden;
+}
+
+/* Decorative brand-colour blocks */
+.product-card__icon-block {
+  position: absolute;
+  /* 80px: Fixed Figma design value — no token equivalent */
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-medium);
+}
+
+.product-card__icon-block--back {
+  background: var(--_card-color-back, var(--base-brand-navy));
+  transform: rotate(-16deg) translate(-20px, 10px);
+}
+
+.product-card__icon-block--front {
+  background: var(--_card-color-front, var(--base-light-purple));
+  transform: rotate(12deg) translate(16px, -10px);
+}
+
+/* Icon badge — sits above both blocks */
+.product-card__badge {
+  position: relative;
+  z-index: 1;
+  /* 72px: icon--xl size */
+  width: 72px;
+  height: 72px;
+  display: block;
+  flex-shrink: 0;
+}
+
+
+/* ============================================
+   CARD — Colour scheme variants
+   Controls the two decorative block colours.
+   ============================================ */
+
+.product-card--navy {
+  --_card-color-back: var(--base-brand-navy);
+  --_card-color-front: var(--base-light-purple);
+}
+
+.product-card--purple {
+  --_card-color-back: var(--base-brand-purple);
+  --_card-color-front: var(--base-brand-navy);
+}
+
+.product-card--light-purple {
+  --_card-color-back: var(--base-light-purple);
+  --_card-color-front: var(--base-brand-purple);
+}
+
+
+/* ============================================
+   CARD — Body content
+   ============================================ */
+
+.product-card__content {
+  padding: var(--gap-x-large) var(--gap-large) var(--gap-large) var(--gap-large);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
+  flex: 1;
+}
+
+.product-card__title {
+  font-family: inherit;
+  font-size: var(--font-size-title-4);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-title-4);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.product-card__desc {
+  font-family: inherit;
+  font-size: var(--font-size-body-1);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-1);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-primary);
+  margin: 0;
+  flex: 1 0 auto;
+}
+
+
+/* ============================================
+   CARD — Actions (CTA + text link)
+   ============================================ */
+
+.product-card__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* Text link with arrow — overrides as needed beyond btn--text */
+.product-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-xx-small);
+  font-family: inherit;
+  font-size: var(--font-size-subtitle-2);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-subtitle-2);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-link);
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: var(--radius-x-small);
+}
+
+.product-card__link:hover {
+  color: var(--text-link-pressed);
+  text-decoration: underline;
+}
+
+.product-card__link:focus-visible {
+  outline: var(--border-focused) solid var(--border-color-focused);
+  outline-offset: 2px;
+}
+
+.product-card__link-icon {
+  /* 16px: icon--xxs — inline icon next to link label */
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  fill: currentColor;
+}
+
+
+/* ============================================
+   DARK MODE
+   Dark mode is not specified in Figma for this
+   component — no dark mode overrides needed.
+   ============================================ */

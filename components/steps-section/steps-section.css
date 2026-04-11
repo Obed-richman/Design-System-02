@@ -1,0 +1,249 @@
+/* ============================================
+   STEPS SECTION COMPONENT
+   Depends on: tokens/tokens.css
+   No hardcoded values — token variables only.
+   Fixed pixel dimensions are noted inline.
+   ============================================ */
+
+
+/* --- Base --- */
+
+.steps-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-top: var(--number-64);
+  padding-bottom: var(--number-64);
+  background-color: var(--bg-primary);
+  box-sizing: border-box;
+}
+
+/* Inner content row — two-column layout */
+.steps-section__inner {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  /* 1280px: Figma content column width — no token equivalent */
+  width: 1280px;
+  /* 80px: Fixed Figma design value — no token equivalent */
+  gap: 80px;
+  overflow: hidden;
+}
+
+
+/* ============================================
+   LEFT COLUMN — Intro text + step rows
+   ============================================ */
+
+.steps-section__text-col {
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xx-large);
+  align-items: flex-start;
+}
+
+/* Intro text block */
+.steps-section__intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-large);
+  /* 516px: Fixed Figma design value — no token equivalent */
+  width: 516px;
+}
+
+.steps-section__heading {
+  font-family: inherit;
+  font-size: var(--font-size-title-1);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-title-1);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.steps-section__body {
+  font-family: inherit;
+  font-size: var(--font-size-body-1);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-1);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+
+/* ============================================
+   STEP ROWS LIST
+   ============================================ */
+
+.steps-section__rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-x-small);
+  width: 100%;
+}
+
+/* Each step row */
+.steps-section__row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding-left: var(--gap-medium);
+  padding-right: var(--gap-medium);
+  border-radius: var(--radius-medium);
+  width: 100%;
+  cursor: pointer;
+  background: transparent;
+  transition: background 200ms ease;
+  box-sizing: border-box;
+}
+
+
+/* ============================================
+   ROW ACTIVE / HOVER STATE
+   ============================================ */
+
+.steps-section__row.is-active,
+.steps-section__row:hover {
+  background: #F8F4FF;
+  transition: all 200ms ease-in-out;
+}
+
+
+/* ============================================
+   ROW INNER CONTENT — icon + text side by side
+   ============================================ */
+
+.steps-section__row-content {
+  display: flex;
+  flex-direction: row;
+  gap: var(--gap-medium);
+  align-items: center;
+  padding-top: var(--gap-medium);
+  padding-bottom: var(--gap-medium);
+  width: 100%;
+}
+
+/* Step number icon */
+.steps-section__step-icon {
+  /* 24px: Figma step icon size (Step 1 shows 25px — treat as rounding artefact) */
+  width: 24px;
+  height: 24px;
+  overflow: hidden;
+  flex-shrink: 0;
+  align-self: flex-start;
+  margin-top: var(--gap-xx-small);
+  display: block;
+}
+
+.steps-section__step-icon img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Step text block */
+.steps-section__step-text {
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-small);
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.steps-section__step-title {
+  font-family: inherit;
+  font-size: var(--font-size-title-4);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-title-4);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--text-primary);
+  width: min-content;
+  min-width: 100%;
+  margin: 0;
+}
+
+.steps-section__step-support {
+  flex: 1 0 0;
+  display: flex;
+  align-items: flex-start;
+}
+
+.steps-section__step-desc {
+  font-family: inherit;
+  font-size: var(--font-size-body-1);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-1);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+
+/* ============================================
+   RIGHT COLUMN — Image panel
+   Three images stacked absolutely; only the
+   active image is visible via opacity.
+   ============================================ */
+
+.steps-section__image-col {
+  flex-shrink: 0;
+  /* 628px × 628px: Fixed Figma design values — no token equivalent */
+  width: 628px;
+  height: 628px;
+  border-radius: var(--radius-medium);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Each image — all three always in DOM, stacked absolutely */
+.steps-section__img {
+  position: absolute;
+  inset: 0;
+  width: 149.93%; /* Fixed Figma square crop value — mirrors image-size--square--desktop */
+  height: 100%;
+  left: -29.72%;  /* Fixed Figma square crop value — mirrors image-size--square--desktop */
+  top: 0;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 350ms ease;
+  pointer-events: none;
+  display: block;
+  max-width: none;
+}
+
+
+/* ============================================
+   IMAGE ACTIVE STATE
+   Added by JS on hover; Step 1 carries it
+   in static HTML as the page-load default.
+   ============================================ */
+
+.steps-section__img.is-active {
+  opacity: 1;
+}
+
+
+/* ============================================
+   REDUCED MOTION
+   Crossfade becomes an instant swap — no
+   transition on images.
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .steps-section__img {
+    transition: none;
+  }
+}
+
+
+/* ============================================
+   DARK MODE
+   Dark mode is not specified in Figma for this
+   component — no dark mode overrides needed.
+   ============================================ */

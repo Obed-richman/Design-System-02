@@ -56,6 +56,12 @@
   <link rel="stylesheet" href="components/image-size/image-size.css" />
   <link rel="stylesheet" href="components/hero/hero.css" />
   <link rel="stylesheet" href="components/fca-banner/fca-banner.css" />
+  <link rel="stylesheet" href="components/logo-carousel/logo-carousel.css" />
+  <link rel="stylesheet" href="components/steps-section/steps-section.css" />
+  <link rel="stylesheet" href="components/product-cards/product-cards.css" />
+  <link rel="stylesheet" href="components/key-stats/key-stats.css" />
+  <link rel="stylesheet" href="components/video-section/video-section.css" />
+  <link rel="stylesheet" href="components/stacking-cards/stacking-cards.css" />
 
   <style>
     /* Sandbox layout only — not part of any component */
@@ -5038,7 +5044,838 @@
   </section>
 
 
+  <!-- ============================================================
+       Logo Carousel
+       ============================================================ -->
+  <section class="section">
+    <h2 class="section__title">Logo Carousel</h2>
+
+    <p class="section__label">Marquee — Desktop</p>
+    <section class="logo-carousel logo-carousel--marquee" aria-label="As seen in">
+      <div class="logo-carousel__content">
+        <div class="logo-carousel__text">
+          <h2 class="logo-carousel__title">As seen in</h2>
+          <p class="logo-carousel__body">Zego has been featured in some of the world's leading publications.</p>
+        </div>
+        <div class="logo-carousel__track-wrapper">
+          <div class="logo-carousel__fade-left" aria-hidden="true"></div>
+          <div class="logo-carousel__track">
+            <img class="logo-carousel__logo" src="https://www.figma.com/api/mcp/asset/616dc815-ba46-4e04-b0f7-475b9a389fce" alt="TechCrunch" width="246" height="32">
+            <img class="logo-carousel__logo" src="https://www.figma.com/api/mcp/asset/7801fbba-4151-4d9f-823d-77c5b45edcf0" alt="Business Insider" width="101" height="32">
+            <img class="logo-carousel__logo" src="https://www.figma.com/api/mcp/asset/a637245c-580f-4f19-b02d-b7c3c77071b8" alt="The Telegraph" width="196" height="32">
+            <img class="logo-carousel__logo" src="https://www.figma.com/api/mcp/asset/05b05c2c-2480-4994-b0d5-13b7ce94c51b" alt="The Guardian" width="98" height="32">
+            <img class="logo-carousel__logo" aria-hidden="true" src="https://www.figma.com/api/mcp/asset/616dc815-ba46-4e04-b0f7-475b9a389fce" alt="" width="246" height="32">
+            <img class="logo-carousel__logo" aria-hidden="true" src="https://www.figma.com/api/mcp/asset/7801fbba-4151-4d9f-823d-77c5b45edcf0" alt="" width="101" height="32">
+            <img class="logo-carousel__logo" aria-hidden="true" src="https://www.figma.com/api/mcp/asset/a637245c-580f-4f19-b02d-b7c3c77071b8" alt="" width="196" height="32">
+            <img class="logo-carousel__logo" aria-hidden="true" src="https://www.figma.com/api/mcp/asset/05b05c2c-2480-4994-b0d5-13b7ce94c51b" alt="" width="98" height="32">
+          </div>
+          <div class="logo-carousel__fade-right" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <p class="section__label" style="margin-top: 48px;">Wrapped — Desktop</p>
+    <section class="logo-carousel logo-carousel--wrapped" aria-label="Our work provider partners">
+      <div class="logo-carousel__content">
+        <div class="logo-carousel__text">
+          <h2 class="logo-carousel__title">Our work provider partners</h2>
+          <p class="logo-carousel__body">Zego works with leading delivery and ride-hailing platforms across the UK and Europe.</p>
+        </div>
+        <div class="logo-carousel__grid">
+          <div class="logo-carousel__row">
+            <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/b69e6d42-8a5c-48c6-8d50-9a0d9273f72c" alt="Deliveroo"></div>
+            <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/a7700ae2-3d0b-4caa-8692-cbc09077683c" alt="Just Eat"></div>
+            <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/17cec57b-e027-4589-ae5d-62e03a4efb57" alt="Uber Eats"></div>
+            <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/d52b09b8-da10-4f9f-b201-0e5faee0f0cc" alt="Bolt"></div>
+          </div>
+          <div class="logo-carousel__row">
+            <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/8380a461-78cb-4d66-9952-59ea42a81d48" alt="Amazon"></div>
+            <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/fd83813e-69a2-4c46-a7a0-2ce0b666f286" alt="OLA"></div>
+            <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/cac5378b-5093-407b-83f7-3d2dbd8f8af7" alt="Ryde"></div>
+            <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/5ff7a094-290a-44f8-a642-20c8e5d9f8dc" alt="Uber"></div>
+          </div>
+          <div class="logo-carousel__row">
+            <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/5da906db-d40b-46ea-9c4b-7eb9bb85c612" alt="Gophr"></div>
+            <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/d6456b0d-adca-4c38-b811-20abea2ca300" alt="Vromo"></div>
+            <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/7e17838d-976f-4acf-ba9d-f2f7e4b246e6" alt="GoGetters"></div>
+            <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/6c638357-d08a-4bbd-ad46-2189212722e3" alt="FreeNow"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="section__label" style="margin-top: 48px;">Wrapped — Mobile</p>
+    <div style="width: 375px; margin: 0 auto;">
+      <section class="logo-carousel logo-carousel--wrapped logo-carousel--mobile" aria-label="Our work provider partners">
+        <div class="logo-carousel__content">
+          <div class="logo-carousel__text">
+            <h2 class="logo-carousel__title">Our work provider partners</h2>
+            <p class="logo-carousel__body">Zego works with leading delivery and ride-hailing platforms across the UK and Europe.</p>
+          </div>
+          <div class="logo-carousel__grid">
+            <div class="logo-carousel__row">
+              <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/b69e6d42-8a5c-48c6-8d50-9a0d9273f72c" alt="Deliveroo"></div>
+              <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/a7700ae2-3d0b-4caa-8692-cbc09077683c" alt="Just Eat"></div>
+              <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/17cec57b-e027-4589-ae5d-62e03a4efb57" alt="Uber Eats"></div>
+              <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/d52b09b8-da10-4f9f-b201-0e5faee0f0cc" alt="Bolt"></div>
+            </div>
+            <div class="logo-carousel__row">
+              <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/8380a461-78cb-4d66-9952-59ea42a81d48" alt="Amazon"></div>
+              <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/fd83813e-69a2-4c46-a7a0-2ce0b666f286" alt="OLA"></div>
+              <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/cac5378b-5093-407b-83f7-3d2dbd8f8af7" alt="Ryde"></div>
+              <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/5ff7a094-290a-44f8-a642-20c8e5d9f8dc" alt="Uber"></div>
+            </div>
+            <div class="logo-carousel__row">
+              <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/5da906db-d40b-46ea-9c4b-7eb9bb85c612" alt="Gophr"></div>
+              <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/d6456b0d-adca-4c38-b811-20abea2ca300" alt="Vromo"></div>
+              <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/7e17838d-976f-4acf-ba9d-f2f7e4b246e6" alt="GoGetters"></div>
+              <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/6c638357-d08a-4bbd-ad46-2189212722e3" alt="FreeNow"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================
+       Steps Section
+       ============================================================ -->
+  <section class="section">
+    <h2 class="section__title">Steps Section</h2>
+
+    <section class="steps-section">
+      <div class="steps-section__inner">
+        <div class="steps-section__text-col">
+          <div class="steps-section__intro">
+            <h2 class="steps-section__heading">Insurance made easy</h2>
+            <p class="steps-section__body">Motor insurance doesn't have to be complicated. Our policies use clever technology to keep things simple, so you can get on with your day.</p>
+          </div>
+          <div class="steps-section__rows">
+            <div class="steps-section__row is-active" data-step="1">
+              <div class="steps-section__row-content">
+                <span class="steps-section__step-icon">
+                  <img src="https://www.figma.com/api/mcp/asset/1dfd30fc-4c35-4fab-8d29-3da1ca50b385" alt="" width="24" height="24">
+                </span>
+                <div class="steps-section__step-text">
+                  <h3 class="steps-section__step-title">Get a quote</h3>
+                  <div class="steps-section__step-support">
+                    <p class="steps-section__step-desc">Enter a few details, tell us about your vehicle and the type of driving you do. We'll give you a personalised price in minutes.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="steps-section__row" data-step="2">
+              <div class="steps-section__row-content">
+                <span class="steps-section__step-icon">
+                  <img src="https://www.figma.com/api/mcp/asset/6431fcb1-6cdf-4ce6-a9bc-4ed4f2a4adb3" alt="" width="24" height="24">
+                </span>
+                <div class="steps-section__step-text">
+                  <h3 class="steps-section__step-title">Customise your cover</h3>
+                  <div class="steps-section__step-support">
+                    <p class="steps-section__step-desc">Need breakdown cover? Or a replacement vehicle? Simply choose your extras when you buy your policy.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="steps-section__row" data-step="3">
+              <div class="steps-section__row-content">
+                <span class="steps-section__step-icon">
+                  <img src="https://www.figma.com/api/mcp/asset/4d842a41-648f-43fc-a713-731bb898c894" alt="" width="24" height="24">
+                </span>
+                <div class="steps-section__step-text">
+                  <h3 class="steps-section__step-title">You're all set!</h3>
+                  <div class="steps-section__step-support">
+                    <p class="steps-section__step-desc">Insurance sorted, you're ready to go! Keep all your documents in the app, and make changes to your cover anytime, anywhere.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="steps-section__image-col">
+          <!-- Step 1 image — replace src with your Step 1 image -->
+          <img class="steps-section__img steps-section__img--1 is-active"
+               src="https://www.figma.com/api/mcp/asset/f26cdd18-e9ff-4883-9517-ee7c2b3b88cc"
+               alt="Get a quote — car insurance app" data-step="1">
+          <!-- Step 2 image — replace src with your Step 2 image -->
+          <img class="steps-section__img steps-section__img--2"
+               src="https://www.figma.com/api/mcp/asset/f26cdd18-e9ff-4883-9517-ee7c2b3b88cc"
+               alt="Customise your cover options" data-step="2">
+          <!-- Step 3 image — replace src with your Step 3 image -->
+          <img class="steps-section__img steps-section__img--3"
+               src="https://www.figma.com/api/mcp/asset/f26cdd18-e9ff-4883-9517-ee7c2b3b88cc"
+               alt="You're all set with your insurance" data-step="3">
+        </div>
+      </div>
+    </section>
+
+  </section>
+
+
+  <!-- ============================================================
+       Product Cards
+       Note: sticky left column requires the page to have enough
+       height to scroll — use inside a full screen or long page.
+       ============================================================ -->
+  <section class="section">
+    <h2 class="section__title">Product Cards</h2>
+
+    <section class="product-cards">
+      <div class="product-cards__inner">
+
+        <div class="product-cards__text-col">
+          <div class="product-cards__intro">
+            <h2 class="product-cards__heading">Cover built for the way you work</h2>
+            <p class="product-cards__body">Whether you're driving for fun or earning on the road, we have flexible insurance that fits around your life — not the other way around.</p>
+          </div>
+        </div>
+
+        <div class="product-cards__grid">
+
+          <!-- Card 1 — Everyday driving -->
+          <div class="product-card product-card--navy">
+            <div class="product-card__icon-area">
+              <div class="product-card__icon-block product-card__icon-block--back"></div>
+              <div class="product-card__icon-block product-card__icon-block--front"></div>
+              <svg class="product-card__badge" viewBox="0 0 96 96" aria-hidden="true">
+                <use href="icons/icons.svg#icon-badge-new-driver"></use>
+              </svg>
+            </div>
+            <div class="product-card__content">
+              <h3 class="product-card__title">Everyday driving</h3>
+              <p class="product-card__desc">Pay-as-you-go motor insurance that fits around your schedule. Only pay for the miles you drive.</p>
+              <div class="product-card__actions">
+                <a class="btn btn--pill btn--primary btn--full" href="#">Get a quote</a>
+                <a class="product-card__link" href="#">
+                  Learn more
+                  <svg class="product-card__link-icon" viewBox="0 0 96 96" aria-hidden="true">
+                    <use href="icons/icons.svg#icon-arrow-right"></use>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 — Courier delivery -->
+          <div class="product-card product-card--purple">
+            <div class="product-card__icon-area">
+              <div class="product-card__icon-block product-card__icon-block--back"></div>
+              <div class="product-card__icon-block product-card__icon-block--front"></div>
+              <svg class="product-card__badge" viewBox="0 0 96 96" aria-hidden="true">
+                <use href="icons/icons.svg#icon-badge-parcel"></use>
+              </svg>
+            </div>
+            <div class="product-card__content">
+              <h3 class="product-card__title">Courier delivery</h3>
+              <p class="product-card__desc">Insurance designed for parcel and goods delivery drivers. Cover that switches on when you start a job.</p>
+              <div class="product-card__actions">
+                <a class="btn btn--pill btn--primary btn--full" href="#">Get a quote</a>
+                <a class="product-card__link" href="#">
+                  Learn more
+                  <svg class="product-card__link-icon" viewBox="0 0 96 96" aria-hidden="true">
+                    <use href="icons/icons.svg#icon-arrow-right"></use>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 — Taxi & ride-hailing -->
+          <div class="product-card product-card--light-purple">
+            <div class="product-card__icon-area">
+              <div class="product-card__icon-block product-card__icon-block--back"></div>
+              <div class="product-card__icon-block product-card__icon-block--front"></div>
+              <svg class="product-card__badge" viewBox="0 0 96 96" aria-hidden="true">
+                <use href="icons/icons.svg#icon-badge-journey"></use>
+              </svg>
+            </div>
+            <div class="product-card__content">
+              <h3 class="product-card__title">Taxi & ride-hailing</h3>
+              <p class="product-card__desc">PCO and private hire cover for licensed taxi drivers. Annual and pay-as-you-go options available.</p>
+              <div class="product-card__actions">
+                <a class="btn btn--pill btn--primary btn--full" href="#">Get a quote</a>
+                <a class="product-card__link" href="#">
+                  Learn more
+                  <svg class="product-card__link-icon" viewBox="0 0 96 96" aria-hidden="true">
+                    <use href="icons/icons.svg#icon-arrow-right"></use>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 — Food delivery -->
+          <div class="product-card product-card--navy">
+            <div class="product-card__icon-area">
+              <div class="product-card__icon-block product-card__icon-block--back"></div>
+              <div class="product-card__icon-block product-card__icon-block--front"></div>
+              <svg class="product-card__badge" viewBox="0 0 96 96" aria-hidden="true">
+                <use href="icons/icons.svg#icon-badge-food"></use>
+              </svg>
+            </div>
+            <div class="product-card__content">
+              <h3 class="product-card__title">Food delivery</h3>
+              <p class="product-card__desc">Flexible cover for food and grocery delivery riders. Works with all the major platforms in the UK.</p>
+              <div class="product-card__actions">
+                <a class="btn btn--pill btn--primary btn--full" href="#">Get a quote</a>
+                <a class="product-card__link" href="#">
+                  Learn more
+                  <svg class="product-card__link-icon" viewBox="0 0 96 96" aria-hidden="true">
+                    <use href="icons/icons.svg#icon-arrow-right"></use>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5 — Van & commercial -->
+          <div class="product-card product-card--purple">
+            <div class="product-card__icon-area">
+              <div class="product-card__icon-block product-card__icon-block--back"></div>
+              <div class="product-card__icon-block product-card__icon-block--front"></div>
+              <svg class="product-card__badge" viewBox="0 0 96 96" aria-hidden="true">
+                <use href="icons/icons.svg#icon-badge-parcel"></use>
+              </svg>
+            </div>
+            <div class="product-card__content">
+              <h3 class="product-card__title">Van & commercial</h3>
+              <p class="product-card__desc">Comprehensive van insurance for sole traders and small businesses. Annual and short-term policies.</p>
+              <div class="product-card__actions">
+                <a class="btn btn--pill btn--primary btn--full" href="#">Get a quote</a>
+                <a class="product-card__link" href="#">
+                  Learn more
+                  <svg class="product-card__link-icon" viewBox="0 0 96 96" aria-hidden="true">
+                    <use href="icons/icons.svg#icon-arrow-right"></use>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6 — Fleet -->
+          <div class="product-card product-card--light-purple">
+            <div class="product-card__icon-area">
+              <div class="product-card__icon-block product-card__icon-block--back"></div>
+              <div class="product-card__icon-block product-card__icon-block--front"></div>
+              <svg class="product-card__badge" viewBox="0 0 96 96" aria-hidden="true">
+                <use href="icons/icons.svg#icon-badge-journey"></use>
+              </svg>
+            </div>
+            <div class="product-card__content">
+              <h3 class="product-card__title">Fleet</h3>
+              <p class="product-card__desc">Telematics-powered fleet insurance for businesses with multiple vehicles. Scale up or down as your fleet grows.</p>
+              <div class="product-card__actions">
+                <a class="btn btn--pill btn--primary btn--full" href="#">Get a quote</a>
+                <a class="product-card__link" href="#">
+                  Learn more
+                  <svg class="product-card__link-icon" viewBox="0 0 96 96" aria-hidden="true">
+                    <use href="icons/icons.svg#icon-arrow-right"></use>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /product-cards__grid -->
+      </div><!-- /product-cards__inner -->
+    </section>
+
+  </section>
+
+
+  <!-- ============================================================
+       Key Statistics
+       Scroll down to trigger the count-up animation.
+       ============================================================ -->
+  <section class="section">
+    <h2 class="section__title">Key Statistics</h2>
+
+    <!-- Spacer to push key-stats below the fold for animation demo -->
+    <div style="height: 60vh;" aria-hidden="true"></div>
+
+    <!-- Scroll down to trigger the count-up animation -->
+    <section class="key-stats">
+      <div class="key-stats__content">
+
+        <div class="key-stats__heading-wrap">
+          <h2 class="key-stats__heading">Trusted by drivers across the UK</h2>
+        </div>
+
+        <div class="key-stats__cards">
+
+          <!-- Card 1 — Policies -->
+          <div class="key-stats__card">
+            <div class="key-stats__icon">
+              <div class="key-stats__icon-layer key-stats__icon-layer--navy"></div>
+              <div class="key-stats__icon-layer key-stats__icon-layer--light-purple"></div>
+              <img class="key-stats__icon-img"
+                   src="https://www.figma.com/api/mcp/asset/76825ef0-3782-467b-8245-db1f08f2c4c2"
+                   alt=""
+                   style="top: 20.83%; right: 20.01%; bottom: 13.57%; left: 20.83%; width: auto; height: auto;">
+            </div>
+            <div class="key-stats__card-text">
+              <p class="key-stats__number" aria-label="81 million">
+                <span class="key-stats__number-value" aria-hidden="true" data-target="81" data-suffix="M" data-duration="1800">81M</span>
+              </p>
+              <p class="key-stats__label">Policies and counting</p>
+            </div>
+          </div>
+
+          <!-- Card 2 — Drivers -->
+          <div class="key-stats__card">
+            <div class="key-stats__icon">
+              <div class="key-stats__icon-bg"></div>
+              <img class="key-stats__icon-img"
+                   src="https://www.figma.com/api/mcp/asset/ae39938f-0def-4fc7-9522-e4da5717a7bc"
+                   alt=""
+                   style="width: 28px; height: 32px; left: 50%; top: 50%; transform: translate(-50%, -50%);">
+            </div>
+            <div class="key-stats__card-text">
+              <p class="key-stats__number" aria-label="575 thousand">
+                <span class="key-stats__number-value" aria-hidden="true" data-target="575" data-suffix="K" data-duration="1800">575K</span>
+              </p>
+              <p class="key-stats__label">Drivers trust Zego</p>
+            </div>
+          </div>
+
+          <!-- Card 3 — Savings -->
+          <div class="key-stats__card">
+            <div class="key-stats__icon">
+              <div class="key-stats__icon-bg"></div>
+              <img class="key-stats__icon-img"
+                   src="https://www.figma.com/api/mcp/asset/cdacc320-b0b1-4408-a8b8-4e66bc7e191b"
+                   alt=""
+                   style="left: 16.67%; right: 16.67%; top: 50%; transform: translateY(-50%); width: auto; aspect-ratio: 64/48;">
+            </div>
+            <div class="key-stats__card-text">
+              <p class="key-stats__number" aria-label="96 percent">
+                <span class="key-stats__number-value" aria-hidden="true" data-target="96" data-suffix="%" data-duration="1400">96%</span>
+              </p>
+              <p class="key-stats__label">of drivers save money</p>
+            </div>
+          </div>
+
+        </div><!-- /key-stats__cards -->
+      </div><!-- /key-stats__content -->
+    </section>
+
+  </section>
+
+
+  <!-- ============================================================
+       Video Testimonials
+       Add YouTube video IDs to data-video-id attributes on each .video-card
+       ============================================================ -->
+  <section class="section">
+    <h2 class="section__title">Video Testimonials</h2>
+
+    <section class="video-section">
+      <div class="video-section__content">
+
+        <div class="video-section__text">
+          <h2 class="video-section__heading">What our customers say</h2>
+          <p class="video-section__body">Our customers are at the heart of what we do. We're on a mission to offer them the best cover at the best prices. But don't just take our word for it...</p>
+        </div>
+
+        <div class="video-section__cards">
+
+          <!-- Video card: replace data-video-id with YouTube video ID, update title and support text, update thumbnail src -->
+          <div class="video-card" data-video-id="">
+            <div class="video-card__thumbnail">
+              <div class="video-card__img-wrapper">
+                <img class="video-card__img" src="https://www.figma.com/api/mcp/asset/ebe71516-4364-491e-afb0-372d4e328439" alt="">
+              </div>
+            </div>
+            <button class="video-card__play" type="button" aria-label="Play video">
+              <img class="video-card__play-bg" src="https://www.figma.com/api/mcp/asset/d05ca3e9-3f79-40ec-80e3-3afd21f0a8cd" alt="">
+              <img class="video-card__play-icon" src="https://www.figma.com/api/mcp/asset/8d5f8043-1a56-42bc-a920-79fd92791a8c" alt="">
+            </button>
+            <div class="video-card__text">
+              <h3 class="video-card__title">Sub Heading 24px</h3>
+              <p class="video-card__support">Supporting 16px</p>
+            </div>
+          </div>
+
+          <!-- Video card: replace data-video-id with YouTube video ID, update title and support text, update thumbnail src -->
+          <div class="video-card" data-video-id="">
+            <div class="video-card__thumbnail">
+              <div class="video-card__img-wrapper">
+                <img class="video-card__img" src="https://www.figma.com/api/mcp/asset/f8aaf494-0200-4134-a660-a1b75829cab2" alt="">
+              </div>
+            </div>
+            <button class="video-card__play" type="button" aria-label="Play video">
+              <img class="video-card__play-bg" src="https://www.figma.com/api/mcp/asset/d05ca3e9-3f79-40ec-80e3-3afd21f0a8cd" alt="">
+              <img class="video-card__play-icon" src="https://www.figma.com/api/mcp/asset/8d5f8043-1a56-42bc-a920-79fd92791a8c" alt="">
+            </button>
+            <div class="video-card__text">
+              <h3 class="video-card__title">Sub Heading 24px</h3>
+              <p class="video-card__support">Supporting 16px</p>
+            </div>
+          </div>
+
+          <!-- Video card: replace data-video-id with YouTube video ID, update title and support text, update thumbnail src -->
+          <div class="video-card" data-video-id="">
+            <div class="video-card__thumbnail">
+              <div class="video-card__img-wrapper">
+                <img class="video-card__img" src="https://www.figma.com/api/mcp/asset/587e3a5f-7f60-4bf5-bd44-4cc6a6158b7b" alt="">
+              </div>
+            </div>
+            <button class="video-card__play" type="button" aria-label="Play video">
+              <img class="video-card__play-bg" src="https://www.figma.com/api/mcp/asset/d05ca3e9-3f79-40ec-80e3-3afd21f0a8cd" alt="">
+              <img class="video-card__play-icon" src="https://www.figma.com/api/mcp/asset/8d5f8043-1a56-42bc-a920-79fd92791a8c" alt="">
+            </button>
+            <div class="video-card__text">
+              <h3 class="video-card__title">Sub Heading 24px</h3>
+              <p class="video-card__support">Supporting 16px</p>
+            </div>
+          </div>
+
+        </div><!-- /video-section__cards -->
+
+        <div class="video-modal" id="video-modal" role="dialog" aria-modal="true" aria-label="Video player" hidden>
+          <div class="video-modal__backdrop"></div>
+          <div class="video-modal__container">
+            <button class="video-modal__close" aria-label="Close video">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="video-modal__embed">
+              <iframe class="video-modal__iframe" id="video-modal-iframe" src="" title="Customer testimonial video" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /video-section__content -->
+    </section>
+
+  </section>
+
+
+  <!-- ============================================================
+       Stacking Cards
+       Scroll to see stacking card animation.
+       Requires page height to demonstrate — spacer above ensures
+       it starts below the fold.
+       ============================================================ -->
+  <section class="section">
+    <h2 class="section__title">Stacking Cards</h2>
+
+    <!-- Spacer to push stacking cards below the fold for animation demo -->
+    <div style="height: 50vh;" aria-hidden="true"></div>
+
+    <section class="stacking-cards">
+
+      <div class="stacking-cards__header">
+        <h2 class="stacking-cards__heading">The right insurance just for you</h2>
+        <p class="stacking-cards__body">Whether you're delivering parcels for Amazon, driving a private hire taxi, using your van for personal trips, or just want to save on car insurance, we offer the right coverage whenever you need it, all in one place.</p>
+      </div>
+
+      <div class="stacking-cards__track">
+        <div class="stacking-cards__stage">
+
+          <!-- Card 1 — Private hire taxi -->
+          <div class="stacking-cards__card stacking-cards__card--1">
+            <div class="stacking-card__image">
+              <img class="stacking-card__image-img" src="https://www.figma.com/api/mcp/asset/fb5796d7-8d76-4c44-99a3-7690bfe718b1" alt="Private hire taxi driver">
+              <div class="stacking-card__image-overlay"></div>
+            </div>
+            <div class="stacking-card__text">
+              <p class="stacking-card__seo">PRIVATE HIRE TAXI INSURANCE</p>
+              <h3 class="stacking-card__heading">Your taxi insurance, sorted</h3>
+              <p class="stacking-card__body">Our private hire taxi insurance covers you for work and personal driving. Everything you need in one simple policy. Plus, drive safely and pay less when you renew.</p>
+              <ul class="stacking-card__bullets" role="list">
+                <li class="stacking-card__bullet">
+                  <span class="stacking-card__bullet-icon" aria-hidden="true">
+                    <svg class="icon icon--xs icon--positive" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-tick"></use></svg>
+                  </span>
+                  <span class="stacking-card__bullet-text">Choose monthly or annual insurance to suit you</span>
+                </li>
+                <li class="stacking-card__bullet">
+                  <span class="stacking-card__bullet-icon" aria-hidden="true">
+                    <svg class="icon icon--xs icon--positive" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-tick"></use></svg>
+                  </span>
+                  <span class="stacking-card__bullet-text">Public liability cover included as standard</span>
+                </li>
+                <li class="stacking-card__bullet">
+                  <span class="stacking-card__bullet-icon" aria-hidden="true">
+                    <svg class="icon icon--xs icon--positive" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-tick"></use></svg>
+                  </span>
+                  <span class="stacking-card__bullet-text">Keep your policy in your pocket with the app</span>
+                </li>
+              </ul>
+              <div class="stacking-card__actions">
+                <a class="btn btn--pill btn--primary stacking-card__cta" href="#">Get a car quote</a>
+                <a class="stacking-card__link" href="#">
+                  More on private hire taxi insurance
+                  <svg class="stacking-card__link-icon" viewBox="0 0 96 96" aria-hidden="true"><use href="icons/icons.svg#icon-arrow-right"></use></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 — Delivery insurance -->
+          <div class="stacking-cards__card stacking-cards__card--2">
+            <div class="stacking-card__image">
+              <img class="stacking-card__image-img" src="https://www.figma.com/api/mcp/asset/66ccbb7c-f874-4376-8523-c2b1b5877bd8" alt="Delivery driver handing over parcel">
+            </div>
+            <div class="stacking-card__text">
+              <p class="stacking-card__seo">CAR, SCOOTER AND MOTORBIKE DELIVERY INSURANCE</p>
+              <h3 class="stacking-card__heading">Delivery insurance that works around you</h3>
+              <p class="stacking-card__body">Whether you're carrying parcels for Amazon or food for Just Eat, our flexible delivery insurance gives you all the right cover when you need it. All in one app.</p>
+              <ul class="stacking-card__bullets" role="list">
+                <li class="stacking-card__bullet">
+                  <span class="stacking-card__bullet-icon" aria-hidden="true">
+                    <svg class="icon icon--xs icon--positive" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-tick"></use></svg>
+                  </span>
+                  <span class="stacking-card__bullet-text">Get cover by the hour, month or year</span>
+                </li>
+                <li class="stacking-card__bullet">
+                  <span class="stacking-card__bullet-icon" aria-hidden="true">
+                    <svg class="icon icon--xs icon--positive" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-tick"></use></svg>
+                  </span>
+                  <span class="stacking-card__bullet-text">Work with all the big platforms and providers</span>
+                </li>
+                <li class="stacking-card__bullet">
+                  <span class="stacking-card__bullet-icon" aria-hidden="true">
+                    <svg class="icon icon--xs icon--positive" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-tick"></use></svg>
+                  </span>
+                  <span class="stacking-card__bullet-text">Keep your policy in your pocket with the app</span>
+                </li>
+              </ul>
+              <div class="stacking-card__actions">
+                <a class="btn btn--pill btn--primary stacking-card__cta" href="#">Get a car quote</a>
+                <a class="stacking-card__link" href="#">
+                  Learn more about pay-as-you-go insurance
+                  <svg class="stacking-card__link-icon" viewBox="0 0 96 96" aria-hidden="true"><use href="icons/icons.svg#icon-arrow-right"></use></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /stacking-cards__stage -->
+      </div><!-- /stacking-cards__track -->
+
+    </section>
+
+  </section>
+
+
   <script>
+    /* Stacking Cards — scroll-driven stack animation */
+    (function () {
+      function easeOut(t) { return t * (2 - t); }
+      function lerp(a, b, t) { return a + (b - a) * t; }
+      function invLerp(a, b, v) {
+        if (b === a) return 0;
+        return Math.max(0, Math.min(1, (v - a) / (b - a)));
+      }
+
+      document.querySelectorAll('.stacking-cards').forEach(function (section) {
+        var track = section.querySelector('.stacking-cards__track');
+        var stage = section.querySelector('.stacking-cards__stage');
+        var cards = Array.from(section.querySelectorAll('.stacking-cards__card'));
+        if (!track || !stage || !cards.length) return;
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          section.classList.add('stacking-cards--reduced-motion');
+          return;
+        }
+
+        var CARD_SCROLL_HEIGHT = window.innerHeight * 0.9;
+
+        function setup() {
+          track.style.height = (cards.length * CARD_SCROLL_HEIGHT + window.innerHeight) + 'px';
+        }
+
+        function updateCards() {
+          var trackTop    = track.getBoundingClientRect().top;
+          var trackScroll = -trackTop;
+          var maxScroll   = track.offsetHeight - window.innerHeight;
+          var progress    = Math.max(0, Math.min(1, trackScroll / maxScroll));
+          var n = cards.length;
+
+          cards.forEach(function (card, i) {
+            var enterStart = i / n;
+            var enterEnd   = enterStart + (0.3 / n);
+            var exitStart  = (i + 1) / n;
+            var exitEnd    = exitStart + (0.3 / n);
+            var isLast     = i === n - 1;
+            var ty = 0, scale = 1, opacity = 0;
+
+            if (progress < enterStart) {
+              ty = 100; opacity = 0; scale = 1;
+            } else if (progress <= enterEnd) {
+              var t = easeOut(invLerp(enterStart, enterEnd, progress));
+              ty = lerp(100, 0, t); opacity = lerp(0, 1, t); scale = 1;
+            } else if (isLast || progress <= exitStart) {
+              ty = 0; opacity = 1; scale = 1;
+            } else if (progress <= exitEnd) {
+              var t = easeOut(invLerp(exitStart, exitEnd, progress));
+              ty = lerp(0, -32, t); scale = lerp(1, 0.94, t); opacity = lerp(1, 0.6, t);
+            } else {
+              ty = -32; scale = 0.94; opacity = 0.6;
+            }
+
+            card.style.transform = 'translateX(-50%) translateY(' + ty + 'px) scale(' + scale + ')';
+            card.style.opacity   = opacity;
+          });
+        }
+
+        var ticking = false;
+        window.addEventListener('scroll', function () {
+          if (!ticking) {
+            requestAnimationFrame(function () { updateCards(); ticking = false; });
+            ticking = true;
+          }
+        }, { passive: true });
+
+        window.addEventListener('resize', function () {
+          CARD_SCROLL_HEIGHT = window.innerHeight * 0.9;
+          setup(); updateCards();
+        });
+
+        setup();
+        updateCards();
+      });
+    }());
+
+    /* Key Stats — count-up animation */
+    (function () {
+      function easeOut(t) { return t * (2 - t); }
+
+      function animateCounter(el) {
+        var target   = parseInt(el.dataset.target, 10);
+        var suffix   = el.dataset.suffix || '';
+        var duration = parseInt(el.dataset.duration, 10) || 1600;
+        var start    = null;
+        function step(timestamp) {
+          if (!start) start = timestamp;
+          var elapsed  = timestamp - start;
+          var progress = Math.min(elapsed / duration, 1);
+          var eased    = easeOut(progress);
+          var current  = Math.round(eased * target);
+          el.textContent = current + suffix;
+          if (progress < 1) { requestAnimationFrame(step); }
+          else { el.textContent = target + suffix; }
+        }
+        requestAnimationFrame(step);
+      }
+
+      var sections = document.querySelectorAll('.key-stats');
+      sections.forEach(function (section) {
+        var counters = section.querySelectorAll('.key-stats__number-value');
+        var animated = false;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          counters.forEach(function (el) { el.textContent = el.dataset.target + (el.dataset.suffix || ''); });
+          return;
+        }
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting && !animated) {
+              animated = true;
+              counters.forEach(animateCounter);
+              observer.disconnect();
+            }
+          });
+        }, { threshold: 0.2 });
+        observer.observe(section);
+      });
+    }());
+
+    /* Video Section — lightbox modal */
+    (function () {
+      var modal       = document.getElementById('video-modal');
+      var iframe      = document.getElementById('video-modal-iframe');
+      var closeBtn    = modal ? modal.querySelector('.video-modal__close') : null;
+      var backdrop    = modal ? modal.querySelector('.video-modal__backdrop') : null;
+      var lastFocused = null;
+
+      if (!modal || !iframe) return;
+
+      function openModal(videoId) {
+        if (!videoId) {
+          console.warn('[video-section] No data-video-id set on this card. Add a YouTube video ID.');
+          return;
+        }
+        lastFocused = document.activeElement;
+        iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0';
+        modal.removeAttribute('hidden');
+        document.body.style.overflow = 'hidden';
+        if (closeBtn) closeBtn.focus();
+      }
+
+      function closeModal() {
+        modal.setAttribute('hidden', '');
+        iframe.src = '';
+        document.body.style.overflow = '';
+        if (lastFocused) lastFocused.focus();
+      }
+
+      document.querySelectorAll('.video-card__play').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var videoId = btn.closest('.video-card').dataset.videoId || '';
+          openModal(videoId);
+        });
+      });
+
+      if (closeBtn) closeBtn.addEventListener('click', closeModal);
+      if (backdrop)  backdrop.addEventListener('click', closeModal);
+
+      document.addEventListener('keydown', function (e) {
+        if ((e.key === 'Escape' || e.key === 'Esc') && !modal.hasAttribute('hidden')) {
+          closeModal();
+        }
+      });
+
+      modal.addEventListener('keydown', function (e) {
+        if (e.key !== 'Tab') return;
+        var focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        var first = focusable[0];
+        var last  = focusable[focusable.length - 1];
+        if (e.shiftKey) {
+          if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+        } else {
+          if (document.activeElement === last)  { e.preventDefault(); first.focus(); }
+        }
+      });
+    }());
+
+    /* Steps Section — hover interaction */
+    (function () {
+      var sections = document.querySelectorAll('.steps-section');
+      sections.forEach(function (section) {
+        var rows    = section.querySelectorAll('.steps-section__row');
+        var images  = section.querySelectorAll('.steps-section__img');
+        var textCol = section.querySelector('.steps-section__text-col');
+        function activate(step) {
+          rows.forEach(function (r) { r.classList.toggle('is-active', r.dataset.step === step); });
+          images.forEach(function (img) { img.classList.toggle('is-active', img.dataset.step === step); });
+        }
+        rows.forEach(function (row) {
+          row.addEventListener('mouseenter', function () { activate(row.dataset.step); });
+        });
+        textCol.addEventListener('mouseleave', function () { activate('1'); });
+      });
+    }());
+
+    /* Marquee logo carousel — hover pause + reduced-motion fallback */
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelectorAll('.logo-carousel--marquee .logo-carousel__track').forEach(function (track) {
+          track.style.animation = 'none';
+          track.style.width = 'auto';
+          track.style.justifyContent = 'space-between';
+          track.querySelectorAll('[aria-hidden="true"]').forEach(function (el) { el.style.display = 'none'; });
+        });
+      } else {
+        document.querySelectorAll('.logo-carousel--marquee .logo-carousel__track').forEach(function (track) {
+          track.addEventListener('mouseenter', function () { track.style.animationPlayState = 'paused'; });
+          track.addEventListener('mouseleave', function () { track.style.animationPlayState = 'running'; });
+        });
+      }
+    }());
+
     /* Navigation bar — hover behaviour */
     (function () {
       const nav      = document.getElementById('main-nav');

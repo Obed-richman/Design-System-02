@@ -1,0 +1,211 @@
+/* ============================================
+   KEY STATS SECTION COMPONENT
+   Depends on: tokens/tokens.css
+   No hardcoded values — token variables only,
+   except where noted inline.
+   Fixed pixel dimensions are noted inline.
+   ============================================ */
+
+
+/* --- Base --- */
+
+.key-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: var(--bg-primary);
+  box-sizing: border-box;
+}
+
+
+/* ============================================
+   INNER CONTENT WRAPPER
+   ============================================ */
+
+.key-stats__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* 1280px: Fixed Figma design value — no token equivalent */
+  width: 1280px;
+  gap: var(--number-64);
+  padding: var(--number-64) 0;
+}
+
+
+/* ============================================
+   SECTION HEADING
+   ============================================ */
+
+.key-stats__heading-wrap {
+  /* 876px: Fixed Figma design value — no token equivalent */
+  width: 876px;
+}
+
+.key-stats__heading {
+  font-family: inherit;
+  font-size: var(--font-size-title-2);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-title-2);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--text-primary);
+  text-align: center;
+  width: 100%;
+  margin: 0;
+}
+
+
+/* ============================================
+   CARDS ROW
+   ============================================ */
+
+.key-stats__cards {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--gap-large);
+  /* 1280px: Fixed Figma design value — no token equivalent */
+  width: 1280px;
+}
+
+
+/* ============================================
+   STAT CARD
+   ============================================ */
+
+.key-stats__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1 0 0;
+  gap: var(--gap-large);
+  padding: var(--gap-xx-large) 0;
+  border-radius: var(--radius-medium);
+  /* #f2e9ff: Fixed Figma purple-muted card background — no --bg-purple-muted token exists */
+  background: #f2e9ff;
+}
+
+
+/* ============================================
+   CARD ICON
+   Container clips the layered colour blocks.
+   ============================================ */
+
+.key-stats__icon {
+  /* 72px: Fixed Figma design value — no token equivalent */
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-medium);
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* Shared layer base — fills the icon container absolutely */
+.key-stats__icon-layer {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-medium);
+}
+
+.key-stats__icon-layer--navy {
+  background: var(--base-brand-navy);
+}
+
+.key-stats__icon-layer--light-purple {
+  background: var(--base-light-purple);
+}
+
+/* 96×96 background square centred within the 72×72 clip container */
+.key-stats__icon-bg {
+  position: absolute;
+  /* 96px: Fixed Figma design value — centred within 72px container via negative offset */
+  width: 96px;
+  height: 96px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--base-light-purple);
+}
+
+/* Icon image — positioned per individual card spec via inline style or modifier */
+.key-stats__icon-img {
+  position: absolute;
+  display: block;
+}
+
+
+/* ============================================
+   CARD TEXT BLOCK
+   ============================================ */
+
+.key-stats__card-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap-x-small);
+  text-align: center;
+  width: 100%;
+}
+
+
+/* ============================================
+   STAT NUMBER
+   ============================================ */
+
+.key-stats__number {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* 89px: Fixed Figma design value — slightly taller than 84px line-height for visual alignment */
+  height: 89px;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+}
+
+.key-stats__number-value {
+  font-family: inherit;
+  /* 84px: Fixed Figma design value — no token equivalent (closest token is --font-size-display: 48px) */
+  font-size: 84px;
+  font-weight: var(--font-weight-bold);
+  line-height: 84px;
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--text-primary);
+}
+
+
+/* ============================================
+   STAT LABEL
+   ============================================ */
+
+.key-stats__label {
+  font-family: inherit;
+  font-size: var(--font-size-title-4);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-title-4);
+  letter-spacing: var(--letter-spacing-snug);
+  color: var(--text-primary);
+  width: 100%;
+  text-align: center;
+  margin: 0;
+}
+
+
+/* ============================================
+   REDUCED MOTION
+   The count-up animation is handled entirely
+   in JavaScript — no CSS animation to disable.
+   JS checks prefers-reduced-motion before
+   creating any requestAnimationFrame loop.
+   ============================================ */
+
+
+/* ============================================
+   DARK MODE
+   Dark mode is not specified in Figma for this
+   component — no dark mode overrides needed.
+   ============================================ */

@@ -1,0 +1,337 @@
+/* ============================================
+   VIDEO TESTIMONIALS SECTION COMPONENT
+   Depends on: tokens/tokens.css
+   No hardcoded values — token variables only,
+   except where noted inline.
+   Fixed pixel dimensions are noted inline.
+   ============================================ */
+
+
+/* --- Base --- */
+
+.video-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: var(--number-94) 0;
+  background: var(--bg-brand-navy);
+  box-sizing: border-box;
+}
+
+
+/* ============================================
+   INNER CONTENT WRAPPER
+   ============================================ */
+
+.video-section__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* 1280px: Fixed Figma design value — no token equivalent */
+  width: 1280px;
+  gap: var(--number-64);
+}
+
+
+/* ============================================
+   TEXT BLOCK
+   ============================================ */
+
+.video-section__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-large);
+  /* 876px: Fixed Figma design value — no token equivalent */
+  width: 876px;
+}
+
+.video-section__heading {
+  font-family: inherit;
+  font-size: var(--font-size-title-2);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-title-2);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--text-on-colour);
+  text-align: center;
+  width: 100%;
+  margin: 0;
+}
+
+.video-section__body {
+  font-family: inherit;
+  font-size: var(--font-size-body-1);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-1);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-on-colour);
+  text-align: center;
+  width: 100%;
+  margin: 0;
+}
+
+
+/* ============================================
+   CARDS ROW
+   ============================================ */
+
+.video-section__cards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  gap: var(--gap-large);
+  width: 100%;
+}
+
+
+/* ============================================
+   VIDEO CARD
+   ============================================ */
+
+.video-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-x-large);
+  /* 410px: Fixed Figma design value — no token equivalent */
+  width: 410px;
+  flex-shrink: 0;
+  padding: var(--gap-medium) var(--gap-medium) var(--gap-x-large);
+  border-radius: var(--radius-large);
+  background: var(--bg-primary);
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+}
+
+
+/* ============================================
+   CARD THUMBNAIL
+   ============================================ */
+
+.video-card__thumbnail {
+  position: relative;
+  width: 100%;
+  /* aspect-ratio 327/218: Fixed Figma design value */
+  aspect-ratio: 327 / 218;
+  overflow: hidden;
+  border-radius: var(--radius-small);
+  padding: var(--gap-x-small) 0;
+  box-sizing: border-box;
+}
+
+.video-card__img-wrapper {
+  position: relative;
+  width: 100%;
+  /* aspect-ratio 327/218: Fixed Figma design value */
+  aspect-ratio: 327 / 218;
+  border-radius: var(--radius-small);
+  overflow: hidden;
+  background: var(--bg-brand-navy);
+}
+
+.video-card__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-small);
+  pointer-events: none;
+  display: block;
+}
+
+
+/* ============================================
+   PLAY BUTTON
+   Positioned absolutely over the thumbnail,
+   centred on the card using exact Figma offsets.
+   ============================================ */
+
+.video-card__play {
+  position: absolute;
+  /* left/top: Fixed Figma design values — centres button over the thumbnail area */
+  left: calc(50% + 0.5px);
+  top: calc(50% - 54px);
+  transform: translate(-50%, -50%);
+  /* 77×54px: Fixed Figma design values — YouTube-style pill dimensions */
+  width: 77px;
+  height: 54px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  padding: 0;
+  transition: transform 180ms ease;
+  z-index: 1;
+}
+
+.video-card__play:hover {
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.video-card__play:focus-visible {
+  outline: var(--border-focused) solid var(--border-color-focused);
+  outline-offset: 4px;
+  border-radius: var(--radius-small);
+}
+
+/* Red pill background layer */
+.video-card__play-bg {
+  position: absolute;
+  /* inset: Fixed Figma design value — red pill overhangs the button bounds slightly */
+  inset: 0 -5.19% -14.81% -5.19%;
+  display: block;
+  pointer-events: none;
+}
+
+/* White triangle play icon layer */
+.video-card__play-icon {
+  position: absolute;
+  /* inset: Fixed Figma design value — triangle centred within the red pill */
+  inset: 26.32% 34.02% 26.89% 36.21%;
+  display: block;
+  pointer-events: none;
+}
+
+
+/* ============================================
+   CARD TEXT BLOCK
+   ============================================ */
+
+.video-card__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-x-small);
+  width: 100%;
+}
+
+.video-card__title {
+  font-family: inherit;
+  font-size: var(--font-size-title-4);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-title-4);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--text-primary);
+  width: 100%;
+  margin: 0;
+}
+
+.video-card__support {
+  font-family: inherit;
+  font-size: var(--font-size-body-2);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-2);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-primary);
+  width: 100%;
+  margin: 0;
+}
+
+
+/* ============================================
+   LIGHTBOX MODAL
+   ============================================ */
+
+/* Hidden by default — `hidden` attribute controls visibility;
+   CSS `display: flex` takes over when `hidden` is removed */
+.video-modal[hidden] { display: none; }
+
+.video-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  /* rgba(0,0,0,0.85): Fixed Figma scrim value — no token equivalent */
+  background: rgba(0, 0, 0, 0.85);
+  cursor: pointer;
+}
+
+.video-modal__container {
+  position: relative;
+  width: 90vw;
+  max-width: 960px;
+  z-index: 1;
+}
+
+.video-modal__close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: none;
+  border: none;
+  color: var(--text-on-colour);
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+  padding: var(--gap-x-small);
+  opacity: 0.8;
+  transition: opacity 150ms ease;
+}
+
+.video-modal__close:hover { opacity: 1; }
+
+.video-modal__close:focus-visible {
+  outline: 2px solid var(--text-on-colour);
+  outline-offset: 2px;
+  border-radius: var(--radius-small);
+}
+
+.video-modal__embed {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-medium);
+  overflow: hidden;
+}
+
+.video-modal__iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+
+/* ============================================
+   REDUCED MOTION
+   Remove play button scale and modal close
+   transition for users who prefer reduced motion.
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .video-card__play {
+    transition: none;
+  }
+
+  .video-modal__close {
+    transition: none;
+  }
+}
+
+
+/* ============================================
+   DARK MODE
+   This section already renders on the dark navy
+   background — no additional dark mode overrides
+   are specified in Figma for this component.
+   ============================================ */

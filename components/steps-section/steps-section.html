@@ -1,0 +1,155 @@
+<!-- ============================================
+     STEPS SECTION COMPONENT SNIPPET
+     Copy what you need into a screen or index.html.
+     Requires: tokens/tokens.css
+               components/steps-section/steps-section.css
+     ============================================ -->
+
+
+<!-- ============================================================
+     VARIANT — Desktop | Text + alternating image panel
+     Step 1 row and Step 1 image start with .is-active (page-load default).
+     data-step attributes link rows to images — wired by the script below.
+     ============================================================ -->
+
+<section class="steps-section">
+  <div class="steps-section__inner">
+
+    <!-- =============================================
+         LEFT COLUMN — Intro text + step rows
+    ============================================== -->
+    <div class="steps-section__text-col">
+
+      <!-- Intro text block -->
+      <div class="steps-section__intro">
+        <h2 class="steps-section__heading">Insurance made easy</h2>
+        <p class="steps-section__body">Motor insurance doesn't have to be complicated. Our policies use clever technology to keep things simple, so you can get on with your day.</p>
+      </div>
+
+      <!-- Step rows list -->
+      <div class="steps-section__rows">
+
+        <!-- Step 1 — default active on page load -->
+        <div class="steps-section__row is-active" data-step="1">
+          <div class="steps-section__row-content">
+            <span class="steps-section__step-icon">
+              <img src="https://www.figma.com/api/mcp/asset/1dfd30fc-4c35-4fab-8d29-3da1ca50b385" alt="" width="24" height="24">
+            </span>
+            <div class="steps-section__step-text">
+              <h3 class="steps-section__step-title">Get a quote</h3>
+              <div class="steps-section__step-support">
+                <p class="steps-section__step-desc">Enter a few details, tell us about your vehicle and the type of driving you do. We'll give you a personalised price in minutes.</p>
+              </div>
+            </div>
+          </div>
+        </div><!-- /step 1 -->
+
+        <!-- Step 2 -->
+        <div class="steps-section__row" data-step="2">
+          <div class="steps-section__row-content">
+            <span class="steps-section__step-icon">
+              <img src="https://www.figma.com/api/mcp/asset/6431fcb1-6cdf-4ce6-a9bc-4ed4f2a4adb3" alt="" width="24" height="24">
+            </span>
+            <div class="steps-section__step-text">
+              <h3 class="steps-section__step-title">Customise your cover</h3>
+              <div class="steps-section__step-support">
+                <p class="steps-section__step-desc">Need breakdown cover? Or a replacement vehicle? Simply choose your extras when you buy your policy.</p>
+              </div>
+            </div>
+          </div>
+        </div><!-- /step 2 -->
+
+        <!-- Step 3 -->
+        <div class="steps-section__row" data-step="3">
+          <div class="steps-section__row-content">
+            <span class="steps-section__step-icon">
+              <img src="https://www.figma.com/api/mcp/asset/4d842a41-648f-43fc-a713-731bb898c894" alt="" width="24" height="24">
+            </span>
+            <div class="steps-section__step-text">
+              <h3 class="steps-section__step-title">You're all set!</h3>
+              <div class="steps-section__step-support">
+                <p class="steps-section__step-desc">Insurance sorted, you're ready to go! Keep all your documents in the app, and make changes to your cover anytime, anywhere.</p>
+              </div>
+            </div>
+          </div>
+        </div><!-- /step 3 -->
+
+      </div><!-- /steps-section__rows -->
+
+    </div><!-- /steps-section__text-col -->
+
+
+    <!-- =============================================
+         RIGHT COLUMN — Image panel
+         Each .steps-section__img corresponds to one step.
+         Add .is-active via JS (already wired below) or by
+         setting the data-step attribute on the active row.
+         Replace the src values with your own step images.
+    ============================================== -->
+    <div class="steps-section__image-col">
+
+      <!-- Step 1 image — replace src with your Step 1 image -->
+      <img class="steps-section__img steps-section__img--1 is-active"
+           src="https://www.figma.com/api/mcp/asset/f26cdd18-e9ff-4883-9517-ee7c2b3b88cc"
+           alt="[Descriptive alt text here]"
+           data-step="1">
+
+      <!-- Step 2 image — replace src with your Step 2 image -->
+      <img class="steps-section__img steps-section__img--2"
+           src="https://www.figma.com/api/mcp/asset/f26cdd18-e9ff-4883-9517-ee7c2b3b88cc"
+           alt="[Descriptive alt text here]"
+           data-step="2">
+
+      <!-- Step 3 image — replace src with your Step 3 image -->
+      <img class="steps-section__img steps-section__img--3"
+           src="https://www.figma.com/api/mcp/asset/f26cdd18-e9ff-4883-9517-ee7c2b3b88cc"
+           alt="[Descriptive alt text here]"
+           data-step="3">
+
+    </div><!-- /steps-section__image-col -->
+
+  </div><!-- /steps-section__inner -->
+</section><!-- /steps-section -->
+
+
+<!-- ============================================================
+     STEPS SECTION SCRIPT
+     Copy into screen file — do not include in component HTML file.
+     Supports multiple .steps-section instances on the same page —
+     each section is queried and scoped independently.
+     ============================================================ -->
+<script>
+  /* Steps Section — hover interaction
+     Links left-column rows to right-column images via data-step attributes. */
+  (function () {
+    var sections = document.querySelectorAll('.steps-section');
+
+    sections.forEach(function (section) {
+      var rows    = section.querySelectorAll('.steps-section__row');
+      var images  = section.querySelectorAll('.steps-section__img');
+      var textCol = section.querySelector('.steps-section__text-col');
+
+      function activate(step) {
+        rows.forEach(function (r) {
+          r.classList.toggle('is-active', r.dataset.step === step);
+        });
+        images.forEach(function (img) {
+          img.classList.toggle('is-active', img.dataset.step === step);
+        });
+      }
+
+      rows.forEach(function (row) {
+        row.addEventListener('mouseenter', function () {
+          activate(row.dataset.step);
+        });
+      });
+
+      /* Reset to step 1 when mouse leaves the text column entirely —
+         using mouseleave on the column (not mouseout on each row)
+         prevents flickering as the mouse moves between rows. */
+      textCol.addEventListener('mouseleave', function () {
+        activate('1');
+      });
+    });
+  }());
+</script>

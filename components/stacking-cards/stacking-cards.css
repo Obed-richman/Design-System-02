@@ -1,0 +1,381 @@
+/* ============================================
+   STACKING SCROLL CARDS COMPONENT
+   Depends on: tokens/tokens.css
+   No hardcoded values — token variables only,
+   except where noted inline.
+   Fixed pixel dimensions are noted inline.
+   ============================================ */
+
+
+/* --- Base --- */
+
+/* overflow: hidden must NOT be set here — breaks position: sticky on the stage */
+.stacking-cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-top: var(--number-94);
+  padding-bottom: 0;
+  background: var(--bg-primary);
+  box-sizing: border-box;
+}
+
+
+/* ============================================
+   HEADER BLOCK
+   ============================================ */
+
+.stacking-cards__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-large);
+  /* 876px: Fixed Figma design value — no token equivalent */
+  width: 876px;
+  margin-bottom: var(--number-48);
+}
+
+.stacking-cards__heading {
+  font-family: inherit;
+  font-size: var(--font-size-title-1);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-title-1);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--text-primary);
+  text-align: center;
+  width: 100%;
+  margin: 0;
+}
+
+.stacking-cards__body {
+  font-family: inherit;
+  font-size: var(--font-size-body-1);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-1);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-primary);
+  text-align: center;
+  width: 100%;
+  margin: 0;
+}
+
+
+/* ============================================
+   SCROLL TRACK
+   overflow: hidden must NOT be set here — breaks sticky
+   Height is set dynamically by JS.
+   ============================================ */
+
+.stacking-cards__track {
+  position: relative;
+  width: 100%;
+}
+
+
+/* ============================================
+   STICKY STAGE
+   Viewport-height sticky window that the cards
+   are absolutely positioned within.
+   ============================================ */
+
+.stacking-cards__stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+
+/* ============================================
+   CARD BASE — shared by all cards
+   Initial state: below viewport, invisible.
+   JS overrides transform and opacity immediately.
+   ============================================ */
+
+.stacking-cards__card {
+  position: absolute;
+  /* 80px: Visual top offset within sticky stage — space for header above */
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  opacity: 0;
+  will-change: transform, opacity;
+  /* Scale from top centre so cards recede upward when pushed back */
+  transform-origin: center top;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-xxx-large);
+  border-radius: var(--radius-medium);
+  overflow: hidden;
+}
+
+
+/* ============================================
+   CARD 1 — light purple background, narrow
+   ============================================ */
+
+.stacking-cards__card--1 {
+  /* --bg-information = var(--colour-purple-10) = #e9edff */
+  background: var(--bg-information);
+  /* 1248px: Fixed Figma design value — Card 1 is slightly narrower than Card 2 */
+  width: 1248px;
+  padding-right: var(--gap-xxx-large);
+}
+
+
+/* ============================================
+   CARD 2 — warm cream background, full width
+   ============================================ */
+
+.stacking-cards__card--2 {
+  /* #fdfaf1: Fixed Figma warm cream value — no token equivalent (--bg-brand-ecru = #f8f5f3, different hue) */
+  background: #fdfaf1;
+  /* 1280px: Fixed Figma design value — Card 2 is slightly wider than Card 1 */
+  width: 1280px;
+  padding-right: var(--gap-xxx-large);
+  /* Top shadow — card appears to float above previous card */
+  box-shadow: 0px -12px 16px 0px rgba(39, 37, 45, 0.08), 0px -2px 4px 0px rgba(39, 37, 45, 0.04);
+}
+
+
+/* ============================================
+   CARD IMAGE PANEL
+   628×628px flush-left panel with image.
+   ============================================ */
+
+.stacking-card__image {
+  /* 628px: Fixed Figma design value — square image panel */
+  width: 628px;
+  height: 628px;
+  flex-shrink: 0;
+  border-radius: var(--radius-medium) 0 0 var(--radius-medium);
+  overflow: hidden;
+  position: relative;
+  background: var(--bg-primary);
+}
+
+.stacking-card__image-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  display: block;
+}
+
+/* Card 1 image — contain so full photo is visible */
+.stacking-cards__card--1 .stacking-card__image-img {
+  object-fit: contain;
+}
+
+/* Card 2 image — cover so image fills the panel edge to edge */
+.stacking-cards__card--2 .stacking-card__image-img {
+  object-fit: cover;
+}
+
+/* Card 1 dark scrim — not present on Card 2 */
+.stacking-card__image-overlay {
+  position: absolute;
+  inset: 0;
+  /* rgba(0,0,0,0.3): Fixed Figma scrim value — darkens Card 1 image per design */
+  background: rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+
+
+/* ============================================
+   CARD TEXT PANEL
+   ============================================ */
+
+.stacking-card__text {
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap-large);
+  padding: var(--gap-xxx-large) 0;
+  position: relative;
+}
+
+.stacking-card__seo {
+  font-family: inherit;
+  font-size: var(--font-size-body-2);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-2);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.stacking-card__heading {
+  font-family: inherit;
+  font-size: var(--font-size-title-3);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-title-3);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.stacking-card__body {
+  font-family: inherit;
+  font-size: var(--font-size-body-1);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-1);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+
+/* ============================================
+   BULLET LIST
+   ============================================ */
+
+.stacking-card__bullets {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
+  width: 100%;
+}
+
+.stacking-card__bullet {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--gap-medium);
+}
+
+.stacking-card__bullet-icon {
+  /* 24px: Fixed Figma design value — icon size */
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--icon-positive);
+}
+
+.stacking-card__bullet-text {
+  flex: 1 0 0;
+  font-family: inherit;
+  font-size: var(--font-size-body-2);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-2);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-primary);
+}
+
+/* Card 2 bullets are 18px — one size larger than Card 1's 16px */
+.stacking-cards__card--2 .stacking-card__bullet-text {
+  font-size: var(--font-size-body-1);
+  line-height: var(--line-height-body-1);
+}
+
+
+/* ============================================
+   CARD ACTIONS — CTA + text link
+   ============================================ */
+
+.stacking-card__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap-medium);
+}
+
+.stacking-card__cta {
+  /* 213px: Fixed Figma design value — CTA button width */
+  width: 213px;
+}
+
+.stacking-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-xx-small);
+  font-family: inherit;
+  font-size: var(--font-size-body-2);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-2);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-link);
+  text-decoration: underline;
+  cursor: pointer;
+  border-radius: var(--radius-x-small);
+}
+
+.stacking-card__link:hover {
+  color: var(--text-link-pressed);
+}
+
+.stacking-card__link:focus-visible {
+  outline: var(--border-focused) solid var(--border-color-focused);
+  outline-offset: 2px;
+}
+
+.stacking-card__link-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  fill: currentColor;
+}
+
+
+/* ============================================
+   REDUCED MOTION STATE
+   Applied by JS when prefers-reduced-motion: reduce.
+   Falls back to a simple vertical stack.
+   ============================================ */
+
+.stacking-cards--reduced-motion .stacking-cards__track {
+  height: auto !important;
+}
+
+.stacking-cards--reduced-motion .stacking-cards__stage {
+  position: relative;
+  height: auto;
+  overflow: visible;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-large);
+  padding: var(--gap-large) 0;
+}
+
+.stacking-cards--reduced-motion .stacking-cards__card {
+  position: relative;
+  left: auto;
+  top: auto;
+  transform: none !important;
+  opacity: 1 !important;
+  width: 100%;
+  max-width: 1280px;
+  margin-bottom: var(--gap-large);
+}
+
+
+/* ============================================
+   REDUCED MOTION — CSS safety net
+   JS handles the primary reduced-motion check;
+   this backs it up in case JS is delayed.
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .stacking-cards__card {
+    transition: none;
+  }
+}
+
+
+/* ============================================
+   DARK MODE
+   Dark mode is not specified in Figma for this
+   component — no dark mode overrides needed.
+   ============================================ */

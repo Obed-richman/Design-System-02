@@ -1,0 +1,183 @@
+<!-- ============================================
+     PRODUCT CARDS SECTION COMPONENT SNIPPET
+     Copy what you need into a screen or index.html.
+     Requires: tokens/tokens.css
+               components/button/button.css
+               components/product-cards/product-cards.css
+     ============================================ -->
+
+
+<!-- ============================================================
+     VARIANT — Desktop | Sticky text + 2-column card grid
+     Left column sticks as the right-hand grid scrolls.
+     Pure CSS sticky — no JavaScript required.
+     Card colour schemes: --navy, --purple, --light-purple
+     ============================================================ -->
+
+<section class="product-cards">
+  <div class="product-cards__inner">
+
+    <!-- =============================================
+         LEFT COLUMN — Sticky intro text
+    ============================================== -->
+    <div class="product-cards__text-col">
+      <div class="product-cards__intro">
+        <h2 class="product-cards__heading">Cover built for the way you work</h2>
+        <p class="product-cards__body">Whether you're driving for fun or earning on the road, we have flexible insurance that fits around your life — not the other way around.</p>
+      </div>
+    </div><!-- /product-cards__text-col -->
+
+
+    <!-- =============================================
+         RIGHT COLUMN — 2-column product card grid
+    ============================================== -->
+    <div class="product-cards__grid">
+
+      <!-- Card 1 — Everyday driving -->
+      <div class="product-card product-card--navy">
+        <div class="product-card__icon-area">
+          <div class="product-card__icon-block product-card__icon-block--back"></div>
+          <div class="product-card__icon-block product-card__icon-block--front"></div>
+          <svg class="product-card__badge" viewBox="0 0 96 96" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-badge-new-driver"></use>
+          </svg>
+        </div>
+        <div class="product-card__content">
+          <h3 class="product-card__title">Everyday driving</h3>
+          <p class="product-card__desc">Pay-as-you-go motor insurance that fits around your schedule. Only pay for the miles you drive.</p>
+          <div class="product-card__actions">
+            <a class="btn btn--pill btn--primary btn--full" href="#">Get a quote</a>
+            <a class="product-card__link" href="#">
+              Learn more
+              <svg class="product-card__link-icon" viewBox="0 0 96 96" aria-hidden="true">
+                <use href="../../icons/icons.svg#icon-arrow-right"></use>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div><!-- /card 1 -->
+
+      <!-- Card 2 — Courier delivery -->
+      <div class="product-card product-card--purple">
+        <div class="product-card__icon-area">
+          <div class="product-card__icon-block product-card__icon-block--back"></div>
+          <div class="product-card__icon-block product-card__icon-block--front"></div>
+          <svg class="product-card__badge" viewBox="0 0 96 96" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-badge-parcel"></use>
+          </svg>
+        </div>
+        <div class="product-card__content">
+          <h3 class="product-card__title">Courier delivery</h3>
+          <p class="product-card__desc">Insurance designed for parcel and goods delivery drivers. Cover that switches on when you start a job.</p>
+          <div class="product-card__actions">
+            <a class="btn btn--pill btn--primary btn--full" href="#">Get a quote</a>
+            <a class="product-card__link" href="#">
+              Learn more
+              <svg class="product-card__link-icon" viewBox="0 0 96 96" aria-hidden="true">
+                <use href="../../icons/icons.svg#icon-arrow-right"></use>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div><!-- /card 2 -->
+
+      <!-- Card 3 — Taxi & ride-hailing -->
+      <div class="product-card product-card--light-purple">
+        <div class="product-card__icon-area">
+          <div class="product-card__icon-block product-card__icon-block--back"></div>
+          <div class="product-card__icon-block product-card__icon-block--front"></div>
+          <svg class="product-card__badge" viewBox="0 0 96 96" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-badge-journey"></use>
+          </svg>
+        </div>
+        <div class="product-card__content">
+          <h3 class="product-card__title">Taxi & ride-hailing</h3>
+          <p class="product-card__desc">PCO and private hire cover for licensed taxi drivers. Annual and pay-as-you-go options available.</p>
+          <div class="product-card__actions">
+            <a class="btn btn--pill btn--primary btn--full" href="#">Get a quote</a>
+            <a class="product-card__link" href="#">
+              Learn more
+              <svg class="product-card__link-icon" viewBox="0 0 96 96" aria-hidden="true">
+                <use href="../../icons/icons.svg#icon-arrow-right"></use>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div><!-- /card 3 -->
+
+      <!-- Card 4 — Food delivery -->
+      <div class="product-card product-card--navy">
+        <div class="product-card__icon-area">
+          <div class="product-card__icon-block product-card__icon-block--back"></div>
+          <div class="product-card__icon-block product-card__icon-block--front"></div>
+          <svg class="product-card__badge" viewBox="0 0 96 96" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-badge-food"></use>
+          </svg>
+        </div>
+        <div class="product-card__content">
+          <h3 class="product-card__title">Food delivery</h3>
+          <p class="product-card__desc">Flexible cover for food and grocery delivery riders. Works with all the major platforms in the UK.</p>
+          <div class="product-card__actions">
+            <a class="btn btn--pill btn--primary btn--full" href="#">Get a quote</a>
+            <a class="product-card__link" href="#">
+              Learn more
+              <svg class="product-card__link-icon" viewBox="0 0 96 96" aria-hidden="true">
+                <use href="../../icons/icons.svg#icon-arrow-right"></use>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div><!-- /card 4 -->
+
+      <!-- Card 5 — Van & commercial -->
+      <div class="product-card product-card--purple">
+        <div class="product-card__icon-area">
+          <div class="product-card__icon-block product-card__icon-block--back"></div>
+          <div class="product-card__icon-block product-card__icon-block--front"></div>
+          <svg class="product-card__badge" viewBox="0 0 96 96" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-badge-parcel"></use>
+          </svg>
+        </div>
+        <div class="product-card__content">
+          <h3 class="product-card__title">Van & commercial</h3>
+          <p class="product-card__desc">Comprehensive van insurance for sole traders and small businesses. Annual and short-term policies.</p>
+          <div class="product-card__actions">
+            <a class="btn btn--pill btn--primary btn--full" href="#">Get a quote</a>
+            <a class="product-card__link" href="#">
+              Learn more
+              <svg class="product-card__link-icon" viewBox="0 0 96 96" aria-hidden="true">
+                <use href="../../icons/icons.svg#icon-arrow-right"></use>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div><!-- /card 5 -->
+
+      <!-- Card 6 — Fleet -->
+      <div class="product-card product-card--light-purple">
+        <div class="product-card__icon-area">
+          <div class="product-card__icon-block product-card__icon-block--back"></div>
+          <div class="product-card__icon-block product-card__icon-block--front"></div>
+          <svg class="product-card__badge" viewBox="0 0 96 96" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-badge-journey"></use>
+          </svg>
+        </div>
+        <div class="product-card__content">
+          <h3 class="product-card__title">Fleet</h3>
+          <p class="product-card__desc">Telematics-powered fleet insurance for businesses with multiple vehicles. Scale up or down as your fleet grows.</p>
+          <div class="product-card__actions">
+            <a class="btn btn--pill btn--primary btn--full" href="#">Get a quote</a>
+            <a class="product-card__link" href="#">
+              Learn more
+              <svg class="product-card__link-icon" viewBox="0 0 96 96" aria-hidden="true">
+                <use href="../../icons/icons.svg#icon-arrow-right"></use>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div><!-- /card 6 -->
+
+    </div><!-- /product-cards__grid -->
+
+  </div><!-- /product-cards__inner -->
+</section><!-- /product-cards -->

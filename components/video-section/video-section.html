@@ -1,0 +1,213 @@
+<!-- ============================================
+     VIDEO TESTIMONIALS SECTION COMPONENT SNIPPET
+     Copy what you need into a screen or index.html.
+     Requires: tokens/tokens.css
+               components/video-section/video-section.css
+     ============================================ -->
+
+
+<!-- ============================================================
+     VARIANT — Desktop | Navy section with 3 video cards
+     Each .video-card needs:
+       - data-video-id="[YouTube video ID]"
+       - Updated .video-card__title and .video-card__support text
+       - Updated .video-card__img src with the real thumbnail
+     The lightbox modal and script handle playback automatically.
+     ============================================================ -->
+
+<section class="video-section">
+  <div class="video-section__content">
+
+    <!-- Text block -->
+    <div class="video-section__text">
+      <h2 class="video-section__heading">What our customers say</h2>
+      <p class="video-section__body">Our customers are at the heart of what we do. We're on a mission to offer them the best cover at the best prices. But don't just take our word for it...</p>
+    </div>
+
+    <!-- Video cards row -->
+    <div class="video-section__cards">
+
+      <!-- Video card: replace data-video-id with YouTube video ID, update title and support text, update thumbnail src -->
+      <div class="video-card" data-video-id="">
+
+        <div class="video-card__thumbnail">
+          <div class="video-card__img-wrapper">
+            <img class="video-card__img"
+                 src="https://www.figma.com/api/mcp/asset/ebe71516-4364-491e-afb0-372d4e328439"
+                 alt="">
+          </div>
+        </div>
+
+        <button class="video-card__play" type="button" aria-label="Play video">
+          <img class="video-card__play-bg"
+               src="https://www.figma.com/api/mcp/asset/d05ca3e9-3f79-40ec-80e3-3afd21f0a8cd"
+               alt="">
+          <img class="video-card__play-icon"
+               src="https://www.figma.com/api/mcp/asset/8d5f8043-1a56-42bc-a920-79fd92791a8c"
+               alt="">
+        </button>
+
+        <div class="video-card__text">
+          <h3 class="video-card__title">Sub Heading 24px</h3>
+          <p class="video-card__support">Supporting 16px</p>
+        </div>
+
+      </div><!-- /video-card 1 -->
+
+
+      <!-- Video card: replace data-video-id with YouTube video ID, update title and support text, update thumbnail src -->
+      <div class="video-card" data-video-id="">
+
+        <div class="video-card__thumbnail">
+          <div class="video-card__img-wrapper">
+            <img class="video-card__img"
+                 src="https://www.figma.com/api/mcp/asset/f8aaf494-0200-4134-a660-a1b75829cab2"
+                 alt="">
+          </div>
+        </div>
+
+        <button class="video-card__play" type="button" aria-label="Play video">
+          <img class="video-card__play-bg"
+               src="https://www.figma.com/api/mcp/asset/d05ca3e9-3f79-40ec-80e3-3afd21f0a8cd"
+               alt="">
+          <img class="video-card__play-icon"
+               src="https://www.figma.com/api/mcp/asset/8d5f8043-1a56-42bc-a920-79fd92791a8c"
+               alt="">
+        </button>
+
+        <div class="video-card__text">
+          <h3 class="video-card__title">Sub Heading 24px</h3>
+          <p class="video-card__support">Supporting 16px</p>
+        </div>
+
+      </div><!-- /video-card 2 -->
+
+
+      <!-- Video card: replace data-video-id with YouTube video ID, update title and support text, update thumbnail src -->
+      <div class="video-card" data-video-id="">
+
+        <div class="video-card__thumbnail">
+          <div class="video-card__img-wrapper">
+            <img class="video-card__img"
+                 src="https://www.figma.com/api/mcp/asset/587e3a5f-7f60-4bf5-bd44-4cc6a6158b7b"
+                 alt="">
+          </div>
+        </div>
+
+        <button class="video-card__play" type="button" aria-label="Play video">
+          <img class="video-card__play-bg"
+               src="https://www.figma.com/api/mcp/asset/d05ca3e9-3f79-40ec-80e3-3afd21f0a8cd"
+               alt="">
+          <img class="video-card__play-icon"
+               src="https://www.figma.com/api/mcp/asset/8d5f8043-1a56-42bc-a920-79fd92791a8c"
+               alt="">
+        </button>
+
+        <div class="video-card__text">
+          <h3 class="video-card__title">Sub Heading 24px</h3>
+          <p class="video-card__support">Supporting 16px</p>
+        </div>
+
+      </div><!-- /video-card 3 -->
+
+    </div><!-- /video-section__cards -->
+
+    <!-- Lightbox modal — lives inside the section so it is associated with this content -->
+    <div class="video-modal" id="video-modal" role="dialog" aria-modal="true" aria-label="Video player" hidden>
+      <div class="video-modal__backdrop"></div>
+      <div class="video-modal__container">
+        <button class="video-modal__close" aria-label="Close video">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="video-modal__embed">
+          <iframe
+            class="video-modal__iframe"
+            id="video-modal-iframe"
+            src=""
+            title="Customer testimonial video"
+            frameborder="0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </div><!-- /video-modal -->
+
+  </div><!-- /video-section__content -->
+</section><!-- /video-section -->
+
+
+<!-- ============================================================
+     VIDEO SECTION SCRIPT
+     Copy into screen file — do not include in component HTML file.
+     ============================================================ -->
+<script>
+  /* Video Section — lightbox modal
+     Opens a YouTube embed when a play button is clicked.
+     Manages focus, scroll lock, and keyboard interactions. */
+  (function () {
+    var modal       = document.getElementById('video-modal');
+    var iframe      = document.getElementById('video-modal-iframe');
+    var closeBtn    = modal ? modal.querySelector('.video-modal__close') : null;
+    var backdrop    = modal ? modal.querySelector('.video-modal__backdrop') : null;
+    var lastFocused = null;
+
+    if (!modal || !iframe) return;
+
+    /* Open modal */
+    function openModal(videoId) {
+      if (!videoId) {
+        console.warn('[video-section] No data-video-id set on this card. Add a YouTube video ID.');
+        return;
+      }
+      lastFocused = document.activeElement;
+      iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0';
+      modal.removeAttribute('hidden');
+      document.body.style.overflow = 'hidden';
+      if (closeBtn) closeBtn.focus();
+    }
+
+    /* Close modal */
+    function closeModal() {
+      modal.setAttribute('hidden', '');
+      iframe.src = '';
+      document.body.style.overflow = '';
+      if (lastFocused) lastFocused.focus();
+    }
+
+    /* Wire play buttons */
+    document.querySelectorAll('.video-card__play').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var videoId = btn.closest('.video-card').dataset.videoId || '';
+        openModal(videoId);
+      });
+    });
+
+    /* Close triggers */
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (backdrop)  backdrop.addEventListener('click', closeModal);
+
+    /* Escape key */
+    document.addEventListener('keydown', function (e) {
+      if ((e.key === 'Escape' || e.key === 'Esc') && !modal.hasAttribute('hidden')) {
+        closeModal();
+      }
+    });
+
+    /* Focus trap */
+    modal.addEventListener('keydown', function (e) {
+      if (e.key !== 'Tab') return;
+      var focusable = modal.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      var first = focusable[0];
+      var last  = focusable[focusable.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last)  { e.preventDefault(); first.focus(); }
+      }
+    });
+
+  }());
+</script>

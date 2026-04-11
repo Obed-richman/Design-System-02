@@ -1,0 +1,197 @@
+<!-- ============================================
+     KEY STATS SECTION COMPONENT SNIPPET
+     Copy what you need into a screen or index.html.
+     Requires: tokens/tokens.css
+               components/key-stats/key-stats.css
+     ============================================ -->
+
+
+<!-- ============================================================
+     VARIANT — Desktop | Heading + 3 animated stat cards
+     Numbers count up from 0 when the section scrolls into view.
+     Requires the <script> block below — copy into screen file.
+     ============================================================ -->
+
+<section class="key-stats">
+  <div class="key-stats__content">
+
+    <!-- Section heading -->
+    <div class="key-stats__heading-wrap">
+      <h2 class="key-stats__heading">Trusted by drivers across the UK</h2>
+    </div>
+
+    <!-- Stat cards row -->
+    <div class="key-stats__cards">
+
+      <!-- =============================================
+           Card 1 — Policies
+           Icon layers: navy (back) + light purple (front)
+           Icon image: inset t 20.83% r 20.01% b 13.57% l 20.83%
+      ============================================== -->
+      <div class="key-stats__card">
+
+        <div class="key-stats__icon">
+          <!-- Layer 1 — navy back -->
+          <div class="key-stats__icon-layer key-stats__icon-layer--navy"></div>
+          <!-- Layer 2 — light purple front -->
+          <div class="key-stats__icon-layer key-stats__icon-layer--light-purple"></div>
+          <!-- Icon image — Figma inset offsets -->
+          <img class="key-stats__icon-img"
+               src="https://www.figma.com/api/mcp/asset/76825ef0-3782-467b-8245-db1f08f2c4c2"
+               alt=""
+               style="top: 20.83%; right: 20.01%; bottom: 13.57%; left: 20.83%; width: auto; height: auto;">
+        </div>
+
+        <div class="key-stats__card-text">
+          <p class="key-stats__number" aria-label="81 million">
+            <span class="key-stats__number-value"
+                  aria-hidden="true"
+                  data-target="81"
+                  data-suffix="M"
+                  data-duration="1800">81M</span>
+          </p>
+          <p class="key-stats__label">Policies and counting</p>
+        </div>
+
+      </div><!-- /card 1 -->
+
+
+      <!-- =============================================
+           Card 2 — Drivers
+           Icon: 96×96 light-purple square centred in 72×72 clip
+           Icon image: 28×32px, centred in container
+      ============================================== -->
+      <div class="key-stats__card">
+
+        <div class="key-stats__icon">
+          <!-- 96×96 light-purple background centred within 72×72 clip -->
+          <div class="key-stats__icon-bg"></div>
+          <!-- Icon image — centred 28×32px -->
+          <img class="key-stats__icon-img"
+               src="https://www.figma.com/api/mcp/asset/ae39938f-0def-4fc7-9522-e4da5717a7bc"
+               alt=""
+               style="width: 28px; height: 32px; left: 50%; top: 50%; transform: translate(-50%, -50%);">
+        </div>
+
+        <div class="key-stats__card-text">
+          <p class="key-stats__number" aria-label="575 thousand">
+            <span class="key-stats__number-value"
+                  aria-hidden="true"
+                  data-target="575"
+                  data-suffix="K"
+                  data-duration="1800">575K</span>
+          </p>
+          <p class="key-stats__label">Drivers trust Zego</p>
+        </div>
+
+      </div><!-- /card 2 -->
+
+
+      <!-- =============================================
+           Card 3 — Savings
+           Icon: 96×96 light-purple square centred in 72×72 clip
+           Icon image: l 16.67% r 16.67%, vertically centred, aspect-ratio 64/48
+      ============================================== -->
+      <div class="key-stats__card">
+
+        <div class="key-stats__icon">
+          <!-- 96×96 light-purple background centred within 72×72 clip -->
+          <div class="key-stats__icon-bg"></div>
+          <!-- Icon image — horizontal inset, vertically centred -->
+          <img class="key-stats__icon-img"
+               src="https://www.figma.com/api/mcp/asset/cdacc320-b0b1-4408-a8b8-4e66bc7e191b"
+               alt=""
+               style="left: 16.67%; right: 16.67%; top: 50%; transform: translateY(-50%); width: auto; aspect-ratio: 64/48;">
+        </div>
+
+        <div class="key-stats__card-text">
+          <p class="key-stats__number" aria-label="96 percent">
+            <span class="key-stats__number-value"
+                  aria-hidden="true"
+                  data-target="96"
+                  data-suffix="%"
+                  data-duration="1400">96%</span>
+          </p>
+          <p class="key-stats__label">of drivers save money</p>
+        </div>
+
+      </div><!-- /card 3 -->
+
+    </div><!-- /key-stats__cards -->
+
+  </div><!-- /key-stats__content -->
+</section><!-- /key-stats -->
+
+
+<!-- ============================================================
+     KEY STATS SCRIPT
+     Copy into screen file — do not include in component HTML file.
+     Supports multiple .key-stats instances on the same page —
+     each section is observed and scoped independently.
+     ============================================================ -->
+<script>
+  /* Key Stats — count-up animation
+     Numbers count up from 0 to target with ease-out quad easing.
+     Triggers once when the section reaches 20% viewport visibility.
+     Respects prefers-reduced-motion. */
+  (function () {
+
+    /* Easing function: ease-out quad — decelerates toward end */
+    function easeOut(t) { return t * (2 - t); }
+
+    /* Animate a single number span from 0 to its data-target */
+    function animateCounter(el) {
+      var target   = parseInt(el.dataset.target, 10);
+      var suffix   = el.dataset.suffix || '';
+      var duration = parseInt(el.dataset.duration, 10) || 1600;
+      var start    = null;
+
+      function step(timestamp) {
+        if (!start) start = timestamp;
+        var elapsed  = timestamp - start;
+        var progress = Math.min(elapsed / duration, 1);
+        var eased    = easeOut(progress);
+        var current  = Math.round(eased * target);
+
+        el.textContent = current + suffix;
+
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          el.textContent = target + suffix; /* ensure exact final value */
+        }
+      }
+
+      requestAnimationFrame(step);
+    }
+
+    /* Wire up each .key-stats section independently */
+    var sections = document.querySelectorAll('.key-stats');
+
+    sections.forEach(function (section) {
+      var counters = section.querySelectorAll('.key-stats__number-value');
+      var animated = false;
+
+      /* Respect reduced motion — set final values immediately, skip observer */
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        counters.forEach(function (el) {
+          el.textContent = el.dataset.target + (el.dataset.suffix || '');
+        });
+        return;
+      }
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting && !animated) {
+            animated = true;
+            counters.forEach(animateCounter);
+            observer.disconnect(); /* fire once only */
+          }
+        });
+      }, { threshold: 0.2 });
+
+      observer.observe(section);
+    });
+
+  }());
+</script>

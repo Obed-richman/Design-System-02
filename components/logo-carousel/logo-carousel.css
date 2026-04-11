@@ -1,0 +1,264 @@
+/* ============================================
+   LOGO CAROUSEL COMPONENT
+   Depends on: tokens/tokens.css
+   No hardcoded values — token variables only.
+   Exceptions:
+     #f2e9ff — Figma purple-muted card background;
+               no matching token in tokens.css
+               (--colour-purple-10 is #e9edff — different hue).
+     Fixed pixel dimensions are noted inline.
+   ============================================ */
+
+
+/* --- Base --- */
+
+.logo-carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-top: var(--number-80);
+  padding-bottom: var(--number-80);
+  background-color: var(--bg-primary);
+  box-sizing: border-box;
+}
+
+
+/* --- Inner content wrapper --- */
+
+.logo-carousel__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* 1280px: Figma content column width — no token equivalent */
+  width: 1280px;
+  gap: var(--gap-xxx-large);
+}
+
+
+/* --- Text block --- */
+
+.logo-carousel__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* 876px: Figma text column width — no token equivalent */
+  width: 876px;
+  gap: var(--gap-medium);
+}
+
+.logo-carousel__title {
+  font-family: inherit;
+  font-size: var(--font-size-title-2);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-title-2);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--text-primary);
+  text-align: center;
+  width: 100%;
+  margin: 0;
+}
+
+.logo-carousel__body {
+  font-family: inherit;
+  font-size: var(--font-size-body-1);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-1);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-primary);
+  text-align: center;
+  width: 100%;
+  margin: 0;
+}
+
+
+/* ============================================
+   MARQUEE VARIANT (.logo-carousel--marquee)
+   Flat logo strip with fade-edge overlays.
+   Logos scroll via CSS animation; JS handles
+   hover-pause and reduced-motion fallback.
+   ============================================ */
+
+/* Track wrapper — clips the scrolling logos */
+.logo-carousel__track-wrapper {
+  position: relative;
+  width: 100%;
+  /* 32px: Figma logo strip height — no token equivalent */
+  height: 32px;
+  overflow: hidden;
+}
+
+/* Scrolling track */
+.logo-carousel__track {
+  display: flex;
+  align-items: center;
+  /* gap: var(--gap-xxx-large); */
+  gap: 120px;
+}
+
+/* Animated track — duplicated logo set enables seamless loop;
+   translateX(-50%) scrolls exactly one full set at end of keyframe */
+.logo-carousel--marquee .logo-carousel__track {
+  width: max-content;
+  animation: logo-scroll 20s linear infinite;
+}
+
+/* Each logo image in the marquee strip */
+.logo-carousel__logo {
+  /* 32px: Figma logo height — no token equivalent */
+  height: 32px;
+  width: auto;
+  flex-shrink: 0;
+  display: block;
+}
+
+/* Left fade overlay — fades from white to transparent, covering left edge */
+.logo-carousel__fade-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* 32px: matches track wrapper height */
+  height: 32px;
+  /* 72px: Fixed Figma design value — no token equivalent */
+  width: 72px;
+  background: linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 96.25%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Right fade overlay — fades from white to transparent, covering right edge */
+.logo-carousel__fade-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  /* 32px: matches track wrapper height */
+  height: 32px;
+  /* 72px: Fixed Figma design value — no token equivalent */
+  width: 72px;
+  background: linear-gradient(270deg, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 96.25%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+/* ============================================
+   WRAPPED VARIANT (.logo-carousel--wrapped)
+   12-logo grid inside a purple-muted card.
+   ============================================ */
+
+.logo-carousel--wrapped .logo-carousel__content {
+  /* #f2e9ff: Figma purple-muted card background — no token equivalent */
+  background-color: #f2e9ff;
+  border-radius: var(--radius-x-large);
+  padding: var(--gap-xxx-large);
+  overflow: hidden;
+}
+
+/* Logo grid wrapper */
+.logo-carousel__grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xx-large);
+  width: 100%;
+}
+
+/* Each logo row */
+.logo-carousel__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Each logo cell */
+.logo-carousel__cell {
+  /* 268.442px: Fixed Figma design value — no token equivalent */
+  width: 268.442px;
+  /* 72px: Fixed Figma design value — no token equivalent */
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.logo-carousel__cell img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+
+/* ============================================
+   MOBILE VARIANT (.logo-carousel--mobile)
+   Applied alongside .logo-carousel--wrapped.
+   Reflows the 12-logo grid into 2 columns.
+   ============================================ */
+
+.logo-carousel--mobile {
+  /* 375px: Figma mobile screen canvas — no token equivalent */
+  width: 375px;
+}
+
+.logo-carousel--mobile .logo-carousel__content {
+  width: 100%;
+  padding: var(--gap-xxx-large);
+}
+
+.logo-carousel--mobile .logo-carousel__text {
+  width: 100%;
+}
+
+.logo-carousel--mobile .logo-carousel__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-large);
+}
+
+/* Rows dissolve into the grid — cells reflow directly */
+.logo-carousel--mobile .logo-carousel__row {
+  display: contents;
+}
+
+.logo-carousel--mobile .logo-carousel__cell {
+  width: auto;
+  /* 56px: Fixed Figma mobile cell height — no token equivalent */
+  height: 56px;
+}
+
+
+/* ============================================
+   MARQUEE ANIMATION
+   translateX(-50%) scrolls exactly one full
+   logo set (half the duplicated track width)
+   for a seamless infinite loop.
+   ============================================ */
+
+@keyframes logo-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+
+/* ============================================
+   REDUCED MOTION
+   Disable the scroll animation for users who
+   prefer reduced motion. Falls back to a
+   static 4-logo row with even spacing.
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-carousel--marquee .logo-carousel__track {
+    animation: none;
+    width: auto;
+    justify-content: space-between;
+  }
+}
+
+
+/* ============================================
+   DARK MODE
+   Dark mode is not specified in Figma for this
+   component — no dark mode overrides needed.
+   ============================================ */

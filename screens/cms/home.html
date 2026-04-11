@@ -20,6 +20,11 @@
   <link rel="stylesheet" href="../../components/button/button.css">
   <link rel="stylesheet" href="../../components/trustpilot-lockup/trustpilot-lockup.css">
   <link rel="stylesheet" href="../../components/hero/hero.css">
+  <link rel="stylesheet" href="../../components/fca-banner/fca-banner.css">
+  <link rel="stylesheet" href="../../components/logo-carousel/logo-carousel.css">
+  <link rel="stylesheet" href="../../components/steps-section/steps-section.css">
+  <link rel="stylesheet" href="../../components/product-cards/product-cards.css">
+  <link rel="stylesheet" href="../../components/key-stats/key-stats.css">
 
   <style>
     /* ============================================
@@ -52,6 +57,11 @@
       right: 0;
       padding: var(--gap-large);
       z-index: 100;
+      transition: transform 300ms ease;
+    }
+
+    .page-header--hidden {
+      transform: translateY(-110%);
     }
 
     /* 1280px content constraint — nav bar fills this width as a pill */
@@ -118,6 +128,29 @@
       padding: 0 var(--gap-large);
       position: relative;
       z-index: 1;
+    }
+
+    /* Marquee — disable CSS animation; JS takes over for seamless loop */
+    .logo-carousel--marquee .logo-carousel__track {
+      animation: none !important;
+      will-change: transform;
+    }
+
+    /* Logo carousel — partner logos fade in on scroll */
+    .logo-carousel--wrapped .logo-carousel__cell {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 400ms ease, transform 400ms ease;
+    }
+
+    .logo-carousel--wrapped .logo-carousel__cell.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Product cards — component default is 1280px inner; stretch to viewport */
+    .product-cards {
+      width: 100%;
     }
 
     /* ---- Placeholder content cards ---- */
@@ -476,35 +509,580 @@
 
 
   <!-- =============================================
-       PAGE BODY — Content below hero
+       FCA BANNER
   ============================================= -->
-  <main class="page-body">
+  <div class="fca-banner fca-banner--desktop" role="region" aria-label="Regulatory information" style="width: 100%;">
+    <div class="fca-banner__content">
+      <svg class="icon icon--xs fca-banner__icon" viewBox="0 0 96 96" aria-hidden="true" focusable="false">
+        <use href="../../icons/icons.svg#icon-lock"></use>
+      </svg>
+      <p class="fca-banner__text">Authorised and regulated by the FCA</p>
+    </div>
+  </div>
 
-    <!-- Placeholder product cards -->
-    <div class="card-grid">
-      <div class="card">
-        <span class="card__label">Car</span>
-        <p class="card__title">Car Delivery Insurance</p>
-        <p class="card__body">Flexible car insurance covering food delivery and courier work for all major platforms.</p>
-      </div>
-      <div class="card">
-        <span class="card__label">Scooter</span>
-        <p class="card__title">Scooter Delivery Insurance</p>
-        <p class="card__body">Scooter and motorbike insurance for delivery riders who work and ride personally.</p>
-      </div>
-      <div class="card">
-        <span class="card__label">Guides</span>
-        <p class="card__title">Delivery Insurance Guides</p>
-        <p class="card__body">Everything you need to know about Hire &amp; Reward cover and what the law requires.</p>
-      </div>
+
+  <!-- ============================================================
+     VARIANT 1 — Marquee | Desktop | 1440px | Horizontal scrolling strip
+     The logo track contains TWO identical sets of 4 logos (8 total).
+     This duplication is required for the seamless infinite scroll —
+     the animation shifts the track by -50% (one full set width),
+     then loops. The second set has aria-hidden="true" and alt=""
+     so screen readers only announce each publication once.
+     ============================================================ -->
+
+<section class="logo-carousel logo-carousel--marquee" aria-label="As seen in">
+
+  <div class="logo-carousel__content">
+
+    <!-- Text block -->
+    <div class="logo-carousel__text">
+      <!-- <h2 class="logo-carousel__title">As seen in</h2> -->
+      <p class="logo-carousel__body">Featured in the world's leading publications.</p>
     </div>
 
-  </main>
+    <!-- Track wrapper — overflow: hidden clips the scrolling logos -->
+    <div class="logo-carousel__track-wrapper">
 
-</div><!-- /.page -->
+      <!-- Left fade overlay -->
+      <div class="logo-carousel__fade-left" aria-hidden="true"></div>
+
+      <!-- Scrolling track
+           Contains two identical logo sets for the seamless loop.
+           Only the first set is read by screen readers. -->
+      <div class="logo-carousel__track">
+
+        <!-- First set — visible to screen readers -->
+        <img class="logo-carousel__logo"
+             src="https://www.figma.com/api/mcp/asset/616dc815-ba46-4e04-b0f7-475b9a389fce"
+             alt="TechCrunch" width="246" height="32">
+        <img class="logo-carousel__logo"
+             src="https://www.figma.com/api/mcp/asset/7801fbba-4151-4d9f-823d-77c5b45edcf0"
+             alt="Business Insider" width="101" height="32">
+        <img class="logo-carousel__logo"
+             src="https://www.figma.com/api/mcp/asset/a637245c-580f-4f19-b02d-b7c3c77071b8"
+             alt="The Telegraph" width="196" height="32">
+        <img class="logo-carousel__logo"
+             src="https://www.figma.com/api/mcp/asset/05b05c2c-2480-4994-b0d5-13b7ce94c51b"
+             alt="The Guardian" width="98" height="32">
+
+        <!-- Second set — duplicated for animation; hidden from screen readers -->
+        <img class="logo-carousel__logo" aria-hidden="true"
+             src="https://www.figma.com/api/mcp/asset/616dc815-ba46-4e04-b0f7-475b9a389fce"
+             alt="" width="246" height="32">
+        <img class="logo-carousel__logo" aria-hidden="true"
+             src="https://www.figma.com/api/mcp/asset/7801fbba-4151-4d9f-823d-77c5b45edcf0"
+             alt="" width="101" height="32">
+        <img class="logo-carousel__logo" aria-hidden="true"
+             src="https://www.figma.com/api/mcp/asset/a637245c-580f-4f19-b02d-b7c3c77071b8"
+             alt="" width="196" height="32">
+        <img class="logo-carousel__logo" aria-hidden="true"
+             src="https://www.figma.com/api/mcp/asset/05b05c2c-2480-4994-b0d5-13b7ce94c51b"
+             alt="" width="98" height="32">
+
+      </div><!-- /logo-carousel__track -->
+
+      <!-- Right fade overlay -->
+      <div class="logo-carousel__fade-right" aria-hidden="true"></div>
+
+    </div><!-- /logo-carousel__track-wrapper -->
+
+  </div><!-- /logo-carousel__content -->
+
+</section><!-- /logo-carousel--marquee -->
+
+
+  <!-- =============================================
+       STEPS SECTION — Insurance made easy
+  ============================================= -->
+  <section class="steps-section">
+    <div class="steps-section__inner">
+      <div class="steps-section__text-col">
+        <div class="steps-section__intro">
+          <h2 class="steps-section__heading">Insurance made easy</h2>
+          <p class="steps-section__body">Motor insurance doesn't have to be complicated. Our policies use clever technology to keep things simple, so you can get on with your day.</p>
+        </div>
+        <div class="steps-section__rows">
+          <div class="steps-section__row is-active" data-step="1">
+            <div class="steps-section__row-content">
+              <span class="steps-section__step-icon">
+                <img src="https://www.figma.com/api/mcp/asset/1dfd30fc-4c35-4fab-8d29-3da1ca50b385" alt="" width="24" height="24">
+              </span>
+              <div class="steps-section__step-text">
+                <h3 class="steps-section__step-title">Get a quote</h3>
+                <div class="steps-section__step-support">
+                  <p class="steps-section__step-desc">Enter a few details, tell us about your vehicle and the type of driving you do. We'll give you a personalised price in minutes.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="steps-section__row" data-step="2">
+            <div class="steps-section__row-content">
+              <span class="steps-section__step-icon">
+                <img src="https://www.figma.com/api/mcp/asset/6431fcb1-6cdf-4ce6-a9bc-4ed4f2a4adb3" alt="" width="24" height="24">
+              </span>
+              <div class="steps-section__step-text">
+                <h3 class="steps-section__step-title">Customise your cover</h3>
+                <div class="steps-section__step-support">
+                  <p class="steps-section__step-desc">Need breakdown cover? Or a replacement vehicle? Simply choose your extras when you buy your policy.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="steps-section__row" data-step="3">
+            <div class="steps-section__row-content">
+              <span class="steps-section__step-icon">
+                <img src="https://www.figma.com/api/mcp/asset/4d842a41-648f-43fc-a713-731bb898c894" alt="" width="24" height="24">
+              </span>
+              <div class="steps-section__step-text">
+                <h3 class="steps-section__step-title">You're all set!</h3>
+                <div class="steps-section__step-support">
+                  <p class="steps-section__step-desc">Insurance sorted, you're ready to go! Keep all your documents in the app, and make changes to your cover anytime, anywhere.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="steps-section__image-col">
+        <!-- Step 1 image — replace src with your Step 1 image -->
+        <img class="steps-section__img steps-section__img--1 is-active"
+             src="../../images/Scooter Delivery.png"
+             alt="Get a quote — car insurance app" data-step="1">
+        <!-- Step 2 image — replace src with your Step 2 image -->
+        <img class="steps-section__img steps-section__img--2"
+             src="https://www.figma.com/api/mcp/asset/f26cdd18-e9ff-4883-9517-ee7c2b3b88cc"
+             alt="Customise your cover options" data-step="2">
+        <!-- Step 3 image — replace src with your Step 3 image -->
+        <img class="steps-section__img steps-section__img--3"
+             src="https://www.figma.com/api/mcp/asset/f26cdd18-e9ff-4883-9517-ee7c2b3b88cc"
+             alt="You're all set with your insurance" data-step="3">
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =============================================
+       LOGO CAROUSEL — Work provider partners
+  ============================================= -->
+  <section class="logo-carousel logo-carousel--wrapped" aria-label="Our work provider partners" style="width: 100%;">
+    <div class="logo-carousel__content">
+      <div class="logo-carousel__text">
+        <h2 class="logo-carousel__title">Our work provider partners</h2>
+        <p class="logo-carousel__body">Zego works with leading delivery and ride-hailing platforms across the UK.</p>
+      </div>
+      <div class="logo-carousel__grid">
+        <div class="logo-carousel__row">
+          <div class="logo-carousel__cell"><img src="./img/Deliveroo.svg" alt="Deliveroo"></div>
+          <div class="logo-carousel__cell"><img src="./img/Just-Eat.svg" alt="Just Eat"></div>
+          <div class="logo-carousel__cell"><img src="./img/Uber-Eats.svg" alt="Uber Eats"></div>
+          <div class="logo-carousel__cell"><img src="./img/Bolt.svg" alt="Bolt"></div>
+        </div>
+        <div class="logo-carousel__row">
+          <div class="logo-carousel__cell"><img src="./img/Amazon.svg" alt="Amazon"></div>
+          <div class="logo-carousel__cell"><img src="./img/OLA.svg" alt="OLA"></div>
+          <div class="logo-carousel__cell"><img src="./img/Ryde.svg" alt="Ryde"></div>
+          <div class="logo-carousel__cell"><img src="./img/Uber.svg" alt="Uber"></div>
+        </div>
+        <div class="logo-carousel__row">
+          <div class="logo-carousel__cell"><img src="./img/Gophr.svg" alt="Gophr"></div>
+          <div class="logo-carousel__cell"><img src="./img/Vromo.svg" alt="Vromo"></div>
+          <div class="logo-carousel__cell"><img src="./img/GoGetter.svg" alt="GoGetters"></div>
+          <div class="logo-carousel__cell"><img src="./img/FreeNow.svg" alt="FreeNow"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =============================================
+       PRODUCT CARDS — Cover built for the way you work
+  ============================================= -->
+  <section class="product-cards">
+    <div class="product-cards__inner">
+
+      <div class="product-cards__text-col">
+        <div class="product-cards__intro">
+          <h2 class="product-cards__heading">Coverage for good drivers</h2>
+          <p class="product-cards__body">Coverage for every kind of driver Whether you're delivering food, driving passengers or just getting from A to B, we've got a policy built for how you actually drive.</p>
+        </div>
+      </div>
+
+      <div class="product-cards__grid">
+
+        <!-- Card 1 — Everyday driving -->
+        <div class="product-card product-card--navy">
+          <div class="product-card__icon-area">
+            <svg class="product-card__badge" viewBox="0 0 96 96" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-badge-new-driver"></use>
+            </svg>
+          </div>
+          <div class="product-card__content">
+            <h3 class="product-card__title">Car insurance</h3>
+            <p class="product-card__desc">Comprehensive car insurance for new drivers. Drive safely and you could pay less when you renew.</p>
+            <div class="product-card__actions">
+              <a class="btn btn--pill btn--primary btn--full" href="#">Get a car quote</a>
+              <a class="product-card__link" href="#">
+                More on car insurance 
+                <svg class="product-card__link-icon" viewBox="0 0 96 96" aria-hidden="true">
+                  <use href="../../icons/icons.svg#icon-arrow-right"></use>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 — Courier delivery -->
+        <div class="product-card product-card--purple">
+          <div class="product-card__icon-area">
+            <svg class="product-card__badge" viewBox="0 0 96 96" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-badge-journey"></use>
+            </svg>
+          </div>
+          <div class="product-card__content">
+            <h3 class="product-card__title">Private hire taxi insurance</h3>
+            <p class="product-card__desc">For self-employed taxi drivers working independently or with providers like Uber and Bolt.</p>
+            <div class="product-card__actions">
+              <a class="btn btn--pill btn--primary btn--full" href="#">Get a private hire quote</a>
+              <a class="product-card__link" href="#">
+                More on private hire taxi insurance
+                <svg class="product-card__link-icon" viewBox="0 0 96 96" aria-hidden="true">
+                  <use href="../../icons/icons.svg#icon-arrow-right"></use>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 — Taxi & ride-hailing -->
+        <div class="product-card product-card--light-purple">
+          <div class="product-card__icon-area">
+            <svg class="product-card__badge" viewBox="0 0 96 96" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-badge-food"></use>
+            </svg>
+          </div>
+          <div class="product-card__content">
+            <h3 class="product-card__title">Delivery insurance</h3>
+            <p class="product-card__desc">For making food and parcel deliveries using their own cars, scooter or motorbike. Plus policies for personal driving and riding.</p>
+            <div class="product-card__actions">
+              <a class="btn btn--pill btn--primary btn--full" href="#">Get a delivery quote</a>
+              <a class="product-card__link" href="#">
+                More on delivery insurance
+                <svg class="product-card__link-icon" viewBox="0 0 96 96" aria-hidden="true">
+                  <use href="../../icons/icons.svg#icon-arrow-right"></use>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 — Food delivery -->
+        <div class="product-card product-card--navy">
+          <div class="product-card__icon-area">
+            <svg class="product-card__badge" viewBox="0 0 96 96" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-badge-tools"></use>
+            </svg>
+          </div>
+          <div class="product-card__content">
+            <h3 class="product-card__title">Van insurance for business use</h3>
+            <p class="product-card__desc">For contractors, tradespeople and business owners using vans for work.</p>
+            <div class="product-card__actions">
+              <a class="btn btn--pill btn--primary btn--full" href="#">Get a business van quote</a>
+              <a class="product-card__link" href="#">
+                More on business van insurance
+                <svg class="product-card__link-icon" viewBox="0 0 96 96" aria-hidden="true">
+                  <use href="../../icons/icons.svg#icon-arrow-right"></use>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 — Van & commercial -->
+        <div class="product-card product-card--purple">
+          <div class="product-card__icon-area">
+            <svg class="product-card__badge" viewBox="0 0 96 96" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-badge-parcel"></use>
+            </svg>
+          </div>
+          <div class="product-card__content">
+            <h3 class="product-card__title">Van insurance for courier use</h3>
+            <p class="product-card__desc">For independent drivers using their own vans to deliver parcels and goods.</p>
+            <div class="product-card__actions">
+              <a class="btn btn--pill btn--primary btn--full" href="#">Get a courier van quote</a>
+              <a class="product-card__link" href="#">
+                More on courier van insurance
+                <svg class="product-card__link-icon" viewBox="0 0 96 96" aria-hidden="true">
+                  <use href="../../icons/icons.svg#icon-arrow-right"></use>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 — Fleet -->
+        <div class="product-card product-card--light-purple">
+          <div class="product-card__icon-area">
+            <svg class="product-card__badge" viewBox="0 0 96 96" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-badge-third-party"></use>
+            </svg>
+          </div>
+          <div class="product-card__content">
+            <h3 class="product-card__title">Van insurance for personal use</h3>
+            <p class="product-card__desc">Van insurance for personal trips and everyday driving.</p>
+            <div class="product-card__actions">
+              <a class="btn btn--pill btn--primary btn--full" href="#">Get a personal van quote</a>
+              <a class="product-card__link" href="#">
+                More on personal van insurance
+                <svg class="product-card__link-icon" viewBox="0 0 96 96" aria-hidden="true">
+                  <use href="../../icons/icons.svg#icon-arrow-right"></use>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /product-cards__grid -->
+    </div><!-- /product-cards__inner -->
+  </section>
+
+
+  <!-- =============================================
+       KEY STATISTICS
+  ============================================= -->
+  <section class="key-stats">
+    <div class="key-stats__content">
+
+      <div class="key-stats__heading-wrap">
+        <h2 class="key-stats__heading">Trusted by drivers across the UK</h2>
+      </div>
+
+      <div class="key-stats__cards">
+
+        <!-- Card 1 — Policies -->
+        <div class="key-stats__card">
+          <div class="key-stats__icon">
+            <div class="key-stats__icon-bg"></div>
+            <svg class="product-card__badge" viewBox="0 0 96 96" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-badge-policy"></use>
+            </svg>
+          </div>
+          <div class="key-stats__card-text">
+            <p class="key-stats__number" aria-label="81 million">
+              <span class="key-stats__number-value" aria-hidden="true" data-target="81" data-suffix="M" data-duration="1800">81M</span>
+            </p>
+            <p class="key-stats__label">Policies and counting</p>
+          </div>
+        </div>
+
+        <!-- Card 2 — Drivers -->
+        <div class="key-stats__card">
+          <div class="key-stats__icon">
+            <div class="key-stats__icon-bg"></div>
+            <svg class="product-card__badge" viewBox="0 0 96 96" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-badge-ncd"></use>
+            </svg>
+          </div>
+          <div class="key-stats__card-text">
+            <p class="key-stats__number" aria-label="575 thousand">
+              <span class="key-stats__number-value" aria-hidden="true" data-target="575" data-suffix="K" data-duration="1800">575K</span>
+            </p>
+            <p class="key-stats__label">Drivers trust Zego</p>
+          </div>
+        </div>
+
+        <!-- Card 3 — Savings -->
+        <div class="key-stats__card">
+          <div class="key-stats__icon">
+            <div class="key-stats__icon-bg"></div>
+            <svg class="product-card__badge" viewBox="0 0 96 96" aria-hidden="true">
+              <use href="../../icons/icons.svg#icon-badge-saving"></use>
+            </svg>
+          </div>
+          <div class="key-stats__card-text">
+            <p class="key-stats__number" aria-label="96 percent">
+              <span class="key-stats__number-value" aria-hidden="true" data-target="96" data-suffix="%" data-duration="1400">96%</span>
+            </p>
+            <p class="key-stats__label">of drivers save money</p>
+          </div>
+        </div>
+
+      </div><!-- /key-stats__cards -->
+    </div><!-- /key-stats__content -->
+  </section>
+
+
+</div>
 
 
 <script>
+  /* ============================================
+     Nav — hide on scroll down, show on scroll up
+  ============================================ */
+  (function () {
+    var header   = document.querySelector('.page-header');
+    var lastY    = 0;
+    var ticking  = false;
+
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        window.requestAnimationFrame(function () {
+          var currentY = window.scrollY;
+          if (currentY > lastY && currentY > 80) {
+            header.classList.add('page-header--hidden');
+          } else {
+            header.classList.remove('page-header--hidden');
+          }
+          lastY = currentY;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  }());
+
+  /* ============================================
+     Key Stats — count-up animation
+  ============================================ */
+  (function () {
+    function easeOut(t) { return t * (2 - t); }
+
+    function animateCounter(el) {
+      var target   = parseInt(el.dataset.target, 10);
+      var suffix   = el.dataset.suffix || '';
+      var duration = parseInt(el.dataset.duration, 10) || 1600;
+      var start    = null;
+      function step(timestamp) {
+        if (!start) start = timestamp;
+        var elapsed  = timestamp - start;
+        var progress = Math.min(elapsed / duration, 1);
+        var eased    = easeOut(progress);
+        var current  = Math.round(eased * target);
+        el.textContent = current + suffix;
+        if (progress < 1) { requestAnimationFrame(step); }
+        else { el.textContent = target + suffix; }
+      }
+      requestAnimationFrame(step);
+    }
+
+    var sections = document.querySelectorAll('.key-stats');
+    sections.forEach(function (section) {
+      var counters = section.querySelectorAll('.key-stats__number-value');
+      var animated = false;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        counters.forEach(function (el) { el.textContent = el.dataset.target + (el.dataset.suffix || ''); });
+        return;
+      }
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting && !animated) {
+            animated = true;
+            counters.forEach(animateCounter);
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.2 });
+      observer.observe(section);
+    });
+  }());
+
+  /* ============================================
+     Steps Section — hover interaction
+  ============================================ */
+  (function () {
+    var sections = document.querySelectorAll('.steps-section');
+    sections.forEach(function (section) {
+      var rows    = section.querySelectorAll('.steps-section__row');
+      var images  = section.querySelectorAll('.steps-section__img');
+      var textCol = section.querySelector('.steps-section__text-col');
+      function activate(step) {
+        rows.forEach(function (r) { r.classList.toggle('is-active', r.dataset.step === step); });
+        images.forEach(function (img) { img.classList.toggle('is-active', img.dataset.step === step); });
+      }
+      rows.forEach(function (row) {
+        row.addEventListener('mouseenter', function () { activate(row.dataset.step); });
+      });
+      textCol.addEventListener('mouseleave', function () { activate('1'); });
+    });
+  }());
+
+  /* ============================================
+     Marquee logo carousel — JS-driven seamless loop
+     rAF-based scroll measures real track width so
+     the reset is pixel-perfect with no jump.
+  ============================================ */
+  (function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var track = document.querySelector('.logo-carousel--marquee .logo-carousel__track');
+    if (!track) return;
+
+    var x        = 0;
+    var speed    = 0.6; /* px per frame — adjust to taste */
+    var halfWidth = 0;
+    var paused   = false;
+    var raf;
+
+    function measure() {
+      /* scrollWidth includes both duplicate sets; half = one full set */
+      halfWidth = track.scrollWidth / 2;
+    }
+
+    function tick() {
+      if (!paused) {
+        x -= speed;
+        if (x <= -halfWidth) x += halfWidth; /* seamless reset */
+        track.style.transform = 'translateX(' + x + 'px)';
+      }
+      raf = requestAnimationFrame(tick);
+    }
+
+    /* Wait for images to load so measurements are accurate */
+    var images = track.querySelectorAll('img');
+    var loaded = 0;
+    function onLoad() {
+      loaded++;
+      if (loaded >= images.length) { measure(); raf = requestAnimationFrame(tick); }
+    }
+    images.forEach(function (img) {
+      if (img.complete) { onLoad(); } else { img.addEventListener('load', onLoad); }
+    });
+    if (images.length === 0) { measure(); raf = requestAnimationFrame(tick); }
+
+    /* Pause on hover */
+    track.closest('.logo-carousel__track-wrapper').addEventListener('mouseenter', function () { paused = true; });
+    track.closest('.logo-carousel__track-wrapper').addEventListener('mouseleave', function () { paused = false; });
+  }());
+
+  /* ============================================
+     Logo carousel — partner logos fade in on scroll
+  ============================================ */
+  (function () {
+    var cells = document.querySelectorAll('.logo-carousel--wrapped .logo-carousel__cell');
+
+    if (!('IntersectionObserver' in window)) {
+      cells.forEach(function (cell) { cell.classList.add('is-visible'); });
+      return;
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var cell  = entry.target;
+          var index = parseInt(cell.dataset.fadeIndex, 10) || 0;
+          setTimeout(function () {
+            cell.classList.add('is-visible');
+          }, index * 60);
+          observer.unobserve(cell);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    cells.forEach(function (cell, i) {
+      cell.dataset.fadeIndex = i;
+      observer.observe(cell);
+    });
+  }());
+
   /* ============================================
      Navigation Bar — dropdown toggle
   ============================================ */
