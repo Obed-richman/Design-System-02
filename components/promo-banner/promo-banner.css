@@ -1,0 +1,219 @@
+/* ============================================
+   PROMO BANNER COMPONENT
+   Depends on: tokens/tokens.css
+               components/button/button.css
+   No hardcoded values except where noted inline.
+   Fixed pixel dimensions are noted inline.
+   ============================================ */
+
+
+/* --- Base --- */
+
+.promo-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* var(--gap-medium) = 16px horizontal gutter either side of the card */
+  padding: 0 var(--gap-medium);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+/* ============================================
+   INNER CARD
+   Two children stacked vertically:
+   1. .promo-banner__image — large landscape photo, flush to card top
+   2. .promo-banner__text  — below the image on the purple background
+   ============================================ */
+
+.promo-banner__card {
+  /* var(--bg-brand-purple) = var(--colour-purple-60) = #371987
+     Figma design value is #7912f4 — closest available token used */
+  background: var(--bg-brand-purple);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* var(--number-64) = 64px gap between image panel and text block */
+  gap: var(--number-64);
+  /* No top padding — image panel sits flush against the card top edge.
+     Bottom padding creates space below the text block. */
+  padding: var(--number-64);
+  border-radius: var(--radius-x-large);
+  /* overflow: hidden clips image to card's rounded top corners */
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+/* ============================================
+   IMAGE PANEL
+   Full-width landscape photo at the top of the
+   card. The card's overflow:hidden clips the
+   top corners — no border-radius needed here.
+   ============================================ */
+
+.promo-banner__image {
+  width: 1280px;
+  /* width: 100%; */
+  /* 600px: Fixed design value — large landscape photo height */
+  height: 600px;
+  flex-shrink: 0;
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  background-color: #FDFF88;
+}
+
+/* Decorative image wrapper — aria-hidden="true" set on the element in HTML */
+.promo-banner__img {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.promo-banner__img-photo {
+  position: absolute;
+  inset: 0;
+}
+
+.promo-banner__img-photo img {
+  position: absolute;
+  bottom: 0;
+  left: 45%;
+  transform: translateX(-50%);
+  /* 48px top breathing room so the phone doesn't butt against the panel edge */
+  max-height: calc(100% - 48px);
+  width: auto;
+  max-width: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.promo-banner__img-scrim {
+  position: absolute;
+  inset: 0;
+  /* Dark scrim over image — exact Figma value, no token */
+  /* background: rgba(0, 0, 0, 0.5); */
+  pointer-events: none;
+}
+
+
+/* ============================================
+   TEXT BLOCK
+   Sits below the image on the purple card
+   background. Centred column layout.
+   ============================================ */
+
+.promo-banner__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-large);
+  align-items: center;
+  /* 876px: Fixed Figma design value */
+  width: 876px;
+}
+
+.promo-banner__seo {
+  font-family: inherit;
+  font-size: var(--font-size-body-2);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-2);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-on-colour);
+  text-align: center;
+  width: 100%;
+  margin: 0;
+}
+
+.promo-banner__heading {
+  font-family: inherit;
+  font-size: var(--font-size-title-1);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-title-1);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--text-on-colour);
+  text-align: center;
+  width: min-content;
+  min-width: 100%;
+  margin: 0;
+}
+
+/* Body paragraph — 24px Regular (title-4 size, regular weight — do not use font-weight: 500) */
+.promo-banner__body {
+  font-family: inherit;
+  font-size: var(--font-size-title-4);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-title-4);
+  letter-spacing: var(--letter-spacing-snug);
+  color: var(--text-on-colour);
+  text-align: center;
+  width: min-content;
+  min-width: 100%;
+  margin: 0;
+}
+
+
+/* ============================================
+   INLINE LINK — states
+   ============================================ */
+
+.promo-banner__inline-link {
+  color: var(--text-on-colour);
+  text-decoration: underline;
+  /* text-decoration-skip-ink: none — exact Figma value; underline runs through descenders */
+  text-decoration-skip-ink: none;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+.promo-banner__inline-link:hover {
+  opacity: 0.8;
+}
+
+.promo-banner__inline-link:focus-visible {
+  outline: 2px solid var(--text-on-colour);
+  outline-offset: 2px;
+  border-radius: var(--radius-x-small);
+}
+
+
+/* ============================================
+   ACTIONS + BUTTONS
+   ============================================ */
+
+.promo-banner__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
+  align-items: center;
+  /* 450px: Fixed Figma design value */
+  width: 450px;
+}
+
+.promo-banner__buttons {
+  display: flex;
+  flex-direction: row;
+  gap: var(--gap-large);
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* CTA button — composes on top of .btn .btn--pill .btn--primary from button.css */
+.promo-banner__cta {
+  /* 213px: Fixed Figma design value */
+  width: 213px;
+  flex: 1 0 0;
+}
+
+
+/* ============================================
+   DARK MODE
+   This component renders on a brand-purple
+   background — dark mode not separately
+   specified in Figma; no overrides needed.
+   ============================================ */

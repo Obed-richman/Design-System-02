@@ -256,6 +256,105 @@
 
 
 /* ============================================
+   VARIANT: Centred layout (.product-cards--centered)
+   Text block above full-width 3-column grid.
+   No sticky behaviour — text sits above the grid.
+   ============================================ */
+
+/* Inner row becomes a vertical column */
+.product-cards--centered .product-cards__inner {
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-xx-large);
+}
+
+/* Text col — neutralise sticky left-column behaviour */
+.product-cards--centered .product-cards__text-col {
+  position: static;
+  top: auto;
+  align-self: auto;
+  flex: none;
+  /* 876px: Fixed Figma design value — wider than sticky variant's 410px */
+  width: 876px;
+  align-items: center;
+}
+
+.product-cards--centered .product-cards__heading {
+  text-align: center;
+}
+
+.product-cards--centered .product-cards__body {
+  text-align: center;
+}
+
+/* Grid — full width, 3 columns */
+.product-cards--centered .product-cards__grid {
+  /* 1280px: Fixed Figma design value — full inner width for 3-column layout */
+  width: 1280px;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+
+/* ============================================
+   BRAND ICON — .product-card__icon--brand
+   Used in the centred variant. A simple branded
+   logo image, no layered decorative blocks.
+   ============================================ */
+
+.product-card__icon--brand {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.product-card__icon--brand img {
+  display: block;
+}
+
+/* Uber icon tile — 32×32px dark rounded square */
+.product-card__icon--uber {
+  /* 32px: Fixed Figma design value — Uber icon tile size */
+  width: 32px;
+  height: 32px;
+  /* Uber brand colour — no system token */
+  background: var(--colour-black-10);
+  /* 10.667px: Fixed Figma design value — Uber icon border-radius */
+  border-radius: 10.667px;
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+/* Uber Eats icon tile — 24×24px green rounded square */
+.product-card__icon--uber-eats {
+  /* 24px: Fixed Figma design value */
+  width: 24px;
+  height: 24px;
+  /* Uber Eats brand colour — no system token */
+  background: #06c167;
+  border-radius: var(--radius-x-small);
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+/* Generic 24×24px brand icon container */
+.product-card__icon--sm {
+  /* 24px: Fixed Figma design value */
+  width: 24px;
+  height: 24px;
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.product-card__icon-img {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+}
+
+
+/* ============================================
    DARK MODE
    Dark mode is not specified in Figma for this
    component — no dark mode overrides needed.

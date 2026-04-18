@@ -101,8 +101,8 @@
   /* 410px: Fixed Figma design value — no token equivalent */
   width: 410px;
   flex-shrink: 0;
-  padding: var(--gap-medium) var(--gap-medium) var(--gap-x-large);
-  border-radius: var(--radius-large);
+  padding: var(--gap-small) var(--gap-small) var(--gap-x-large);
+  border-radius: var(--radius-medium);
   background: var(--bg-primary);
   overflow: hidden;
   position: relative;
@@ -121,7 +121,7 @@
   aspect-ratio: 327 / 218;
   overflow: hidden;
   border-radius: var(--radius-small);
-  padding: var(--gap-x-small) 0;
+  /* padding: var(--gap-x-small) 0; */
   box-sizing: border-box;
 }
 
@@ -199,6 +199,7 @@
   inset: 26.32% 34.02% 26.89% 36.21%;
   display: block;
   pointer-events: none;
+  width: 16px;
 }
 
 

@@ -1,0 +1,243 @@
+<!-- ============================================
+     BLOG SLIDER COMPONENT SNIPPET
+     Copy what you need into a screen or index.html.
+     Requires: tokens/tokens.css
+               components/blog-card/blog-card.css
+               components/blog-slider/blog-slider.css
+     ============================================ -->
+
+
+<!-- ============================================================
+     VARIANT — Desktop | Heading + scrollable blog card slider
+     Left aside: heading, body, prev/next arrow controls.
+     Right: horizontally clipped card track showing a "peek"
+     of the next card to invite scrolling.
+     ============================================================ -->
+
+<section class="blog-slider">
+
+  <div class="blog-slider__inner">
+
+    <!-- Left column — heading, description, arrow controls -->
+    <div class="blog-slider__aside">
+
+      <div class="blog-slider__text">
+        <h2 class="blog-slider__heading">The Zego blog</h2>
+        <p class="blog-slider__body">Find more information on how to get the most out of your insurance, whether you're a private hire taxi driver, tradesperson or food delivery driver.</p>
+      </div>
+
+      <div class="blog-slider__arrows">
+        <!-- Prev button — disabled at start (index 0) -->
+        <button class="blog-slider__arrow blog-slider__arrow--prev"
+                type="button"
+                aria-label="Previous articles"
+                disabled>
+          <span class="blog-slider__arrow-icon" aria-hidden="true">
+            <svg viewBox="0 0 96 96" fill="currentColor">
+              <use href="../../icons/icons.svg#icon-arrow-left"></use>
+            </svg>
+          </span>
+        </button>
+
+        <button class="blog-slider__arrow blog-slider__arrow--next"
+                type="button"
+                aria-label="Next articles">
+          <span class="blog-slider__arrow-icon" aria-hidden="true">
+            <svg viewBox="0 0 96 96" fill="currentColor">
+              <use href="../../icons/icons.svg#icon-arrow-right"></use>
+            </svg>
+          </span>
+        </button>
+      </div>
+
+    </div><!-- /blog-slider__aside -->
+
+    <!-- Right — clipped slider track; overflow:hidden creates the card peek -->
+    <div role="region" aria-label="Blog articles" class="blog-slider__track-wrapper">
+
+      <!-- Add more .blog-card elements to extend the slider. JS automatically recalculates the max index. -->
+      <div class="blog-slider__track">
+
+        <!-- Card 1 — update href to article URL -->
+        <a class="blog-card blog-card--single"
+           href="#"
+           aria-label="Read article: Behind the code; life as an engineer at Zego">
+          <div class="blog-card__image">
+            <img class="blog-card__img"
+                 src="https://www.figma.com/api/mcp/asset/bf2db323-819e-4674-bb35-23f2f2ba2fe8"
+                 alt="Behind the code; life as an engineer at Zego">
+            <!-- Hover overlay: shown via CSS on :hover — always present in DOM -->
+            <div class="blog-card__img-overlay"></div>
+          </div>
+          <div class="blog-card__details">
+            <h3 class="blog-card__title">Behind the code; life as an engineer at Zego</h3>
+            <!-- Date: optional — remove this <div> if no date available -->
+            <div class="blog-card__date">01 December 2024</div>
+            <p class="blog-card__link">Read more →</p>
+          </div>
+        </a>
+
+        <!-- Card 2 — update href to article URL -->
+        <a class="blog-card blog-card--single"
+           href="#"
+           aria-label="Read article: How long do car insurance claims affect your price?">
+          <div class="blog-card__image">
+            <img class="blog-card__img"
+                 src="https://www.figma.com/api/mcp/asset/21724387-9dea-4a5e-8354-6d217610e49a"
+                 alt="How long do car insurance claims affect your price?">
+            <!-- Hover overlay: shown via CSS on :hover — always present in DOM -->
+            <div class="blog-card__img-overlay"></div>
+          </div>
+          <div class="blog-card__details">
+            <h3 class="blog-card__title">How long do car insurance claims affect your price?</h3>
+            <!-- Date: optional — remove this <div> if no date available -->
+            <div class="blog-card__date">01 December 2024</div>
+            <p class="blog-card__link">Read more →</p>
+          </div>
+        </a>
+
+        <!-- Card 3 — update href to article URL -->
+        <a class="blog-card blog-card--single"
+           href="#"
+           aria-label="Read article: What should I expect from our interview process">
+          <div class="blog-card__image">
+            <img class="blog-card__img"
+                 src="https://www.figma.com/api/mcp/asset/6f2c1059-27b9-4313-ba5d-f09140777589"
+                 alt="What should I expect from our interview process">
+            <!-- Hover overlay: shown via CSS on :hover — always present in DOM -->
+            <div class="blog-card__img-overlay"></div>
+          </div>
+          <div class="blog-card__details">
+            <h3 class="blog-card__title">What should I expect from our interview process</h3>
+            <!-- Date: optional — remove this <div> if no date available -->
+            <div class="blog-card__date">01 December 2024</div>
+            <p class="blog-card__link">Read more →</p>
+          </div>
+        </a>
+
+      </div><!-- /blog-slider__track -->
+
+    </div><!-- /blog-slider__track-wrapper -->
+
+    <!-- Screen reader live region — JS updates this after each navigation -->
+    <p class="blog-slider__live sr-only" aria-live="polite" aria-atomic="true"></p>
+
+  </div><!-- /blog-slider__inner -->
+
+</section><!-- /blog-slider -->
+
+
+<!-- ============================================================
+     BLOG SLIDER SCRIPT
+     Copy into screen file — do not include in component HTML file.
+     Supports multiple .blog-slider instances on the same page.
+     ============================================================ -->
+<script>
+  /* Blog Slider — click-driven card slider
+     CSS transition handles animation; JS sets transform and manages state.
+     Includes touch swipe support and keyboard focus management. */
+  (function () {
+
+    var CARD_W = 410;  /* Fixed Figma design value — card width in slider */
+    var GAP    = 24;   /* var(--gap-large) */
+    var STEP   = CARD_W + GAP; /* 434px per slide step */
+
+    document.querySelectorAll('.blog-slider').forEach(function (section) {
+      var track   = section.querySelector('.blog-slider__track');
+      var wrapper = section.querySelector('.blog-slider__track-wrapper');
+      var btnPrev = section.querySelector('.blog-slider__arrow--prev');
+      var btnNext = section.querySelector('.blog-slider__arrow--next');
+      var live    = section.querySelector('.blog-slider__live');
+
+      if (!track || !wrapper || !btnPrev || !btnNext) return;
+
+      var currentIndex = 0;
+
+      function getCardCount() {
+        return track.querySelectorAll('.blog-card').length;
+      }
+
+      function getVisibleCount() {
+        return Math.floor((wrapper.offsetWidth + GAP) / STEP);
+      }
+
+      function getMaxIndex() {
+        return Math.max(0, getCardCount() - getVisibleCount());
+      }
+
+      function updateLive() {
+        if (!live) return;
+        var visibleCount = getVisibleCount();
+        var total        = getCardCount();
+        var from         = currentIndex + 1;
+        var to           = Math.min(currentIndex + visibleCount, total);
+        live.textContent = 'Showing articles ' + from + ' to ' + to + ' of ' + total;
+      }
+
+      function update(animate) {
+        if (!animate) {
+          track.style.transition = 'none';
+        }
+        track.style.transform = 'translateX(' + (-currentIndex * STEP) + 'px)';
+        if (!animate) {
+          track.getBoundingClientRect(); /* force reflow */
+          track.style.transition = '';
+        }
+        btnPrev.disabled = currentIndex === 0;
+        btnNext.disabled = currentIndex >= getMaxIndex();
+        updateLive();
+      }
+
+      btnPrev.addEventListener('click', function () {
+        if (currentIndex > 0) { currentIndex--; update(true); }
+      });
+
+      btnNext.addEventListener('click', function () {
+        if (currentIndex < getMaxIndex()) { currentIndex++; update(true); }
+      });
+
+      /* Touch / swipe support — 50px minimum threshold */
+      var touchStartX = 0;
+      var touchEndX   = 0;
+
+      track.addEventListener('touchstart', function (e) {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      track.addEventListener('touchend', function (e) {
+        touchEndX = e.changedTouches[0].screenX;
+        var diff  = touchStartX - touchEndX;
+        if (Math.abs(diff) > 50) {
+          if (diff > 0 && currentIndex < getMaxIndex()) { currentIndex++; update(true); }
+          if (diff < 0 && currentIndex > 0)             { currentIndex--; update(true); }
+        }
+      }, { passive: true });
+
+      /* Keyboard focus — scroll partially visible card into view */
+      track.querySelectorAll('.blog-card').forEach(function (card, i) {
+        card.addEventListener('focus', function () {
+          var visibleCount = getVisibleCount();
+          if (i < currentIndex) { currentIndex = i; update(true); }
+          if (i >= currentIndex + visibleCount) {
+            currentIndex = i - visibleCount + 1;
+            update(true);
+          }
+        });
+      });
+
+      /* Reset on resize */
+      var resizeTimer;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () {
+          currentIndex = Math.min(currentIndex, getMaxIndex());
+          update(false);
+        }, 100);
+      });
+
+      /* Initial state */
+      update(false);
+    });
+
+  }());
+</script>

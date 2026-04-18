@@ -31,7 +31,7 @@
   /* 1280px: Fixed Figma design value — no token equivalent */
   width: 1280px;
   gap: var(--number-64);
-  padding: var(--number-64) 0;
+  padding: var(--number-64) 0px 200px 0px;
 }
 
 

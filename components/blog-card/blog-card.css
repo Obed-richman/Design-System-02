@@ -1,0 +1,313 @@
+/* ============================================
+   BLOG CARD COMPONENT
+   Depends on: tokens/tokens.css
+   Three variants: Banner (336px), Single (336px), Feature (696px).
+   All cards are <a> elements — entire card is the link.
+   No hardcoded values except where noted inline.
+   ============================================ */
+
+
+/* ============================================
+   BASE — shared across all variants
+   ============================================ */
+
+.blog-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  transition: box-shadow 200ms ease;
+}
+
+
+/* ============================================
+   IMAGE AREA — shared base
+   Height overridden per variant below.
+   ============================================ */
+
+.blog-card__image {
+  width: 100%;
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.blog-card__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  display: block;
+}
+
+/* Hover image darken overlay — always in DOM, shown via :hover */
+.blog-card__img-overlay {
+  position: absolute;
+  inset: 0;
+  /* var(--colour-black-10-20) = rgba(39,37,45,0.2) — hover image darken overlay */
+  background: var(--colour-black-10-20);
+  opacity: 0;
+  transition: opacity 200ms ease;
+  pointer-events: none;
+}
+
+
+/* ============================================
+   DETAILS BLOCK — shared base
+   Padding and gap overridden per variant below.
+   ============================================ */
+
+.blog-card__details {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+
+/* ============================================
+   TITLE — shared base
+   Size and colour overridden per variant below.
+   ============================================ */
+
+.blog-card__title {
+  font-family: inherit;
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin: 0;
+  transition: color 200ms ease;
+}
+
+
+/* ============================================
+   DATE
+   ============================================ */
+
+.blog-card__date {
+  font-family: inherit;
+  font-size: var(--font-size-body-2);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-2);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-primary);
+  width: min-content;
+  min-width: 100%;
+  margin: 0;
+}
+
+
+/* ============================================
+   READ MORE LINK
+   ============================================ */
+
+.blog-card__link {
+  /* 200px: Fixed Figma design value */
+  width: 200px;
+  display: flex;
+  align-items: center;
+  font-family: inherit;
+  font-size: var(--font-size-body-3);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-body-3);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-link);
+  white-space: nowrap;
+  margin: 0;
+}
+
+
+/* ============================================
+   BANNER VARIANT (.blog-card--banner)
+   336px wide. Light teal hover background.
+   Image at top with bottom-only radius.
+   ============================================ */
+
+.blog-card--banner {
+  /* 336px: Fixed Figma design value */
+  width: 336px;
+  border: var(--border-s) solid var(--border-color-secondary);
+  border-radius: var(--radius-medium);
+  background: var(--bg-primary);
+}
+
+/* Banner image — bottom corners rounded to match card corners */
+.blog-card--banner .blog-card__image {
+  /* 140px: Fixed Figma design value */
+  height: 140px;
+  border-radius: 0 0 var(--radius-medium) var(--radius-medium);
+}
+
+.blog-card--banner .blog-card__details {
+  gap: var(--gap-x-small);
+  padding: var(--gap-medium);
+}
+
+/* Banner title row — title + chevron in a row */
+.blog-card__title-row {
+  display: flex;
+  flex-direction: row;
+  gap: var(--gap-x-small);
+  align-items: center;
+  width: 100%;
+}
+
+.blog-card--banner .blog-card__title {
+  flex: 1 0 0;
+  font-size: var(--font-size-body-2);
+  line-height: var(--line-height-body-2);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+/* Chevron icon */
+.blog-card__chevron {
+  flex-shrink: 0;
+  /* 6.889px × 11.511px: Fixed Figma design values — exact chevron dimensions */
+  width: 6.889px;
+  height: 11.511px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--icon-primary);
+}
+
+.blog-card__chevron svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* --- Banner hover --- */
+.blog-card--banner:hover {
+  background: var(--bg-positive);
+  border-color: var(--border-color-active);
+  transition: background 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+}
+
+
+/* ============================================
+   SINGLE VARIANT (.blog-card--single)
+   336px wide. Image overlay + title link colour on hover.
+   ============================================ */
+
+.blog-card--single {
+  /* 336px: Fixed Figma design value */
+  width: 336px;
+  border: var(--border-s) solid var(--border-color-primary);
+  border-radius: var(--radius-large);
+  background: var(--bg-primary);
+}
+
+.blog-card--single .blog-card__image {
+  /* 200px: Fixed Figma design value */
+  height: 200px;
+}
+
+.blog-card--single .blog-card__details {
+  gap: var(--gap-medium);
+  /* 32px top, 16px sides (no token for 16px horizontal — matches gap-medium), 24px bottom */
+  padding: var(--gap-x-large) var(--gap-medium) var(--gap-large) var(--gap-medium);
+}
+
+.blog-card--single .blog-card__title {
+  font-size: var(--font-size-title-4);
+  line-height: var(--line-height-title-4);
+  letter-spacing: var(--letter-spacing-tight);
+  width: min-content;
+  min-width: 100%;
+}
+
+/* --- Single hover --- */
+.blog-card--single:hover {
+  /* Hover lift shadow — no token */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.blog-card--single:hover .blog-card__img-overlay {
+  opacity: 1;
+}
+
+.blog-card--single:hover .blog-card__title {
+  color: var(--text-link);
+}
+
+
+/* ============================================
+   FEATURE VARIANT (.blog-card--feature)
+   696px wide. Same hover behaviour as Single.
+   ============================================ */
+
+.blog-card--feature {
+  /* 696px: Fixed Figma design value */
+  width: 696px;
+  border: var(--border-s) solid var(--border-color-primary);
+  border-radius: var(--radius-large);
+  background: var(--bg-primary);
+}
+
+.blog-card--feature .blog-card__image {
+  /* 300px: Fixed Figma design value */
+  height: 300px;
+}
+
+.blog-card--feature .blog-card__details {
+  gap: var(--gap-medium);
+  padding: var(--gap-x-large) var(--gap-medium) var(--gap-large) var(--gap-medium);
+}
+
+.blog-card--feature .blog-card__title {
+  font-size: var(--font-size-title-4);
+  line-height: var(--line-height-title-4);
+  letter-spacing: var(--letter-spacing-tight);
+  width: min-content;
+  min-width: 100%;
+}
+
+/* --- Feature hover — identical to Single hover --- */
+.blog-card--feature:hover,
+.blog-card--single:hover {
+  /* Hover lift shadow — no token */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.blog-card--feature:hover .blog-card__img-overlay {
+  opacity: 1;
+}
+
+.blog-card--feature:hover .blog-card__title {
+  color: var(--text-link);
+}
+
+
+/* ============================================
+   FOCUS-VISIBLE — keyboard navigation
+   ============================================ */
+
+.blog-card:focus-visible {
+  outline: var(--border-m) solid var(--border-color-focused);
+  outline-offset: 2px;
+}
+
+
+/* ============================================
+   REDUCED MOTION
+   Hover state changes (colour, background, border) still apply —
+   only the animated transitions are suppressed.
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-card,
+  .blog-card__title,
+  .blog-card__img-overlay,
+  .blog-card--banner:hover {
+    transition: none;
+  }
+}
+
+
+/* ============================================
+   DARK MODE
+   Dark mode not specified in Figma for blog cards —
+   no dark mode overrides needed.
+   ============================================ */

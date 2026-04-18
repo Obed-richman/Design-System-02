@@ -24,7 +24,12 @@
   <link rel="stylesheet" href="../../components/logo-carousel/logo-carousel.css">
   <link rel="stylesheet" href="../../components/steps-section/steps-section.css">
   <link rel="stylesheet" href="../../components/product-cards/product-cards.css">
+  <link rel="stylesheet" href="../../components/promo-banner/promo-banner.css">
+  <link rel="stylesheet" href="../../components/blog-card/blog-card.css">
+  <link rel="stylesheet" href="../../components/blog-slider/blog-slider.css">
   <link rel="stylesheet" href="../../components/key-stats/key-stats.css">
+  <link rel="stylesheet" href="../../components/video-section/video-section.css">
+  <link rel="stylesheet" href="../../components/stacking-cards/stacking-cards.css">
 
   <style>
     /* ============================================
@@ -57,11 +62,14 @@
       right: 0;
       padding: var(--gap-large);
       z-index: 100;
-      transition: transform 300ms ease;
+      /* Slower hide (400ms) and slower, delayed reappear (500ms, 200ms delay) */
+      transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .page-header--hidden {
       transform: translateY(-110%);
+      /* Reappear transition is slower and has a delay — set via JS class swap */
+      transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1) 200ms;
     }
 
     /* 1280px content constraint — nav bar fills this width as a pill */
@@ -187,6 +195,18 @@
       font-size: var(--font-size-body-3);
       line-height: var(--line-height-body-3);
       color: var(--text-primary);
+    }
+
+    /* Blog card inside the aside nav column — fill column width, transparent bg, tile-matched hover */
+    .blog-card--aside {
+      width: 100%;
+      background: transparent;
+      border-color: var(--border-color-secondary);
+    }
+
+    .blog-card--aside:hover {
+      background: var(--colour-aqua-10);
+      border-color: var(--border-color-active);
     }
 
   </style>
@@ -360,6 +380,21 @@
           </div>
           <ul class="nav-dropdown__tiles" role="list">
             <li>
+              <a class="blog-card blog-card--banner blog-card--aside" href="#" aria-label="Read article: How to save on your insurance renewal">
+                <div class="blog-card__image">
+                  <img class="blog-card__img" src="https://www.figma.com/api/mcp/asset/658ea1a7-816d-4c88-9091-c9cc657d2348" alt="">
+                </div>
+                <div class="blog-card__details">
+                  <div class="blog-card__title-row">
+                    <h3 class="blog-card__title">Guide to preparing your vehicles for winter</h3>
+                    <span class="blog-card__chevron" aria-hidden="true">
+                      <svg viewBox="0 0 7 12" fill="currentColor"><use href="../../icons/icons.svg#icon-chevron-small-right"></use></svg>
+                    </span>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li>
               <a class="nav-dropdown__tile" href="#">
                 <div class="nav-dropdown__tile-text">
                   <span class="nav-dropdown__tile-title">What Insurance do I need to deliver food?</span>
@@ -394,19 +429,6 @@
                   </svg>
                 </div>
               </a>
-            </li>
-            <li>
-              <a class="nav-dropdown__tile" href="#">
-                <div class="nav-dropdown__tile-text">
-                  <span class="nav-dropdown__tile-title">5 Most popular cars for delivery</span>
-                </div>
-                <div class="nav-dropdown__tile-chevron" aria-hidden="true">
-                  <svg class="icon" viewBox="0 0 7 12" fill="currentColor">
-                    <use href="../../icons/icons.svg#icon-chevron-small-right"></use>
-                  </svg>
-                </div>
-              </a>
-            </li>
           </ul>
         </div>
 
@@ -847,13 +869,152 @@
 
 
   <!-- =============================================
+       PROMO BANNER
+  ============================================= -->
+  <section class="promo-banner">
+    <div class="promo-banner__card">
+
+      <!-- Image panel — large landscape photo, flush to top of card -->
+      <div class="promo-banner__image">
+        <div class="promo-banner__img" aria-hidden="true">
+          <div class="promo-banner__img-photo">
+            <img src="img/App Mock.png"
+                 alt="Zego app on a mobile phone">
+          </div>
+          <div class="promo-banner__img-scrim"></div>
+        </div>
+      </div><!-- /promo-banner__image -->
+
+      <!-- Text block — below the image on the purple card background -->
+      <div class="promo-banner__text">
+        <p class="promo-banner__seo">SENSE TELEMATICS INSURANCE</p>
+        <h2 class="promo-banner__heading">Get up to £60 a year in rewards</h2>
+        <p class="promo-banner__body">
+          Our app-based
+          <a class="promo-banner__inline-link"
+             href="https://www.zego.com/sense/"
+             target="_blank"
+             rel="noopener noreferrer">telematics insurance</a>
+          turns good driving into gift cards for some of your favourite brands – plus fairer prices at renewal.
+        </p>
+        <div class="promo-banner__actions">
+          <div class="promo-banner__buttons">
+            <a class="btn btn--pill btn--primary promo-banner__cta" href="#">Read more</a>
+          </div>
+        </div>
+      </div><!-- /promo-banner__text -->
+
+    </div>
+  </section>
+
+
+  <!-- =============================================
+       STACKING CARDS
+  ============================================= -->
+  <section class="stacking-cards">
+
+    <div class="stacking-cards__track">
+      <div class="stacking-cards__stage">
+
+        <!-- Header pinned inside the sticky stage — stays visible while cards scroll -->
+        <div class="stacking-cards__header">
+          <h2 class="stacking-cards__heading">The right insurance just for you</h2>
+          <p class="stacking-cards__body">Whether you're delivering parcels for Amazon, driving a private hire taxi, using your van for personal trips, or just want to save on car insurance, we offer the right coverage whenever you need it, all in one place.</p>
+        </div>
+
+        <!-- Card 1 — Private hire taxi -->
+        <div class="stacking-cards__card stacking-cards__card--1">
+          <div class="stacking-card__image">
+            <img class="stacking-card__image-img" src="https://www.figma.com/api/mcp/asset/fb5796d7-8d76-4c44-99a3-7690bfe718b1" alt="Private hire taxi driver">
+            <div class="stacking-card__image-overlay"></div>
+          </div>
+          <div class="stacking-card__text">
+            <p class="stacking-card__seo">PRIVATE HIRE TAXI INSURANCE</p>
+            <h3 class="stacking-card__heading">Your taxi insurance, sorted</h3>
+            <p class="stacking-card__body">Our private hire taxi insurance covers you for work and personal driving. Everything you need in one simple policy. Plus, drive safely and pay less when you renew.</p>
+            <ul class="stacking-card__bullets" role="list">
+              <li class="stacking-card__bullet">
+                <span class="stacking-card__bullet-icon" aria-hidden="true">
+                  <svg class="icon icon--xs icon--positive" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="../../icons/icons.svg#icon-tick"></use></svg>
+                </span>
+                <span class="stacking-card__bullet-text">Choose monthly or annual insurance to suit you</span>
+              </li>
+              <li class="stacking-card__bullet">
+                <span class="stacking-card__bullet-icon" aria-hidden="true">
+                  <svg class="icon icon--xs icon--positive" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="../../icons/icons.svg#icon-tick"></use></svg>
+                </span>
+                <span class="stacking-card__bullet-text">Public liability cover included as standard</span>
+              </li>
+              <li class="stacking-card__bullet">
+                <span class="stacking-card__bullet-icon" aria-hidden="true">
+                  <svg class="icon icon--xs icon--positive" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="../../icons/icons.svg#icon-tick"></use></svg>
+                </span>
+                <span class="stacking-card__bullet-text">Keep your policy in your pocket with the app</span>
+              </li>
+            </ul>
+            <div class="stacking-card__actions">
+              <a class="btn btn--pill btn--primary stacking-card__cta" href="#">Get a car quote</a>
+              <a class="stacking-card__link" href="#">
+                More on private hire taxi insurance
+                <svg class="stacking-card__link-icon" viewBox="0 0 96 96" aria-hidden="true"><use href="../../icons/icons.svg#icon-arrow-right"></use></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 — Delivery insurance -->
+        <div class="stacking-cards__card stacking-cards__card--2">
+          <div class="stacking-card__image">
+            <img class="stacking-card__image-img" src="https://www.figma.com/api/mcp/asset/66ccbb7c-f874-4376-8523-c2b1b5877bd8" alt="Delivery driver handing over parcel">
+          </div>
+          <div class="stacking-card__text">
+            <p class="stacking-card__seo">CAR, SCOOTER AND MOTORBIKE DELIVERY INSURANCE</p>
+            <h3 class="stacking-card__heading">Delivery insurance that works around you</h3>
+            <p class="stacking-card__body">Whether you're carrying parcels for Amazon or food for Just Eat, our flexible delivery insurance gives you all the right cover when you need it. All in one app.</p>
+            <ul class="stacking-card__bullets" role="list">
+              <li class="stacking-card__bullet">
+                <span class="stacking-card__bullet-icon" aria-hidden="true">
+                  <svg class="icon icon--xs icon--positive" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="../../icons/icons.svg#icon-tick"></use></svg>
+                </span>
+                <span class="stacking-card__bullet-text">Get cover by the hour, month or year</span>
+              </li>
+              <li class="stacking-card__bullet">
+                <span class="stacking-card__bullet-icon" aria-hidden="true">
+                  <svg class="icon icon--xs icon--positive" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="../../icons/icons.svg#icon-tick"></use></svg>
+                </span>
+                <span class="stacking-card__bullet-text">Work with all the big platforms and providers</span>
+              </li>
+              <li class="stacking-card__bullet">
+                <span class="stacking-card__bullet-icon" aria-hidden="true">
+                  <svg class="icon icon--xs icon--positive" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="../../icons/icons.svg#icon-tick"></use></svg>
+                </span>
+                <span class="stacking-card__bullet-text">Keep your policy in your pocket with the app</span>
+              </li>
+            </ul>
+            <div class="stacking-card__actions">
+              <a class="btn btn--pill btn--primary stacking-card__cta" href="#">Get a car quote</a>
+              <a class="stacking-card__link" href="#">
+                Learn more about pay-as-you-go insurance
+                <svg class="stacking-card__link-icon" viewBox="0 0 96 96" aria-hidden="true"><use href="../../icons/icons.svg#icon-arrow-right"></use></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /stacking-cards__stage -->
+    </div><!-- /stacking-cards__track -->
+
+  </section>
+
+
+  <!-- =============================================
        KEY STATISTICS
   ============================================= -->
   <section class="key-stats">
     <div class="key-stats__content">
 
       <div class="key-stats__heading-wrap">
-        <h2 class="key-stats__heading">Trusted by drivers across the UK</h2>
+        <h2 class="key-stats__heading">Trusted by many drivers across the UK</h2>
       </div>
 
       <div class="key-stats__cards">
@@ -868,7 +1029,7 @@
           </div>
           <div class="key-stats__card-text">
             <p class="key-stats__number" aria-label="81 million">
-              <span class="key-stats__number-value" aria-hidden="true" data-target="81" data-suffix="M" data-duration="1800">81M</span>
+              <span class="key-stats__number-value" aria-hidden="true" data-target="81" data-suffix="M" data-duration="2800">81M</span>
             </p>
             <p class="key-stats__label">Policies and counting</p>
           </div>
@@ -884,7 +1045,7 @@
           </div>
           <div class="key-stats__card-text">
             <p class="key-stats__number" aria-label="575 thousand">
-              <span class="key-stats__number-value" aria-hidden="true" data-target="575" data-suffix="K" data-duration="1800">575K</span>
+              <span class="key-stats__number-value" aria-hidden="true" data-target="575" data-suffix="K" data-duration="2800">575K</span>
             </p>
             <p class="key-stats__label">Drivers trust Zego</p>
           </div>
@@ -900,7 +1061,7 @@
           </div>
           <div class="key-stats__card-text">
             <p class="key-stats__number" aria-label="96 percent">
-              <span class="key-stats__number-value" aria-hidden="true" data-target="96" data-suffix="%" data-duration="1400">96%</span>
+              <span class="key-stats__number-value" aria-hidden="true" data-target="96" data-suffix="%" data-duration="2200">96%</span>
             </p>
             <p class="key-stats__label">of drivers save money</p>
           </div>
@@ -911,32 +1072,559 @@
   </section>
 
 
+  <!-- =============================================
+       VIDEO TESTIMONIALS
+  ============================================= -->
+  <section class="video-section">
+    <div class="video-section__content">
+
+      <div class="video-section__text">
+        <h2 class="video-section__heading">What our customers say</h2>
+        <p class="video-section__body">Our customers are at the heart of what we do. We're on a mission to offer them the best cover at the best prices. But don't just take our word for it...</p>
+      </div>
+
+      <div class="video-section__cards">
+
+        <!-- Video card: replace data-video-id with YouTube video ID, update title and support text, update thumbnail src -->
+        <div class="video-card" data-video-id="">
+          <div class="video-card__thumbnail">
+            <div class="video-card__img-wrapper">
+              <img class="video-card__img" src="https://www.figma.com/api/mcp/asset/ebe71516-4364-491e-afb0-372d4e328439" alt="">
+            </div>
+          </div>
+          <button class="video-card__play" type="button" aria-label="Play video">
+            <img class="video-card__play-bg" src="https://www.figma.com/api/mcp/asset/d05ca3e9-3f79-40ec-80e3-3afd21f0a8cd" alt="">
+            <img class="video-card__play-icon" src="https://www.figma.com/api/mcp/asset/8d5f8043-1a56-42bc-a920-79fd92791a8c" alt="">
+          </button>
+          <div class="video-card__text">
+            <h3 class="video-card__title">Sub Heading 24px</h3>
+            <p class="video-card__support">Supporting 16px</p>
+          </div>
+        </div>
+
+        <!-- Video card: replace data-video-id with YouTube video ID, update title and support text, update thumbnail src -->
+        <div class="video-card" data-video-id="">
+          <div class="video-card__thumbnail">
+            <div class="video-card__img-wrapper">
+              <img class="video-card__img" src="https://www.figma.com/api/mcp/asset/f8aaf494-0200-4134-a660-a1b75829cab2" alt="">
+            </div>
+          </div>
+          <button class="video-card__play" type="button" aria-label="Play video">
+            <img class="video-card__play-bg" src="https://www.figma.com/api/mcp/asset/d05ca3e9-3f79-40ec-80e3-3afd21f0a8cd" alt="">
+            <img class="video-card__play-icon" src="https://www.figma.com/api/mcp/asset/8d5f8043-1a56-42bc-a920-79fd92791a8c" alt="">
+          </button>
+          <div class="video-card__text">
+            <h3 class="video-card__title">Sub Heading 24px</h3>
+            <p class="video-card__support">Supporting 16px</p>
+          </div>
+        </div>
+
+        <!-- Video card: replace data-video-id with YouTube video ID, update title and support text, update thumbnail src -->
+        <div class="video-card" data-video-id="">
+          <div class="video-card__thumbnail">
+            <div class="video-card__img-wrapper">
+              <img class="video-card__img" src="https://www.figma.com/api/mcp/asset/587e3a5f-7f60-4bf5-bd44-4cc6a6158b7b" alt="">
+            </div>
+          </div>
+          <button class="video-card__play" type="button" aria-label="Play video">
+            <img class="video-card__play-bg" src="https://www.figma.com/api/mcp/asset/d05ca3e9-3f79-40ec-80e3-3afd21f0a8cd" alt="">
+            <img class="video-card__play-icon" src="https://www.figma.com/api/mcp/asset/8d5f8043-1a56-42bc-a920-79fd92791a8c" alt="">
+          </button>
+          <div class="video-card__text">
+            <h3 class="video-card__title">Sub Heading 24px</h3>
+            <p class="video-card__support">Supporting 16px</p>
+          </div>
+        </div>
+
+      </div><!-- /video-section__cards -->
+
+      <div class="video-modal" id="video-modal" role="dialog" aria-modal="true" aria-label="Video player" hidden>
+        <div class="video-modal__backdrop"></div>
+        <div class="video-modal__container">
+          <button class="video-modal__close" aria-label="Close video">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <div class="video-modal__embed">
+            <iframe class="video-modal__iframe" id="video-modal-iframe" src="" title="Customer testimonial video" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /video-section__content -->
+  </section>
+
+
+  <!-- ============================================================
+       PRODUCT CARDS — Centred variant
+       3-column grid with centred heading above.
+       ============================================================ -->
+
+  <section class="product-cards product-cards--centered">
+    <div class="product-cards__inner">
+
+      <!-- Centred intro text — no sticky, full 876px width -->
+      <div class="product-cards__text-col">
+        <div class="product-cards__intro">
+          <h2 class="product-cards__heading">Cover for every platform</h2>
+          <p class="product-cards__body">Whether you're delivering for Amazon, driving for Uber, or riding for Deliveroo — we've got flexible insurance built around the platforms you work with.</p>
+        </div>
+      </div><!-- /product-cards__text-col -->
+
+      <!-- 3-column product card grid -->
+      <div class="product-cards__grid">
+
+        <!-- Card 1 — Amazon Flex -->
+        <div class="product-card">
+          <div class="product-card__icon-area">
+            <div class="product-card__icon product-card__icon--brand product-card__icon--sm">
+              <img class="product-card__icon-img" src="https://www.figma.com/api/mcp/asset/fc77fa03-f5a4-4801-b710-60f25156603b"
+                   style="inset: 74.45% 1.49% 0 1.49%;" alt="">
+              <img class="product-card__icon-img" src="https://www.figma.com/api/mcp/asset/21c415e8-3363-48cd-89d0-a257de6988cd"
+                   style="inset: 0 16.9% 24.4% 19.87%;" alt="">
+            </div>
+          </div>
+          <div class="product-card__content">
+            <h3 class="product-card__title">Amazon Flex</h3>
+            <p class="product-card__desc">Flexible delivery and courier insurance designed for Amazon Flex drivers.</p>
+            <div class="product-card__actions">
+              <a class="btn btn--pill btn--primary btn--full" href="#" aria-label="Get Amazon Flex insurance — get a car quote">Get a car quote</a>
+              <a class="product-card__link" href="#">
+                Learn more
+                <svg class="product-card__link-icon" viewBox="0 0 96 96" aria-hidden="true">
+                  <use href="../../icons/icons.svg#icon-arrow-right"></use>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div><!-- /card 1 Amazon Flex -->
+
+        <!-- Card 2 — Uber -->
+        <div class="product-card">
+          <div class="product-card__icon-area">
+            <div class="product-card__icon product-card__icon--brand product-card__icon--uber">
+              <img class="product-card__icon-img" src="https://www.figma.com/api/mcp/asset/8ef9b530-d178-4fe4-b08d-bce572b0f775"
+                   style="top: 36.11%; bottom: 36.11%; left: 50%; transform: translateX(-50%); aspect-ratio: 25.44/8.89; width: auto; height: auto;" alt="">
+            </div>
+          </div>
+          <div class="product-card__content">
+            <h3 class="product-card__title">Uber</h3>
+            <p class="product-card__desc">Flexible taxi insurance (also known as 'private hire insurance') for Uber drivers.</p>
+            <div class="product-card__actions">
+              <a class="btn btn--pill btn--primary btn--full" href="#" aria-label="Get Uber insurance — get a delivery quote">Get a delivery quote</a>
+              <a class="product-card__link" href="#">
+                Learn more
+                <svg class="product-card__link-icon" viewBox="0 0 96 96" aria-hidden="true">
+                  <use href="../../icons/icons.svg#icon-arrow-right"></use>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div><!-- /card 2 Uber -->
+
+        <!-- Card 3 — Deliveroo -->
+        <div class="product-card">
+          <div class="product-card__icon-area">
+            <div class="product-card__icon product-card__icon--brand product-card__icon--sm">
+              <img class="product-card__icon-img" src="https://www.figma.com/api/mcp/asset/58d473cf-ab5b-43c7-ba94-45a4148473ac"
+                   style="inset: 0 4.55%;" alt="">
+            </div>
+          </div>
+          <div class="product-card__content">
+            <h3 class="product-card__title">Deliveroo</h3>
+            <p class="product-card__desc">Flexible delivery and courier insurance designed for Deliveroo drivers and riders.</p>
+            <div class="product-card__actions">
+              <a class="btn btn--pill btn--primary btn--full" href="#" aria-label="Get Deliveroo insurance — get a private hire quote">Get a private hire quote</a>
+              <a class="product-card__link" href="#">
+                Learn more
+                <svg class="product-card__link-icon" viewBox="0 0 96 96" aria-hidden="true">
+                  <use href="../../icons/icons.svg#icon-arrow-right"></use>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div><!-- /card 3 Deliveroo -->
+
+        <!-- Card 4 — Just Eat -->
+        <div class="product-card">
+          <div class="product-card__icon-area">
+            <div class="product-card__icon product-card__icon--brand product-card__icon--sm">
+              <img class="product-card__icon-img" src="https://www.figma.com/api/mcp/asset/a8a4d7bf-de20-4189-8b1a-2aa5eaa9b4da"
+                   style="top: 0; bottom: 0; left: 50%; transform: translateX(-50%); aspect-ratio: 23.92/24; width: auto;" alt="">
+            </div>
+          </div>
+          <div class="product-card__content">
+            <h3 class="product-card__title">Just Eat</h3>
+            <p class="product-card__desc">Flexible delivery and courier insurance designed for Just Eat drivers and riders.</p>
+            <div class="product-card__actions">
+              <a class="btn btn--pill btn--primary btn--full" href="#" aria-label="Get Just Eat insurance — get a private hire quote">Get a private hire quote</a>
+              <a class="product-card__link" href="#">
+                Learn more
+                <svg class="product-card__link-icon" viewBox="0 0 96 96" aria-hidden="true">
+                  <use href="../../icons/icons.svg#icon-arrow-right"></use>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div><!-- /card 4 Just Eat -->
+
+        <!-- Card 5 — UberEats (car) -->
+        <div class="product-card">
+          <div class="product-card__icon-area">
+            <div class="product-card__icon product-card__icon--brand product-card__icon--uber-eats">
+              <img class="product-card__icon-img" src="https://www.figma.com/api/mcp/asset/dd97e632-5885-4e93-87dc-fb6b239acddc"
+                   style="inset: 27.78% 20.65% 52.14% 20.6%;" alt="">
+              <img class="product-card__icon-img" src="https://www.figma.com/api/mcp/asset/cc64ecfc-5ea7-46a0-bd6f-cc58175dc81e"
+                   style="inset: 52.31% 20.6% 27.78% 20.71%;" alt="">
+            </div>
+          </div>
+          <div class="product-card__content">
+            <h3 class="product-card__title">UberEats</h3>
+            <p class="product-card__desc">Flexible delivery and courier insurance designed for Uber Eats drivers and riders.</p>
+            <div class="product-card__actions">
+              <a class="btn btn--pill btn--primary btn--full" href="#" aria-label="Get Uber Eats insurance — get a car quote">Get car quote</a>
+              <a class="product-card__link" href="#">
+                Learn more
+                <svg class="product-card__link-icon" viewBox="0 0 96 96" aria-hidden="true">
+                  <use href="../../icons/icons.svg#icon-arrow-right"></use>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div><!-- /card 5 UberEats car -->
+
+        <!-- Card 6 — UberEats (scooter) -->
+        <div class="product-card">
+          <div class="product-card__icon-area">
+            <div class="product-card__icon product-card__icon--brand product-card__icon--uber-eats">
+              <img class="product-card__icon-img" src="https://www.figma.com/api/mcp/asset/dd97e632-5885-4e93-87dc-fb6b239acddc"
+                   style="inset: 27.78% 20.65% 52.14% 20.6%;" alt="">
+              <img class="product-card__icon-img" src="https://www.figma.com/api/mcp/asset/cc64ecfc-5ea7-46a0-bd6f-cc58175dc81e"
+                   style="inset: 52.31% 20.6% 27.78% 20.71%;" alt="">
+            </div>
+          </div>
+          <div class="product-card__content">
+            <h3 class="product-card__title">UberEats</h3>
+            <p class="product-card__desc">Flexible delivery and courier insurance designed for Uber Eats drivers and riders.</p>
+            <div class="product-card__actions">
+              <a class="btn btn--pill btn--primary btn--full" href="#" aria-label="Get Uber Eats scooter insurance — get a scooter quote">Get Scooter quote</a>
+              <a class="product-card__link" href="#">
+                Learn more
+                <svg class="product-card__link-icon" viewBox="0 0 96 96" aria-hidden="true">
+                  <use href="../../icons/icons.svg#icon-arrow-right"></use>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div><!-- /card 6 UberEats scooter -->
+
+      </div><!-- /product-cards__grid -->
+
+    </div><!-- /product-cards__inner -->
+  </section><!-- /product-cards--centered -->
+
+
+  <!-- ============================================================
+       BLOG SLIDER
+       Left aside: heading, description, prev/next arrow controls.
+       Right: horizontally clipped card track with peek effect.
+       ============================================================ -->
+
+  <section class="blog-slider">
+
+    <div class="blog-slider__inner">
+
+      <!-- Left column — heading, description, arrow controls -->
+      <div class="blog-slider__aside">
+
+        <div class="blog-slider__text">
+          <h2 class="blog-slider__heading">The Zego blog</h2>
+          <p class="blog-slider__body">Find more information on how to get the most out of your insurance, whether you're a private hire taxi driver, tradesperson or food delivery driver.</p>
+        </div>
+
+        <div class="blog-slider__arrows">
+          <!-- Prev button — disabled at start (index 0) -->
+          <button class="blog-slider__arrow blog-slider__arrow--prev"
+                  type="button"
+                  aria-label="Previous articles"
+                  disabled>
+            <span class="blog-slider__arrow-icon" aria-hidden="true">
+              <svg viewBox="0 0 96 96" fill="currentColor">
+                <use href="../../icons/icons.svg#icon-arrow-left"></use>
+              </svg>
+            </span>
+          </button>
+
+          <button class="blog-slider__arrow blog-slider__arrow--next"
+                  type="button"
+                  aria-label="Next articles">
+            <span class="blog-slider__arrow-icon" aria-hidden="true">
+              <svg viewBox="0 0 96 96" fill="currentColor">
+                <use href="../../icons/icons.svg#icon-arrow-right"></use>
+              </svg>
+            </span>
+          </button>
+        </div>
+
+      </div><!-- /blog-slider__aside -->
+
+      <!-- Right — clipped slider track -->
+      <div role="region" aria-label="Blog articles" class="blog-slider__track-wrapper">
+
+        <div class="blog-slider__track">
+
+          <!-- Card 1 -->
+          <a class="blog-card blog-card--single"
+             href="#"
+             aria-label="Read article: Behind the code; life as an engineer at Zego">
+            <div class="blog-card__image">
+              <img class="blog-card__img"
+                   src="https://www.figma.com/api/mcp/asset/bf2db323-819e-4674-bb35-23f2f2ba2fe8"
+                   alt="Behind the code; life as an engineer at Zego">
+              <div class="blog-card__img-overlay"></div>
+            </div>
+            <div class="blog-card__details">
+              <h3 class="blog-card__title">Behind the code; life as an engineer at Zego</h3>
+              <div class="blog-card__date">01 December 2024</div>
+              <p class="blog-card__link">Read more →</p>
+            </div>
+          </a>
+
+          <!-- Card 2 -->
+          <a class="blog-card blog-card--single"
+             href="#"
+             aria-label="Read article: How long do car insurance claims affect your price?">
+            <div class="blog-card__image">
+              <img class="blog-card__img"
+                   src="https://www.figma.com/api/mcp/asset/21724387-9dea-4a5e-8354-6d217610e49a"
+                   alt="How long do car insurance claims affect your price?">
+              <div class="blog-card__img-overlay"></div>
+            </div>
+            <div class="blog-card__details">
+              <h3 class="blog-card__title">How long do car insurance claims affect your price?</h3>
+              <div class="blog-card__date">01 December 2024</div>
+              <p class="blog-card__link">Read more →</p>
+            </div>
+          </a>
+
+          <!-- Card 3 -->
+          <a class="blog-card blog-card--single"
+             href="#"
+             aria-label="Read article: What should I expect from our interview process">
+            <div class="blog-card__image">
+              <img class="blog-card__img"
+                   src="https://www.figma.com/api/mcp/asset/6f2c1059-27b9-4313-ba5d-f09140777589"
+                   alt="What should I expect from our interview process">
+              <div class="blog-card__img-overlay"></div>
+            </div>
+            <div class="blog-card__details">
+              <h3 class="blog-card__title">What should I expect from our interview process</h3>
+              <div class="blog-card__date">01 December 2024</div>
+              <p class="blog-card__link">Read more →</p>
+            </div>
+          </a>
+
+        </div><!-- /blog-slider__track -->
+
+      </div><!-- /blog-slider__track-wrapper -->
+
+      <!-- Screen reader live region -->
+      <p class="blog-slider__live sr-only" aria-live="polite" aria-atomic="true"></p>
+
+    </div><!-- /blog-slider__inner -->
+
+  </section><!-- /blog-slider -->
+
+
 </div>
 
 
 <script>
   /* ============================================
      Nav — hide on scroll down, show on scroll up
+     - Hides after scrolling 80px from the top
+     - Only reappears after scrolling UP 40px
+       (prevents flickering on subtle mouse movement)
+     - Reappear has a 200ms delay (CSS transition-delay)
+     - 300ms debounce on the show decision
   ============================================ */
   (function () {
-    var header   = document.querySelector('.page-header');
-    var lastY    = 0;
-    var ticking  = false;
+    var header      = document.querySelector('.page-header');
+    var lastY       = 0;
+    var scrolledUp  = 0;   /* accumulated upward scroll distance */
+    var ticking     = false;
+    var showTimer   = null;
+    /* Minimum px scrolled UP before the nav reappears */
+    var SHOW_THRESHOLD = 40;
 
     window.addEventListener('scroll', function () {
       if (!ticking) {
         window.requestAnimationFrame(function () {
           var currentY = window.scrollY;
-          if (currentY > lastY && currentY > 80) {
+          var delta    = currentY - lastY;
+
+          if (delta > 0 && currentY > 80) {
+            /* Scrolling down — hide immediately, cancel any pending show */
+            clearTimeout(showTimer);
+            scrolledUp = 0;
             header.classList.add('page-header--hidden');
-          } else {
-            header.classList.remove('page-header--hidden');
+          } else if (delta < 0) {
+            /* Scrolling up — accumulate distance, only show after threshold */
+            scrolledUp += Math.abs(delta);
+            if (scrolledUp >= SHOW_THRESHOLD) {
+              /* Debounce: wait 300ms of sustained upward intent before showing */
+              clearTimeout(showTimer);
+              showTimer = setTimeout(function () {
+                header.classList.remove('page-header--hidden');
+              }, 300);
+            }
           }
+
           lastY = currentY;
           ticking = false;
         });
         ticking = true;
       }
+    }, { passive: true });
+  }());
+
+  /* ============================================
+     Stacking Cards — scroll-driven animation
+  ============================================ */
+  (function () {
+    /* Cubic ease-out — starts quickly, settles gently into place */
+    function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+    function lerp(a, b, t) { return a + (b - a) * t; }
+    function invLerp(a, b, v) {
+      if (b === a) return 0;
+      return Math.max(0, Math.min(1, (v - a) / (b - a)));
+    }
+
+    document.querySelectorAll('.stacking-cards').forEach(function (section) {
+      var track = section.querySelector('.stacking-cards__track');
+      var stage = section.querySelector('.stacking-cards__stage');
+      var cards = Array.from(section.querySelectorAll('.stacking-cards__card'));
+      if (!track || !stage || !cards.length) return;
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        section.classList.add('stacking-cards--reduced-motion');
+        return;
+      }
+
+      /* 1.5× viewport per card gives each slide enough scroll distance to feel unhurried */
+      var CARD_SCROLL_HEIGHT = window.innerHeight * 1.5;
+
+      function setup() {
+        track.style.height = (cards.length * CARD_SCROLL_HEIGHT + window.innerHeight) + 'px';
+      }
+
+      function updateCards() {
+        var trackTop    = track.getBoundingClientRect().top;
+        var trackScroll = -trackTop;
+        var maxScroll   = track.offsetHeight - window.innerHeight;
+        var progress    = Math.max(0, Math.min(1, trackScroll / maxScroll));
+        var n = cards.length;
+
+        cards.forEach(function (card, i) {
+          var enterStart = i / n;
+          /* 0.5/n widens the animation window — card takes longer to travel up */
+          var enterEnd   = enterStart + (0.5 / n);
+          var exitStart  = (i + 1) / n;
+          var exitEnd    = exitStart + (0.5 / n);
+          var isLast     = i === n - 1;
+          var ty = 0, scale = 1;
+
+          /* Cards slide up from below the stage's clipped bottom edge.
+             top: 200px means adding (innerHeight - 200) to translateY puts the card exactly at
+             the bottom clip boundary; anything below that is hidden by stage overflow:hidden. */
+          var belowStage = window.innerHeight - 200;
+
+          if (progress < enterStart) {
+            ty = belowStage; scale = 1;
+          } else if (progress <= enterEnd) {
+            var t = easeOut(invLerp(enterStart, enterEnd, progress));
+            ty = lerp(belowStage, 0, t); scale = 1;
+          } else if (isLast || progress <= exitStart) {
+            ty = 0; scale = 1;
+          } else if (progress <= exitEnd) {
+            var t = easeOut(invLerp(exitStart, exitEnd, progress));
+            ty = lerp(0, -32, t); scale = lerp(1, 0.94, t);
+          } else {
+            ty = -32; scale = 0.94;
+          }
+
+          card.style.transform = 'translateX(-50%) translateY(' + ty + 'px) scale(' + scale + ')';
+          card.style.opacity   = 1;
+        });
+      }
+
+      var ticking = false;
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          requestAnimationFrame(function () { updateCards(); ticking = false; });
+          ticking = true;
+        }
+      }, { passive: true });
+
+      window.addEventListener('resize', function () {
+        CARD_SCROLL_HEIGHT = window.innerHeight * 1.5;
+        setup(); updateCards();
+      });
+
+      setup();
+      updateCards();
+    });
+  }());
+
+  /* ============================================
+     Video Section — lightbox modal
+  ============================================ */
+  (function () {
+    var modal       = document.getElementById('video-modal');
+    var iframe      = document.getElementById('video-modal-iframe');
+    var closeBtn    = modal ? modal.querySelector('.video-modal__close') : null;
+    var backdrop    = modal ? modal.querySelector('.video-modal__backdrop') : null;
+    var lastFocused = null;
+
+    if (!modal || !iframe) return;
+
+    function openModal(videoId) {
+      if (!videoId) {
+        console.warn('[video-section] No data-video-id set on this card. Add a YouTube video ID.');
+        return;
+      }
+      lastFocused = document.activeElement;
+      iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0';
+      modal.removeAttribute('hidden');
+      document.body.style.overflow = 'hidden';
+      if (closeBtn) closeBtn.focus();
+    }
+
+    function closeModal() {
+      modal.setAttribute('hidden', '');
+      iframe.src = '';
+      document.body.style.overflow = '';
+      if (lastFocused) lastFocused.focus();
+    }
+
+    document.querySelectorAll('.video-card__play').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        openModal(btn.closest('.video-card').dataset.videoId || '');
+      });
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (backdrop)  backdrop.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', function (e) {
+      if ((e.key === 'Escape' || e.key === 'Esc') && !modal.hasAttribute('hidden')) closeModal();
+    });
+
+    modal.addEventListener('keydown', function (e) {
+      if (e.key !== 'Tab') return;
+      var focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      var first = focusable[0], last = focusable[focusable.length - 1];
+      if (e.shiftKey) { if (document.activeElement === first) { e.preventDefault(); last.focus(); } }
+      else            { if (document.activeElement === last)  { e.preventDefault(); first.focus(); } }
     });
   }());
 
@@ -944,7 +1632,8 @@
      Key Stats — count-up animation
   ============================================ */
   (function () {
-    function easeOut(t) { return t * (2 - t); }
+    /* Cubic ease-out — counts up quickly then decelerates smoothly to the final value */
+    function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
 
     function animateCounter(el) {
       var target   = parseInt(el.dataset.target, 10);
@@ -1017,7 +1706,7 @@
     if (!track) return;
 
     var x        = 0;
-    var speed    = 0.6; /* px per frame — adjust to taste */
+    var speed    = 0.5; /* px per frame — ~30px/s at 60fps */
     var halfWidth = 0;
     var paused   = false;
     var raf;
@@ -1071,7 +1760,7 @@
           var index = parseInt(cell.dataset.fadeIndex, 10) || 0;
           setTimeout(function () {
             cell.classList.add('is-visible');
-          }, index * 60);
+          }, index * 100);
           observer.unobserve(cell);
         }
       });
@@ -1133,6 +1822,110 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') { clearTimeout(closeTimer); closeDropdown(); }
     });
+  }());
+</script>
+
+<script>
+  /* Blog Slider — click-driven card slider */
+  (function () {
+
+    var CARD_W = 410;
+    var GAP    = 24;
+    var STEP   = CARD_W + GAP;
+
+    document.querySelectorAll('.blog-slider').forEach(function (section) {
+      var track   = section.querySelector('.blog-slider__track');
+      var wrapper = section.querySelector('.blog-slider__track-wrapper');
+      var btnPrev = section.querySelector('.blog-slider__arrow--prev');
+      var btnNext = section.querySelector('.blog-slider__arrow--next');
+      var live    = section.querySelector('.blog-slider__live');
+
+      if (!track || !wrapper || !btnPrev || !btnNext) return;
+
+      var currentIndex = 0;
+
+      function getCardCount() {
+        return track.querySelectorAll('.blog-card').length;
+      }
+
+      function getVisibleCount() {
+        return Math.floor((wrapper.offsetWidth + GAP) / STEP);
+      }
+
+      function getMaxIndex() {
+        return Math.max(0, getCardCount() - getVisibleCount());
+      }
+
+      function updateLive() {
+        if (!live) return;
+        var visibleCount = getVisibleCount();
+        var total        = getCardCount();
+        var from         = currentIndex + 1;
+        var to           = Math.min(currentIndex + visibleCount, total);
+        live.textContent = 'Showing articles ' + from + ' to ' + to + ' of ' + total;
+      }
+
+      function update(animate) {
+        if (!animate) {
+          track.style.transition = 'none';
+        }
+        track.style.transform = 'translateX(' + (-currentIndex * STEP) + 'px)';
+        if (!animate) {
+          track.getBoundingClientRect();
+          track.style.transition = '';
+        }
+        btnPrev.disabled = currentIndex === 0;
+        btnNext.disabled = currentIndex >= getMaxIndex();
+        updateLive();
+      }
+
+      btnPrev.addEventListener('click', function () {
+        if (currentIndex > 0) { currentIndex--; update(true); }
+      });
+
+      btnNext.addEventListener('click', function () {
+        if (currentIndex < getMaxIndex()) { currentIndex++; update(true); }
+      });
+
+      var touchStartX = 0;
+      var touchEndX   = 0;
+
+      track.addEventListener('touchstart', function (e) {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      track.addEventListener('touchend', function (e) {
+        touchEndX = e.changedTouches[0].screenX;
+        var diff  = touchStartX - touchEndX;
+        if (Math.abs(diff) > 50) {
+          if (diff > 0 && currentIndex < getMaxIndex()) { currentIndex++; update(true); }
+          if (diff < 0 && currentIndex > 0)             { currentIndex--; update(true); }
+        }
+      }, { passive: true });
+
+      track.querySelectorAll('.blog-card').forEach(function (card, i) {
+        card.addEventListener('focus', function () {
+          var visibleCount = getVisibleCount();
+          if (i < currentIndex) { currentIndex = i; update(true); }
+          if (i >= currentIndex + visibleCount) {
+            currentIndex = i - visibleCount + 1;
+            update(true);
+          }
+        });
+      });
+
+      var resizeTimer;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () {
+          currentIndex = Math.min(currentIndex, getMaxIndex());
+          update(false);
+        }, 100);
+      });
+
+      update(false);
+    });
+
   }());
 </script>
 

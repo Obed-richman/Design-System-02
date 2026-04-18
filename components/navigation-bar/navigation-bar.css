@@ -56,7 +56,7 @@
 .nav-bar__links {
   display: flex;
   align-items: center;
-  gap: var(--gap-large);
+  gap: var(--gap-xx-large);
   flex: 1;
   justify-content: flex-start;
   list-style: none;
@@ -371,19 +371,19 @@
 
 /* Hover — aqua tint bg + active border */
 .nav-dropdown__tile:hover {
-  background: var(--colour-aqua-20);
+  background: var(--colour-aqua-10) ;
   border-color: var(--border-color-active);
 }
 
 /* Active — same visual as hover (forced .is-active class) */
 .nav-dropdown__tile.is-active {
-  background: var(--colour-aqua-20);
+  background: var(--colour-aqua-10);
   border-color: var(--border-color-active);
 }
 
 /* Pressed — one step deeper aqua */
 .nav-dropdown__tile:active {
-  background: var(--colour-aqua-30);
+  background: var(--colour-aqua-40);
   border-color: var(--border-color-active);
 }
 

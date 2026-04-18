@@ -1,0 +1,62 @@
+<!-- ============================================
+     PROMO BANNER COMPONENT SNIPPET
+     Copy what you need into a screen or index.html.
+     Requires: tokens/tokens.css
+               components/button/button.css
+               components/promo-banner/promo-banner.css
+     ============================================ -->
+
+
+<!-- ============================================================
+     VARIANT — Desktop | Brand-purple card with image above text
+     Full-width section with a 16px gutter either side.
+     Structure: large landscape photo (top) + text block (below).
+     The image is decorative (aria-hidden); heading carries meaning.
+     ============================================================ -->
+
+<section class="promo-banner">
+
+  <div class="promo-banner__card">
+
+    <!-- Image panel — large landscape photo, flush to top of card -->
+    <!-- aria-hidden: image is decorative; heading conveys the content meaning -->
+    <div class="promo-banner__image">
+      <div class="promo-banner__img" aria-hidden="true">
+        <div class="promo-banner__img-photo">
+          <!-- Update src and alt to match your actual asset -->
+          <img src="../../screens/cms/img/App Mock.png"
+               alt="Zego app on a mobile phone">
+        </div>
+        <div class="promo-banner__img-scrim"></div>
+      </div>
+    </div><!-- /promo-banner__image -->
+
+    <!-- Text block — below the image on the purple card background -->
+    <div class="promo-banner__text">
+
+      <p class="promo-banner__seo">SENSE TELEMATICS INSURANCE</p>
+
+      <h2 class="promo-banner__heading">Get up to £60 a year in rewards</h2>
+
+      <p class="promo-banner__body">
+        Our app-based
+        <!-- Inline link: update href to your telematics page URL -->
+        <a class="promo-banner__inline-link"
+           href="https://www.zego.com/sense/"
+           target="_blank"
+           rel="noopener noreferrer">telematics insurance</a>
+        turns good driving into gift cards for some of your favourite brands – plus fairer prices at renewal.
+      </p>
+
+      <div class="promo-banner__actions">
+        <div class="promo-banner__buttons">
+          <!-- CTA button: update href if wrapping in <a>, or change to <button> for JS-driven navigation -->
+          <a class="btn btn--pill btn--primary promo-banner__cta" href="#">Read more</a>
+        </div>
+      </div>
+
+    </div><!-- /promo-banner__text -->
+
+  </div><!-- /promo-banner__card -->
+
+</section><!-- /promo-banner -->

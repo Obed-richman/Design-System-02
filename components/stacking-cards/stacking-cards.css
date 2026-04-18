@@ -34,7 +34,11 @@
   gap: var(--gap-large);
   /* 876px: Fixed Figma design value — no token equivalent */
   width: 876px;
-  margin-bottom: var(--number-48);
+  /* Inside the sticky stage — no margin-bottom needed; padding on stage provides spacing */
+  padding: var(--gap-xxx-large) 0 var(--gap-xxx-large);
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
 }
 
 .stacking-cards__heading {
@@ -87,8 +91,9 @@
   width: 100%;
   overflow: hidden;
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 
@@ -100,11 +105,12 @@
 
 .stacking-cards__card {
   position: absolute;
-  /* 80px: Visual top offset within sticky stage — space for header above */
-  top: 80px;
+  /* 200px: Visual top offset — sits right behind the pinned header inside the sticky stage */
+  top: 250px;
   left: 50%;
-  transform: translateX(-50%) translateY(100px);
-  opacity: 0;
+  /* Cards start below the stage floor; stage overflow:hidden clips them until JS slides them up */
+  transform: translateX(-50%) translateY(100vh);
+  opacity: 1;
   will-change: transform, opacity;
   /* Scale from top centre so cards recede upward when pushed back */
   transform-origin: center top;
@@ -343,10 +349,9 @@
   position: relative;
   height: auto;
   overflow: visible;
-  flex-direction: column;
   align-items: center;
   gap: var(--gap-large);
-  padding: var(--gap-large) 0;
+  padding-bottom: var(--gap-large);
 }
 
 .stacking-cards--reduced-motion .stacking-cards__card {

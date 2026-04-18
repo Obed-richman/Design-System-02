@@ -48,7 +48,7 @@
                   aria-hidden="true"
                   data-target="81"
                   data-suffix="M"
-                  data-duration="1800">81M</span>
+                  data-duration="2800">81M</span>
           </p>
           <p class="key-stats__label">Policies and counting</p>
         </div>
@@ -79,7 +79,7 @@
                   aria-hidden="true"
                   data-target="575"
                   data-suffix="K"
-                  data-duration="1800">575K</span>
+                  data-duration="2800">575K</span>
           </p>
           <p class="key-stats__label">Drivers trust Zego</p>
         </div>
@@ -110,7 +110,7 @@
                   aria-hidden="true"
                   data-target="96"
                   data-suffix="%"
-                  data-duration="1400">96%</span>
+                  data-duration="2200">96%</span>
           </p>
           <p class="key-stats__label">of drivers save money</p>
         </div>
@@ -136,8 +136,8 @@
      Respects prefers-reduced-motion. */
   (function () {
 
-    /* Easing function: ease-out quad — decelerates toward end */
-    function easeOut(t) { return t * (2 - t); }
+    /* Cubic ease-out — counts up quickly then decelerates smoothly to the final value */
+    function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
 
     /* Animate a single number span from 0 to its data-target */
     function animateCounter(el) {

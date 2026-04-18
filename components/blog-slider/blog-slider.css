@@ -1,0 +1,220 @@
+/* ============================================
+   BLOG SLIDER COMPONENT
+   Depends on: tokens/tokens.css
+               components/blog-card/blog-card.css
+   No hardcoded values — token variables only,
+   except where noted inline.
+   Fixed pixel dimensions are noted inline.
+   ============================================ */
+
+
+/* --- Base --- */
+
+.blog-slider {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--number-94) 0;
+  width: 100%;
+  background: var(--bg-primary);
+  /* No overflow: hidden here — would clip the aside controls */
+  box-sizing: border-box;
+}
+
+
+/* ============================================
+   INNER ROW
+   ============================================ */
+
+.blog-slider__inner {
+  display: flex;
+  flex-direction: row;
+  /* 24px: Fixed Figma design value — gap between aside and slider track */
+  gap: 24px;
+  align-items: flex-start;
+  align-self: stretch;
+  /* 1280px: Fixed Figma design value */
+  width: 1280px;
+}
+
+
+/* ============================================
+   ASIDE — left column (text + arrow controls)
+   ============================================ */
+
+.blog-slider__aside {
+  /* 410px: Fixed Figma design value */
+  width: 410px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.blog-slider__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-large);
+  padding-right: var(--gap-medium);
+  width: 100%;
+}
+
+.blog-slider__heading {
+  font-family: inherit;
+  font-size: var(--font-size-title-1);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-title-1);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.blog-slider__body {
+  font-family: inherit;
+  font-size: var(--font-size-body-1);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-1);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+
+/* ============================================
+   ARROW CONTROLS
+   ============================================ */
+
+.blog-slider__arrows {
+  display: flex;
+  flex-direction: row;
+  gap: var(--gap-large);
+  align-items: flex-start;
+  margin-top: var(--gap-xxx-large);
+}
+
+.blog-slider__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--gap-small);
+  background: transparent;
+  border: var(--border-s) solid var(--border-color-on-light);
+  border-radius: var(--radius-round);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 150ms ease, border-color 150ms ease;
+}
+
+.blog-slider__arrow:hover:not(:disabled) {
+  background: var(--bg-secondary);
+}
+
+.blog-slider__arrow:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.blog-slider__arrow:focus-visible {
+  outline: var(--border-m) solid var(--border-color-focused);
+  outline-offset: 2px;
+}
+
+.blog-slider__arrow-icon {
+  /* 16px: Fixed Figma design value — arrow icon size */
+  width: 16px;
+  height: 16px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.blog-slider__arrow-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+
+/* ============================================
+   TRACK WRAPPER
+   overflow: hidden creates the "peek" clip —
+   the third card extends beyond the wrapper
+   edge, revealing a portion of it.
+   ============================================ */
+
+.blog-slider__track-wrapper {
+  flex: 1 0 0;
+  overflow: hidden;
+  position: relative;
+}
+
+
+/* ============================================
+   SLIDER TRACK
+   JS sets transform: translateX(Npx).
+   CSS transition handles the animation.
+   ============================================ */
+
+.blog-slider__track {
+  display: flex;
+  flex-direction: row;
+  /* 24px: Fixed Figma design value — gap between cards */
+  gap: 24px;
+  align-items: flex-start;
+  will-change: transform;
+  transition: transform 420ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* ============================================
+   CARD WIDTH OVERRIDE
+   Standalone blog-card--single is 336px.
+   Inside the slider Figma uses 410px.
+   ============================================ */
+
+/* Card width override for slider context — standalone card is 336px */
+.blog-slider .blog-card {
+  /* 410px: Fixed Figma design value — wider card in slider context */
+  width: 410px;
+  flex-shrink: 0;
+}
+
+
+/* ============================================
+   SCREEN READER UTILITY
+   ============================================ */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+/* ============================================
+   REDUCED MOTION
+   Instant jump instead of animated slide.
+   Arrow button and swipe still work.
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-slider__track {
+    transition: none;
+  }
+}
+
+
+/* ============================================
+   DARK MODE
+   Not specified in Figma for this component —
+   no dark mode overrides needed.
+   ============================================ */

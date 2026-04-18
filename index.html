@@ -62,6 +62,9 @@
   <link rel="stylesheet" href="components/key-stats/key-stats.css" />
   <link rel="stylesheet" href="components/video-section/video-section.css" />
   <link rel="stylesheet" href="components/stacking-cards/stacking-cards.css" />
+  <link rel="stylesheet" href="components/promo-banner/promo-banner.css" />
+  <link rel="stylesheet" href="components/blog-card/blog-card.css" />
+  <link rel="stylesheet" href="components/blog-slider/blog-slider.css" />
 
   <style>
     /* Sandbox layout only — not part of any component */
@@ -5923,6 +5926,328 @@
 
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') { clearTimeout(closeTimer); closeDropdown(); }
+      });
+    }());
+  </script>
+
+  <!-- ============================================================
+       Promo Banner
+  ============================================================ -->
+  <section class="section" style="padding: 0;">
+    <div class="section__header" style="padding: 48px 48px 0;">
+      <h2 class="section__title">Promo Banner</h2>
+    </div>
+    <div style="padding: 48px 0;">
+
+      <section class="promo-banner">
+        <div class="promo-banner__card">
+
+          <!-- Image panel — large landscape photo, flush to top of card -->
+          <div class="promo-banner__image">
+            <div class="promo-banner__img" aria-hidden="true">
+              <div class="promo-banner__img-photo">
+                <img src="screens/cms/img/App Mock.png"
+                     alt="Zego app on a mobile phone">
+              </div>
+              <div class="promo-banner__img-scrim"></div>
+            </div>
+          </div><!-- /promo-banner__image -->
+
+          <!-- Text block — below the image on the purple card background -->
+          <div class="promo-banner__text">
+            <p class="promo-banner__seo">SENSE TELEMATICS INSURANCE</p>
+            <h2 class="promo-banner__heading">Get up to £60 a year in rewards</h2>
+            <p class="promo-banner__body">
+              Our app-based
+              <a class="promo-banner__inline-link"
+                 href="https://www.zego.com/sense/"
+                 target="_blank"
+                 rel="noopener noreferrer">telematics insurance</a>
+              turns good driving into gift cards for some of your favourite brands – plus fairer prices at renewal.
+            </p>
+            <div class="promo-banner__actions">
+              <div class="promo-banner__buttons">
+                <a class="btn btn--pill btn--primary promo-banner__cta" href="#">Read more</a>
+              </div>
+            </div>
+          </div><!-- /promo-banner__text -->
+
+        </div>
+      </section>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       Blog Cards
+  ============================================================ -->
+  <section class="section">
+    <div class="section__header">
+      <h2 class="section__title">Blog Cards</h2>
+    </div>
+
+    <!-- Row 1: Banner -->
+    <div class="section__row">
+      <p class="section__label">Banner</p>
+      <div style="display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start;">
+
+        <a class="blog-card blog-card--banner" href="#" aria-label="Read article: How to save on your insurance renewal">
+          <div class="blog-card__image">
+            <img class="blog-card__img" src="https://www.figma.com/api/mcp/asset/658ea1a7-816d-4c88-9091-c9cc657d2348" alt="">
+          </div>
+          <div class="blog-card__details">
+            <div class="blog-card__title-row">
+              <h3 class="blog-card__title">How to save on your insurance renewal</h3>
+              <span class="blog-card__chevron" aria-hidden="true">
+                <svg viewBox="0 0 7 12" fill="currentColor"><use href="icons/icons.svg#icon-chevron-small-right"></use></svg>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <a class="blog-card blog-card--banner" href="#" aria-label="Read article: 5 tips for safer night driving">
+          <div class="blog-card__image">
+            <img class="blog-card__img" src="https://www.figma.com/api/mcp/asset/6d0964e5-6669-4109-a0f0-bb6ae7c9eaf9" alt="">
+          </div>
+          <div class="blog-card__details">
+            <div class="blog-card__title-row">
+              <h3 class="blog-card__title">5 tips for safer night driving</h3>
+              <span class="blog-card__chevron" aria-hidden="true">
+                <svg viewBox="0 0 7 12" fill="currentColor"><use href="icons/icons.svg#icon-chevron-small-right"></use></svg>
+              </span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Row 2: Single -->
+    <div class="section__row">
+      <p class="section__label">Single</p>
+      <div style="display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start;">
+
+        <a class="blog-card blog-card--single" href="#" aria-label="Read article: What is telematics insurance?">
+          <div class="blog-card__image">
+            <img class="blog-card__img" src="https://www.figma.com/api/mcp/asset/8c0fc1c2-7641-43b2-9ac0-c8ef67cfda1d" alt="">
+            <div class="blog-card__img-overlay"></div>
+          </div>
+          <div class="blog-card__details">
+            <h3 class="blog-card__title">What is telematics insurance and how does it work?</h3>
+            <div class="blog-card__date">01 December 2024</div>
+            <p class="blog-card__link">Read more →</p>
+          </div>
+        </a>
+
+        <a class="blog-card blog-card--single" href="#" aria-label="Read article: Understanding your policy excess">
+          <div class="blog-card__image">
+            <img class="blog-card__img" src="https://www.figma.com/api/mcp/asset/8c0fc1c2-7641-43b2-9ac0-c8ef67cfda1d" alt="">
+            <div class="blog-card__img-overlay"></div>
+          </div>
+          <div class="blog-card__details">
+            <h3 class="blog-card__title">Understanding your policy excess</h3>
+            <p class="blog-card__link">Read more →</p>
+          </div>
+        </a>
+
+        <a class="blog-card blog-card--single" href="#" aria-label="Read article: The best routes for delivery riders in London">
+          <div class="blog-card__image">
+            <img class="blog-card__img" src="https://www.figma.com/api/mcp/asset/8c0fc1c2-7641-43b2-9ac0-c8ef67cfda1d" alt="">
+            <div class="blog-card__img-overlay"></div>
+          </div>
+          <div class="blog-card__details">
+            <h3 class="blog-card__title">The best routes for delivery riders in London</h3>
+            <div class="blog-card__date">15 November 2024</div>
+            <p class="blog-card__link">Read more →</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Row 3: Feature + Single layout -->
+    <div class="section__row">
+      <p class="section__label">Feature</p>
+      <div style="display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start;">
+
+        <a class="blog-card blog-card--feature" href="#" aria-label="Read article: The complete guide to delivery insurance in 2024">
+          <div class="blog-card__image">
+            <img class="blog-card__img" src="https://www.figma.com/api/mcp/asset/ebc001d1-dc04-4922-9ae9-0eb904908526" alt="">
+            <div class="blog-card__img-overlay"></div>
+          </div>
+          <div class="blog-card__details">
+            <h3 class="blog-card__title">The complete guide to delivery insurance in 2024</h3>
+            <div class="blog-card__date">01 December 2024</div>
+            <p class="blog-card__link">Read more →</p>
+          </div>
+        </a>
+
+        <a class="blog-card blog-card--single" href="#" aria-label="Read article: Private hire insurance explained">
+          <div class="blog-card__image">
+            <img class="blog-card__img" src="https://www.figma.com/api/mcp/asset/8c0fc1c2-7641-43b2-9ac0-c8ef67cfda1d" alt="">
+            <div class="blog-card__img-overlay"></div>
+          </div>
+          <div class="blog-card__details">
+            <h3 class="blog-card__title">Private hire insurance explained</h3>
+            <div class="blog-card__date">15 November 2024</div>
+            <p class="blog-card__link">Read more →</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================
+       Blog Slider
+       Arrow buttons navigate the slider. Add more .blog-card
+       elements to make navigation more apparent.
+  ============================================================ -->
+  <section class="section" style="padding: 0;">
+    <div class="section__header" style="padding: 48px 48px 0;">
+      <h2 class="section__title">Blog Slider</h2>
+    </div>
+
+    <section class="blog-slider">
+      <div class="blog-slider__inner">
+
+        <div class="blog-slider__aside">
+          <div class="blog-slider__text">
+            <h2 class="blog-slider__heading">The Zego blog</h2>
+            <p class="blog-slider__body">Find more information on how to get the most out of your insurance, whether you're a private hire taxi driver, tradesperson or food delivery driver.</p>
+          </div>
+          <div class="blog-slider__arrows">
+            <button class="blog-slider__arrow blog-slider__arrow--prev" type="button" aria-label="Previous articles" disabled>
+              <span class="blog-slider__arrow-icon" aria-hidden="true">
+                <svg viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-arrow-left"></use></svg>
+              </span>
+            </button>
+            <button class="blog-slider__arrow blog-slider__arrow--next" type="button" aria-label="Next articles">
+              <span class="blog-slider__arrow-icon" aria-hidden="true">
+                <svg viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-arrow-right"></use></svg>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <div role="region" aria-label="Blog articles" class="blog-slider__track-wrapper">
+          <div class="blog-slider__track">
+
+            <a class="blog-card blog-card--single" href="#" aria-label="Read article: Behind the code; life as an engineer at Zego">
+              <div class="blog-card__image">
+                <img class="blog-card__img" src="https://www.figma.com/api/mcp/asset/bf2db323-819e-4674-bb35-23f2f2ba2fe8" alt="Behind the code; life as an engineer at Zego">
+                <div class="blog-card__img-overlay"></div>
+              </div>
+              <div class="blog-card__details">
+                <h3 class="blog-card__title">Behind the code; life as an engineer at Zego</h3>
+                <div class="blog-card__date">01 December 2024</div>
+                <p class="blog-card__link">Read more →</p>
+              </div>
+            </a>
+
+            <a class="blog-card blog-card--single" href="#" aria-label="Read article: How long do car insurance claims affect your price?">
+              <div class="blog-card__image">
+                <img class="blog-card__img" src="https://www.figma.com/api/mcp/asset/21724387-9dea-4a5e-8354-6d217610e49a" alt="How long do car insurance claims affect your price?">
+                <div class="blog-card__img-overlay"></div>
+              </div>
+              <div class="blog-card__details">
+                <h3 class="blog-card__title">How long do car insurance claims affect your price?</h3>
+                <div class="blog-card__date">01 December 2024</div>
+                <p class="blog-card__link">Read more →</p>
+              </div>
+            </a>
+
+            <a class="blog-card blog-card--single" href="#" aria-label="Read article: What should I expect from our interview process">
+              <div class="blog-card__image">
+                <img class="blog-card__img" src="https://www.figma.com/api/mcp/asset/6f2c1059-27b9-4313-ba5d-f09140777589" alt="What should I expect from our interview process">
+                <div class="blog-card__img-overlay"></div>
+              </div>
+              <div class="blog-card__details">
+                <h3 class="blog-card__title">What should I expect from our interview process</h3>
+                <div class="blog-card__date">01 December 2024</div>
+                <p class="blog-card__link">Read more →</p>
+              </div>
+            </a>
+
+          </div><!-- /blog-slider__track -->
+        </div><!-- /blog-slider__track-wrapper -->
+
+        <p class="blog-slider__live sr-only" aria-live="polite" aria-atomic="true"></p>
+
+      </div><!-- /blog-slider__inner -->
+    </section>
+
+  </section>
+
+  <script>
+    /* Blog Slider */
+    (function () {
+      var CARD_W = 410;
+      var GAP    = 24;
+      var STEP   = CARD_W + GAP;
+
+      document.querySelectorAll('.blog-slider').forEach(function (section) {
+        var track   = section.querySelector('.blog-slider__track');
+        var wrapper = section.querySelector('.blog-slider__track-wrapper');
+        var btnPrev = section.querySelector('.blog-slider__arrow--prev');
+        var btnNext = section.querySelector('.blog-slider__arrow--next');
+        var live    = section.querySelector('.blog-slider__live');
+
+        if (!track || !wrapper || !btnPrev || !btnNext) return;
+
+        var currentIndex = 0;
+
+        function getCardCount()    { return track.querySelectorAll('.blog-card').length; }
+        function getVisibleCount() { return Math.floor((wrapper.offsetWidth + GAP) / STEP); }
+        function getMaxIndex()     { return Math.max(0, getCardCount() - getVisibleCount()); }
+
+        function updateLive() {
+          if (!live) return;
+          var visibleCount = getVisibleCount();
+          var total = getCardCount();
+          live.textContent = 'Showing articles ' + (currentIndex + 1) + ' to ' + Math.min(currentIndex + visibleCount, total) + ' of ' + total;
+        }
+
+        function update(animate) {
+          if (!animate) { track.style.transition = 'none'; }
+          track.style.transform = 'translateX(' + (-currentIndex * STEP) + 'px)';
+          if (!animate) { track.getBoundingClientRect(); track.style.transition = ''; }
+          btnPrev.disabled = currentIndex === 0;
+          btnNext.disabled = currentIndex >= getMaxIndex();
+          updateLive();
+        }
+
+        btnPrev.addEventListener('click', function () { if (currentIndex > 0) { currentIndex--; update(true); } });
+        btnNext.addEventListener('click', function () { if (currentIndex < getMaxIndex()) { currentIndex++; update(true); } });
+
+        var touchStartX = 0;
+        track.addEventListener('touchstart', function (e) { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+        track.addEventListener('touchend', function (e) {
+          var diff = touchStartX - e.changedTouches[0].screenX;
+          if (Math.abs(diff) > 50) {
+            if (diff > 0 && currentIndex < getMaxIndex()) { currentIndex++; update(true); }
+            if (diff < 0 && currentIndex > 0)             { currentIndex--; update(true); }
+          }
+        }, { passive: true });
+
+        track.querySelectorAll('.blog-card').forEach(function (card, i) {
+          card.addEventListener('focus', function () {
+            var v = getVisibleCount();
+            if (i < currentIndex) { currentIndex = i; update(true); }
+            if (i >= currentIndex + v) { currentIndex = i - v + 1; update(true); }
+          });
+        });
+
+        var resizeTimer;
+        window.addEventListener('resize', function () {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(function () { currentIndex = Math.min(currentIndex, getMaxIndex()); update(false); }, 100);
+        });
+
+        update(false);
       });
     }());
   </script>

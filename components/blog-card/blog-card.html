@@ -1,0 +1,174 @@
+<!-- ============================================
+     BLOG CARD COMPONENT SNIPPETS
+     Copy what you need into a screen or index.html.
+     Requires: tokens/tokens.css
+               components/blog-card/blog-card.css
+     ============================================ -->
+
+
+<!-- ============================================================
+     VARIANT 1 — Banner (Default)
+     336px wide. Light teal hover bg, teal border on :hover.
+     Image at top, title + chevron below.
+     ============================================================ -->
+
+<a class="blog-card blog-card--banner"
+   href="#"
+   aria-label="Read article: How to save on your insurance renewal">
+
+  <div class="blog-card__image">
+    <img class="blog-card__img"
+         src="https://www.figma.com/api/mcp/asset/658ea1a7-816d-4c88-9091-c9cc657d2348"
+         alt="[Descriptive alt text here]">
+  </div>
+
+  <div class="blog-card__details">
+    <div class="blog-card__title-row">
+      <h3 class="blog-card__title">How to save on your insurance renewal</h3>
+      <span class="blog-card__chevron" aria-hidden="true">
+        <svg viewBox="0 0 7 12" fill="currentColor">
+          <use href="../../icons/icons.svg#icon-chevron-small-right"></use>
+        </svg>
+      </span>
+    </div>
+  </div>
+
+</a><!-- /blog-card--banner -->
+
+
+<!-- ============================================================
+     VARIANT 1 — Banner (Hover reference)
+     Hover state is CSS-driven. This snippet shows the same HTML;
+     hover styles apply automatically on :hover. Shown here for reference.
+     ============================================================ -->
+
+<a class="blog-card blog-card--banner"
+   href="#"
+   aria-label="Read article: 5 tips for safer night driving">
+
+  <div class="blog-card__image">
+    <img class="blog-card__img"
+         src="https://www.figma.com/api/mcp/asset/658ea1a7-816d-4c88-9091-c9cc657d2348"
+         alt="[Descriptive alt text here]">
+  </div>
+
+  <div class="blog-card__details">
+    <div class="blog-card__title-row">
+      <h3 class="blog-card__title">5 tips for safer night driving</h3>
+      <span class="blog-card__chevron" aria-hidden="true">
+        <svg viewBox="0 0 7 12" fill="currentColor">
+          <use href="../../icons/icons.svg#icon-chevron-small-right"></use>
+        </svg>
+      </span>
+    </div>
+  </div>
+
+</a><!-- /blog-card--banner hover reference -->
+
+
+<!-- ============================================================
+     VARIANT 2 — Single (Default, with date)
+     336px wide. Image overlay + title turns link colour on :hover.
+     ============================================================ -->
+
+<a class="blog-card blog-card--single"
+   href="#"
+   aria-label="Read article: What is telematics insurance and how does it work?">
+
+  <div class="blog-card__image">
+    <img class="blog-card__img"
+         src="https://www.figma.com/api/mcp/asset/8c0fc1c2-7641-43b2-9ac0-c8ef67cfda1d"
+         alt="[Descriptive alt text here]">
+    <!-- Hover overlay: shown via CSS on :hover — always present in DOM -->
+    <div class="blog-card__img-overlay"></div>
+  </div>
+
+  <div class="blog-card__details">
+    <h3 class="blog-card__title">What is telematics insurance and how does it work?</h3>
+    <!-- Date: optional — remove this <div> if no date available -->
+    <div class="blog-card__date">01 December 2024</div>
+    <p class="blog-card__link">Read more →</p>
+  </div>
+
+</a><!-- /blog-card--single with date -->
+
+
+<!-- ============================================================
+     VARIANT 2 — Single (Default, without date)
+     ============================================================ -->
+
+<a class="blog-card blog-card--single"
+   href="#"
+   aria-label="Read article: Understanding your policy excess">
+
+  <div class="blog-card__image">
+    <img class="blog-card__img"
+         src="https://www.figma.com/api/mcp/asset/8c0fc1c2-7641-43b2-9ac0-c8ef67cfda1d"
+         alt="[Descriptive alt text here]">
+    <!-- Hover overlay: shown via CSS on :hover — always present in DOM -->
+    <div class="blog-card__img-overlay"></div>
+  </div>
+
+  <div class="blog-card__details">
+    <h3 class="blog-card__title">Understanding your policy excess</h3>
+    <!-- Date: optional — remove this <div> if no date available -->
+    <!-- <div class="blog-card__date">01 December 2024</div> -->
+    <p class="blog-card__link">Read more →</p>
+  </div>
+
+</a><!-- /blog-card--single without date -->
+
+
+<!-- ============================================================
+     VARIANT 3 — Feature (Default, with date)
+     696px wide. Same hover behaviour as Single.
+     ============================================================ -->
+
+<a class="blog-card blog-card--feature"
+   href="#"
+   aria-label="Read article: The complete guide to delivery insurance in 2024">
+
+  <div class="blog-card__image">
+    <img class="blog-card__img"
+         src="https://www.figma.com/api/mcp/asset/ebc001d1-dc04-4922-9ae9-0eb904908526"
+         alt="[Descriptive alt text here]">
+    <!-- Hover overlay: shown via CSS on :hover — always present in DOM -->
+    <div class="blog-card__img-overlay"></div>
+  </div>
+
+  <div class="blog-card__details">
+    <h3 class="blog-card__title">The complete guide to delivery insurance in 2024</h3>
+    <!-- Date: optional — remove this <div> if no date available -->
+    <div class="blog-card__date">01 December 2024</div>
+    <p class="blog-card__link">Read more →</p>
+  </div>
+
+</a><!-- /blog-card--feature with date -->
+
+
+<!-- ============================================================
+     VARIANT 3 — Feature (Hover reference)
+     Hover state is CSS-driven. This snippet shows the same HTML;
+     hover styles apply automatically on :hover. Shown here for reference.
+     ============================================================ -->
+
+<a class="blog-card blog-card--feature"
+   href="#"
+   aria-label="Read article: Private hire insurance explained">
+
+  <div class="blog-card__image">
+    <img class="blog-card__img"
+         src="https://www.figma.com/api/mcp/asset/ebc001d1-dc04-4922-9ae9-0eb904908526"
+         alt="[Descriptive alt text here]">
+    <!-- Hover overlay: shown via CSS on :hover — always present in DOM -->
+    <div class="blog-card__img-overlay"></div>
+  </div>
+
+  <div class="blog-card__details">
+    <h3 class="blog-card__title">Private hire insurance explained</h3>
+    <!-- Date: optional — remove this <div> if no date available -->
+    <div class="blog-card__date">15 November 2024</div>
+    <p class="blog-card__link">Read more →</p>
+  </div>
+
+</a><!-- /blog-card--feature hover reference -->

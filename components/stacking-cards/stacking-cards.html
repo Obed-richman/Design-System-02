@@ -15,17 +15,19 @@
 
 <section class="stacking-cards">
 
-  <!-- Section header -->
-  <div class="stacking-cards__header">
-    <h2 class="stacking-cards__heading">The right insurance just for you</h2>
-    <p class="stacking-cards__body">Whether you're delivering parcels for Amazon, driving a private hire taxi, using your van for personal trips, or just want to save on car insurance, we offer the right coverage whenever you need it, all in one place.</p>
-  </div>
-
   <!-- Scroll track — height set by JS; do not set overflow: hidden -->
   <div class="stacking-cards__track">
 
-    <!-- Sticky stage — cards are absolutely positioned inside here -->
+    <!-- Sticky stage — header + cards live here.
+         Header is inside the stage so it stays pinned at the top
+         while cards animate beneath it. -->
     <div class="stacking-cards__stage">
+
+      <!-- Header — stays visible throughout the scroll sequence -->
+      <div class="stacking-cards__header">
+        <h2 class="stacking-cards__heading">The right insurance just for you</h2>
+        <p class="stacking-cards__body">Whether you're delivering parcels for Amazon, driving a private hire taxi, using your van for personal trips, or just want to save on car insurance, we offer the right coverage whenever you need it, all in one place.</p>
+      </div>
 
       <!-- =============================================
            Stacking cards: add more .stacking-cards__card elements to extend the stack.
@@ -172,7 +174,8 @@
      Driven by requestAnimationFrame + scroll listener — no CSS transitions. */
   (function () {
 
-    function easeOut(t) { return t * (2 - t); }
+    /* Cubic ease-out — starts quickly, settles gently into place */
+    function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
 
     function lerp(a, b, t) { return a + (b - a) * t; }
 
@@ -196,7 +199,8 @@
         return;
       }
 
-      var CARD_SCROLL_HEIGHT = window.innerHeight * 0.9;
+      /* 1.5× viewport per card gives each slide enough scroll distance to feel unhurried */
+      var CARD_SCROLL_HEIGHT = window.innerHeight * 1.5;
 
       function setup() {
         track.style.height = (cards.length * CARD_SCROLL_HEIGHT + window.innerHeight) + 'px';
@@ -211,40 +215,43 @@
 
         cards.forEach(function (card, i) {
           var enterStart = i / n;
-          var enterEnd   = enterStart + (0.3 / n);
+          /* 0.5/n widens the animation window — card takes longer to travel up */
+          var enterEnd   = enterStart + (0.5 / n);
           var exitStart  = (i + 1) / n;
-          var exitEnd    = exitStart + (0.3 / n);
+          var exitEnd    = exitStart + (0.5 / n);
           var isLast     = i === n - 1;
 
-          var ty      = 0;
-          var scale   = 1;
-          var opacity = 0;
+          var ty    = 0;
+          var scale = 1;
+
+          /* Cards slide up from below the stage's clipped bottom edge.
+             top: 200px means adding (innerHeight - 200) to translateY puts the card exactly at
+             the bottom clip boundary; anything below that is hidden by stage overflow:hidden. */
+          var belowStage = window.innerHeight - 200;
 
           if (progress < enterStart) {
-            /* Before this card's enter range — hidden below */
-            ty = 100; opacity = 0; scale = 1;
+            /* Before this card's enter range — sitting below the stage floor, clipped */
+            ty = belowStage; scale = 1;
           } else if (progress <= enterEnd) {
-            /* Entering — slides up, fades in */
+            /* Entering — physically slides up from below */
             var t = easeOut(invLerp(enterStart, enterEnd, progress));
-            ty      = lerp(100, 0, t);
-            opacity = lerp(0, 1, t);
-            scale   = 1;
+            ty    = lerp(belowStage, 0, t);
+            scale = 1;
           } else if (isLast || progress <= exitStart) {
             /* Resting — fully visible, no transform */
-            ty = 0; opacity = 1; scale = 1;
+            ty = 0; scale = 1;
           } else if (progress <= exitEnd) {
             /* Exiting — pushed back by next card entering */
             var t = easeOut(invLerp(exitStart, exitEnd, progress));
-            ty      = lerp(0, -32, t);
-            scale   = lerp(1, 0.94, t);
-            opacity = lerp(1, 0.6, t);
+            ty    = lerp(0, -32, t);
+            scale = lerp(1, 0.94, t);
           } else {
             /* Fully exited — static in background */
-            ty = -32; scale = 0.94; opacity = 0.6;
+            ty = -32; scale = 0.94;
           }
 
           card.style.transform = 'translateX(-50%) translateY(' + ty + 'px) scale(' + scale + ')';
-          card.style.opacity   = opacity;
+          card.style.opacity   = 1;
         });
       }
 
@@ -261,7 +268,7 @@
       }, { passive: true });
 
       window.addEventListener('resize', function () {
-        CARD_SCROLL_HEIGHT = window.innerHeight * 0.9;
+        CARD_SCROLL_HEIGHT = window.innerHeight * 1.5;
         setup();
         updateCards();
       });
