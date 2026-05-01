@@ -138,6 +138,101 @@
 
 
 <!-- ============================================================
+     VARIANT 2 — Desktop | Slider with prev/next arrow controls
+     Light background. JS drives translateX on .video-section__track.
+     Add more .video-card elements to extend the slider.
+     Requires the VIDEO SECTION SCRIPT below plus the SLIDER SCRIPT.
+     ============================================================ -->
+
+<section class="video-section video-section--slider">
+  <div class="video-section__content">
+
+    <!-- Header: heading + body left, arrow controls bottom-right -->
+    <div class="video-section__header">
+
+      <div class="video-section__text">
+        <h2 class="video-section__heading">What customers say</h2>
+        <p class="video-section__body">Our customers are at the heart of what we do. We're on a mission to offer them the best cover at the best prices. But don't just take our word for it...</p>
+      </div>
+
+      <div class="video-section__controls">
+        <button class="video-section__arrow video-section__arrow--prev" type="button" aria-label="Previous" disabled>
+          <svg class="icon icon--xxs icon--primary" viewBox="0 0 96 96" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-arrow-left"></use>
+          </svg>
+        </button>
+        <button class="video-section__arrow video-section__arrow--next" type="button" aria-label="Next">
+          <svg class="icon icon--xxs icon--primary" viewBox="0 0 96 96" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-arrow-right"></use>
+          </svg>
+        </button>
+      </div>
+
+    </div><!-- /video-section__header -->
+
+    <!-- Slider track — add/remove .video-card blocks here -->
+    <div class="video-section__track-wrapper">
+      <div class="video-section__track">
+
+        <!-- Card 1 -->
+        <div class="video-card" data-video-id="">
+          <div class="video-card__thumbnail">
+            <div class="video-card__img-wrapper">
+              <img class="video-card__img" src="" alt="Meet Muhammad">
+            </div>
+          </div>
+          <button class="video-card__play" type="button" aria-label="Play video">
+            <img class="video-card__play-bg" src="" alt="">
+            <img class="video-card__play-icon" src="" alt="">
+          </button>
+          <div class="video-card__text">
+            <h3 class="video-card__title">Meet Muhammad</h3>
+            <p class="video-card__support">"When my friend come to me for insurance advice, I always recommend Zego."</p>
+          </div>
+        </div><!-- /card 1 -->
+
+        <!-- Card 2 -->
+        <div class="video-card" data-video-id="">
+          <div class="video-card__thumbnail">
+            <div class="video-card__img-wrapper">
+              <img class="video-card__img" src="" alt="Meet Geovane">
+            </div>
+          </div>
+          <button class="video-card__play" type="button" aria-label="Play video">
+            <img class="video-card__play-bg" src="" alt="">
+            <img class="video-card__play-icon" src="" alt="">
+          </button>
+          <div class="video-card__text">
+            <h3 class="video-card__title">Meet Geovane</h3>
+            <p class="video-card__support">"I been with Zego for six years. I've never had problems, easy to contact... I am very happy at Zego."</p>
+          </div>
+        </div><!-- /card 2 -->
+
+        <!-- Card 3 -->
+        <div class="video-card" data-video-id="">
+          <div class="video-card__thumbnail">
+            <div class="video-card__img-wrapper">
+              <img class="video-card__img" src="" alt="Meet Muhammad">
+            </div>
+          </div>
+          <button class="video-card__play" type="button" aria-label="Play video">
+            <img class="video-card__play-bg" src="" alt="">
+            <img class="video-card__play-icon" src="" alt="">
+          </button>
+          <div class="video-card__text">
+            <h3 class="video-card__title">Meet Muhammad</h3>
+            <p class="video-card__support">"When my friend come to me for insurance advice, I always recommend Zego."</p>
+          </div>
+        </div><!-- /card 3 -->
+
+      </div><!-- /video-section__track -->
+    </div><!-- /video-section__track-wrapper -->
+
+  </div><!-- /video-section__content -->
+</section><!-- /video-section--slider -->
+
+
+<!-- ============================================================
      VIDEO SECTION SCRIPT
      Copy into screen file — do not include in component HTML file.
      ============================================================ -->

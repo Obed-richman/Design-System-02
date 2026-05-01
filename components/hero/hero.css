@@ -68,7 +68,7 @@
   font-family: inherit;
   font-size: var(--font-size-title-4);
   font-weight: var(--font-weight-regular);
-  line-height: var(--line-height-title-4);
+  line-height: 36px;
   letter-spacing: var(--letter-spacing-snug);
   color: var(--text-primary);
   width: min-content;
@@ -321,6 +321,58 @@
 .hero--full-image .tp-lockup__text,
 .hero--full-image .tp-lockup__subtext {
   color: var(--text-on-colour);
+}
+
+
+/* ============================================
+   STACKED IMAGE VARIANT (.hero--stacked-image)
+   Centred text above a wide inset landscape image.
+   Background: user-applied externally.
+   ============================================ */
+
+.hero--stacked-image {
+  flex-direction: column;
+  align-items: center;
+  /* 80px top/sides — image sits flush to section bottom edge */
+  padding: var(--number-80) var(--number-80) var(--gap-none);
+  gap: var(--gap-xxx-large);
+}
+
+.hero--stacked-image .hero__content {
+  align-items: center;
+  text-align: center;
+  /* 800px: Figma design value — keeps heading readable at desktop width */
+  max-width: 1056px;
+}
+
+.hero--stacked-image .hero__heading {
+  color: var(--text-on-colour);
+  /* Stacked variant uses bold weight; base hero uses medium */
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  width: auto;
+  min-width: unset;
+}
+
+.hero--stacked-image .hero__body {
+  color: var(--text-on-colour);
+  text-align: center;
+  width: auto;
+  min-width: unset;
+}
+
+/* Wide landscape image — rounded corners on all sides, flush to section bottom */
+.hero__image-stacked {
+  width: 100%;
+  border-radius: var(--radius-x-large) var(--radius-x-large) 0px 0px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.hero__image-stacked img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
 }
 
 

@@ -1,0 +1,64 @@
+<!-- ============================================
+     IMAGE CARDS SECTION COMPONENT SNIPPET
+     Copy what you need into a screen or index.html.
+     Requires: tokens/tokens.css
+               components/button/button.css
+               components/image-cards/image-cards.css
+     ============================================ -->
+
+
+<!-- ============================================================
+     VARIANT — Desktop | Centred heading + 2-column image cards
+     Min 2 cards, max 3. Section heading is mandatory.
+     Card title is mandatory; body and button are optional.
+     Replace image src values with your own photography.
+     ============================================================ -->
+
+<section class="image-cards">
+  <div class="image-cards__inner">
+
+    <!-- Section intro — centred heading + body -->
+    <div class="image-cards__intro">
+      <h2 class="image-cards__heading">About Zego</h2>
+      <p class="image-cards__body">We're on a mission to create better insurance for the way people really work and drive. Here's a little more about who we are and what it's like to be part of it.</p>
+    </div>
+
+    <!-- Cards grid — add/remove .image-cards__card elements here -->
+    <div class="image-cards__grid">
+
+      <!-- Card 1 -->
+      <div class="image-cards__card">
+        <div class="image-cards__image">
+          <img class="image-cards__img" src="[your-image-src]" alt="Two colleagues reviewing work on a laptop">
+        </div>
+        <div class="image-cards__content">
+          <div class="image-cards__text">
+            <h3 class="image-cards__card-title">Our story</h3>
+            <p class="image-cards__card-body">It started with us powering opportunities for self-employed drivers and riders. Now we're working with businesses right across the UK and Europe.</p>
+          </div>
+          <div class="image-cards__action">
+            <a href="#" class="btn btn--ghost btn--medium">Read more</a>
+          </div>
+        </div>
+      </div><!-- /card 1 -->
+
+      <!-- Card 2 -->
+      <div class="image-cards__card">
+        <div class="image-cards__image">
+          <img class="image-cards__img" src="[your-image-src]" alt="Smiling professional in an office setting">
+        </div>
+        <div class="image-cards__content">
+          <div class="image-cards__text">
+            <h3 class="image-cards__card-title">Work with us</h3>
+            <p class="image-cards__card-body">We thrive on curiosity, on thinking differently, and through diverse experiences. People who push for progress day-in, day-out. People like you!</p>
+          </div>
+          <div class="image-cards__action">
+            <a href="#" class="btn btn--ghost btn--medium">Join our team</a>
+          </div>
+        </div>
+      </div><!-- /card 2 -->
+
+    </div><!-- /image-cards__grid -->
+
+  </div><!-- /image-cards__inner -->
+</section><!-- /image-cards -->

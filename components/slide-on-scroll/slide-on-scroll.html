@@ -1,0 +1,173 @@
+<!-- ============================================
+     SLIDE ON SCROLL COMPONENT SNIPPET
+     Copy what you need into a screen or index.html.
+     Requires: tokens/tokens.css
+               components/button/button.css
+               components/slide-on-scroll/slide-on-scroll.css
+     ============================================ -->
+
+
+<!-- ============================================================
+     VARIANT — Desktop | Scroll-driven horizontal card slide
+     The .slide-on-scroll__driver element is tall (set by JS) so
+     the sticky frame stays pinned while the user scrolls.
+     JS reads data-gap on the track to compute card travel.
+     Add more .slide-on-scroll__card elements to extend the track.
+     ============================================================ -->
+
+<section class="slide-on-scroll">
+  <div class="slide-on-scroll__driver">
+    <div class="slide-on-scroll__sticky">
+
+      <!-- Intro text — heading + subtitle -->
+      <div class="slide-on-scroll__intro">
+        <h2 class="slide-on-scroll__heading">One policy,<br>every platform</h2>
+        <p class="slide-on-scroll__body">Switch seamlessly between your delivery apps. One policy covers them all.</p>
+      </div>
+
+      <!-- Track wrapper clips the overflowing card track -->
+      <div class="slide-on-scroll__track-wrapper">
+
+        <!-- Track — add/remove cards here; JS reads gap from data-gap -->
+        <div class="slide-on-scroll__track" data-gap="24">
+
+          <!-- Card 1 — Aqua tint with brand logo and image -->
+          <div class="slide-on-scroll__card slide-on-scroll__card--aqua">
+            <div class="slide-on-scroll__card-text">
+              <div class="slide-on-scroll__card-logo">
+                <svg class="icon icon--xl icon--primary" viewBox="0 0 24 24" aria-label="Deliveroo">
+                  <use href="../../icons/icons.svg#icon-deliveroo"></use>
+                </svg>
+              </div>
+              <div class="slide-on-scroll__card-content">
+                <div class="slide-on-scroll__card-copy">
+                  <h3 class="slide-on-scroll__card-title">Covered for every delivery</h3>
+                  <p class="slide-on-scroll__card-body">Our flexible policy activates the moment you go online on any platform. No gaps, no paperwork — just seamless cover.</p>
+                </div>
+                <div class="slide-on-scroll__card-buttons">
+                  <a href="#" class="btn btn--primary btn--medium">Get a quote</a>
+                  <a href="#" class="btn btn--ghost btn--medium">Learn more</a>
+                </div>
+              </div>
+            </div>
+            <div class="slide-on-scroll__card-image">
+              <img src="../../images/Scooter Delivery.png" alt="Delivery rider on a scooter">
+            </div>
+          </div><!-- /card 1 -->
+
+          <!-- Card 2 — Purple tint -->
+          <div class="slide-on-scroll__card slide-on-scroll__card--purple">
+            <div class="slide-on-scroll__card-text">
+              <div class="slide-on-scroll__card-logo">
+                <svg class="icon icon--xl icon--primary" viewBox="0 0 24 24" aria-label="Uber Eats">
+                  <use href="../../icons/icons.svg#icon-uber-eats"></use>
+                </svg>
+              </div>
+              <div class="slide-on-scroll__card-content">
+                <div class="slide-on-scroll__card-copy">
+                  <h3 class="slide-on-scroll__card-title">Ready the moment you log on</h3>
+                  <p class="slide-on-scroll__card-body">Cover kicks in automatically when you accept your first order. Go offline and it pauses — so you only pay for what you use.</p>
+                </div>
+                <div class="slide-on-scroll__card-buttons">
+                  <a href="#" class="btn btn--primary btn--medium">Get a quote</a>
+                  <a href="#" class="btn btn--ghost btn--medium">Learn more</a>
+                </div>
+              </div>
+            </div>
+            <div class="slide-on-scroll__card-image">
+              <img src="../../images/driver.png" alt="Delivery driver">
+            </div>
+          </div><!-- /card 2 -->
+
+          <!-- Card 3 — Aqua tint -->
+          <div class="slide-on-scroll__card slide-on-scroll__card--aqua">
+            <div class="slide-on-scroll__card-text">
+              <div class="slide-on-scroll__card-logo">
+                <svg class="icon icon--xl icon--primary" viewBox="0 0 24 24" aria-label="Just Eat">
+                  <use href="../../icons/icons.svg#icon-just-eat"></use>
+                </svg>
+              </div>
+              <div class="slide-on-scroll__card-content">
+                <div class="slide-on-scroll__card-copy">
+                  <h3 class="slide-on-scroll__card-title">Every platform, one price</h3>
+                  <p class="slide-on-scroll__card-body">Whether you're on Just Eat, Deliveroo, or three apps at once — your premium stays the same. Simple, fair, and built for multi-apping.</p>
+                </div>
+                <div class="slide-on-scroll__card-buttons">
+                  <a href="#" class="btn btn--primary btn--medium">Get a quote</a>
+                  <a href="#" class="btn btn--ghost btn--medium">Learn more</a>
+                </div>
+              </div>
+            </div>
+            <div class="slide-on-scroll__card-image">
+              <img src="../../images/Taxi.png" alt="Driver in a taxi">
+            </div>
+          </div><!-- /card 3 -->
+
+        </div><!-- /slide-on-scroll__track -->
+      </div><!-- /slide-on-scroll__track-wrapper -->
+
+    </div><!-- /slide-on-scroll__sticky -->
+  </div><!-- /slide-on-scroll__driver -->
+</section><!-- /slide-on-scroll -->
+
+
+<!-- ============================================================
+     SLIDE ON SCROLL SCRIPT
+     Copy into screen file — do not include in component HTML file.
+     Supports multiple .slide-on-scroll instances on the same page.
+     data-gap on the track should match the CSS gap value in px.
+     ============================================================ -->
+<script>
+  /* Slide on Scroll — horizontal card slide driven by scroll position.
+     Pins the sticky frame and translates the track leftward as the
+     driver element scrolls past the viewport. */
+  (function () {
+    document.querySelectorAll('.slide-on-scroll').forEach(function (section) {
+      var driver  = section.querySelector('.slide-on-scroll__driver');
+      var sticky  = section.querySelector('.slide-on-scroll__sticky');
+      var track   = section.querySelector('.slide-on-scroll__track');
+      var cards   = Array.from(section.querySelectorAll('.slide-on-scroll__card'));
+      if (!driver || !sticky || !track || !cards.length) return;
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      var gap = parseInt(track.dataset.gap, 10) || 24;
+      var dims = { totalTravel: 0, stickyH: 0 };
+
+      function setup() {
+        var cardW    = cards[0].offsetWidth;
+        var padLeft  = Math.max(0, (section.offsetWidth - cardW) / 2);
+        track.style.paddingLeft = padLeft + 'px';
+
+        dims.stickyH     = sticky.offsetHeight;
+        dims.totalTravel = (cards.length - 1) * (cardW + gap);
+
+        driver.style.height = (dims.totalTravel + dims.stickyH) + 'px';
+      }
+
+      function update() {
+        var scrolled = Math.max(0, -driver.getBoundingClientRect().top);
+        var progress = dims.totalTravel > 0
+          ? Math.min(1, scrolled / dims.totalTravel)
+          : 0;
+        track.style.transform = 'translateX(' + (-progress * dims.totalTravel) + 'px)';
+      }
+
+      var ticking = false;
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          requestAnimationFrame(function () { update(); ticking = false; });
+          ticking = true;
+        }
+      }, { passive: true });
+
+      window.addEventListener('resize', function () {
+        setup();
+        update();
+      });
+
+      setup();
+      update();
+    });
+  }());
+</script>

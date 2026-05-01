@@ -62,7 +62,10 @@
   <link rel="stylesheet" href="components/key-stats/key-stats.css" />
   <link rel="stylesheet" href="components/video-section/video-section.css" />
   <link rel="stylesheet" href="components/stacking-cards/stacking-cards.css" />
+  <link rel="stylesheet" href="components/slide-on-scroll/slide-on-scroll.css" />
+  <link rel="stylesheet" href="components/image-cards/image-cards.css" />
   <link rel="stylesheet" href="components/promo-banner/promo-banner.css" />
+  <link rel="stylesheet" href="components/site-footer/site-footer.css" />
   <link rel="stylesheet" href="components/blog-card/blog-card.css" />
   <link rel="stylesheet" href="components/blog-slider/blog-slider.css" />
 
@@ -5016,6 +5019,17 @@
     </div>
   </section>
 
+  <!-- Variant 4 — Stacked Image -->
+  <section class="hero hero--stacked-image" style="background: var(--bg-light-navy)">
+    <div class="hero__content">
+      <h1 class="hero__heading">Good cover for everyday drivers</h1>
+      <p class="hero__body">Whether you're delivering food, driving passengers or getting from A to B, Zego has the right cover for the way you actually drive.</p>
+    </div>
+    <div class="hero__image-stacked">
+      <img src="https://placehold.co/1280x640" alt="Hero image">
+    </div>
+  </section>
+
 
   <!-- ============================================================
        FCA Banner
@@ -5063,14 +5077,14 @@
         <div class="logo-carousel__track-wrapper">
           <div class="logo-carousel__fade-left" aria-hidden="true"></div>
           <div class="logo-carousel__track">
-            <img class="logo-carousel__logo" src="https://www.figma.com/api/mcp/asset/616dc815-ba46-4e04-b0f7-475b9a389fce" alt="TechCrunch" width="246" height="32">
-            <img class="logo-carousel__logo" src="https://www.figma.com/api/mcp/asset/7801fbba-4151-4d9f-823d-77c5b45edcf0" alt="Business Insider" width="101" height="32">
-            <img class="logo-carousel__logo" src="https://www.figma.com/api/mcp/asset/a637245c-580f-4f19-b02d-b7c3c77071b8" alt="The Telegraph" width="196" height="32">
-            <img class="logo-carousel__logo" src="https://www.figma.com/api/mcp/asset/05b05c2c-2480-4994-b0d5-13b7ce94c51b" alt="The Guardian" width="98" height="32">
-            <img class="logo-carousel__logo" aria-hidden="true" src="https://www.figma.com/api/mcp/asset/616dc815-ba46-4e04-b0f7-475b9a389fce" alt="" width="246" height="32">
-            <img class="logo-carousel__logo" aria-hidden="true" src="https://www.figma.com/api/mcp/asset/7801fbba-4151-4d9f-823d-77c5b45edcf0" alt="" width="101" height="32">
-            <img class="logo-carousel__logo" aria-hidden="true" src="https://www.figma.com/api/mcp/asset/a637245c-580f-4f19-b02d-b7c3c77071b8" alt="" width="196" height="32">
-            <img class="logo-carousel__logo" aria-hidden="true" src="https://www.figma.com/api/mcp/asset/05b05c2c-2480-4994-b0d5-13b7ce94c51b" alt="" width="98" height="32">
+            <svg class="logo-carousel__logo" viewBox="0 0 246 32" width="246" height="32" role="img" aria-label="TechCrunch"><use href="icons/icons.svg#icon-tech-crunch"></use></svg>
+            <svg class="logo-carousel__logo" viewBox="0 0 102 32" width="102" height="32" role="img" aria-label="Business Insider"><use href="icons/icons.svg#icon-business-insider"></use></svg>
+            <svg class="logo-carousel__logo" viewBox="0 0 197 32" width="197" height="32" role="img" aria-label="The Telegraph"><use href="icons/icons.svg#icon-the-telegraph"></use></svg>
+            <svg class="logo-carousel__logo" viewBox="0 0 98 32" width="98" height="32" role="img" aria-label="The Guardian"><use href="icons/icons.svg#icon-the-guardian"></use></svg>
+            <svg class="logo-carousel__logo" aria-hidden="true" viewBox="0 0 246 32" width="246" height="32"><use href="icons/icons.svg#icon-tech-crunch"></use></svg>
+            <svg class="logo-carousel__logo" aria-hidden="true" viewBox="0 0 102 32" width="102" height="32"><use href="icons/icons.svg#icon-business-insider"></use></svg>
+            <svg class="logo-carousel__logo" aria-hidden="true" viewBox="0 0 197 32" width="197" height="32"><use href="icons/icons.svg#icon-the-telegraph"></use></svg>
+            <svg class="logo-carousel__logo" aria-hidden="true" viewBox="0 0 98 32" width="98" height="32"><use href="icons/icons.svg#icon-the-guardian"></use></svg>
           </div>
           <div class="logo-carousel__fade-right" aria-hidden="true"></div>
         </div>
@@ -5086,22 +5100,22 @@
         </div>
         <div class="logo-carousel__grid">
           <div class="logo-carousel__row">
-            <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/b69e6d42-8a5c-48c6-8d50-9a0d9273f72c" alt="Deliveroo"></div>
-            <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/a7700ae2-3d0b-4caa-8692-cbc09077683c" alt="Just Eat"></div>
-            <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/17cec57b-e027-4589-ae5d-62e03a4efb57" alt="Uber Eats"></div>
-            <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/d52b09b8-da10-4f9f-b201-0e5faee0f0cc" alt="Bolt"></div>
+            <div class="logo-carousel__cell"><img src="screens/cms/img/Deliveroo.svg" alt="Deliveroo"></div>
+            <div class="logo-carousel__cell"><img src="screens/cms/img/Just-Eat.svg" alt="Just Eat"></div>
+            <div class="logo-carousel__cell"><img src="screens/cms/img/Uber-Eats.svg" alt="Uber Eats"></div>
+            <div class="logo-carousel__cell"><img src="screens/cms/img/Bolt.svg" alt="Bolt"></div>
           </div>
           <div class="logo-carousel__row">
-            <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/8380a461-78cb-4d66-9952-59ea42a81d48" alt="Amazon"></div>
-            <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/fd83813e-69a2-4c46-a7a0-2ce0b666f286" alt="OLA"></div>
-            <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/cac5378b-5093-407b-83f7-3d2dbd8f8af7" alt="Ryde"></div>
-            <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/5ff7a094-290a-44f8-a642-20c8e5d9f8dc" alt="Uber"></div>
+            <div class="logo-carousel__cell"><img src="screens/cms/img/Amazon.svg" alt="Amazon"></div>
+            <div class="logo-carousel__cell"><img src="screens/cms/img/Ola.svg" alt="OLA"></div>
+            <div class="logo-carousel__cell"><img src="screens/cms/img/Ryde.svg" alt="Ryde"></div>
+            <div class="logo-carousel__cell"><img src="screens/cms/img/Uber.svg" alt="Uber"></div>
           </div>
           <div class="logo-carousel__row">
-            <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/5da906db-d40b-46ea-9c4b-7eb9bb85c612" alt="Gophr"></div>
-            <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/d6456b0d-adca-4c38-b811-20abea2ca300" alt="Vromo"></div>
-            <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/7e17838d-976f-4acf-ba9d-f2f7e4b246e6" alt="GoGetters"></div>
-            <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/6c638357-d08a-4bbd-ad46-2189212722e3" alt="FreeNow"></div>
+            <div class="logo-carousel__cell"><img src="screens/cms/img/Gophr.svg" alt="Gophr"></div>
+            <div class="logo-carousel__cell"><img src="screens/cms/img/Vromo.svg" alt="Vromo"></div>
+            <div class="logo-carousel__cell"><img src="screens/cms/img/GoGetter.svg" alt="GoGetters"></div>
+            <div class="logo-carousel__cell"><img src="screens/cms/img/Freenow.svg" alt="FreeNow"></div>
           </div>
         </div>
       </div>
@@ -5117,22 +5131,22 @@
           </div>
           <div class="logo-carousel__grid">
             <div class="logo-carousel__row">
-              <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/b69e6d42-8a5c-48c6-8d50-9a0d9273f72c" alt="Deliveroo"></div>
-              <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/a7700ae2-3d0b-4caa-8692-cbc09077683c" alt="Just Eat"></div>
-              <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/17cec57b-e027-4589-ae5d-62e03a4efb57" alt="Uber Eats"></div>
-              <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/d52b09b8-da10-4f9f-b201-0e5faee0f0cc" alt="Bolt"></div>
+              <div class="logo-carousel__cell"><img src="screens/cms/img/Deliveroo.svg" alt="Deliveroo"></div>
+              <div class="logo-carousel__cell"><img src="screens/cms/img/Just-Eat.svg" alt="Just Eat"></div>
+              <div class="logo-carousel__cell"><img src="screens/cms/img/Uber-Eats.svg" alt="Uber Eats"></div>
+              <div class="logo-carousel__cell"><img src="screens/cms/img/Bolt.svg" alt="Bolt"></div>
             </div>
             <div class="logo-carousel__row">
-              <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/8380a461-78cb-4d66-9952-59ea42a81d48" alt="Amazon"></div>
-              <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/fd83813e-69a2-4c46-a7a0-2ce0b666f286" alt="OLA"></div>
-              <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/cac5378b-5093-407b-83f7-3d2dbd8f8af7" alt="Ryde"></div>
-              <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/5ff7a094-290a-44f8-a642-20c8e5d9f8dc" alt="Uber"></div>
+              <div class="logo-carousel__cell"><img src="screens/cms/img/Amazon.svg" alt="Amazon"></div>
+              <div class="logo-carousel__cell"><img src="screens/cms/img/Ola.svg" alt="OLA"></div>
+              <div class="logo-carousel__cell"><img src="screens/cms/img/Ryde.svg" alt="Ryde"></div>
+              <div class="logo-carousel__cell"><img src="screens/cms/img/Uber.svg" alt="Uber"></div>
             </div>
             <div class="logo-carousel__row">
-              <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/5da906db-d40b-46ea-9c4b-7eb9bb85c612" alt="Gophr"></div>
-              <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/d6456b0d-adca-4c38-b811-20abea2ca300" alt="Vromo"></div>
-              <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/7e17838d-976f-4acf-ba9d-f2f7e4b246e6" alt="GoGetters"></div>
-              <div class="logo-carousel__cell"><img src="https://www.figma.com/api/mcp/asset/6c638357-d08a-4bbd-ad46-2189212722e3" alt="FreeNow"></div>
+              <div class="logo-carousel__cell"><img src="screens/cms/img/Gophr.svg" alt="Gophr"></div>
+              <div class="logo-carousel__cell"><img src="screens/cms/img/Vromo.svg" alt="Vromo"></div>
+              <div class="logo-carousel__cell"><img src="screens/cms/img/GoGetter.svg" alt="GoGetters"></div>
+              <div class="logo-carousel__cell"><img src="screens/cms/img/Freenow.svg" alt="FreeNow"></div>
             </div>
           </div>
         </div>
@@ -5159,7 +5173,7 @@
             <div class="steps-section__row is-active" data-step="1">
               <div class="steps-section__row-content">
                 <span class="steps-section__step-icon">
-                  <img src="https://www.figma.com/api/mcp/asset/1dfd30fc-4c35-4fab-8d29-3da1ca50b385" alt="" width="24" height="24">
+                  <svg class="icon icon--xs icon--primary" viewBox="0 0 32 32" aria-hidden="true"><use href="icons/icons.svg#icon-order-1"></use></svg>
                 </span>
                 <div class="steps-section__step-text">
                   <h3 class="steps-section__step-title">Get a quote</h3>
@@ -5172,7 +5186,7 @@
             <div class="steps-section__row" data-step="2">
               <div class="steps-section__row-content">
                 <span class="steps-section__step-icon">
-                  <img src="https://www.figma.com/api/mcp/asset/6431fcb1-6cdf-4ce6-a9bc-4ed4f2a4adb3" alt="" width="24" height="24">
+                  <svg class="icon icon--xs icon--primary" viewBox="0 0 32 32" aria-hidden="true"><use href="icons/icons.svg#icon-order-2"></use></svg>
                 </span>
                 <div class="steps-section__step-text">
                   <h3 class="steps-section__step-title">Customise your cover</h3>
@@ -5185,7 +5199,7 @@
             <div class="steps-section__row" data-step="3">
               <div class="steps-section__row-content">
                 <span class="steps-section__step-icon">
-                  <img src="https://www.figma.com/api/mcp/asset/4d842a41-648f-43fc-a713-731bb898c894" alt="" width="24" height="24">
+                  <svg class="icon icon--xs icon--primary" viewBox="0 0 32 32" aria-hidden="true"><use href="icons/icons.svg#icon-order-3"></use></svg>
                 </span>
                 <div class="steps-section__step-text">
                   <h3 class="steps-section__step-title">You're all set!</h3>
@@ -5211,6 +5225,65 @@
                src="https://www.figma.com/api/mcp/asset/f26cdd18-e9ff-4883-9517-ee7c2b3b88cc"
                alt="You're all set with your insurance" data-step="3">
         </div>
+      </div>
+    </section>
+
+    <p class="section__label" style="margin-top: 48px;">Cards — Desktop</p>
+    <section class="steps-section steps-section--cards">
+      <div class="steps-section__inner">
+
+        <div class="steps-section__text-content">
+
+          <h2 class="steps-section__heading">Up and running in minutes</h2>
+
+          <div class="steps-section__cards">
+
+            <div class="steps-section__card is-active" data-step="1">
+              <div class="steps-section__card-content">
+                <span class="steps-section__card-icon">
+                  <svg class="icon icon--s icon--primary" viewBox="0 0 32 32" aria-hidden="true"><use href="icons/icons.svg#icon-order-1"></use></svg>
+                </span>
+                <div class="steps-section__card-text">
+                  <h3 class="steps-section__card-title">Get a quote</h3>
+                  <p class="steps-section__card-body">Tell us about your vehicle and how you drive. We'll give you a price in minutes.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="steps-section__card" data-step="2">
+              <div class="steps-section__card-content">
+                <span class="steps-section__card-icon">
+                  <svg class="icon icon--s icon--primary" viewBox="0 0 32 32" aria-hidden="true"><use href="icons/icons.svg#icon-order-2"></use></svg>
+                </span>
+                <div class="steps-section__card-text">
+                  <h3 class="steps-section__card-title">Customise your cover</h3>
+                  <p class="steps-section__card-body">Add breakdown cover, a replacement vehicle, or any other extras that suit you.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="steps-section__card" data-step="3">
+              <div class="steps-section__card-content">
+                <span class="steps-section__card-icon">
+                  <svg class="icon icon--s icon--primary" viewBox="0 0 32 32" aria-hidden="true"><use href="icons/icons.svg#icon-order-3"></use></svg>
+                </span>
+                <div class="steps-section__card-text">
+                  <h3 class="steps-section__card-title">You're all set!</h3>
+                  <p class="steps-section__card-body">Your documents live in the app. Change your cover anytime, anywhere.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="steps-section__image-wide">
+          <img class="steps-section__img steps-section__img--1 is-active" src="images/driver.png" alt="Driver in a car" data-step="1">
+          <img class="steps-section__img steps-section__img--2" src="images/Taxi.png" alt="Taxi driver" data-step="2">
+          <img class="steps-section__img steps-section__img--3" src="images/Scooter Delivery.png" alt="Scooter delivery" data-step="3">
+        </div>
+
       </div>
     </section>
 
@@ -5552,6 +5625,90 @@
       </div><!-- /video-section__content -->
     </section>
 
+    <!-- ============================================================
+         Video Slider Variant
+         Desktop | Light bg | Prev/next arrow controls
+         ============================================================ -->
+    <p class="section__label" style="margin-top: 48px;">Video — Slider</p>
+    <section class="video-section video-section--slider">
+      <div class="video-section__content">
+
+        <div class="video-section__header">
+          <div class="video-section__text">
+            <h2 class="video-section__heading">What customers say</h2>
+            <p class="video-section__body">Our customers are at the heart of what we do. We're on a mission to offer them the best cover at the best prices. But don't just take our word for it...</p>
+          </div>
+          <div class="video-section__controls">
+            <button class="video-section__arrow video-section__arrow--prev" type="button" aria-label="Previous" disabled>
+              <svg class="icon icon--xxs icon--primary" viewBox="0 0 96 96" aria-hidden="true">
+                <use href="icons/icons.svg#icon-arrow-left"></use>
+              </svg>
+            </button>
+            <button class="video-section__arrow video-section__arrow--next" type="button" aria-label="Next">
+              <svg class="icon icon--xxs icon--primary" viewBox="0 0 96 96" aria-hidden="true">
+                <use href="icons/icons.svg#icon-arrow-right"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="video-section__track-wrapper">
+          <div class="video-section__track">
+
+            <div class="video-card" data-video-id="">
+              <div class="video-card__thumbnail">
+                <div class="video-card__img-wrapper">
+                  <img class="video-card__img" src="images/driver.png" alt="Meet Muhammad">
+                </div>
+              </div>
+              <button class="video-card__play" type="button" aria-label="Play video">
+                <img class="video-card__play-bg" src="" alt="">
+                <img class="video-card__play-icon" src="" alt="">
+              </button>
+              <div class="video-card__text">
+                <h3 class="video-card__title">Meet Muhammad</h3>
+                <p class="video-card__support">"When my friend come to me for insurance advice, I always recommend Zego."</p>
+              </div>
+            </div>
+
+            <div class="video-card" data-video-id="">
+              <div class="video-card__thumbnail">
+                <div class="video-card__img-wrapper">
+                  <img class="video-card__img" src="images/Taxi.png" alt="Meet Geovane">
+                </div>
+              </div>
+              <button class="video-card__play" type="button" aria-label="Play video">
+                <img class="video-card__play-bg" src="" alt="">
+                <img class="video-card__play-icon" src="" alt="">
+              </button>
+              <div class="video-card__text">
+                <h3 class="video-card__title">Meet Geovane</h3>
+                <p class="video-card__support">"I been with Zego for six years. I've never had problems, easy to contact... I am very happy at Zego."</p>
+              </div>
+            </div>
+
+            <div class="video-card" data-video-id="">
+              <div class="video-card__thumbnail">
+                <div class="video-card__img-wrapper">
+                  <img class="video-card__img" src="images/Scooter Delivery.png" alt="Meet Amara">
+                </div>
+              </div>
+              <button class="video-card__play" type="button" aria-label="Play video">
+                <img class="video-card__play-bg" src="" alt="">
+                <img class="video-card__play-icon" src="" alt="">
+              </button>
+              <div class="video-card__text">
+                <h3 class="video-card__title">Meet Amara</h3>
+                <p class="video-card__support">"Zego made it so easy to get covered. I was on the road in minutes."</p>
+              </div>
+            </div>
+
+          </div><!-- /video-section__track -->
+        </div><!-- /video-section__track-wrapper -->
+
+      </div><!-- /video-section__content -->
+    </section><!-- /video-section--slider -->
+
   </section>
 
 
@@ -5660,6 +5817,110 @@
       </div><!-- /stacking-cards__track -->
 
     </section>
+
+  </section>
+
+
+  <!-- ============================================================
+       Slide on Scroll
+       Scroll down to see horizontal card slide animation.
+       A 50 vh spacer ensures the section starts below the fold.
+       ============================================================ -->
+  <section class="section">
+    <h2 class="section__title">Slide on Scroll</h2>
+
+    <div style="height: 50vh;" aria-hidden="true"></div>
+
+    <section class="slide-on-scroll">
+      <div class="slide-on-scroll__driver">
+        <div class="slide-on-scroll__sticky">
+
+          <div class="slide-on-scroll__intro">
+            <h2 class="slide-on-scroll__heading">One policy,<br>every platform</h2>
+            <p class="slide-on-scroll__body">Switch seamlessly between your delivery apps. One policy covers them all.</p>
+          </div>
+
+          <div class="slide-on-scroll__track-wrapper">
+            <div class="slide-on-scroll__track" data-gap="24">
+
+              <!-- Card 1 — Aqua -->
+              <div class="slide-on-scroll__card slide-on-scroll__card--aqua">
+                <div class="slide-on-scroll__card-text">
+                  <div class="slide-on-scroll__card-logo">
+                    <svg class="icon icon--xl icon--primary" viewBox="0 0 24 24" aria-label="Deliveroo">
+                      <use href="icons/icons.svg#icon-deliveroo"></use>
+                    </svg>
+                  </div>
+                  <div class="slide-on-scroll__card-content">
+                    <div class="slide-on-scroll__card-copy">
+                      <h3 class="slide-on-scroll__card-title">Covered for every delivery</h3>
+                      <p class="slide-on-scroll__card-body">Our flexible policy activates the moment you go online on any platform. No gaps, no paperwork — just seamless cover.</p>
+                    </div>
+                    <div class="slide-on-scroll__card-buttons">
+                      <a href="#" class="btn btn--primary btn--medium">Get a quote</a>
+                      <a href="#" class="btn btn--ghost btn--medium">Learn more</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="slide-on-scroll__card-image">
+                  <img src="images/Scooter Delivery.png" alt="Delivery rider on a scooter">
+                </div>
+              </div><!-- /card 1 -->
+
+              <!-- Card 2 — Purple -->
+              <div class="slide-on-scroll__card slide-on-scroll__card--purple">
+                <div class="slide-on-scroll__card-text">
+                  <div class="slide-on-scroll__card-logo">
+                    <svg class="icon icon--xl icon--primary" viewBox="0 0 24 24" aria-label="Uber Eats">
+                      <use href="icons/icons.svg#icon-uber-eats"></use>
+                    </svg>
+                  </div>
+                  <div class="slide-on-scroll__card-content">
+                    <div class="slide-on-scroll__card-copy">
+                      <h3 class="slide-on-scroll__card-title">Ready the moment you log on</h3>
+                      <p class="slide-on-scroll__card-body">Cover kicks in automatically when you accept your first order. Go offline and it pauses — so you only pay for what you use.</p>
+                    </div>
+                    <div class="slide-on-scroll__card-buttons">
+                      <a href="#" class="btn btn--primary btn--medium">Get a quote</a>
+                      <a href="#" class="btn btn--ghost btn--medium">Learn more</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="slide-on-scroll__card-image">
+                  <img src="images/driver.png" alt="Delivery driver">
+                </div>
+              </div><!-- /card 2 -->
+
+              <!-- Card 3 — Aqua -->
+              <div class="slide-on-scroll__card slide-on-scroll__card--aqua">
+                <div class="slide-on-scroll__card-text">
+                  <div class="slide-on-scroll__card-logo">
+                    <svg class="icon icon--xl icon--primary" viewBox="0 0 24 24" aria-label="Just Eat">
+                      <use href="icons/icons.svg#icon-just-eat"></use>
+                    </svg>
+                  </div>
+                  <div class="slide-on-scroll__card-content">
+                    <div class="slide-on-scroll__card-copy">
+                      <h3 class="slide-on-scroll__card-title">Every platform, one price</h3>
+                      <p class="slide-on-scroll__card-body">Whether you're on Just Eat, Deliveroo, or three apps at once — your premium stays the same. Simple, fair, and built for multi-apping.</p>
+                    </div>
+                    <div class="slide-on-scroll__card-buttons">
+                      <a href="#" class="btn btn--primary btn--medium">Get a quote</a>
+                      <a href="#" class="btn btn--ghost btn--medium">Learn more</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="slide-on-scroll__card-image">
+                  <img src="images/Taxi.png" alt="Driver in a taxi">
+                </div>
+              </div><!-- /card 3 -->
+
+            </div><!-- /slide-on-scroll__track -->
+          </div><!-- /slide-on-scroll__track-wrapper -->
+
+        </div><!-- /slide-on-scroll__sticky -->
+      </div><!-- /slide-on-scroll__driver -->
+    </section><!-- /slide-on-scroll -->
 
   </section>
 
@@ -6182,6 +6443,183 @@
 
   </section>
 
+
+  <!-- ============================================================
+       Image Cards
+       ============================================================ -->
+  <section class="section">
+    <h2 class="section__title">Image Cards</h2>
+
+    <section class="image-cards">
+      <div class="image-cards__inner">
+
+        <div class="image-cards__intro">
+          <h2 class="image-cards__heading">About Zego</h2>
+          <p class="image-cards__body">We're on a mission to create better insurance for the way people really work and drive. Here's a little more about who we are and what it's like to be part of it.</p>
+        </div>
+
+        <div class="image-cards__grid">
+
+          <div class="image-cards__card">
+            <div class="image-cards__image">
+              <img class="image-cards__img" src="images/driver.png" alt="Two colleagues reviewing work">
+            </div>
+            <div class="image-cards__content">
+              <div class="image-cards__text">
+                <h3 class="image-cards__card-title">Our story</h3>
+                <p class="image-cards__card-body">It started with us powering opportunities for self-employed drivers and riders. Now we're working with businesses right across the UK and Europe.</p>
+              </div>
+              <div class="image-cards__action">
+                <a href="#" class="btn btn--ghost btn--medium">Read more</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="image-cards__card">
+            <div class="image-cards__image">
+              <img class="image-cards__img" src="images/Scooter Delivery.png" alt="Smiling professional">
+            </div>
+            <div class="image-cards__content">
+              <div class="image-cards__text">
+                <h3 class="image-cards__card-title">Work with us</h3>
+                <p class="image-cards__card-body">We thrive on curiosity, on thinking differently, and through diverse experiences. People who push for progress day-in, day-out. People like you!</p>
+              </div>
+              <div class="image-cards__action">
+                <a href="#" class="btn btn--ghost btn--medium">Join our team</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </section>
+
+  <!-- ============================================================
+       SITE FOOTER
+       ============================================================ -->
+  <section class="section">
+    <h2 class="section__title">Site Footer</h2>
+  </section>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+
+      <div class="site-footer__brand">
+        <a href="#" class="site-footer__logo" aria-label="Zego home">
+          <svg viewBox="0 0 96 96" aria-hidden="true">
+            <use href="icons/icons.svg#icon-zego-logo"></use>
+          </svg>
+        </a>
+        <nav class="site-footer__social" aria-label="Social media">
+          <a href="#" class="site-footer__social-link" aria-label="LinkedIn">
+            <svg class="icon icon--xs" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="2" y="2" width="20" height="20" rx="4" stroke-width="1.5"/>
+              <path d="M7 10v7M7 7v.5M12 17v-4c0-1.1.9-2 2-2s2 .9 2 2v4M12 10v7"/>
+            </svg>
+          </a>
+          <a href="#" class="site-footer__social-link" aria-label="X (Twitter)">
+            <svg class="icon icon--xs" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L2.25 2.25h6.988l4.254 5.623zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="#" class="site-footer__social-link" aria-label="Facebook">
+            <svg class="icon icon--xs" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+          <a href="#" class="site-footer__social-link" aria-label="Instagram">
+            <svg class="icon icon--xs" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="2" y="2" width="20" height="20" rx="6"/>
+              <circle cx="12" cy="12" r="4.5"/>
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          <a href="#" class="site-footer__social-link" aria-label="YouTube">
+            <svg class="icon icon--xs" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </a>
+        </nav>
+      </div>
+
+      <hr class="site-footer__divider">
+
+      <nav class="site-footer__nav" aria-label="Footer navigation">
+
+        <div class="site-footer__col site-footer__col--language">
+          <h3 class="site-footer__col-heading">Language</h3>
+          <button class="site-footer__language" type="button" aria-label="Change language — currently English (UK)">
+            <svg class="icon icon--xxs" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              <path d="M2 12h20"/>
+            </svg>
+            English (UK)
+            <svg class="icon icon--xxs" viewBox="0 0 96 96" aria-hidden="true">
+              <use href="icons/icons.svg#icon-chevron-small-down"></use>
+            </svg>
+          </button>
+        </div>
+
+        <div class="site-footer__col">
+          <h3 class="site-footer__col-heading">Motor</h3>
+          <ul class="site-footer__links">
+            <li><a href="#" class="site-footer__link">Motor insurance</a></li>
+            <li><a href="#" class="site-footer__link">Van insurance</a></li>
+            <li><a href="#" class="site-footer__link">Taxi insurance</a></li>
+            <li><a href="#" class="site-footer__link">Fleet insurance</a></li>
+          </ul>
+        </div>
+
+        <div class="site-footer__col">
+          <h3 class="site-footer__col-heading">Delivery</h3>
+          <ul class="site-footer__links">
+            <li><a href="#" class="site-footer__link">Delivery insurance</a></li>
+            <li><a href="#" class="site-footer__link">Scooter insurance</a></li>
+            <li><a href="#" class="site-footer__link">Moped insurance</a></li>
+            <li><a href="#" class="site-footer__link">Bicycle insurance</a></li>
+          </ul>
+        </div>
+
+        <div class="site-footer__col">
+          <h3 class="site-footer__col-heading">Company</h3>
+          <ul class="site-footer__links">
+            <li><a href="#" class="site-footer__link">About us</a></li>
+            <li><a href="#" class="site-footer__link">Careers</a></li>
+            <li><a href="#" class="site-footer__link">Blog</a></li>
+            <li><a href="#" class="site-footer__link">Press</a></li>
+            <li><a href="#" class="site-footer__link">Contact us</a></li>
+          </ul>
+        </div>
+
+        <div class="site-footer__col">
+          <h3 class="site-footer__col-heading">Other</h3>
+          <ul class="site-footer__links">
+            <li><a href="#" class="site-footer__link">Partners</a></li>
+            <li><a href="#" class="site-footer__link">Help centre</a></li>
+            <li><a href="#" class="site-footer__link">Privacy policy</a></li>
+            <li><a href="#" class="site-footer__link">Terms of service</a></li>
+          </ul>
+          <div class="site-footer__badges">
+            <a href="#" class="site-footer__badge" aria-label="Download on the App Store">App Store</a>
+            <a href="#" class="site-footer__badge" aria-label="Get it on Google Play">Google Play</a>
+          </div>
+        </div>
+
+      </nav>
+
+      <hr class="site-footer__divider">
+
+      <div class="site-footer__legal-wrap">
+        <p class="site-footer__legal">Zego is a trading name of Extracover Limited, which is authorised and regulated by the Financial Conduct Authority (FCA), register number 757871. Registered in England &amp; Wales, company number 10128841. Registered address: 5th Floor, 55 New Oxford Street, London, WC1A 1BS.</p>
+      </div>
+
+    </div>
+  </footer>
+
   <script>
     /* Blog Slider */
     (function () {
@@ -6248,6 +6686,155 @@
         });
 
         update(false);
+      });
+    }());
+  </script>
+
+  <script>
+    /* Steps Section — hover interaction
+       Supports both variants:
+         Variant 1 (.steps-section__row)  — rows in left column, images in right panel
+         Variant 2 (.steps-section__card) — cards in top row, images in bottom panel
+       Interactive items and images are linked via matching data-step attributes.
+       Mouseleave on the items container resets to step 1. */
+    (function () {
+      document.querySelectorAll('.steps-section').forEach(function (section) {
+        var items  = section.querySelectorAll('.steps-section__row, .steps-section__card');
+        var images = section.querySelectorAll('.steps-section__img');
+        var resetEl = section.querySelector('.steps-section__text-col') ||
+                      section.querySelector('.steps-section__text-content');
+
+        if (!items.length || !images.length || !resetEl) return;
+
+        function activate(step) {
+          items.forEach(function (item) {
+            item.classList.toggle('is-active', item.dataset.step === step);
+          });
+          images.forEach(function (img) {
+            img.classList.toggle('is-active', img.dataset.step === step);
+          });
+        }
+
+        items.forEach(function (item) {
+          item.addEventListener('mouseenter', function () {
+            activate(item.dataset.step);
+          });
+        });
+
+        resetEl.addEventListener('mouseleave', function () {
+          activate('1');
+        });
+      });
+    }());
+
+    /* Video Section Slider — prev/next arrow navigation with touch swipe support */
+    (function () {
+      document.querySelectorAll('.video-section--slider').forEach(function (section) {
+        var track   = section.querySelector('.video-section__track');
+        var cards   = Array.from(section.querySelectorAll('.video-card'));
+        var prevBtn = section.querySelector('.video-section__arrow--prev');
+        var nextBtn = section.querySelector('.video-section__arrow--next');
+        if (!track || !cards.length) return;
+
+        var currentIndex = 0;
+
+        function getGap() {
+          return parseInt(window.getComputedStyle(track).gap, 10) || 24;
+        }
+
+        function getMaxIndex() {
+          var wrapperW = track.parentElement.offsetWidth;
+          var cardW    = cards[0].offsetWidth;
+          var gap      = getGap();
+          var visible  = Math.max(1, Math.floor((wrapperW + gap) / (cardW + gap)));
+          return Math.max(0, cards.length - visible);
+        }
+
+        function update(animate) {
+          if (!animate) {
+            track.style.transition = 'none';
+            track.offsetHeight;
+          }
+          track.style.transform = 'translateX(' + (-currentIndex * (cards[0].offsetWidth + getGap())) + 'px)';
+          if (!animate) track.style.transition = '';
+          if (prevBtn) prevBtn.disabled = currentIndex === 0;
+          if (nextBtn) nextBtn.disabled = currentIndex >= getMaxIndex();
+        }
+
+        if (prevBtn) prevBtn.addEventListener('click', function () {
+          if (currentIndex > 0) { currentIndex--; update(true); }
+        });
+
+        if (nextBtn) nextBtn.addEventListener('click', function () {
+          if (currentIndex < getMaxIndex()) { currentIndex++; update(true); }
+        });
+
+        var touchStartX = 0;
+        track.addEventListener('touchstart', function (e) {
+          touchStartX = e.touches[0].clientX;
+        }, { passive: true });
+        track.addEventListener('touchend', function (e) {
+          var diff = touchStartX - e.changedTouches[0].clientX;
+          if (Math.abs(diff) > 50) {
+            if (diff > 0 && currentIndex < getMaxIndex()) { currentIndex++; update(true); }
+            else if (diff < 0 && currentIndex > 0) { currentIndex--; update(true); }
+          }
+        }, { passive: true });
+
+        var resizeTimer;
+        window.addEventListener('resize', function () {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(function () {
+            currentIndex = Math.min(currentIndex, getMaxIndex());
+            update(false);
+          }, 100);
+        });
+
+        update(false);
+      });
+    }());
+
+    /* Slide on Scroll — horizontal card slide driven by scroll position */
+    (function () {
+      document.querySelectorAll('.slide-on-scroll').forEach(function (section) {
+        var driver = section.querySelector('.slide-on-scroll__driver');
+        var sticky = section.querySelector('.slide-on-scroll__sticky');
+        var track  = section.querySelector('.slide-on-scroll__track');
+        var cards  = Array.from(section.querySelectorAll('.slide-on-scroll__card'));
+        if (!driver || !sticky || !track || !cards.length) return;
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        var gap  = parseInt(track.dataset.gap, 10) || 24;
+        var dims = { totalTravel: 0, stickyH: 0 };
+
+        function setup() {
+          var cardW   = cards[0].offsetWidth;
+          var padLeft = Math.max(0, (section.offsetWidth - cardW) / 2);
+          track.style.paddingLeft = padLeft + 'px';
+          dims.stickyH     = sticky.offsetHeight;
+          dims.totalTravel = (cards.length - 1) * (cardW + gap);
+          driver.style.height = (dims.totalTravel + dims.stickyH) + 'px';
+        }
+
+        function update() {
+          var scrolled = Math.max(0, -driver.getBoundingClientRect().top);
+          var progress = dims.totalTravel > 0 ? Math.min(1, scrolled / dims.totalTravel) : 0;
+          track.style.transform = 'translateX(' + (-progress * dims.totalTravel) + 'px)';
+        }
+
+        var ticking = false;
+        window.addEventListener('scroll', function () {
+          if (!ticking) {
+            requestAnimationFrame(function () { update(); ticking = false; });
+            ticking = true;
+          }
+        }, { passive: true });
+
+        window.addEventListener('resize', function () { setup(); update(); });
+
+        setup();
+        update();
       });
     }());
   </script>

@@ -43,10 +43,10 @@
 
 .stacking-cards__heading {
   font-family: inherit;
-  font-size: var(--font-size-title-1);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-title-1);
-  letter-spacing: var(--letter-spacing-tight);
+  font-size: var(--number-80);
+  font-weight: extra-bold;
+  line-height: var(--number-94);
+  /* letter-spacing: var(--letter-spacing-tight); */
   color: var(--text-primary);
   text-align: center;
   width: 100%;

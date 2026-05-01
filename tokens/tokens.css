@@ -99,14 +99,19 @@ body {
   --colour-aqua-20-20: #b2fff633;
 
   /* --- Purple --- */
-  --colour-purple-70: #1a005e;
-  --colour-purple-70-10: #1a005e1a;
-  --colour-purple-60: #371987;
-  --colour-purple-50: #6a58f8;
-  --colour-purple-40: #839aff;
-  --colour-purple-30: #a9b9ff;
-  --colour-purple-20: #c9d3ff;
-  --colour-purple-10: #e9edff;
+  --colour-purple-100: #2D0862;
+  --colour-purple-100-10: #2d086210;
+  --colour-purple-100-20: #2d086220;
+  --colour-purple-90: #5410A6;
+  --colour-purple-80: #7912F4;
+  --colour-purple-70: #A458FF;
+  --colour-purple-60: #BA7FFF;
+  --colour-purple-50: #D0A6FF;
+  --colour-purple-50-40: #D0A6FF40;
+  --colour-purple-40: #DABCFF;
+  --colour-purple-30: #E6D3FF;
+  --colour-purple-20: #F2E9FF;
+  --colour-purple-10: #F8F4FF;
 
   /* --- Blue --- */
   --colour-blue-70: #0077bb;

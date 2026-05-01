@@ -1,0 +1,248 @@
+/* ============================================
+   SITE FOOTER COMPONENT
+   Depends on: tokens/tokens.css, icons/icons.css
+   No hardcoded values — token variables only,
+   except where noted inline.
+   Fixed pixel dimensions are noted inline.
+   ============================================ */
+
+
+/* --- Base --- */
+
+.site-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: var(--gap-xxx-large) 0;
+  background: var(--bg-brand-navy);
+  /* Flat bottom sits flush at page edge; rounded top corners only */
+  border-radius: var(--radius-x-large) var(--radius-x-large) 0 0;
+  box-sizing: border-box;
+}
+
+
+/* ============================================
+   INNER WRAPPER
+   ============================================ */
+
+.site-footer__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--gap-xxx-large);
+  /* 1280px: Figma content column width — no token equivalent */
+  width: 1280px;
+}
+
+
+/* ============================================
+   BRAND ROW — logo + social icons
+   ============================================ */
+
+.site-footer__brand {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-footer__logo {
+  display: flex;
+  align-items: center;
+  color: var(--icon-white-fixed);
+  text-decoration: none;
+}
+
+.site-footer__logo svg {
+  height: var(--icon-size-m);
+  width: auto;
+}
+
+.site-footer__social {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--gap-medium);
+}
+
+.site-footer__social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--icon-white-fixed);
+  text-decoration: none;
+  transition: color 120ms ease;
+}
+
+.site-footer__social-link:hover {
+  color: var(--icon-brand);
+}
+
+
+/* ============================================
+   DIVIDER
+   ============================================ */
+
+.site-footer__divider {
+  width: 100%;
+  height: var(--border-s);
+  background: var(--colour-white-20);
+  border: none;
+  margin: 0;
+}
+
+
+/* ============================================
+   NAV ROW — flex row of link columns
+   ============================================ */
+
+.site-footer__nav {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--gap-large);
+}
+
+
+/* ============================================
+   NAV COLUMN
+   ============================================ */
+
+.site-footer__col {
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
+}
+
+/* 246px: Figma language column width — no token equivalent */
+.site-footer__col--language {
+  flex: 0 0 246px;
+}
+
+.site-footer__col-heading {
+  font-family: inherit;
+  font-size: var(--font-size-body-2);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-body-2);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-white-fixed);
+  margin: 0;
+}
+
+.site-footer__links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-small);
+}
+
+.site-footer__link {
+  font-family: inherit;
+  font-size: var(--font-size-body-3);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-3);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--colour-white-80);
+  text-decoration: none;
+  transition: color 120ms ease;
+}
+
+.site-footer__link:hover {
+  color: var(--text-white-fixed);
+}
+
+
+/* ============================================
+   LANGUAGE SELECTOR BUTTON
+   ============================================ */
+
+.site-footer__language {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-x-small);
+  padding: var(--gap-x-small) var(--gap-small);
+  background: transparent;
+  border: var(--border-s) solid var(--colour-white-40);
+  border-radius: var(--radius-round);
+  color: var(--text-white-fixed);
+  font-family: inherit;
+  font-size: var(--font-size-body-3);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-3);
+  letter-spacing: var(--letter-spacing-normal);
+  cursor: pointer;
+  transition: border-color 120ms ease;
+}
+
+.site-footer__language:hover {
+  border-color: var(--colour-white-80);
+}
+
+
+/* ============================================
+   APP STORE BADGE LINKS
+   ============================================ */
+
+.site-footer__badges {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-small);
+}
+
+.site-footer__badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* 156 × 48px: Figma app badge dimensions — no token equivalent */
+  width: 156px;
+  height: var(--gap-xxx-large);
+  background: var(--colour-black-10);
+  border-radius: var(--radius-small);
+  font-family: inherit;
+  font-size: var(--font-size-body-4);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-body-4);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-white-fixed);
+  text-decoration: none;
+  transition: background 120ms ease;
+}
+
+.site-footer__badge:hover {
+  background: var(--colour-black-20);
+}
+
+
+/* ============================================
+   LEGAL TEXT
+   ============================================ */
+
+.site-footer__legal-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.site-footer__legal {
+  font-family: inherit;
+  font-size: var(--font-size-body-4);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-4);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--colour-white-40);
+  /* --frame-wrapper resolves to 1056px at desktop — matches Figma legal text width */
+  max-width: var(--frame-wrapper);
+  text-align: center;
+  margin: 0;
+}
+
+
+/* ============================================
+   DARK MODE
+   site-footer uses a fixed navy background.
+   --text-white-fixed and --icon-white-fixed
+   don't invert in dark mode — no overrides needed.
+   ============================================ */

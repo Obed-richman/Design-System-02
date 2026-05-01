@@ -1,0 +1,236 @@
+/* ============================================
+   SLIDE ON SCROLL COMPONENT
+   Depends on: tokens/tokens.css, components/button/button.css
+   Scroll-driven horizontal card slide.
+   JS sets driver height and animates track translateX.
+   ============================================ */
+
+
+/* --- Base --- */
+
+.slide-on-scroll {
+  width: 100%;
+  background-color: var(--bg-primary);
+  box-sizing: border-box;
+}
+
+/* Driver — tall block that owns the scroll budget.
+   JS sets height = totalTravel + stickyH. */
+.slide-on-scroll__driver {
+  position: relative;
+  width: 100%;
+}
+
+/* Sticky viewport — the visible frame that stays fixed
+   while the driver scrolls past it. */
+.slide-on-scroll__sticky {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  /* 100dvh keeps it full-viewport without address-bar jumps */
+  min-height: 100dvh;
+  padding-top: var(--gap-xxx-large);
+  padding-bottom: var(--gap-xxx-large);
+  box-sizing: border-box;
+}
+
+/* Intro — centred heading + body capped at 1056px */
+.slide-on-scroll__intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-large);
+  /* 1280px design, ~1056px content area */
+  width: 1056px;
+  /* 112px: (1280 - 1056) / 2 — centres the intro within the 1280px frame */
+  margin-left: 112px;
+  margin-bottom: var(--gap-xxx-large);
+  flex-shrink: 0;
+}
+
+.slide-on-scroll__heading {
+  font-family: inherit;
+  font-size: var(--number-80);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--number-94);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.slide-on-scroll__body {
+  font-family: inherit;
+  font-size: var(--font-size-title-4);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-title-4);
+  letter-spacing: var(--letter-spacing-snug);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Track wrapper — clips the overflowing card track */
+.slide-on-scroll__track-wrapper {
+  width: 100%;
+  overflow: hidden;
+  flex: 1 0 0;
+  display: flex;
+  align-items: stretch;
+}
+
+/* Track — flex row of cards, animated via translateX by JS */
+.slide-on-scroll__track {
+  display: flex;
+  flex-direction: row;
+  gap: var(--gap-large);
+  align-items: stretch;
+  will-change: transform;
+  /* padding-left is set by JS to centre the first card */
+}
+
+
+/* ============================================
+   CARD
+   ============================================ */
+
+.slide-on-scroll__card {
+  /* 1280px: Figma full content-column card width — no token equivalent */
+  width: 1280px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  border-radius: var(--radius-x-large);
+  padding-top: var(--gap-large);
+  padding-bottom: var(--gap-large);
+  padding-left: var(--gap-xxx-large);
+  padding-right: var(--gap-large);
+  gap: var(--gap-xxx-large);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Card colour modifiers */
+.slide-on-scroll__card--aqua {
+  background-color: var(--colour-aqua-10);
+}
+
+.slide-on-scroll__card--purple {
+  /* #f2e9ff: Figma deep-purple-muted tint — no token equivalent */
+  background-color: #f2e9ff;
+}
+
+
+/* ============================================
+   CARD TEXT SIDE
+   ============================================ */
+
+.slide-on-scroll__card-text {
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-self: stretch;
+}
+
+/* Logo / brand icon at the top of the text side */
+.slide-on-scroll__card-logo {
+  display: flex;
+  align-items: flex-start;
+}
+
+/* Content block — title, body, buttons */
+.slide-on-scroll__card-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xx-large);
+}
+
+.slide-on-scroll__card-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-large);
+}
+
+.slide-on-scroll__card-title {
+  font-family: inherit;
+  font-size: var(--font-size-title-1);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-title-1);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.slide-on-scroll__card-body {
+  font-family: inherit;
+  font-size: var(--font-size-title-4);
+  font-weight: var(--font-weight-regular);
+  /* 32px: Figma card body line-height — between title-4 (28px) and title-3 (36px) */
+  line-height: 32px;
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.slide-on-scroll__card-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: var(--gap-medium);
+  align-items: center;
+}
+
+
+/* ============================================
+   CARD IMAGE SIDE
+   ============================================ */
+
+.slide-on-scroll__card-image {
+  /* 628px × 628px: Figma square image panel — no token equivalent */
+  width: 628px;
+  height: 628px;
+  flex-shrink: 0;
+  border-radius: var(--radius-medium);
+  overflow: hidden;
+  align-self: center;
+}
+
+.slide-on-scroll__card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+/* ============================================
+   REDUCED MOTION
+   Skip animation — show all cards static.
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .slide-on-scroll__driver {
+    height: auto !important;
+  }
+
+  .slide-on-scroll__sticky {
+    position: static;
+    min-height: auto;
+  }
+
+  .slide-on-scroll__track {
+    transform: none !important;
+    flex-wrap: wrap;
+  }
+
+  .slide-on-scroll__track-wrapper {
+    overflow: visible;
+  }
+}
+
+
+/* ============================================
+   DARK MODE
+   Not specified in Figma — no dark overrides.
+   ============================================ */

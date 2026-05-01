@@ -17,9 +17,9 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding-top: var(--number-80);
-  padding-bottom: var(--number-80);
-  background-color: var(--bg-primary);
+  padding-top: var(--number-40);
+  padding-bottom: var(--number-40);
+  background-color: var(--colour-purple-20);
   box-sizing: border-box;
 }
 
@@ -121,7 +121,7 @@
   height: 32px;
   /* 72px: Fixed Figma design value — no token equivalent */
   width: 72px;
-  background: linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 96.25%);
+  background: linear-gradient(270deg, #f2e9ff00 0%, #F2E9FF 96.25%);
   pointer-events: none;
   z-index: 1;
 }
@@ -135,7 +135,7 @@
   height: 32px;
   /* 72px: Fixed Figma design value — no token equivalent */
   width: 72px;
-  background: linear-gradient(270deg, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 96.25%);
+  background: linear-gradient(270deg, #F2E9FF 0%, #f2e9ff00 96.25%);
   pointer-events: none;
   z-index: 1;
 }
@@ -148,7 +148,7 @@
 
 .logo-carousel--wrapped .logo-carousel__content {
   /* #f2e9ff: Figma purple-muted card background — no token equivalent */
-  background-color: #f2e9ff;
+  background-color: var(--colour-purple-20);
   border-radius: var(--radius-x-large);
   padding: var(--gap-xxx-large);
   overflow: hidden;

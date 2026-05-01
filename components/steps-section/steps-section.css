@@ -243,6 +243,150 @@
 
 
 /* ============================================
+   CARDS VARIANT (.steps-section--cards)
+   Stacked layout: large display heading above
+   a row of three step cards, then a full-width
+   landscape image. No JS interaction.
+   ============================================ */
+
+.steps-section--cards {
+  padding-top: var(--gap-xxx-large);
+  padding-bottom: var(--gap-xxx-large);
+}
+
+/* Inner becomes a single column centred at 1280px */
+.steps-section--cards .steps-section__inner {
+  flex-direction: column;
+  gap: var(--gap-large);
+  align-items: center;
+}
+
+/* Wrapper for heading + card row */
+.steps-section__text-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xx-large);
+  align-items: center;
+  width: 100%;
+}
+
+/* Display heading — larger than title-1, centred */
+.steps-section--cards .steps-section__heading {
+  /* 80px: Figma display heading — uses --number-80 primitive */
+  font-size: var(--number-80);
+  /* 94px: closest primitive to Figma 92px line-height — no exact token */
+  line-height: var(--number-94);
+  text-align: center;
+}
+
+/* Three equal-width cards in a row */
+.steps-section__cards {
+  display: flex;
+  flex-direction: row;
+  gap: var(--gap-large);
+  align-items: stretch;
+  width: 100%;
+}
+
+/* Individual step card */
+.steps-section__card {
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-x-large);
+  padding-left: var(--gap-medium);
+  padding-right: var(--gap-medium);
+  /* #f8f4ff: Figma purple-muted card bg — no token equivalent */
+  background-color: #f8f4ff;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+/* Active/hovered card — brighter purple tint.
+   .is-active is toggled by JS; .steps-section__card--active is the
+   no-JS fallback so card 1 still shows correctly before the script runs. */
+.steps-section__card--active,
+.steps-section__card.is-active {
+  /* #f2e9ff: Figma deeper purple-muted card bg — no token equivalent */
+  background-color: #f2e9ff;
+}
+
+/* Icon + text side by side inside a card */
+.steps-section__card-content {
+  display: flex;
+  flex-direction: row;
+  gap: var(--gap-medium);
+  align-items: center;
+  padding-top: var(--gap-medium);
+  padding-bottom: var(--gap-medium);
+  width: 100%;
+}
+
+/* 32px step icon — top-aligned with 2px optical offset */
+.steps-section__card-icon {
+  width: var(--number-32);
+  height: var(--number-32);
+  flex-shrink: 0;
+  align-self: flex-start;
+  margin-top: var(--number-2);
+  display: block;
+  overflow: hidden;
+}
+
+.steps-section__card-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Text block inside a card */
+.steps-section__card-text {
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-small);
+}
+
+.steps-section__card-title {
+  font-family: inherit;
+  font-size: var(--font-size-title-4);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-title-4);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.steps-section__card-body {
+  font-family: inherit;
+  font-size: var(--font-size-body-1);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-1);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+/* Full-width landscape image container — stacks 3 images absolutely */
+.steps-section__image-wide {
+  width: 100%;
+  border-radius: var(--radius-x-large);
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+  /* 480px: Figma landscape image height — no token equivalent */
+  height: 480px;
+}
+
+/* Images inside the wide container use the same crossfade as variant 1
+   but without the square-crop offsets */
+.steps-section--cards .steps-section__img {
+  width: 100%;
+  left: 0;
+}
+
+
+/* ============================================
    DARK MODE
    Dark mode is not specified in Figma for this
    component — no dark mode overrides needed.

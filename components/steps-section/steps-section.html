@@ -113,6 +113,90 @@
 
 
 <!-- ============================================================
+     VARIANT 2 — Cards | Desktop | 1280px
+     Large display heading above a row of three step cards,
+     followed by a full-width landscape image.
+     No JS required — purely static.
+     Icons use the SVG sprite; viewBox="0 0 32 32" is required
+     because order-1/2/3 have a 32px native canvas.
+     ============================================================ -->
+
+<section class="steps-section steps-section--cards">
+  <div class="steps-section__inner">
+
+    <!-- Heading + cards block -->
+    <div class="steps-section__text-content">
+
+      <h2 class="steps-section__heading">Up and running in minutes</h2>
+
+      <!-- Three step cards -->
+      <div class="steps-section__cards">
+
+        <!-- Step 1 — active tint, default active on page load -->
+        <div class="steps-section__card is-active" data-step="1">
+          <div class="steps-section__card-content">
+            <span class="steps-section__card-icon">
+              <svg class="icon icon--s icon--primary" viewBox="0 0 32 32" aria-hidden="true">
+                <use href="../../icons/icons.svg#icon-order-1"></use>
+              </svg>
+            </span>
+            <div class="steps-section__card-text">
+              <h3 class="steps-section__card-title">Get a quote</h3>
+              <p class="steps-section__card-body">Tell us about your vehicle and how you drive. We'll give you a price in minutes.</p>
+            </div>
+          </div>
+        </div><!-- /card 1 -->
+
+        <!-- Step 2 -->
+        <div class="steps-section__card" data-step="2">
+          <div class="steps-section__card-content">
+            <span class="steps-section__card-icon">
+              <svg class="icon icon--s icon--primary" viewBox="0 0 32 32" aria-hidden="true">
+                <use href="../../icons/icons.svg#icon-order-2"></use>
+              </svg>
+            </span>
+            <div class="steps-section__card-text">
+              <h3 class="steps-section__card-title">Customise your cover</h3>
+              <p class="steps-section__card-body">Add breakdown cover, a replacement vehicle, or any other extras that suit you.</p>
+            </div>
+          </div>
+        </div><!-- /card 2 -->
+
+        <!-- Step 3 -->
+        <div class="steps-section__card" data-step="3">
+          <div class="steps-section__card-content">
+            <span class="steps-section__card-icon">
+              <svg class="icon icon--s icon--primary" viewBox="0 0 32 32" aria-hidden="true">
+                <use href="../../icons/icons.svg#icon-order-3"></use>
+              </svg>
+            </span>
+            <div class="steps-section__card-text">
+              <h3 class="steps-section__card-title">You're all set!</h3>
+              <p class="steps-section__card-body">Your documents live in the app. Change your cover anytime, anywhere.</p>
+            </div>
+          </div>
+        </div><!-- /card 3 -->
+
+      </div><!-- /steps-section__cards -->
+
+    </div><!-- /steps-section__text-content -->
+
+    <!-- Full-width image panel — 3 images stacked, crossfade on hover
+         Replace src values with your own step images. -->
+    <div class="steps-section__image-wide">
+      <img class="steps-section__img steps-section__img--1 is-active"
+           src="[step-1-image]" alt="[Descriptive alt text here]" data-step="1">
+      <img class="steps-section__img steps-section__img--2"
+           src="[step-2-image]" alt="[Descriptive alt text here]" data-step="2">
+      <img class="steps-section__img steps-section__img--3"
+           src="[step-3-image]" alt="[Descriptive alt text here]" data-step="3">
+    </div>
+
+  </div><!-- /steps-section__inner -->
+</section><!-- /steps-section--cards -->
+
+
+<!-- ============================================================
      STEPS SECTION SCRIPT
      Copy into screen file — do not include in component HTML file.
      Supports multiple .steps-section instances on the same page —
@@ -120,34 +204,40 @@
      ============================================================ -->
 <script>
   /* Steps Section — hover interaction
-     Links left-column rows to right-column images via data-step attributes. */
+     Supports both variants:
+       Variant 1 (.steps-section__row)  — rows in left column, images in right panel
+       Variant 2 (.steps-section__card) — cards in top row, images in bottom panel
+     Interactive items and images are linked via matching data-step attributes.
+     Mouseleave on the items container resets to step 1. */
   (function () {
-    var sections = document.querySelectorAll('.steps-section');
+    document.querySelectorAll('.steps-section').forEach(function (section) {
+      /* Select whichever interactive items this variant uses */
+      var items  = section.querySelectorAll('.steps-section__row, .steps-section__card');
+      var images = section.querySelectorAll('.steps-section__img');
+      /* Reset container: text column (variant 1) or cards row (variant 2) */
+      var resetEl = section.querySelector('.steps-section__text-col') ||
+                    section.querySelector('.steps-section__text-content');
 
-    sections.forEach(function (section) {
-      var rows    = section.querySelectorAll('.steps-section__row');
-      var images  = section.querySelectorAll('.steps-section__img');
-      var textCol = section.querySelector('.steps-section__text-col');
+      if (!items.length || !images.length || !resetEl) return;
 
       function activate(step) {
-        rows.forEach(function (r) {
-          r.classList.toggle('is-active', r.dataset.step === step);
+        items.forEach(function (item) {
+          item.classList.toggle('is-active', item.dataset.step === step);
         });
         images.forEach(function (img) {
           img.classList.toggle('is-active', img.dataset.step === step);
         });
       }
 
-      rows.forEach(function (row) {
-        row.addEventListener('mouseenter', function () {
-          activate(row.dataset.step);
+      items.forEach(function (item) {
+        item.addEventListener('mouseenter', function () {
+          activate(item.dataset.step);
         });
       });
 
-      /* Reset to step 1 when mouse leaves the text column entirely —
-         using mouseleave on the column (not mouseout on each row)
-         prevents flickering as the mouse moves between rows. */
-      textCol.addEventListener('mouseleave', function () {
+      /* Reset to step 1 when mouse leaves the interactive container —
+         prevents flickering as the cursor moves between items. */
+      resetEl.addEventListener('mouseleave', function () {
         activate('1');
       });
     });
