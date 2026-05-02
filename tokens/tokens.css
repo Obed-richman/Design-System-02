@@ -71,47 +71,51 @@ body {
   --colour-grey-10: #fbfbfb;
 
   /* --- Navy --- */
-  --colour-navy-100: #09002D;
-  --colour-navy-90: #00166C;
-  --colour-navy-80: #052686;
-  --colour-navy-70: #0D3A9E;
+  /* --colour-navy-100: #09002D; */
+  /* --colour-navy-90: #00166C; */
+  /* --colour-navy-80: #052686; */
+  --colour-navy-70: #09002D;
   --colour-navy-70-80: #09002dcc;
   --colour-navy-70-50: #09002d80;
   --colour-navy-70-0: #09002d00;
-  --colour-navy-60: #2552B5;
-  --colour-navy-50: #4A6FBF;
-  --colour-navy-40: #7A94CA;
-  --colour-navy-30: #A8B8D8;
-  --colour-navy-20: #EAECF1;
+  --colour-navy-60: #221A42;
+  --colour-navy-50: #443B5C;
+  --colour-navy-40: #5D596F;
+  --colour-navy-30: #767288;
+  --colour-navy-20: #B9B7C0;
   --colour-navy-10: #F5F6F9;
 
   /* --- Aqua --- */
-  --colour-aqua-100: #004B5E;
-  --colour-aqua-90: #007B9D;
-  --colour-aqua-80: #03B2C7;
-  --colour-aqua-70: #08F0F0;
-  --colour-aqua-60: #50FCFC;
-  --colour-aqua-50: #A2FFFF;
-  --colour-aqua-40: #B6FFFF;
-  --colour-aqua-30: #CBFFFF;
-  --colour-aqua-20: #D9FFFD;
+  /* --colour-aqua-100: #004B5E; */
+  /* --colour-aqua-90: #007B9D; */
+  /* --colour-aqua-80: #03B2C7; */
+  --colour-aqua-70: #092F4B;
+  --colour-aqua-60: #0E7F87;
+  --colour-aqua-60-10: #0E7F8720;
+  --colour-aqua-50: #02CCB4;
+  --colour-aqua-40: #12EFD4;
+  --colour-aqua-30: #76F8E8;
+  --colour-aqua-30: #76f8e930;
+  --colour-aqua-20: #B2FFF6;
+  --colour-aqua-20-20: #B2FFF620;
   --colour-aqua-10: #E7FFFC;
-  --colour-aqua-20-20: #b2fff633;
 
   /* --- Purple --- */
-  --colour-purple-100: #2D0862;
-  --colour-purple-100-10: #2d086210;
-  --colour-purple-100-20: #2d086220;
-  --colour-purple-90: #5410A6;
-  --colour-purple-80: #7912F4;
-  --colour-purple-70: #A458FF;
-  --colour-purple-60: #BA7FFF;
-  --colour-purple-50: #D0A6FF;
-  --colour-purple-50-40: #D0A6FF40;
-  --colour-purple-40: #DABCFF;
-  --colour-purple-30: #E6D3FF;
-  --colour-purple-20: #F2E9FF;
-  --colour-purple-10: #F8F4FF;
+  /* --colour-purple-100: #2D0862; */
+  /* --colour-purple-100-10: #2d086210; */
+  /* --colour-purple-100-20: #2d086220; */
+  /* --colour-purple-90: #5410A6; */
+  /* --colour-purple-80: #7912F4; */
+  --colour-purple-70: #1A005E;
+  --colour-purple-70-10: #1b005e10;
+  --colour-purple-70-20: #1b005e20;
+  --colour-purple-60: #371987;
+  --colour-purple-50: #6A58F8;
+  --colour-purple-40: #839AFF;
+  --colour-purple-30: #A9B9FF;
+  --colour-purple-30: #A9B9FF40;
+  --colour-purple-20: #C9D3FF;
+  --colour-purple-10: #E9EDFF;
 
   /* --- Blue --- */
   --colour-blue-70: #0077bb;
@@ -273,7 +277,7 @@ body {
   --text-warning: var(--colour-yellow-50);
   --text-positive: var(--colour-green-50);
   --text-link-on-dark: var(--colour-aqua-40);
-  --text-link-on-dark-pressed: var(--colour-aqua-30);
+  --text-link-on-dark-pressed: var(--colour-aqua-20);
   --text-black-fixed: var(--colour-black-10);
   --text-white-fixed: var(--colour-white);
 
@@ -284,15 +288,15 @@ body {
   --bg-primary-subtle: var(--colour-navy-10);
   --bg-pressed: var(--colour-grey-40);
   --bg-disabled: var(--colour-grey-40);
-  --bg-brand-aqua: var(--colour-aqua-70);
-  --bg-brand-aqua-pressed: var(--colour-aqua-80);
+  --bg-brand-aqua: var(--colour-aqua-40);
+  --bg-brand-aqua-pressed: var(--colour-aqua-50);
   --bg-aqua-active: var(--colour-aqua-50);
   --bg-brand-purple: var(--colour-purple-60);
   --bg-brand-light-purple: var(--colour-purple-50);
-  --bg-brand-navy: var(--colour-navy-90);
-  --bg-light-navy: var(--colour-navy-70);
+  --bg-brand-navy: var(--colour-navy-70);
+  --bg-light-navy: var(--colour-navy-50);
   --bg-brand-ecru: var(--colour-ecru-20);
-  --bg-brand-blue: var(--colour-blue-50);
+  --bg-brand-blue: var(--colour-blue-40);
   --bg-white-transparent: var(--colour-white-40);
   --bg-white-overlay: var(--colour-white-80);
   --bg-black-overlay: var(--colour-black-10-30);
@@ -311,7 +315,7 @@ body {
   --border-color-on-colour: var(--colour-white);
   --border-color-on-light: var(--colour-black-10);
   --border-color-focused: var(--colour-aqua-20);
-  --border-color-active: var(--colour-aqua-70);
+  --border-color-active: var(--colour-aqua-40);
   --border-color-positive: var(--colour-green-50);
   --border-color-positive-subtle: var(--colour-green-30);
   --border-color-negative: var(--colour-red-50);

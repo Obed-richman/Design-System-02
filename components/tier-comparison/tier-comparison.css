@@ -1,0 +1,441 @@
+/* ============================================
+   TIER COMPARISON COMPONENT
+   Depends on: tokens/tokens.css,
+               components/button/button.css,
+               components/toggle/toggle.css
+   ============================================ */
+
+
+/* --- Base --- */
+
+.tier-comparison {
+  width: 100%;
+  background: var(--bg-primary);
+  border-radius: 0 0 var(--radius-medium) var(--radius-medium);
+  overflow: clip;
+  padding: var(--gap-medium);
+}
+
+.tier-comparison__title {
+  text-align: center;
+  font-size: var(--font-size-title-4);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-title-4);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--text-primary);
+  padding: var(--gap-x-large) var(--gap-large) var(--gap-large);
+  background: var(--bg-primary);
+}
+
+
+/* --- Column grid ---
+   Every <tr> uses the same 4-column grid so header
+   and body columns are pixel-aligned at all times. */
+
+.tier-comparison__table {
+  display: block;
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.tier-comparison__thead,
+.tier-comparison__table tbody {
+  display: block;
+}
+
+.tier-comparison__table tr {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+}
+
+.tier-comparison__table th,
+.tier-comparison__table td {
+  display: block;
+  min-width: 0;
+}
+
+
+/* --- Header block --- */
+
+.tier-comparison__thead {
+  position: sticky;
+  top: 16px;
+  z-index: 10;
+  background: var(--bg-primary);
+  border-bottom: var(--border-s) solid var(--border-color-primary);
+}
+
+/* Left label cell — billing toggle sits at the bottom */
+.tier-comparison__header-cell--label {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--gap-medium);
+  padding: var(--gap-medium);
+  /* border-left: 0.5px solid var(--border-color-primary); */
+  /* border-right: 0.5px solid var(--border-color-primary); */
+}
+
+.tier-comparison__header-label {
+  font-size: var(--font-size-subtitle-2);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-subtitle-2);
+  color: var(--text-primary);
+}
+
+/* Tier column header cells */
+.tier-comparison__header-cell--tier {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-small);
+  padding: var(--gap-none);
+  border-right: 0.5px solid var(--border-color-primary);
+  border-left: 0.5px solid var(--border-color-primary);
+  text-align: center;
+  border-radius: 24px 24px 0 0;
+}
+
+.tier-comparison__header-cell--tier:last-child {
+  border-right: 0.5px solid var(--border-color-primary);
+}
+
+
+/* --- Tier pill --- */
+
+.tier-comparison__tier-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--gap-xx-small) var(--gap-medium);
+  background: var(--bg-brand-navy);
+  color: var(--text-on-colour);
+  font-size: var(--font-size-subtitle-3);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-subtitle-3);
+  border-radius: var(--radius-round);
+  /* 2px top border — transparent by default so pill height stays constant */
+  border-top: var(--border-m) solid transparent;
+}
+
+/* Selected variant: teal top-border accent */
+.tier-comparison__tier-pill--selected {
+  border-top-color: var(--border-color-active);
+}
+
+
+/* --- Price --- */
+
+.tier-comparison__price {
+  font-size: var(--font-size-title-4);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-title-4);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--text-primary);
+}
+
+
+/* --- CTA button ---
+   Visual styles come from .btn / .btn--primary / .btn--secondary.
+   These modifiers only carry semantic meaning for JS targeting. */
+
+.tier-comparison__cta {
+  width: 100%;
+}
+
+/* Selected state: solid aqua (pairs with .btn--primary) */
+.tier-comparison__cta--selected { /* handled by .btn--primary */ }
+
+/* Default state: outlined (pairs with .btn--secondary) */
+.tier-comparison__cta--default  { /* handled by .btn--secondary */ }
+
+
+/* --- Billing toggle ---
+   Segmented pill control — two buttons inside a pill-shaped track. */
+
+.tier-comparison__billing-toggle {
+  display: inline-flex;
+  align-items: center;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-round);
+  padding: var(--gap-xx-small);
+  gap: var(--gap-none);
+}
+
+.tier-comparison__billing-btn {
+  padding: var(--gap-xx-small) var(--gap-medium);
+  font-family: inherit;
+  font-size: var(--font-size-subtitle-3);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-subtitle-3);
+  color: var(--text-primary);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-round);
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+/* Active pill: raised white background */
+.tier-comparison__billing-btn.is-active {
+  background: var(--bg-primary);
+}
+
+
+/* --- Table rows --- */
+
+.tier-comparison__table tbody tr {
+  /* border-bottom: 0.5px solid var(--border-color-primary); */
+}
+
+.tier-comparison__table tbody tr:last-child {
+  /* border-bottom: none; */
+}
+
+/* Base cell */
+/* Specificity 0-2-0 beats the shared .tier-comparison__table td { display: block }
+   rule at 0-1-1, so display: flex reliably wins on all cell elements. */
+.tier-comparison__table .tier-comparison__cell {
+  display: flex;
+  align-items: center;
+  padding: var(--gap-medium);
+  min-width: 0;
+  border-right: 0.5px solid var(--border-color-primary);
+  border-bottom: 0.5px solid var(--border-color-primary);
+}
+
+.tier-comparison__table .tier-comparison__cell:last-child {
+  border-right: 0.5px solid var(--border-color-primary);
+}
+
+/* Label (left) column cell */
+.tier-comparison__cell--label {
+  gap: var(--gap-x-small);
+  align-items: center;
+  border-left: 0.5px solid var(--border-color-primary);
+}
+
+/* Tier column cells — centre-align their content */
+.tier-comparison__cell--tier {
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* --- Row type modifiers --- */
+
+/* Section header row — bold label, light grey fill */
+.tier-comparison__row--section-header .tier-comparison__cell {
+  background: var(--bg-secondary);
+  padding-top: var(--gap-x-small);
+  padding-bottom: var(--gap-x-small);
+}
+
+/* Selected column in a section header overrides the grey with the aqua tint */
+.tier-comparison__row--section-header .tier-comparison__cell.tier-comparison__col--selected {
+  background: var(--colour-aqua-10);
+}
+
+/* Included / excluded / value / optional — no structural override;
+   standard .tier-comparison__cell padding already applies */
+
+
+/* --- Selected column tint ---
+   Applied to every cell in the active tier column via JS.
+   Uses the lightest aqua primitive so the tint is barely perceptible. */
+
+.tier-comparison__col--selected {
+  background: var(--colour-aqua-10);
+}
+
+
+/* --- Cell content types --- */
+
+/* Feature name text */
+.tier-comparison__feature-name {
+  font-size: var(--font-size-body-3);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-3);
+  color: var(--text-primary);
+}
+
+/* Plain text value (e.g. "Up to £300") */
+.tier-comparison__value {
+  font-size: var(--font-size-body-3);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-3);
+  color: var(--text-primary);
+  text-align: center;
+}
+
+/* "Optional" muted label in optional toggle cells */
+.tier-comparison__optional-label {
+  font-size: var(--font-size-body-4);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-4);
+  color: var(--text-disabled);
+  white-space: nowrap;
+}
+
+/* Section heading inside a section-header cell */
+.tier-comparison__section-label {
+  font-size: var(--font-size-subtitle-3);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-subtitle-3);
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+
+/* --- Check / cross indicators ---
+   24 × 24 px filled circles with a white icon centred inside. */
+
+.tier-comparison__check,
+.tier-comparison__cross {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--icon-size-xxs);   /* 16px */
+  height: var(--icon-size-xxs);
+  border-radius: var(--radius-round);
+  flex-shrink: 0;
+}
+
+/* Green circle — positive / included */
+.tier-comparison__check {
+  background: var(--base-positive);
+  color: var(--colour-white);
+}
+
+/* Grey circle — excluded / not available */
+.tier-comparison__cross {
+  /* background: var(--colour-grey-50); */
+  /* color: var(--colour-white); */
+}
+
+/* Cross icon fills the full 24px circle (has its own circle baked in) */
+.tier-comparison__cross .icon {
+  width: var(--icon-size-xxs);
+  height: var(--icon-size-xxs);
+  flex-shrink: 0;
+}
+
+/* Tick icon sits smaller inside the green circle for visual padding */
+.tier-comparison__check .icon {
+  width: var(--icon-size-3xs);
+  height: var(--icon-size-3xs);
+  flex-shrink: 0;
+}
+
+
+/* --- Info icon ---
+   14 × 14 px inline button; tooltip is a sibling inside the wrap. */
+
+.tier-comparison__info-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.tier-comparison__info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--icon-secondary);
+}
+
+.tier-comparison__info-icon .icon {
+  width: 14px;
+  height: 14px;
+}
+
+
+/* --- Optional toggle row ---
+   "Optional" label + small toggle switch side by side. */
+
+.tier-comparison__optional-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-x-small);
+}
+
+
+/* --- Tooltip ---
+   Absolutely positioned above the info icon; shown with .is-open. */
+
+.tier-comparison__tooltip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + var(--gap-x-small));
+  transform: translateX(-50%);
+  background: var(--bg-tertiary);
+  color: var(--text-on-colour);
+  font-size: var(--font-size-body-4);
+  line-height: var(--line-height-body-4);
+  padding: var(--gap-x-small) var(--gap-small);
+  border-radius: var(--radius-x-small);
+  max-width: 220px;
+  white-space: normal;
+  z-index: 20;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 150ms ease;
+}
+
+.tier-comparison__tooltip.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+/* --- Dark mode ---
+   Override colours only; layout is unchanged. */
+
+.dark .tier-comparison {
+  border-color: var(--border-color-primary);
+}
+
+.dark .tier-comparison__thead {
+  background: var(--bg-primary);
+  border-bottom-color: var(--border-color-primary);
+}
+
+.dark .tier-comparison__title {
+  background: var(--bg-primary);
+}
+
+/* Selected column tint on dark: use a very dark aqua tint */
+.dark .tier-comparison__col--selected {
+  background: var(--colour-aqua-70);
+}
+
+.dark .tier-comparison__row--section-header .tier-comparison__cell {
+  background: var(--bg-secondary);
+}
+
+.dark .tier-comparison__row--section-header .tier-comparison__cell.tier-comparison__col--selected {
+  background: var(--colour-aqua-70);
+}
+
+.dark .tier-comparison__billing-toggle {
+  background: var(--bg-secondary);
+}
+
+.dark .tier-comparison__billing-btn.is-active {
+  background: var(--bg-primary);
+}
+
+/* Cross indicator: lighter neutral on dark backgrounds */
+.dark .tier-comparison__cross {
+  background: var(--colour-navy-40);
+}

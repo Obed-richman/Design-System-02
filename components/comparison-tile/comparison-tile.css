@@ -45,6 +45,7 @@
 .comparison-tile__header {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: var(--gap-x-small);
   padding: var(--gap-medium);
   transition: background 120ms ease;

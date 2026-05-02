@@ -1,0 +1,77 @@
+/* ============================================
+   SEGMENT CONTROL
+   Depends on: tokens/tokens.css
+   ============================================ */
+
+
+/* --- Base --- */
+
+.segment-control {
+  display: inline-flex;
+  align-items: center;
+  background: var(--bg-disabled);
+  border: var(--border-s) solid var(--border-color-primary);
+  border-radius: var(--radius-round);
+  padding: var(--gap-xx-small);
+  gap: var(--gap-xx-small);
+}
+
+.segment-control__item {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.segment-control__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: var(--gap-xx-small) var(--gap-medium);
+  font-family: inherit;
+  font-size: var(--font-size-subtitle-4);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-subtitle-4);
+  color: var(--text-disabled);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-round);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 150ms ease, box-shadow 150ms ease, color 150ms ease;
+}
+
+.segment-control__btn.is-active {
+  background: var(--bg-primary);
+  color: var(--text-black-fixed);
+  /* box-shadow: 0 var(--border-s) var(--number-4) var(--colour-black-10-20); */
+}
+
+
+/* --- Size variants --- */
+
+.segment-control--medium .segment-control__btn {
+  padding: var(--gap-x-small) var(--gap-medium);
+  font-size: var(--font-size-subtitle-3);
+  line-height: var(--line-height-subtitle-3);
+}
+
+.segment-control--large .segment-control__btn {
+  padding: var(--gap-small) var(--gap-medium);
+  font-size: var(--font-size-subtitle-2);
+  line-height: var(--line-height-subtitle-2);
+}
+
+
+/* --- Dark mode --- */
+
+.dark .segment-control {
+  background: var(--bg-secondary);
+  border-color: var(--border-color-primary);
+}
+
+.dark .segment-control__btn.is-active {
+  background: var(--bg-primary);
+  box-shadow: 0 var(--border-s) var(--number-4) var(--colour-black-10-40);
+}

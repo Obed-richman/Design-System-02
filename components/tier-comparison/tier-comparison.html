@@ -1,0 +1,731 @@
+<!-- Requires: tokens/tokens.css, components/button/button.css, components/toggle/toggle.css, components/tier-comparison/tier-comparison.css -->
+
+
+<!-- ============================================================
+     TIER COMPARISON TABLE
+     Full-width pricing and feature comparison panel.
+     Default state: Tier 1 selected, Annual billing active.
+
+     Variants:
+       .tier-comparison__col--selected       — column background tint (JS-toggled on all cells in active column)
+       .tier-comparison__tier-pill--selected — teal top-border accent on the active tier pill
+       .tier-comparison__cta--selected       — pairs with .btn--primary (solid aqua, "Selected" label)
+       .tier-comparison__cta--default        — pairs with .btn--secondary (outlined, "Select Tier N" label)
+
+     Row type modifiers on <tr>:
+       .tier-comparison__row--section-header — bold category label, grey fill
+       .tier-comparison__row--included       — green checkmark in every tier cell
+       .tier-comparison__row--excluded       — mix of green checkmarks and grey crosses
+       .tier-comparison__row--value          — plain text value in each tier cell
+       .tier-comparison__row--optional       — "Optional" label + toggle in some cells, checkmark in others
+     ============================================================ -->
+
+<div class="tier-comparison">
+
+  <!-- Page title — centred, above the sticky table header -->
+  <h2 class="tier-comparison__title">Choose your policy cover level</h2>
+
+  <!-- Feature comparison table
+       <thead> is sticky so column headers remain visible while scrolling.
+       Every <tr> uses a 4-column CSS Grid: 2fr (label) + 1fr × 3 (tiers). -->
+  <table class="tier-comparison__table" role="table">
+    <thead class="tier-comparison__thead">
+      <tr>
+
+        <!-- Left header cell: section label + billing period toggle -->
+        <th scope="col" class="tier-comparison__header-cell tier-comparison__header-cell--label">
+          <span class="tier-comparison__header-label">Full feature comparison</span>
+          <!-- Billing toggle: segmented pill — Annual active by default -->
+          <div class="tier-comparison__billing-toggle" role="group" aria-label="Billing period">
+            <button class="tier-comparison__billing-btn is-active" data-billing="annual">Annual</button>
+            <button class="tier-comparison__billing-btn" data-billing="monthly">Monthly</button>
+          </div>
+        </th>
+
+        <!-- Tier 1 — selected by default -->
+        <th scope="col" class="tier-comparison__header-cell tier-comparison__header-cell--tier tier-comparison__col--selected" data-col="1">
+          <!-- Tier pill: .tier-comparison__tier-pill--selected adds the teal top border -->
+          <div class="tier-comparison__tier-pill tier-comparison__tier-pill--selected">Tier 1</div>
+          <!-- Price: data attributes hold both billing rates for JS swap -->
+          <div class="tier-comparison__price" data-annual="£857.43" data-monthly="£79.99">£857.43</div>
+          <!-- CTA: .btn--primary + .tier-comparison__cta--selected = solid aqua "Selected" button -->
+          <button class="btn btn--pill btn--primary tier-comparison__cta tier-comparison__cta--selected" data-tier="1">
+            Selected
+          </button>
+        </th>
+
+        <!-- Tier 2 — unselected by default -->
+        <th scope="col" class="tier-comparison__header-cell tier-comparison__header-cell--tier" data-col="2">
+          <div class="tier-comparison__tier-pill">Tier 2</div>
+          <div class="tier-comparison__price" data-annual="£1,232.00" data-monthly="£112.99">£1,232.00</div>
+          <!-- CTA: .btn--secondary + .tier-comparison__cta--default = outlined "Select Tier N" button -->
+          <button class="btn btn--pill btn--secondary tier-comparison__cta tier-comparison__cta--default" data-tier="2">
+            Select Tier 2
+          </button>
+        </th>
+
+        <!-- Tier 3 — unselected by default -->
+        <th scope="col" class="tier-comparison__header-cell tier-comparison__header-cell--tier" data-col="3">
+          <div class="tier-comparison__tier-pill">Tier 3</div>
+          <div class="tier-comparison__price" data-annual="£1,549.00" data-monthly="£139.99">£1,549.00</div>
+          <button class="btn btn--pill btn--secondary tier-comparison__cta tier-comparison__cta--default" data-tier="3">
+            Select Tier 3
+          </button>
+        </th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <!-- ======================================================
+           CORE COVER — section header row
+           ====================================================== -->
+      <!-- Row type: .tier-comparison__row--section-header — grey fill, bold uppercase label, empty tier cells -->
+      <tr class="tier-comparison__row tier-comparison__row--section-header">
+        <td class="tier-comparison__cell tier-comparison__cell--label">
+          <span class="tier-comparison__section-label">Core cover</span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1"></td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="2"></td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="3"></td>
+      </tr>
+
+      <!-- Row type: .tier-comparison__row--included — green checkmark in every tier cell -->
+      <tr class="tier-comparison__row tier-comparison__row--included">
+        <td class="tier-comparison__cell tier-comparison__cell--label">
+          <span class="tier-comparison__feature-name">Fully Comprehensive</span>
+          <span class="tier-comparison__info-wrap">
+            <button class="tier-comparison__info-icon" aria-label="More information about Fully Comprehensive" data-tooltip="Provides the highest level of cover for your vehicle.">
+              <svg class="icon" viewBox="0 0 16 16"><use href="../../icons/icons.svg#icon-information-tooltip"></use></svg>
+            </button>
+            <span class="tier-comparison__tooltip" role="tooltip">Provides the highest level of cover for your vehicle.</span>
+          </span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1">
+          <span class="tier-comparison__check" aria-label="Included"><svg class="icon" viewBox="0 0 24 24"><use href="../../icons/icons.svg#icon-tick-small"></use></svg></span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="2">
+          <span class="tier-comparison__check" aria-label="Included"><svg class="icon" viewBox="0 0 24 24"><use href="../../icons/icons.svg#icon-tick-small"></use></svg></span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="3">
+          <span class="tier-comparison__check" aria-label="Included"><svg class="icon" viewBox="0 0 24 24"><use href="../../icons/icons.svg#icon-tick-small"></use></svg></span>
+        </td>
+      </tr>
+
+      <tr class="tier-comparison__row tier-comparison__row--included">
+        <td class="tier-comparison__cell tier-comparison__cell--label">
+          <span class="tier-comparison__feature-name">Loss, theft, or damage</span>
+          <span class="tier-comparison__info-wrap">
+            <button class="tier-comparison__info-icon" aria-label="More information about Loss, theft, or damage" data-tooltip="Covers loss, theft or accidental damage to your vehicle.">
+              <svg class="icon" viewBox="0 0 16 16"><use href="../../icons/icons.svg#icon-information-tooltip"></use></svg>
+            </button>
+            <span class="tier-comparison__tooltip" role="tooltip">Covers loss, theft or accidental damage to your vehicle.</span>
+          </span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1">
+          <span class="tier-comparison__check" aria-label="Included"><svg class="icon" viewBox="0 0 24 24"><use href="../../icons/icons.svg#icon-tick-small"></use></svg></span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="2">
+          <span class="tier-comparison__check" aria-label="Included"><svg class="icon" viewBox="0 0 24 24"><use href="../../icons/icons.svg#icon-tick-small"></use></svg></span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="3">
+          <span class="tier-comparison__check" aria-label="Included"><svg class="icon" viewBox="0 0 24 24"><use href="../../icons/icons.svg#icon-tick-small"></use></svg></span>
+        </td>
+      </tr>
+
+      <tr class="tier-comparison__row tier-comparison__row--included">
+        <td class="tier-comparison__cell tier-comparison__cell--label">
+          <span class="tier-comparison__feature-name">Damage to others</span>
+          <span class="tier-comparison__info-wrap">
+            <button class="tier-comparison__info-icon" aria-label="More information about Damage to others" data-tooltip="Covers damage caused to other vehicles or property.">
+              <svg class="icon" viewBox="0 0 16 16"><use href="../../icons/icons.svg#icon-information-tooltip"></use></svg>
+            </button>
+            <span class="tier-comparison__tooltip" role="tooltip">Covers damage caused to other vehicles or property.</span>
+          </span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1">
+          <span class="tier-comparison__check" aria-label="Included"><svg class="icon" viewBox="0 0 24 24"><use href="../../icons/icons.svg#icon-tick-small"></use></svg></span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="2">
+          <span class="tier-comparison__check" aria-label="Included"><svg class="icon" viewBox="0 0 24 24"><use href="../../icons/icons.svg#icon-tick-small"></use></svg></span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="3">
+          <span class="tier-comparison__check" aria-label="Included"><svg class="icon" viewBox="0 0 24 24"><use href="../../icons/icons.svg#icon-tick-small"></use></svg></span>
+        </td>
+      </tr>
+
+      <tr class="tier-comparison__row tier-comparison__row--included">
+        <td class="tier-comparison__cell tier-comparison__cell--label">
+          <span class="tier-comparison__feature-name">New car replacement</span>
+          <span class="tier-comparison__info-wrap">
+            <button class="tier-comparison__info-icon" aria-label="More information about New car replacement" data-tooltip="Replaces your car with a new model if it's written off within the first year.">
+              <svg class="icon" viewBox="0 0 16 16"><use href="../../icons/icons.svg#icon-information-tooltip"></use></svg>
+            </button>
+            <span class="tier-comparison__tooltip" role="tooltip">Replaces your car with a new model if it's written off within the first year.</span>
+          </span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1">
+          <span class="tier-comparison__check" aria-label="Included"><svg class="icon" viewBox="0 0 24 24"><use href="../../icons/icons.svg#icon-tick-small"></use></svg></span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="2">
+          <span class="tier-comparison__check" aria-label="Included"><svg class="icon" viewBox="0 0 24 24"><use href="../../icons/icons.svg#icon-tick-small"></use></svg></span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="3">
+          <span class="tier-comparison__check" aria-label="Included"><svg class="icon" viewBox="0 0 24 24"><use href="../../icons/icons.svg#icon-tick-small"></use></svg></span>
+        </td>
+      </tr>
+
+      <tr class="tier-comparison__row tier-comparison__row--included">
+        <td class="tier-comparison__cell tier-comparison__cell--label">
+          <span class="tier-comparison__feature-name">Key and lock cover</span>
+          <span class="tier-comparison__info-wrap">
+            <button class="tier-comparison__info-icon" aria-label="More information about Key and lock cover" data-tooltip="Covers the cost of replacing lost or stolen keys and locks.">
+              <svg class="icon" viewBox="0 0 16 16"><use href="../../icons/icons.svg#icon-information-tooltip"></use></svg>
+            </button>
+            <span class="tier-comparison__tooltip" role="tooltip">Covers the cost of replacing lost or stolen keys and locks.</span>
+          </span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1">
+          <span class="tier-comparison__check" aria-label="Included"><svg class="icon" viewBox="0 0 24 24"><use href="../../icons/icons.svg#icon-tick-small"></use></svg></span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="2">
+          <span class="tier-comparison__check" aria-label="Included"><svg class="icon" viewBox="0 0 24 24"><use href="../../icons/icons.svg#icon-tick-small"></use></svg></span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="3">
+          <span class="tier-comparison__check" aria-label="Included"><svg class="icon" viewBox="0 0 24 24"><use href="../../icons/icons.svg#icon-tick-small"></use></svg></span>
+        </td>
+      </tr>
+
+      <tr class="tier-comparison__row tier-comparison__row--included">
+        <td class="tier-comparison__cell tier-comparison__cell--label">
+          <span class="tier-comparison__feature-name">Cover for vandalism</span>
+          <span class="tier-comparison__info-wrap">
+            <button class="tier-comparison__info-icon" aria-label="More information about Cover for vandalism" data-tooltip="Covers repairs to your vehicle caused by deliberate damage.">
+              <svg class="icon" viewBox="0 0 16 16"><use href="../../icons/icons.svg#icon-information-tooltip"></use></svg>
+            </button>
+            <span class="tier-comparison__tooltip" role="tooltip">Covers repairs to your vehicle caused by deliberate damage.</span>
+          </span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1">
+          <span class="tier-comparison__check" aria-label="Included"><svg class="icon" viewBox="0 0 24 24"><use href="../../icons/icons.svg#icon-tick-small"></use></svg></span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="2">
+          <span class="tier-comparison__check" aria-label="Included"><svg class="icon" viewBox="0 0 24 24"><use href="../../icons/icons.svg#icon-tick-small"></use></svg></span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="3">
+          <span class="tier-comparison__check" aria-label="Included"><svg class="icon" viewBox="0 0 24 24"><use href="../../icons/icons.svg#icon-tick-small"></use></svg></span>
+        </td>
+      </tr>
+
+      <tr class="tier-comparison__row tier-comparison__row--included">
+        <td class="tier-comparison__cell tier-comparison__cell--label">
+          <span class="tier-comparison__feature-name">Uninsured driver promise</span>
+          <span class="tier-comparison__info-wrap">
+            <button class="tier-comparison__info-icon" aria-label="More information about Uninsured driver promise" data-tooltip="Protects your no-claims bonus if you're hit by an uninsured driver.">
+              <svg class="icon" viewBox="0 0 16 16"><use href="../../icons/icons.svg#icon-information-tooltip"></use></svg>
+            </button>
+            <span class="tier-comparison__tooltip" role="tooltip">Protects your no-claims bonus if you're hit by an uninsured driver.</span>
+          </span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1">
+          <span class="tier-comparison__check" aria-label="Included"><svg class="icon" viewBox="0 0 24 24"><use href="../../icons/icons.svg#icon-tick-small"></use></svg></span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="2">
+          <span class="tier-comparison__check" aria-label="Included"><svg class="icon" viewBox="0 0 24 24"><use href="../../icons/icons.svg#icon-tick-small"></use></svg></span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="3">
+          <span class="tier-comparison__check" aria-label="Included"><svg class="icon" viewBox="0 0 24 24"><use href="../../icons/icons.svg#icon-tick-small"></use></svg></span>
+        </td>
+      </tr>
+
+      <tr class="tier-comparison__row tier-comparison__row--included">
+        <td class="tier-comparison__cell tier-comparison__cell--label">
+          <span class="tier-comparison__feature-name">Rewards</span>
+          <span class="tier-comparison__info-wrap">
+            <button class="tier-comparison__info-icon" aria-label="More information about Rewards" data-tooltip="Earn rewards for safe driving and good behaviour on the road.">
+              <svg class="icon" viewBox="0 0 16 16"><use href="../../icons/icons.svg#icon-information-tooltip"></use></svg>
+            </button>
+            <span class="tier-comparison__tooltip" role="tooltip">Earn rewards for safe driving and good behaviour on the road.</span>
+          </span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1">
+          <span class="tier-comparison__check" aria-label="Included"><svg class="icon" viewBox="0 0 24 24"><use href="../../icons/icons.svg#icon-tick-small"></use></svg></span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="2">
+          <span class="tier-comparison__check" aria-label="Included"><svg class="icon" viewBox="0 0 24 24"><use href="../../icons/icons.svg#icon-tick-small"></use></svg></span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="3">
+          <span class="tier-comparison__check" aria-label="Included"><svg class="icon" viewBox="0 0 24 24"><use href="../../icons/icons.svg#icon-tick-small"></use></svg></span>
+        </td>
+      </tr>
+
+
+      <!-- ======================================================
+           VEHICLE AND TRAVEL — section header row
+           ====================================================== -->
+      <tr class="tier-comparison__row tier-comparison__row--section-header">
+        <td class="tier-comparison__cell tier-comparison__cell--label">
+          <span class="tier-comparison__section-label">Vehicle and travel</span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1"></td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="2"></td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="3"></td>
+      </tr>
+
+      <!-- Row type: .tier-comparison__row--excluded — grey cross for all tiers (none include this) -->
+      <tr class="tier-comparison__row tier-comparison__row--excluded">
+        <td class="tier-comparison__cell tier-comparison__cell--label">
+          <span class="tier-comparison__feature-name">Windscreen cover</span>
+          <span class="tier-comparison__info-wrap">
+            <button class="tier-comparison__info-icon" aria-label="More information about Windscreen cover" data-tooltip="Covers repair or replacement of your windscreen.">
+              <svg class="icon" viewBox="0 0 16 16"><use href="../../icons/icons.svg#icon-information-tooltip"></use></svg>
+            </button>
+            <span class="tier-comparison__tooltip" role="tooltip">Covers repair or replacement of your windscreen.</span>
+          </span>
+        </td>
+        <!-- Excluded all tiers -->
+        <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1">
+          <span class="tier-comparison__cross" aria-label="Not included"><svg class="icon" viewBox="0 0 96 96"><use href="../../icons/icons.svg#icon-close"></use></svg></span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="2">
+          <span class="tier-comparison__cross" aria-label="Not included"><svg class="icon" viewBox="0 0 96 96"><use href="../../icons/icons.svg#icon-close"></use></svg></span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="3">
+          <span class="tier-comparison__cross" aria-label="Not included"><svg class="icon" viewBox="0 0 96 96"><use href="../../icons/icons.svg#icon-close"></use></svg></span>
+        </td>
+      </tr>
+
+      <!-- Row type: .tier-comparison__row--excluded — Tier 1 excluded, Tiers 2 & 3 have value text -->
+      <tr class="tier-comparison__row tier-comparison__row--excluded">
+        <td class="tier-comparison__cell tier-comparison__cell--label">
+          <span class="tier-comparison__feature-name">European cover</span>
+          <span class="tier-comparison__info-wrap">
+            <button class="tier-comparison__info-icon" aria-label="More information about European cover" data-tooltip="Extends your cover for driving in Europe.">
+              <svg class="icon" viewBox="0 0 16 16"><use href="../../icons/icons.svg#icon-information-tooltip"></use></svg>
+            </button>
+            <span class="tier-comparison__tooltip" role="tooltip">Extends your cover for driving in Europe.</span>
+          </span>
+        </td>
+        <!-- Tier 1: excluded -->
+        <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1">
+          <span class="tier-comparison__cross" aria-label="Not included"><svg class="icon" viewBox="0 0 96 96"><use href="../../icons/icons.svg#icon-close"></use></svg></span>
+        </td>
+        <!-- Tier 2: value text -->
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="2">
+          <span class="tier-comparison__value">Up to 90 days</span>
+        </td>
+        <!-- Tier 3: value text -->
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="3">
+          <span class="tier-comparison__value">Up to 90 days</span>
+        </td>
+      </tr>
+
+      <!-- Row type: .tier-comparison__row--value — plain text values in all tier cells -->
+      <tr class="tier-comparison__row tier-comparison__row--value">
+        <td class="tier-comparison__cell tier-comparison__cell--label">
+          <span class="tier-comparison__feature-name">Onward travel</span>
+          <span class="tier-comparison__info-wrap">
+            <button class="tier-comparison__info-icon" aria-label="More information about Onward travel" data-tooltip="Covers your travel expenses if your vehicle is off the road.">
+              <svg class="icon" viewBox="0 0 16 16"><use href="../../icons/icons.svg#icon-information-tooltip"></use></svg>
+            </button>
+            <span class="tier-comparison__tooltip" role="tooltip">Covers your travel expenses if your vehicle is off the road.</span>
+          </span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1">
+          <span class="tier-comparison__value">Up to £300</span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="2">
+          <span class="tier-comparison__value">Up to £300</span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="3">
+          <span class="tier-comparison__value">Up to £500</span>
+        </td>
+      </tr>
+
+      <!-- Row type: .tier-comparison__row--excluded — Tier 1 excluded, Tiers 2 & 3 included -->
+      <tr class="tier-comparison__row tier-comparison__row--excluded">
+        <td class="tier-comparison__cell tier-comparison__cell--label">
+          <span class="tier-comparison__feature-name">Courtesy car</span>
+          <span class="tier-comparison__info-wrap">
+            <button class="tier-comparison__info-icon" aria-label="More information about Courtesy car" data-tooltip="Provides a replacement car while yours is being repaired.">
+              <svg class="icon" viewBox="0 0 16 16"><use href="../../icons/icons.svg#icon-information-tooltip"></use></svg>
+            </button>
+            <span class="tier-comparison__tooltip" role="tooltip">Provides a replacement car while yours is being repaired.</span>
+          </span>
+        </td>
+        <!-- Tier 1: excluded -->
+        <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1">
+          <span class="tier-comparison__cross" aria-label="Not included"><svg class="icon" viewBox="0 0 96 96"><use href="../../icons/icons.svg#icon-close"></use></svg></span>
+        </td>
+        <!-- Tiers 2 & 3: included -->
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="2">
+          <span class="tier-comparison__check" aria-label="Included"><svg class="icon" viewBox="0 0 24 24"><use href="../../icons/icons.svg#icon-tick-small"></use></svg></span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="3">
+          <span class="tier-comparison__check" aria-label="Included"><svg class="icon" viewBox="0 0 24 24"><use href="../../icons/icons.svg#icon-tick-small"></use></svg></span>
+        </td>
+      </tr>
+
+
+      <!-- ======================================================
+           PERSONAL COVER — section header row
+           ====================================================== -->
+      <tr class="tier-comparison__row tier-comparison__row--section-header">
+        <td class="tier-comparison__cell tier-comparison__cell--label">
+          <span class="tier-comparison__section-label">Personal cover</span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1"></td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="2"></td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="3"></td>
+      </tr>
+
+      <!-- Row type: .tier-comparison__row--value — escalating limits per tier -->
+      <tr class="tier-comparison__row tier-comparison__row--value">
+        <td class="tier-comparison__cell tier-comparison__cell--label">
+          <span class="tier-comparison__feature-name">Personal belongings</span>
+          <span class="tier-comparison__info-wrap">
+            <button class="tier-comparison__info-icon" aria-label="More information about Personal belongings" data-tooltip="Covers personal items lost or damaged in a vehicle incident.">
+              <svg class="icon" viewBox="0 0 16 16"><use href="../../icons/icons.svg#icon-information-tooltip"></use></svg>
+            </button>
+            <span class="tier-comparison__tooltip" role="tooltip">Covers personal items lost or damaged in a vehicle incident.</span>
+          </span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1">
+          <span class="tier-comparison__value">Up to £3.5k</span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="2">
+          <span class="tier-comparison__value">Up to £5k</span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="3">
+          <span class="tier-comparison__value">Up to £7.5k</span>
+        </td>
+      </tr>
+
+      <!-- Row type: .tier-comparison__row--excluded — Tier 1 excluded, Tiers 2 & 3 have value text -->
+      <tr class="tier-comparison__row tier-comparison__row--excluded">
+        <td class="tier-comparison__cell tier-comparison__cell--label">
+          <span class="tier-comparison__feature-name">Personal Injury</span>
+          <span class="tier-comparison__info-wrap">
+            <button class="tier-comparison__info-icon" aria-label="More information about Personal Injury" data-tooltip="Pays a lump sum if you suffer a serious injury in an accident.">
+              <svg class="icon" viewBox="0 0 16 16"><use href="../../icons/icons.svg#icon-information-tooltip"></use></svg>
+            </button>
+            <span class="tier-comparison__tooltip" role="tooltip">Pays a lump sum if you suffer a serious injury in an accident.</span>
+          </span>
+        </td>
+        <!-- Tier 1: excluded -->
+        <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1">
+          <span class="tier-comparison__cross" aria-label="Not included"><svg class="icon" viewBox="0 0 96 96"><use href="../../icons/icons.svg#icon-close"></use></svg></span>
+        </td>
+        <!-- Tier 2: value -->
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="2">
+          <span class="tier-comparison__value">Up to £500</span>
+        </td>
+        <!-- Tier 3: value -->
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="3">
+          <span class="tier-comparison__value">Up to £600</span>
+        </td>
+      </tr>
+
+
+      <!-- ======================================================
+           ADDITIONAL COVER — section header row
+           ====================================================== -->
+      <tr class="tier-comparison__row tier-comparison__row--section-header">
+        <td class="tier-comparison__cell tier-comparison__cell--label">
+          <span class="tier-comparison__section-label">Additional cover</span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1"></td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="2"></td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="3"></td>
+      </tr>
+
+      <!-- Row type: .tier-comparison__row--optional
+           Legal cover: Optional + toggle for Tiers 1 & 2; included (green check) for Tier 3 -->
+      <tr class="tier-comparison__row tier-comparison__row--optional">
+        <td class="tier-comparison__cell tier-comparison__cell--label">
+          <span class="tier-comparison__feature-name">Legal cover</span>
+          <span class="tier-comparison__info-wrap">
+            <button class="tier-comparison__info-icon" aria-label="More information about Legal cover" data-tooltip="Covers legal costs if you need to pursue or defend a claim.">
+              <svg class="icon" viewBox="0 0 16 16"><use href="../../icons/icons.svg#icon-information-tooltip"></use></svg>
+            </button>
+            <span class="tier-comparison__tooltip" role="tooltip">Covers legal costs if you need to pursue or defend a claim.</span>
+          </span>
+        </td>
+        <!-- Tier 1: optional + toggle -->
+        <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1">
+          <span class="tier-comparison__optional-cell">
+            <span class="tier-comparison__optional-label">Optional</span>
+            <label class="toggle toggle--small">
+              <input type="checkbox" class="toggle__input" aria-label="Add Legal cover to Tier 1">
+              <span class="toggle__track"><span class="toggle__thumb"></span></span>
+            </label>
+          </span>
+        </td>
+        <!-- Tier 2: optional + toggle -->
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="2">
+          <span class="tier-comparison__optional-cell">
+            <span class="tier-comparison__optional-label">Optional</span>
+            <label class="toggle toggle--small">
+              <input type="checkbox" class="toggle__input" aria-label="Add Legal cover to Tier 2">
+              <span class="toggle__track"><span class="toggle__thumb"></span></span>
+            </label>
+          </span>
+        </td>
+        <!-- Tier 3: included -->
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="3">
+          <span class="tier-comparison__check" aria-label="Included"><svg class="icon" viewBox="0 0 24 24"><use href="../../icons/icons.svg#icon-tick-small"></use></svg></span>
+        </td>
+      </tr>
+
+      <!-- Row type: .tier-comparison__row--optional
+           Breakdown: Optional + toggle for Tiers 1 & 2; included for Tier 3 -->
+      <tr class="tier-comparison__row tier-comparison__row--optional">
+        <td class="tier-comparison__cell tier-comparison__cell--label">
+          <span class="tier-comparison__feature-name">Breakdown</span>
+          <span class="tier-comparison__info-wrap">
+            <button class="tier-comparison__info-icon" aria-label="More information about Breakdown" data-tooltip="Covers roadside assistance and recovery if your vehicle breaks down.">
+              <svg class="icon" viewBox="0 0 16 16"><use href="../../icons/icons.svg#icon-information-tooltip"></use></svg>
+            </button>
+            <span class="tier-comparison__tooltip" role="tooltip">Covers roadside assistance and recovery if your vehicle breaks down.</span>
+          </span>
+        </td>
+        <!-- Tier 1: optional + toggle -->
+        <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1">
+          <span class="tier-comparison__optional-cell">
+            <span class="tier-comparison__optional-label">Optional</span>
+            <label class="toggle toggle--small">
+              <input type="checkbox" class="toggle__input" aria-label="Add Breakdown cover to Tier 1">
+              <span class="toggle__track"><span class="toggle__thumb"></span></span>
+            </label>
+          </span>
+        </td>
+        <!-- Tier 2: optional + toggle -->
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="2">
+          <span class="tier-comparison__optional-cell">
+            <span class="tier-comparison__optional-label">Optional</span>
+            <label class="toggle toggle--small">
+              <input type="checkbox" class="toggle__input" aria-label="Add Breakdown cover to Tier 2">
+              <span class="toggle__track"><span class="toggle__thumb"></span></span>
+            </label>
+          </span>
+        </td>
+        <!-- Tier 3: included -->
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="3">
+          <span class="tier-comparison__check" aria-label="Included"><svg class="icon" viewBox="0 0 24 24"><use href="../../icons/icons.svg#icon-tick-small"></use></svg></span>
+        </td>
+      </tr>
+
+      <!-- Row type: .tier-comparison__row--optional
+           Replacement vehicle: Optional + toggle for all three tiers -->
+      <tr class="tier-comparison__row tier-comparison__row--optional">
+        <td class="tier-comparison__cell tier-comparison__cell--label">
+          <span class="tier-comparison__feature-name">Replacement vehicle</span>
+          <span class="tier-comparison__info-wrap">
+            <button class="tier-comparison__info-icon" aria-label="More information about Replacement vehicle" data-tooltip="Provides a like-for-like replacement vehicle while yours is repaired or replaced.">
+              <svg class="icon" viewBox="0 0 16 16"><use href="../../icons/icons.svg#icon-information-tooltip"></use></svg>
+            </button>
+            <span class="tier-comparison__tooltip" role="tooltip">Provides a like-for-like replacement vehicle while yours is repaired or replaced.</span>
+          </span>
+        </td>
+        <!-- All three tiers: optional + toggle -->
+        <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1">
+          <span class="tier-comparison__optional-cell">
+            <span class="tier-comparison__optional-label">Optional</span>
+            <label class="toggle toggle--small">
+              <input type="checkbox" class="toggle__input" aria-label="Add Replacement vehicle to Tier 1">
+              <span class="toggle__track"><span class="toggle__thumb"></span></span>
+            </label>
+          </span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="2">
+          <span class="tier-comparison__optional-cell">
+            <span class="tier-comparison__optional-label">Optional</span>
+            <label class="toggle toggle--small">
+              <input type="checkbox" class="toggle__input" aria-label="Add Replacement vehicle to Tier 2">
+              <span class="toggle__track"><span class="toggle__thumb"></span></span>
+            </label>
+          </span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="3">
+          <span class="tier-comparison__optional-cell">
+            <span class="tier-comparison__optional-label">Optional</span>
+            <label class="toggle toggle--small">
+              <input type="checkbox" class="toggle__input" aria-label="Add Replacement vehicle to Tier 3">
+              <span class="toggle__track"><span class="toggle__thumb"></span></span>
+            </label>
+          </span>
+        </td>
+      </tr>
+
+
+      <!-- ======================================================
+           EXCESS — section header row
+           ====================================================== -->
+      <tr class="tier-comparison__row tier-comparison__row--section-header">
+        <td class="tier-comparison__cell tier-comparison__cell--label">
+          <span class="tier-comparison__section-label">Excess</span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1"></td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="2"></td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="3"></td>
+      </tr>
+
+      <!-- Row type: .tier-comparison__row--value — compulsory excess amounts -->
+      <tr class="tier-comparison__row tier-comparison__row--value">
+        <td class="tier-comparison__cell tier-comparison__cell--label">
+          <span class="tier-comparison__feature-name">Compulsory Excess</span>
+          <span class="tier-comparison__info-wrap">
+            <button class="tier-comparison__info-icon" aria-label="More information about Compulsory Excess" data-tooltip="The fixed amount you pay towards any claim, set by your insurer.">
+              <svg class="icon" viewBox="0 0 16 16"><use href="../../icons/icons.svg#icon-information-tooltip"></use></svg>
+            </button>
+            <span class="tier-comparison__tooltip" role="tooltip">The fixed amount you pay towards any claim, set by your insurer.</span>
+          </span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1">
+          <span class="tier-comparison__value">£650</span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="2">
+          <span class="tier-comparison__value">£500</span>
+        </td>
+        <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="3">
+          <span class="tier-comparison__value">£400</span>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+
+<!-- Copy this script block into your screen/page file -->
+<script>
+(function () {
+  'use strict';
+
+  /* Price data: annual and monthly rates per tier */
+  var PRICES = {
+    1: { annual: '£857.43',   monthly: '£79.99'  },
+    2: { annual: '£1,232.00', monthly: '£112.99' },
+    3: { annual: '£1,549.00', monthly: '£139.99' }
+  };
+
+  document.querySelectorAll('.tier-comparison').forEach(function (root) {
+
+    /* -------------------------------------------------------
+       1. Tier column selection
+       Clicking an unselected CTA updates the active column:
+       - moves .tier-comparison__col--selected to all cells in the new column
+       - moves .tier-comparison__tier-pill--selected to the new tier pill
+       - updates CTA button labels and classes
+    ------------------------------------------------------- */
+    root.addEventListener('click', function (e) {
+      var cta = e.target.closest('.tier-comparison__cta');
+      if (!cta) return;
+
+      var newTier = parseInt(cta.dataset.tier, 10);
+      if (!newTier) return;
+
+      /* Deselect all column cells */
+      root.querySelectorAll('.tier-comparison__col--selected').forEach(function (el) {
+        el.classList.remove('tier-comparison__col--selected');
+      });
+
+      /* Select new column — every cell with data-col matching the chosen tier */
+      root.querySelectorAll('[data-col="' + newTier + '"]').forEach(function (el) {
+        el.classList.add('tier-comparison__col--selected');
+      });
+
+      /* Update tier pills */
+      root.querySelectorAll('.tier-comparison__tier-pill').forEach(function (pill) {
+        pill.classList.remove('tier-comparison__tier-pill--selected');
+      });
+      var activePillCell = root.querySelector('[data-col="' + newTier + '"].tier-comparison__header-cell--tier');
+      if (activePillCell) {
+        var pill = activePillCell.querySelector('.tier-comparison__tier-pill');
+        if (pill) pill.classList.add('tier-comparison__tier-pill--selected');
+      }
+
+      /* Update all CTA buttons */
+      root.querySelectorAll('.tier-comparison__cta').forEach(function (btn) {
+        var t = parseInt(btn.dataset.tier, 10);
+        if (t === newTier) {
+          btn.textContent = 'Selected';
+          btn.classList.remove('btn--secondary', 'tier-comparison__cta--default');
+          btn.classList.add('btn--primary', 'tier-comparison__cta--selected');
+        } else {
+          btn.textContent = 'Select Tier ' + t;
+          btn.classList.remove('btn--primary', 'tier-comparison__cta--selected');
+          btn.classList.add('btn--secondary', 'tier-comparison__cta--default');
+        }
+      });
+    });
+
+
+    /* -------------------------------------------------------
+       2. Billing toggle
+       Swaps .is-active between Annual / Monthly buttons
+       and updates all three price elements.
+    ------------------------------------------------------- */
+    root.addEventListener('click', function (e) {
+      var btn = e.target.closest('.tier-comparison__billing-btn');
+      if (!btn) return;
+
+      var billing = btn.dataset.billing;
+      if (!billing) return;
+
+      /* Update active button */
+      root.querySelectorAll('.tier-comparison__billing-btn').forEach(function (b) {
+        b.classList.toggle('is-active', b === btn);
+      });
+
+      /* Update prices */
+      root.querySelectorAll('.tier-comparison__price').forEach(function (priceEl) {
+        var col = parseInt(priceEl.closest('[data-col]') && priceEl.closest('[data-col]').dataset.col, 10);
+        var tierData = PRICES[col];
+        if (tierData) {
+          priceEl.textContent = tierData[billing];
+        }
+      });
+    });
+
+
+    /* -------------------------------------------------------
+       3. Info icon tooltips
+       Clicking an info icon toggles .is-open on its tooltip.
+       Clicking anywhere else closes all open tooltips.
+    ------------------------------------------------------- */
+    root.addEventListener('click', function (e) {
+      var infoBtn = e.target.closest('.tier-comparison__info-icon');
+
+      if (infoBtn) {
+        e.stopPropagation();
+        var wrap = infoBtn.closest('.tier-comparison__info-wrap');
+        var tooltip = wrap && wrap.querySelector('.tier-comparison__tooltip');
+
+        /* Close any other open tooltips first */
+        root.querySelectorAll('.tier-comparison__tooltip.is-open').forEach(function (t) {
+          if (t !== tooltip) t.classList.remove('is-open');
+        });
+
+        if (tooltip) tooltip.classList.toggle('is-open');
+        return;
+      }
+
+      /* Close all tooltips on outside click */
+      root.querySelectorAll('.tier-comparison__tooltip.is-open').forEach(function (t) {
+        t.classList.remove('is-open');
+      });
+    });
+
+
+    /* -------------------------------------------------------
+       4. Optional toggles
+       Each toggle checkbox operates independently.
+       No effect on tier selection — handled by toggle.css.
+    ------------------------------------------------------- */
+    /* CSS :checked state drives the visual — no JS needed here */
+
+  });
+}());
+</script>

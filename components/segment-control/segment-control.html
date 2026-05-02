@@ -1,0 +1,103 @@
+<!-- ============================================
+     SEGMENT CONTROL SNIPPETS
+     Requires: tokens/tokens.css
+               components/segment-control/segment-control.css
+
+     JS: Copy the <script> block at the bottom
+         into your screen file.
+     ============================================ -->
+
+
+<!-- ============================================================
+     SMALL (default) · 3 segments
+     ============================================================ -->
+<div class="segment-control" role="group" aria-label="Options">
+  <div class="segment-control__item">
+    <button class="segment-control__btn is-active" type="button">On</button>
+  </div>
+  <div class="segment-control__item">
+    <button class="segment-control__btn" type="button">Text</button>
+  </div>
+  <div class="segment-control__item">
+    <button class="segment-control__btn" type="button">Text</button>
+  </div>
+</div>
+
+<!-- Small · 2 segments -->
+<div class="segment-control" role="group" aria-label="Options">
+  <div class="segment-control__item">
+    <button class="segment-control__btn is-active" type="button">On</button>
+  </div>
+  <div class="segment-control__item">
+    <button class="segment-control__btn" type="button">Off</button>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     MEDIUM · 3 segments
+     ============================================================ -->
+<div class="segment-control segment-control--medium" role="group" aria-label="Options">
+  <div class="segment-control__item">
+    <button class="segment-control__btn is-active" type="button">Text</button>
+  </div>
+  <div class="segment-control__item">
+    <button class="segment-control__btn" type="button">Text</button>
+  </div>
+  <div class="segment-control__item">
+    <button class="segment-control__btn" type="button">Text</button>
+  </div>
+</div>
+
+<!-- Medium · 2 segments -->
+<div class="segment-control segment-control--medium" role="group" aria-label="Options">
+  <div class="segment-control__item">
+    <button class="segment-control__btn is-active" type="button">On</button>
+  </div>
+  <div class="segment-control__item">
+    <button class="segment-control__btn" type="button">Off</button>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     LARGE · 3 segments
+     ============================================================ -->
+<div class="segment-control segment-control--large" role="group" aria-label="Options">
+  <div class="segment-control__item">
+    <button class="segment-control__btn is-active" type="button">Text</button>
+  </div>
+  <div class="segment-control__item">
+    <button class="segment-control__btn" type="button">Text</button>
+  </div>
+  <div class="segment-control__item">
+    <button class="segment-control__btn" type="button">Text</button>
+  </div>
+</div>
+
+<!-- Large · 2 segments -->
+<div class="segment-control segment-control--large" role="group" aria-label="Options">
+  <div class="segment-control__item">
+    <button class="segment-control__btn is-active" type="button">On</button>
+  </div>
+  <div class="segment-control__item">
+    <button class="segment-control__btn" type="button">Off</button>
+  </div>
+</div>
+
+
+<script>
+/* --- Segment Control JS ---
+   Copy this block into your screen's <script> tag.
+   Toggles .is-active between buttons within each control. */
+document.querySelectorAll('.segment-control').forEach(function (ctrl) {
+  ctrl.addEventListener('click', function (e) {
+    var btn = e.target.closest('.segment-control__btn');
+    if (!btn) return;
+    ctrl.querySelectorAll('.segment-control__btn').forEach(function (b) {
+      b.classList.remove('is-active');
+    });
+    btn.classList.add('is-active');
+  });
+});
+</script>

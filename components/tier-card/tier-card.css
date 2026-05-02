@@ -1,0 +1,99 @@
+/* ============================================
+   TIER CARD
+   Depends on: tokens/tokens.css,
+               components/button/button.css
+   ============================================ */
+
+
+/* --- Base --- */
+
+.tier-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--base-brand-purple);
+  border: var(--border-s) solid var(--border-color-primary);
+  border-radius: var(--radius-medium) var(--radius-medium) 0 0;
+  overflow: hidden;
+  width: 100%;
+}
+
+
+/* --- Header --- */
+
+.tier-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--gap-x-small) var(--gap-large);
+  width: 100%;
+}
+
+.tier-card__name {
+  font-size: var(--font-size-subtitle-1);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-subtitle-1);
+  color: var(--text-on-colour);
+  white-space: nowrap;
+}
+
+
+/* --- Body --- */
+
+.tier-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-small);
+  width: 100%;
+  padding: var(--gap-small) var(--gap-medium) var(--gap-medium);
+  background: var(--bg-primary);
+  border-radius: var(--radius-medium) var(--radius-medium) 0 0;
+}
+
+
+/* --- Price --- */
+
+.tier-card__price {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+}
+
+.tier-card__amount {
+  font-size: var(--font-size-title-4);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-title-4);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+
+/* --- CTA ---
+   Visual styles from .btn / .btn--rounded / .btn--secondary.
+   This class only ensures full-width layout. */
+
+.tier-card__cta {
+  width: 100%;
+}
+
+
+/* --- Selected modifier ---
+   Teal top-border accent on the outer card — consistent
+   with the selected-tier treatment in tier-comparison. */
+
+.tier-card--selected {
+  border-top: var(--border-m) solid var(--border-color-active);
+}
+
+
+/* --- Dark mode --- */
+
+.dark .tier-card__body {
+  background: var(--bg-primary);
+}
+
+.dark .tier-card__amount {
+  color: var(--text-primary);
+}

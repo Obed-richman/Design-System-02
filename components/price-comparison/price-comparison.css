@@ -148,6 +148,7 @@
 
 .price-comparison__tiles .comparison-tile:only-child .comparison-tile__header {
   justify-content: center;
+  text-align: center;
 }
 
 .price-comparison__tiles .comparison-tile:only-child .comparison-tile__body {
