@@ -140,6 +140,24 @@
               0 0 0 var(--border-focused) var(--border-color-focused);
 }
 
+/* Tertiary button inside nav__actions on the dark onboarding nav */
+.nav--onboarding .nav__actions .btn--tertiary {
+  color: var(--colour-white);
+  border-color: var(--border-color-on-colour);
+}
+
+.nav--onboarding .nav__actions .btn--tertiary:hover:not(:disabled) {
+  background: var(--colour-white-10);
+}
+
+.nav--onboarding .nav__actions .btn--tertiary:active:not(:disabled) {
+  background: var(--colour-white-20);
+}
+
+.nav--onboarding .nav__actions .btn--tertiary:focus-visible:not(:disabled) {
+  box-shadow: 0 0 0 var(--border-focused) var(--border-color-focused);
+}
+
 
 /* ============================================
    DESKTOP VARIANT
@@ -254,4 +272,185 @@
 .dark .nav__item--active {
   background: var(--colour-white);
   color: var(--colour-navy-70);
+}
+
+
+/* ============================================
+   ONBOARDING VARIANT  (.nav--onboarding)
+   Simplified full-width header for acquisition
+   flows. No nav links. Help button opens a
+   floating dropdown with support contacts and
+   quote reference.
+   ============================================ */
+
+/* --- Base --- */
+
+.nav--onboarding {
+  border-radius: 0;
+  padding: var(--gap-medium) var(--gap-xxx-large);
+  border-bottom: var(--border-s) solid var(--colour-white-10);
+  gap: 0;
+}
+
+.nav--onboarding .nav__links       { display: none; }
+.nav--onboarding .nav__mobile-toggle { display: none; }
+
+.nav--onboarding .nav__logo { margin-right: auto; }
+
+.nav--onboarding .nav__logo-img { height: var(--number-32); }
+
+/* Inner wrapper — constrains logo + actions to frame-wrapper width */
+.nav--onboarding .nav__inner {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: var(--frame-wrapper);
+  margin: 0 auto;
+  position: relative;
+}
+
+
+/* --- Dropdown panel --- */
+
+.nav__dropdown {
+  position: absolute;
+  top: calc(100% + var(--gap-x-small));
+  right: 0;
+  width: 400px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-medium);
+  box-shadow: var(--shadow-dropdown);
+  overflow: hidden;
+  z-index: 200;
+}
+
+/* Row */
+.nav__dropdown-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gap-medium);
+  padding: var(--gap-medium);
+  border-top: var(--border-s) solid var(--border-color-primary);
+  cursor: pointer;
+  transition: background 120ms ease;
+}
+
+.nav__dropdown-row:first-child { border-top: none; }
+
+.nav__dropdown-row:hover {
+  background: var(--bg-secondary);
+}
+
+.nav__dropdown-row--logout:hover { background: transparent; }
+
+/* Icon column — top-aligned with 4px push */
+.nav__dropdown-icon {
+  display: flex;
+  flex-shrink: 0;
+  padding-top: var(--gap-xx-small);
+  color: var(--icon-primary);
+}
+
+/* Text column */
+.nav__dropdown-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--number-2);
+  flex: 1;
+  min-width: 0;
+}
+
+.nav__dropdown-title {
+  font-size: var(--font-size-subtitle-1);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-subtitle-1);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.nav__dropdown-subtitle {
+  font-size: var(--font-size-body-3);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-3);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+/* Quote reference section */
+.nav__dropdown-ref {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-x-small);
+  padding: var(--gap-medium);
+  border-top: var(--border-s) solid var(--border-color-primary);
+}
+
+.nav__dropdown-ref-label {
+  font-size: var(--font-size-body-3);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-body-3);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.nav__dropdown-ref-value {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--gap-small) var(--gap-medium);
+  border: var(--border-s) solid var(--border-color-primary);
+  border-radius: var(--radius-small);
+  width: 100%;
+  background: transparent;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 120ms ease;
+}
+
+.nav__dropdown-ref-value:hover {
+  background: var(--bg-secondary);
+}
+
+.nav__dropdown-ref-number {
+  font-size: var(--font-size-subtitle-1);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-subtitle-1);
+  color: var(--text-primary);
+}
+
+/* Logout row — full-width button, mobile only */
+.nav__dropdown-row--logout {
+  justify-content: center;
+}
+
+.nav__dropdown-row--logout .btn {
+  width: 100%;
+}
+
+
+/* --- Variants --- */
+
+/* Mobile — hamburger toggle, full-width dropdown */
+@media (max-width: 767px) {
+  .nav--onboarding {
+    padding: var(--gap-small) var(--gap-large);
+  }
+
+  .nav--onboarding .nav__logo-img { height: var(--number-24); }
+
+  .nav--onboarding .nav__actions      { display: none; }
+  .nav--onboarding .nav__mobile-toggle { display: flex; }
+
+  /* nav__inner becomes non-positioned so dropdown falls back to nav (full-width) */
+  .nav--onboarding .nav__inner { position: static; }
+
+  .nav__dropdown {
+    left: var(--gap-medium);
+    right: var(--gap-medium);
+    width: auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .nav__dropdown-row--logout { display: none; }
 }

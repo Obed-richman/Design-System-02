@@ -1,0 +1,161 @@
+/* ============================================
+   COVER TILE
+   Depends on: tokens/tokens.css,
+               components/badge/badge.css,
+               components/button/button.css,
+               components/icon-badge/icon-badge.css
+   ============================================ */
+
+
+/* --- Base --- */
+
+.cover-tile {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-primary);
+  border-radius: var(--radius-medium);
+  overflow: hidden;
+}
+
+
+/* --- Content area --- */
+
+.cover-tile__content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: var(--gap-medium);
+  padding: var(--gap-large) var(--gap-medium) var(--gap-medium);
+}
+
+.cover-tile__top {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.cover-tile__top-spacer {
+  flex: 1;
+}
+
+
+/* --- Text block --- */
+
+.cover-tile__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-x-small);
+}
+
+.cover-tile__title {
+  font-size: var(--font-size-subtitle-1);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-subtitle-1);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.cover-tile__body {
+  font-size: var(--font-size-body-2);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-2);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.cover-tile__link {
+  color: var(--text-link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.cover-tile__link:hover {
+  color: var(--text-link-pressed);
+}
+
+
+/* --- IPID row --- */
+
+.cover-tile__ipid {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gap-medium);
+  padding: var(--gap-medium);
+  border: var(--border-s) solid var(--border-color-primary);
+  border-radius: var(--radius-small);
+}
+
+.cover-tile__ipid-icon {
+  display: flex;
+  align-items: flex-start;
+  padding-top: var(--gap-xx-small);
+  flex-shrink: 0;
+  color: var(--icon-primary);
+}
+
+.cover-tile__ipid-label {
+  flex: 1;
+  font-size: var(--font-size-body-3);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-3);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+
+/* --- Variants --- */
+
+/* Mobile — smaller text to match Figma breakpoint */
+@media (max-width: 767px) {
+  .cover-tile__title {
+    font-size: var(--font-size-subtitle-2);
+    line-height: var(--line-height-subtitle-2);
+  }
+
+  .cover-tile__body {
+    font-size: var(--font-size-body-3);
+    line-height: var(--line-height-body-3);
+  }
+
+  .cover-tile__price {
+    font-size: var(--font-size-subtitle-2);
+    line-height: var(--line-height-subtitle-2);
+  }
+}
+
+
+/* --- Footer --- */
+
+.cover-tile__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--gap-medium);
+  border-top: var(--border-s) solid var(--border-color-primary);
+}
+
+.cover-tile__price {
+  font-size: var(--font-size-subtitle-1);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-subtitle-1);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+
+/* --- States --- */
+/* Badge presence/absence is controlled by HTML — no modifier class needed */
+
+
+/* --- Dark mode --- */
+
+.dark .cover-tile__link {
+  color: var(--text-link-on-dark);
+}
+
+.dark .cover-tile__link:hover {
+  color: var(--text-link-on-dark-pressed);
+}

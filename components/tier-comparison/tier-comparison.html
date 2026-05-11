@@ -44,33 +44,47 @@
 
         <!-- Tier 1 — selected by default -->
         <th scope="col" class="tier-comparison__header-cell tier-comparison__header-cell--tier tier-comparison__col--selected" data-col="1">
-          <!-- Tier pill: .tier-comparison__tier-pill--selected adds the teal top border -->
-          <div class="tier-comparison__tier-pill tier-comparison__tier-pill--selected">Tier 1</div>
-          <!-- Price: data attributes hold both billing rates for JS swap -->
-          <div class="tier-comparison__price" data-annual="£857.43" data-monthly="£79.99">£857.43</div>
-          <!-- CTA: .btn--primary + .tier-comparison__cta--selected = solid aqua "Selected" button -->
-          <button class="btn btn--pill btn--primary tier-comparison__cta tier-comparison__cta--selected" data-tier="1">
-            Selected
-          </button>
+          <div class="tier-card tier-card--tier-1 tier-card--selected">
+            <div class="tier-card__header">
+              <span class="tier-card__name">Tier 1</span>
+            </div>
+            <div class="tier-card__body">
+              <div class="tier-card__price">
+                <span class="tier-card__amount">£857.43</span>
+              </div>
+              <button class="btn btn--rounded btn--primary btn--medium tier-card__cta" data-tier="1" type="button">Selected</button>
+            </div>
+          </div>
         </th>
 
         <!-- Tier 2 — unselected by default -->
         <th scope="col" class="tier-comparison__header-cell tier-comparison__header-cell--tier" data-col="2">
-          <div class="tier-comparison__tier-pill">Tier 2</div>
-          <div class="tier-comparison__price" data-annual="£1,232.00" data-monthly="£112.99">£1,232.00</div>
-          <!-- CTA: .btn--secondary + .tier-comparison__cta--default = outlined "Select Tier N" button -->
-          <button class="btn btn--pill btn--secondary tier-comparison__cta tier-comparison__cta--default" data-tier="2">
-            Select Tier 2
-          </button>
+          <div class="tier-card tier-card--tier-2">
+            <div class="tier-card__header">
+              <span class="tier-card__name">Tier 2</span>
+            </div>
+            <div class="tier-card__body">
+              <div class="tier-card__price">
+                <span class="tier-card__amount">£1,232.00</span>
+              </div>
+              <button class="btn btn--rounded btn--secondary btn--medium tier-card__cta" data-tier="2" type="button">Select Tier 2</button>
+            </div>
+          </div>
         </th>
 
         <!-- Tier 3 — unselected by default -->
         <th scope="col" class="tier-comparison__header-cell tier-comparison__header-cell--tier" data-col="3">
-          <div class="tier-comparison__tier-pill">Tier 3</div>
-          <div class="tier-comparison__price" data-annual="£1,549.00" data-monthly="£139.99">£1,549.00</div>
-          <button class="btn btn--pill btn--secondary tier-comparison__cta tier-comparison__cta--default" data-tier="3">
-            Select Tier 3
-          </button>
+          <div class="tier-card tier-card--tier-3">
+            <div class="tier-card__header">
+              <span class="tier-card__name">Tier 3</span>
+            </div>
+            <div class="tier-card__body">
+              <div class="tier-card__price">
+                <span class="tier-card__amount">£1,549.00</span>
+              </div>
+              <button class="btn btn--rounded btn--secondary btn--medium tier-card__cta" data-tier="3" type="button">Select Tier 3</button>
+            </div>
+          </div>
         </th>
 
       </tr>
@@ -286,13 +300,13 @@
         </td>
         <!-- Excluded all tiers -->
         <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1">
-          <span class="tier-comparison__cross" aria-label="Not included"><svg class="icon" viewBox="0 0 96 96"><use href="../../icons/icons.svg#icon-close"></use></svg></span>
+          <span class="tier-comparison__cross" aria-label="Not included"><svg class="icon" viewBox="0 0 96 96"><use href="../../icons/icons.svg#icon-cancel"></use></svg></span>
         </td>
         <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="2">
-          <span class="tier-comparison__cross" aria-label="Not included"><svg class="icon" viewBox="0 0 96 96"><use href="../../icons/icons.svg#icon-close"></use></svg></span>
+          <span class="tier-comparison__cross" aria-label="Not included"><svg class="icon" viewBox="0 0 96 96"><use href="../../icons/icons.svg#icon-cancel"></use></svg></span>
         </td>
         <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="3">
-          <span class="tier-comparison__cross" aria-label="Not included"><svg class="icon" viewBox="0 0 96 96"><use href="../../icons/icons.svg#icon-close"></use></svg></span>
+          <span class="tier-comparison__cross" aria-label="Not included"><svg class="icon" viewBox="0 0 96 96"><use href="../../icons/icons.svg#icon-cancel"></use></svg></span>
         </td>
       </tr>
 
@@ -309,7 +323,7 @@
         </td>
         <!-- Tier 1: excluded -->
         <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1">
-          <span class="tier-comparison__cross" aria-label="Not included"><svg class="icon" viewBox="0 0 96 96"><use href="../../icons/icons.svg#icon-close"></use></svg></span>
+          <span class="tier-comparison__cross" aria-label="Not included"><svg class="icon" viewBox="0 0 96 96"><use href="../../icons/icons.svg#icon-cancel"></use></svg></span>
         </td>
         <!-- Tier 2: value text -->
         <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="2">
@@ -356,7 +370,7 @@
         </td>
         <!-- Tier 1: excluded -->
         <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1">
-          <span class="tier-comparison__cross" aria-label="Not included"><svg class="icon" viewBox="0 0 96 96"><use href="../../icons/icons.svg#icon-close"></use></svg></span>
+          <span class="tier-comparison__cross" aria-label="Not included"><svg class="icon" viewBox="0 0 96 96"><use href="../../icons/icons.svg#icon-cancel"></use></svg></span>
         </td>
         <!-- Tiers 2 & 3: included -->
         <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="2">
@@ -415,7 +429,7 @@
         </td>
         <!-- Tier 1: excluded -->
         <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1">
-          <span class="tier-comparison__cross" aria-label="Not included"><svg class="icon" viewBox="0 0 96 96"><use href="../../icons/icons.svg#icon-close"></use></svg></span>
+          <span class="tier-comparison__cross" aria-label="Not included"><svg class="icon" viewBox="0 0 96 96"><use href="../../icons/icons.svg#icon-cancel"></use></svg></span>
         </td>
         <!-- Tier 2: value -->
         <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="2">
@@ -614,13 +628,13 @@
 
     /* -------------------------------------------------------
        1. Tier column selection
-       Clicking an unselected CTA updates the active column:
+       Clicking a tier-card CTA updates the active column:
        - moves .tier-comparison__col--selected to all cells in the new column
-       - moves .tier-comparison__tier-pill--selected to the new tier pill
-       - updates CTA button labels and classes
+       - moves .tier-card--selected to the chosen tier card
+       - updates tier-card CTA button labels and classes
     ------------------------------------------------------- */
     root.addEventListener('click', function (e) {
-      var cta = e.target.closest('.tier-comparison__cta');
+      var cta = e.target.closest('.tier-card__cta');
       if (!cta) return;
 
       var newTier = parseInt(cta.dataset.tier, 10);
@@ -636,27 +650,27 @@
         el.classList.add('tier-comparison__col--selected');
       });
 
-      /* Update tier pills */
-      root.querySelectorAll('.tier-comparison__tier-pill').forEach(function (pill) {
-        pill.classList.remove('tier-comparison__tier-pill--selected');
+      /* Update tier cards — selected state */
+      root.querySelectorAll('.tier-card').forEach(function (card) {
+        card.classList.remove('tier-card--selected');
       });
-      var activePillCell = root.querySelector('[data-col="' + newTier + '"].tier-comparison__header-cell--tier');
-      if (activePillCell) {
-        var pill = activePillCell.querySelector('.tier-comparison__tier-pill');
-        if (pill) pill.classList.add('tier-comparison__tier-pill--selected');
+      var activeHeaderCell = root.querySelector('[data-col="' + newTier + '"].tier-comparison__header-cell--tier');
+      if (activeHeaderCell) {
+        var card = activeHeaderCell.querySelector('.tier-card');
+        if (card) card.classList.add('tier-card--selected');
       }
 
-      /* Update all CTA buttons */
-      root.querySelectorAll('.tier-comparison__cta').forEach(function (btn) {
+      /* Update all tier-card CTA buttons */
+      root.querySelectorAll('.tier-card__cta').forEach(function (btn) {
         var t = parseInt(btn.dataset.tier, 10);
         if (t === newTier) {
           btn.textContent = 'Selected';
-          btn.classList.remove('btn--secondary', 'tier-comparison__cta--default');
-          btn.classList.add('btn--primary', 'tier-comparison__cta--selected');
+          btn.classList.remove('btn--secondary');
+          btn.classList.add('btn--primary');
         } else {
           btn.textContent = 'Select Tier ' + t;
-          btn.classList.remove('btn--primary', 'tier-comparison__cta--selected');
-          btn.classList.add('btn--secondary', 'tier-comparison__cta--default');
+          btn.classList.remove('btn--primary');
+          btn.classList.add('btn--secondary');
         }
       });
     });
@@ -680,11 +694,11 @@
       });
 
       /* Update prices */
-      root.querySelectorAll('.tier-comparison__price').forEach(function (priceEl) {
-        var col = parseInt(priceEl.closest('[data-col]') && priceEl.closest('[data-col]').dataset.col, 10);
+      root.querySelectorAll('.tier-card__amount').forEach(function (amountEl) {
+        var col = parseInt(amountEl.closest('[data-col]') && amountEl.closest('[data-col]').dataset.col, 10);
         var tierData = PRICES[col];
         if (tierData) {
-          priceEl.textContent = tierData[billing];
+          amountEl.textContent = tierData[billing];
         }
       });
     });

@@ -1,0 +1,90 @@
+/* ============================================
+   ADDONS SECTION
+   Depends on: tokens/tokens.css,
+               components/cover-tile/cover-tile.css
+   ============================================ */
+
+
+/* --- Base --- */
+
+.addons-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-large);
+  background: var(--bg-brand-ecru);
+  border-radius: var(--radius-x-large);
+  padding: var(--gap-large);
+  overflow: hidden;
+  width: 100%;
+}
+
+
+/* --- Text block --- */
+
+.addons-section__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-small);
+  text-align: center;
+  width: 100%;
+  max-width: var(--frame-content);
+}
+
+.addons-section__heading {
+  font-size: var(--font-size-title-3);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-title-3);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.addons-section__body {
+  font-size: var(--font-size-body-1);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-1);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+
+/* --- Card grid --- */
+
+.addons-section__grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: var(--gap-medium);
+  width: 100%;
+}
+
+/* Two-column layout — each tile takes half the available space minus half the gap */
+.addons-section__grid .cover-tile {
+  flex: 1 0 calc(50% - var(--gap-x-small));
+}
+
+
+/* --- Variants --- */
+
+/* Mobile — single column, tighter padding, smaller radius */
+@media (max-width: 767px) {
+  .addons-section {
+    border-radius: var(--radius-large);
+    padding: var(--gap-large) var(--gap-x-small) var(--gap-x-small);
+  }
+
+  .addons-section__grid .cover-tile {
+    flex: 1 0 100%;
+  }
+}
+
+
+/* --- States --- */
+/* Static container — no interactive states */
+
+
+/* --- Dark mode --- */
+/* bg-brand-ecru and all text/border tokens remap automatically via .dark cascade */

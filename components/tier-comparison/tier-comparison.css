@@ -398,6 +398,39 @@
 }
 
 
+/* --- Embedded tier-card in header cells ---
+   When .tier-card components are placed directly inside
+   .tier-comparison__header-cell--tier, strip the card's
+   standalone border/radius and let the column fill the cell. */
+
+.tier-comparison__header-cell--tier {
+  padding: 0;
+  align-items: stretch;
+}
+
+.tier-comparison__header-cell--tier .tier-card {
+  border: none;
+  border-radius: var(--radius-large) var(--radius-large) 0 0;
+  width: 100%;
+}
+
+.tier-comparison__header-cell--tier .tier-card__body {
+  border-radius: var(--radius-large) var(--radius-large) 0 0;
+  flex: 1;
+  justify-content: center;
+}
+
+/* Suppress aqua column tint on header cells — tier-card--selected handles selection indicator */
+.tier-comparison__col--selected.tier-comparison__header-cell--tier {
+  background: transparent;
+}
+
+/* Selected tier card body picks up the aqua tint */
+.tier-comparison__header-cell--tier .tier-card--selected .tier-card__body {
+  background: var(--colour-aqua-10);
+}
+
+
 /* --- Dark mode ---
    Override colours only; layout is unchanged. */
 

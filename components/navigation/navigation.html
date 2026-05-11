@@ -179,3 +179,282 @@
     });
   });
 </script>
+
+
+<!-- ============================================================
+     ONBOARDING VARIANT — .nav--onboarding
+     Simplified full-width header for acquisition flows.
+     No nav links. Help button opens a floating dropdown.
+
+     Breakpoints: Desktop (default) · Mobile (max-width: 767px)
+     Dropdown rows: Call us · Chat with us · Quote ref · Log out (mobile only)
+     ============================================================ -->
+
+
+<!-- =====================
+     DESKTOP — collapsed (default)
+     ===================== -->
+
+<nav class="nav nav--onboarding" aria-label="Main navigation" id="onboarding-nav-desktop">
+
+  <div class="nav__inner">
+
+  <a href="/" class="nav__logo" aria-label="Zego home">
+    <img src="../../assets/logo.svg" class="nav__logo-img" alt="Zego" />
+  </a>
+
+  <div class="nav__actions">
+    <!-- Help button — becomes Close when dropdown is open -->
+    <button
+      class="btn btn--pill btn--tertiary"
+      aria-expanded="false"
+      aria-controls="onboarding-dropdown-desktop"
+      onclick="navToggleOnboarding('onboarding-nav-desktop')"
+    >
+      <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+        <use href="../../icons/icons.svg#icon-customer"></use>
+      </svg>
+      Help
+    </button>
+    <button class="btn btn--pill btn--tertiary">Log out</button>
+  </div>
+
+  <!-- Dropdown — hidden by default -->
+  <div class="nav__dropdown" id="onboarding-dropdown-desktop" hidden>
+    <!-- Call us -->
+    <div class="nav__dropdown-row">
+      <span class="nav__dropdown-icon">
+        <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-phone"></use>
+        </svg>
+      </span>
+      <div class="nav__dropdown-text">
+        <p class="nav__dropdown-title">Call us</p>
+        <p class="nav__dropdown-subtitle">+44 2030 539 815</p>
+      </div>
+    </div>
+
+    <!-- Chat with us -->
+    <div class="nav__dropdown-row">
+      <span class="nav__dropdown-icon">
+        <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-live-chat"></use>
+        </svg>
+      </span>
+      <div class="nav__dropdown-text">
+        <p class="nav__dropdown-title">Chat with us</p>
+        <p class="nav__dropdown-subtitle">Get instant answers</p>
+      </div>
+    </div>
+
+    <!-- Quote reference -->
+    <div class="nav__dropdown-ref">
+      <p class="nav__dropdown-ref-label">Your quote reference is:</p>
+      <button class="nav__dropdown-ref-value" onclick="copyRefNumber(this)" aria-label="Copy reference number to clipboard">
+        <span class="nav__dropdown-ref-number">54673646</span>
+        <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-copy"></use>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  </div><!-- /.nav__inner -->
+
+</nav>
+
+
+<!-- =====================
+     DESKTOP — expanded (dropdown open)
+     Show this state in index.html for documentation.
+     In production, JS handles the toggle.
+     ===================== -->
+
+<nav class="nav nav--onboarding" aria-label="Main navigation">
+
+  <div class="nav__inner">
+
+  <a href="/" class="nav__logo" aria-label="Zego home">
+    <img src="../../assets/logo.svg" class="nav__logo-img" alt="Zego" />
+  </a>
+
+  <div class="nav__actions">
+    <button class="btn btn--pill btn--tertiary" aria-expanded="true">
+      <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+        <use href="../../icons/icons.svg#icon-close"></use>
+      </svg>
+      Close
+    </button>
+    <button class="btn btn--pill btn--tertiary">Log out</button>
+  </div>
+
+  <!-- Dropdown visible -->
+  <div class="nav__dropdown">
+    <div class="nav__dropdown-row">
+      <span class="nav__dropdown-icon">
+        <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-phone"></use>
+        </svg>
+      </span>
+      <div class="nav__dropdown-text">
+        <p class="nav__dropdown-title">Call us</p>
+        <p class="nav__dropdown-subtitle">+44 2030 539 815</p>
+      </div>
+    </div>
+    <div class="nav__dropdown-row">
+      <span class="nav__dropdown-icon">
+        <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-live-chat"></use>
+        </svg>
+      </span>
+      <div class="nav__dropdown-text">
+        <p class="nav__dropdown-title">Chat with us</p>
+        <p class="nav__dropdown-subtitle">Get instant answers</p>
+      </div>
+    </div>
+    <div class="nav__dropdown-ref">
+      <p class="nav__dropdown-ref-label">Your quote reference is:</p>
+      <button class="nav__dropdown-ref-value" onclick="copyRefNumber(this)" aria-label="Copy reference number to clipboard">
+        <span class="nav__dropdown-ref-number">54673646</span>
+        <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-copy"></use>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  </div><!-- /.nav__inner -->
+
+</nav>
+
+
+<!-- =====================
+     MOBILE — collapsed
+     ===================== -->
+
+<nav class="nav nav--onboarding" aria-label="Main navigation" id="onboarding-nav-mobile" style="max-width: 375px;">
+
+  <div class="nav__inner">
+
+  <a href="/" class="nav__logo" aria-label="Zego home">
+    <img src="../../assets/logo.svg" class="nav__logo-img" alt="Zego" />
+  </a>
+
+  <button
+    class="nav__mobile-toggle"
+    aria-expanded="false"
+    aria-controls="onboarding-dropdown-mobile"
+    aria-label="Open help menu"
+    onclick="navToggleOnboarding('onboarding-nav-mobile')"
+  >
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+
+  <div class="nav__dropdown" id="onboarding-dropdown-mobile" hidden>
+    <div class="nav__dropdown-row">
+      <span class="nav__dropdown-icon">
+        <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-phone"></use>
+        </svg>
+      </span>
+      <div class="nav__dropdown-text">
+        <p class="nav__dropdown-title">Call us</p>
+        <p class="nav__dropdown-subtitle">+44 2030 539 815</p>
+      </div>
+    </div>
+    <div class="nav__dropdown-row">
+      <span class="nav__dropdown-icon">
+        <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-live-chat"></use>
+        </svg>
+      </span>
+      <div class="nav__dropdown-text">
+        <p class="nav__dropdown-title">Chat with us</p>
+        <p class="nav__dropdown-subtitle">Get instant answers</p>
+      </div>
+    </div>
+    <div class="nav__dropdown-ref">
+      <p class="nav__dropdown-ref-label">Your quote reference is:</p>
+      <button class="nav__dropdown-ref-value" onclick="copyRefNumber(this)" aria-label="Copy reference number to clipboard">
+        <span class="nav__dropdown-ref-number">54673646</span>
+        <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-copy"></use>
+        </svg>
+      </button>
+    </div>
+    <!-- Log out — mobile only -->
+    <div class="nav__dropdown-row nav__dropdown-row--logout">
+      <button class="btn btn--pill btn--secondary">Log out</button>
+    </div>
+  </div>
+
+  </div><!-- /.nav__inner -->
+
+</nav>
+
+
+<!-- ============================================
+     REQUIRED JAVASCRIPT
+     Add navToggleOnboarding() to your screen file.
+     ============================================ -->
+<script>
+  function copyRefNumber(btn) {
+    var number = btn.querySelector('.nav__dropdown-ref-number').textContent.trim();
+    var useEl  = btn.querySelector('use');
+    var base   = useEl.getAttribute('href').replace(/#.*$/, '');
+    navigator.clipboard.writeText(number).then(function () {
+      useEl.setAttribute('href', base + '#icon-tick');
+      setTimeout(function () {
+        useEl.setAttribute('href', base + '#icon-copy');
+      }, 1500);
+    });
+  }
+
+  function navToggleOnboarding(navId) {
+    var nav      = document.getElementById(navId);
+    var dropdown = nav.querySelector('.nav__dropdown');
+    var helpBtn  = nav.querySelector('.nav__actions .btn');
+    var toggle   = nav.querySelector('.nav__mobile-toggle');
+    var isOpen   = !dropdown.hidden;
+
+    dropdown.hidden = isOpen;
+
+    if (helpBtn) {
+      helpBtn.setAttribute('aria-expanded', String(!isOpen));
+      helpBtn.innerHTML = isOpen
+        ? '<svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="../../icons/icons.svg#icon-customer"></use></svg> Help'
+        : '<svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="../../icons/icons.svg#icon-close"></use></svg> Close';
+    }
+
+    if (toggle) {
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+      toggle.setAttribute('aria-label', isOpen ? 'Open help menu' : 'Close help menu');
+      toggle.innerHTML = isOpen
+        ? '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>'
+        : '<svg class="icon icon--xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="../../icons/icons.svg#icon-close"></use></svg>';
+    }
+  }
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', function (e) {
+    document.querySelectorAll('.nav--onboarding').forEach(function (nav) {
+      var dropdown = nav.querySelector('.nav__dropdown');
+      var helpBtn  = nav.querySelector('.nav__actions .btn');
+      var toggle   = nav.querySelector('.nav__mobile-toggle');
+      if (dropdown && !nav.contains(e.target) && !dropdown.hidden) {
+        dropdown.hidden = true;
+        if (helpBtn) {
+          helpBtn.setAttribute('aria-expanded', 'false');
+          helpBtn.innerHTML = '<svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="../../icons/icons.svg#icon-customer"></use></svg> Help';
+        }
+        if (toggle) {
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.setAttribute('aria-label', 'Open help menu');
+          toggle.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+        }
+      }
+    });
+  });
+</script>

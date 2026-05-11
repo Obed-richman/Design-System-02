@@ -79,6 +79,13 @@
 }
 
 
+/* --- Per-tier colour modifiers --- */
+
+.tier-card--tier-1 { background: var(--colour-berry-70); }
+.tier-card--tier-2 { background: var(--base-brand-purple); }
+.tier-card--tier-3 { background: var(--colour-blue-80); }
+
+
 /* --- Selected modifier ---
    Teal top-border accent on the outer card — consistent
    with the selected-tier treatment in tier-comparison. */

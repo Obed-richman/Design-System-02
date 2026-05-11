@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="../../icons/icons.css">
 
   <!-- 3. Components — uncomment what this screen needs -->
-  <link rel="stylesheet" href="../../components/navigation-bar/navigation-bar.css">
+  <link rel="stylesheet" href="../../components/navigation/navigation.css">
   <link rel="stylesheet" href="../../components/step-indicator/step-indicator.css">
   <link rel="stylesheet" href="../../components/onboarding-steps/onboarding-steps.css">
   <link rel="stylesheet" href="../../components/registration-plate/registration-plate.css">
@@ -27,6 +27,10 @@
   <link rel="stylesheet" href="../../components/tier-comparison/tier-comparison.css">
   <link rel="stylesheet" href="../../components/tier-card/tier-card.css">
   <link rel="stylesheet" href="../../components/segment-control/segment-control.css">
+  <link rel="stylesheet" href="../../components/badge/badge.css">
+  <link rel="stylesheet" href="../../components/icon-badge/icon-badge.css">
+  <link rel="stylesheet" href="../../components/cover-tile/cover-tile.css">
+  <link rel="stylesheet" href="../../components/addons-section/addons-section.css">
   <!-- <link rel="stylesheet" href="../../components/button/button.css"> -->
   <!-- <link rel="stylesheet" href="../../components/input/input.css"> -->
   <!-- <link rel="stylesheet" href="../../components/input/date-picker.css"> -->
@@ -53,30 +57,6 @@
       font-family: var(--font-family-base);
     }
 
-    /* Full-width nav wrapper — flush to all edges, no padding */
-    .nav-wrapper {
-      padding: 0;
-    }
-
-    /* No radius, full width, flush to top and sides */
-    .nav-wrapper .nav-bar {
-      border-radius: 0;
-      border-bottom: var(--border-s) solid var(--border-color-primary);
-      padding: 0;
-    }
-
-    /* Constrain nav content to frame-wrapper width, centred */
-    .nav-bar__inner {
-      max-width: var(--frame-wrapper);
-      width: 100%;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      gap: var(--gap-large);
-      padding: 0 var(--gap-large);
-      height: 100%;
-    }
-
     /* Content wrapper — constrains to frame-wrapper and centres.
        Top padding = xx-large gap between onboarding steps and page content */
     .page {
@@ -88,12 +68,6 @@
       gap: var(--gap-x-large);
       min-height: calc(100vh - var(--number-80));
     }
-
-    /* Push the Help button to the far right when nav links are absent */
-    .nav-bar .nav-bar__ctas { margin-left: auto; width: auto; }
-
-    /* Hug the Help button to its text with 24px side padding */
-    .nav-bar .nav-bar__cta--login { flex: none; padding-left: var(--gap-large); padding-right: var(--gap-large); }
 
     /* x-large gap between the partner logo and the number plate */
     .onboarding-steps__partner { margin-bottom: var(--gap-x-large); }
@@ -146,38 +120,8 @@
       color: var(--text-primary);
     }
 
-    /* Tier card inside table header — fill cell, strip standalone card styling */
-    .tier-comparison__header-cell--tier {
-      padding: 0;
-      align-items: stretch;
-    }
-
-    .tier-comparison__header-cell--tier .tier-card {
-      border: none;
-      border-radius: var(--radius-large) var(--radius-large) 0 0;
-      width: 100%;
-    }
-
-    .tier-comparison__header-cell--tier .tier-card__body {
-      border-radius: var(--radius-large) var(--radius-large) 0 0;
-      flex: 1;
-      justify-content: center;
-    }
-
-    /* Suppress aqua tint on header tier cells — tier-card--selected is the indicator */
-    .tier-comparison__col--selected.tier-comparison__header-cell--tier {
-      background: transparent;
-    }
-
-    /* Selected tier card body adopts the column tint instead of white */
-    .tier-comparison__header-cell--tier .tier-card--selected .tier-card__body {
-      background: var(--colour-aqua-10);
-    }
-
-    /* Per-tier header colours */
-    [data-col="1"] .tier-card { background: #5B0247; }
-    [data-col="2"] .tier-card { background: #371987; }
-    [data-col="3"] .tier-card { background: #026BA3; }
+    /* Tier card header colours set via .tier-card--tier-n in tier-card.css
+       Tier card layout inside header cells handled by tier-comparison.css */
 
     /* Sticky ecru curtain — same height as thead top offset (16px).
        Sticks at top: 0 so scrolling content disappears behind it before
@@ -205,23 +149,74 @@
 </head>
 <body>
 
-  <!-- Navigation bar — full viewport width -->
-  <div class="nav-wrapper">
-    <nav class="nav-bar" aria-label="Main navigation">
-      <div class="nav-bar__inner">
-        <a class="nav-bar__logo" href="#" aria-label="Zego — home">
-          <svg class="nav-bar__logo-icon" viewBox="0 0 110 32" fill="currentColor" aria-hidden="true">
-            <use href="../../icons/icons.svg#icon-zego-logo"></use>
-          </svg>
-        </a>
+  <!-- Navigation — onboarding variant -->
+  <nav class="nav nav--onboarding" aria-label="Main navigation" id="quote-nav">
 
-        <div class="nav-bar__ctas">
-          <button class="nav-bar__cta nav-bar__cta--login" type="button">Help</button>
-          <!-- <button class="nav-bar__cta nav-bar__cta--quote" type="button">Get a quote</button> -->
+    <div class="nav__inner">
+
+    <a href="/" class="nav__logo" aria-label="Zego home">
+      <img src="./img/Zego.svg" class="nav__logo-img" alt="Zego" />
+    </a>
+
+    <div class="nav__actions">
+      <button class="btn btn--pill btn--tertiary" aria-expanded="false" aria-controls="quote-nav-dropdown" onclick="navToggleOnboarding('quote-nav')">
+        <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+          <use href="../../icons/icons.svg#icon-customer"></use>
+        </svg>
+        Help
+      </button>
+      <button class="btn btn--pill btn--tertiary">Log out</button>
+    </div>
+
+    <!-- Mobile hamburger toggle -->
+    <button class="nav__mobile-toggle" aria-expanded="false" aria-label="Open help menu" onclick="navToggleOnboarding('quote-nav')">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <!-- Dropdown -->
+    <div class="nav__dropdown" id="quote-nav-dropdown" hidden>
+      <div class="nav__dropdown-row">
+        <span class="nav__dropdown-icon">
+          <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-phone"></use>
+          </svg>
+        </span>
+        <div class="nav__dropdown-text">
+          <p class="nav__dropdown-title">Call us</p>
+          <p class="nav__dropdown-subtitle">+44 2030 539 815</p>
         </div>
       </div>
-    </nav>
-  </div>
+      <div class="nav__dropdown-row">
+        <span class="nav__dropdown-icon">
+          <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-live-chat"></use>
+          </svg>
+        </span>
+        <div class="nav__dropdown-text">
+          <p class="nav__dropdown-title">Chat with us</p>
+          <p class="nav__dropdown-subtitle">Get instant answers</p>
+        </div>
+      </div>
+      <div class="nav__dropdown-ref">
+        <p class="nav__dropdown-ref-label">Your quote reference is:</p>
+        <button class="nav__dropdown-ref-value" onclick="copyRefNumber(this)" aria-label="Copy reference number to clipboard">
+          <span class="nav__dropdown-ref-number">54673646</span>
+          <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true">
+            <use href="../../icons/icons.svg#icon-copy"></use>
+          </svg>
+        </button>
+      </div>
+      <!-- Log out — mobile only -->
+      <div class="nav__dropdown-row nav__dropdown-row--logout">
+        <button class="btn btn--pill btn--secondary">Log out</button>
+      </div>
+    </div>
+
+    </div><!-- /.nav__inner -->
+
+  </nav>
 
   <!-- Onboarding steps — Stage 1: Quote active -->
   <div class="onboarding-steps">
@@ -342,7 +337,7 @@
             <tr>
               <th scope="col" class="tier-comparison__header-cell tier-comparison__header-cell--label"></th>
               <th scope="col" class="tier-comparison__header-cell tier-comparison__header-cell--tier tier-comparison__col--selected" data-col="1">
-                <div class="tier-card tier-card--selected">
+                <div class="tier-card tier-card--tier-1 tier-card--selected">
                   <div class="tier-card__header">
                     <span class="tier-card__name">Tier 1</span>
                   </div>
@@ -355,7 +350,7 @@
                 </div>
               </th>
               <th scope="col" class="tier-comparison__header-cell tier-comparison__header-cell--tier" data-col="2">
-                <div class="tier-card">
+                <div class="tier-card tier-card--tier-2">
                   <div class="tier-card__header">
                     <span class="tier-card__name">Tier 2</span>
                   </div>
@@ -368,7 +363,7 @@
                 </div>
               </th>
               <th scope="col" class="tier-comparison__header-cell tier-comparison__header-cell--tier" data-col="3">
-                <div class="tier-card">
+                <div class="tier-card tier-card--tier-3">
                   <div class="tier-card__header">
                     <span class="tier-card__name">Tier 3</span>
                   </div>
@@ -483,9 +478,9 @@
                 <span class="tier-comparison__feature-name">Windscreen cover</span>
                 <span class="tier-comparison__info-wrap"><button class="tier-comparison__info-icon" aria-label="More information"><svg class="icon" viewBox="0 0 16 16"><use href="../../icons/icons.svg#icon-information-tooltip"></use></svg></button><span class="tier-comparison__tooltip" role="tooltip">Covers repair or replacement of your windscreen.</span></span>
               </td>
-              <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1"><span class="tier-comparison__cross" aria-label="Not included"><svg class="icon" viewBox="0 0 96 96"><use href="../../icons/icons.svg#icon-close"></use></svg></span></td>
-              <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="2"><span class="tier-comparison__cross" aria-label="Not included"><svg class="icon" viewBox="0 0 96 96"><use href="../../icons/icons.svg#icon-close"></use></svg></span></td>
-              <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="3"><span class="tier-comparison__cross" aria-label="Not included"><svg class="icon" viewBox="0 0 96 96"><use href="../../icons/icons.svg#icon-close"></use></svg></span></td>
+              <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1"><span class="tier-comparison__cross" aria-label="Not included"><svg class="icon" viewBox="0 0 96 96"><use href="../../icons/icons.svg#icon-cancel"></use></svg></span></td>
+              <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="2"><span class="tier-comparison__cross" aria-label="Not included"><svg class="icon" viewBox="0 0 96 96"><use href="../../icons/icons.svg#icon-cancel"></use></svg></span></td>
+              <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="3"><span class="tier-comparison__cross" aria-label="Not included"><svg class="icon" viewBox="0 0 96 96"><use href="../../icons/icons.svg#icon-cancel"></use></svg></span></td>
             </tr>
 
             <tr class="tier-comparison__row tier-comparison__row--excluded">
@@ -493,7 +488,7 @@
                 <span class="tier-comparison__feature-name">European cover</span>
                 <span class="tier-comparison__info-wrap"><button class="tier-comparison__info-icon" aria-label="More information"><svg class="icon" viewBox="0 0 16 16"><use href="../../icons/icons.svg#icon-information-tooltip"></use></svg></button><span class="tier-comparison__tooltip" role="tooltip">Extends your cover for driving in Europe.</span></span>
               </td>
-              <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1"><span class="tier-comparison__cross" aria-label="Not included"><svg class="icon" viewBox="0 0 96 96"><use href="../../icons/icons.svg#icon-close"></use></svg></span></td>
+              <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1"><span class="tier-comparison__cross" aria-label="Not included"><svg class="icon" viewBox="0 0 96 96"><use href="../../icons/icons.svg#icon-cancel"></use></svg></span></td>
               <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="2"><span class="tier-comparison__value">Up to 90 days</span></td>
               <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="3"><span class="tier-comparison__value">Up to 90 days</span></td>
             </tr>
@@ -513,7 +508,7 @@
                 <span class="tier-comparison__feature-name">Courtesy car</span>
                 <span class="tier-comparison__info-wrap"><button class="tier-comparison__info-icon" aria-label="More information"><svg class="icon" viewBox="0 0 16 16"><use href="../../icons/icons.svg#icon-information-tooltip"></use></svg></button><span class="tier-comparison__tooltip" role="tooltip">Provides a replacement car while yours is being repaired.</span></span>
               </td>
-              <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1"><span class="tier-comparison__cross" aria-label="Not included"><svg class="icon" viewBox="0 0 96 96"><use href="../../icons/icons.svg#icon-close"></use></svg></span></td>
+              <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1"><span class="tier-comparison__cross" aria-label="Not included"><svg class="icon" viewBox="0 0 96 96"><use href="../../icons/icons.svg#icon-cancel"></use></svg></span></td>
               <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="2"><span class="tier-comparison__check" aria-label="Included"><svg class="icon" viewBox="0 0 24 24"><use href="../../icons/icons.svg#icon-tick-small"></use></svg></span></td>
               <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="3"><span class="tier-comparison__check" aria-label="Included"><svg class="icon" viewBox="0 0 24 24"><use href="../../icons/icons.svg#icon-tick-small"></use></svg></span></td>
             </tr>
@@ -540,7 +535,7 @@
                 <span class="tier-comparison__feature-name">Personal Injury</span>
                 <span class="tier-comparison__info-wrap"><button class="tier-comparison__info-icon" aria-label="More information"><svg class="icon" viewBox="0 0 16 16"><use href="../../icons/icons.svg#icon-information-tooltip"></use></svg></button><span class="tier-comparison__tooltip" role="tooltip">Pays a lump sum if you suffer a serious injury in an accident.</span></span>
               </td>
-              <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1"><span class="tier-comparison__cross" aria-label="Not included"><svg class="icon" viewBox="0 0 96 96"><use href="../../icons/icons.svg#icon-close"></use></svg></span></td>
+              <td class="tier-comparison__cell tier-comparison__cell--tier tier-comparison__col--selected" data-col="1"><span class="tier-comparison__cross" aria-label="Not included"><svg class="icon" viewBox="0 0 96 96"><use href="../../icons/icons.svg#icon-cancel"></use></svg></span></td>
               <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="2"><span class="tier-comparison__value">Up to £500</span></td>
               <td class="tier-comparison__cell tier-comparison__cell--tier" data-col="3"><span class="tier-comparison__value">Up to £600</span></td>
             </tr>
@@ -617,6 +612,150 @@
         </table>
       </div>
       </div>
+
+      <!-- Add-ons section — 32px gap inherited from .screen's gap: var(--gap-x-large) -->
+      <div class="addons-section">
+
+        <div class="addons-section__text">
+          <h2 class="addons-section__heading">Optional extras</h2>
+          <p class="addons-section__body">We offer extra protection for stress-free driving.</p>
+        </div>
+
+        <div class="addons-section__grid">
+
+          <!-- Breakdown Cover -->
+          <div class="cover-tile">
+            <div class="cover-tile__content">
+              <div class="cover-tile__top">
+                <svg class="icon icon--m" viewBox="0 0 48 48">
+                  <use href="../../icons/icons.svg#icon-badge-breakdown"></use>
+                </svg>
+                <span class="cover-tile__top-spacer"></span>
+                <span class="badge badge--low" hidden>Added</span>
+              </div>
+              <div class="cover-tile__text">
+                <p class="cover-tile__title">Breakdown cover</p>
+                <p class="cover-tile__body">This includes combined roadside and recovery within the UK. <a class="cover-tile__link" href="#">Read more</a></p>
+              </div>
+              <div class="cover-tile__ipid">
+                <span class="cover-tile__ipid-icon">
+                  <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor">
+                    <use href="../../icons/icons.svg#icon-documents"></use>
+                  </svg>
+                </span>
+                <p class="cover-tile__ipid-label">Insurance information Document (IPID)</p>
+                <button class="btn btn--pill btn--secondary btn--small">Download</button>
+              </div>
+            </div>
+            <div class="cover-tile__footer">
+              <p class="cover-tile__price">£59.99</p>
+              <button class="btn btn--pill btn--primary btn--small">
+                <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor">
+                  <use href="../../icons/icons.svg#icon-add"></use>
+                </svg>
+                Add
+              </button>
+            </div>
+          </div>
+
+          <!-- Vehicle Replacement -->
+          <div class="cover-tile">
+            <div class="cover-tile__content">
+              <div class="cover-tile__top">
+                <svg class="icon icon--m" viewBox="0 0 48 48">
+                  <use href="../../icons/icons.svg#icon-badge-replacement"></use>
+                </svg>
+                <span class="cover-tile__top-spacer"></span>
+                <span class="badge badge--low" hidden>Added</span>
+              </div>
+              <div class="cover-tile__text">
+                <p class="cover-tile__title">Vehicle replacement cover</p>
+                <p class="cover-tile__body">Get a replacement vehicle for up to 14 days if yours is unroadworthy, beyond economic repair, or stolen and unrecovered. <a class="cover-tile__link" href="#">Read more</a></p>
+              </div>
+              <div class="cover-tile__ipid">
+                <span class="cover-tile__ipid-icon">
+                  <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor">
+                    <use href="../../icons/icons.svg#icon-documents"></use>
+                  </svg>
+                </span>
+                <p class="cover-tile__ipid-label">Insurance information Document (IPID)</p>
+                <button class="btn btn--pill btn--secondary btn--small">Download</button>
+              </div>
+            </div>
+            <div class="cover-tile__footer">
+              <p class="cover-tile__price">£59.99</p>
+              <button class="btn btn--pill btn--primary btn--small">
+                <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor">
+                  <use href="../../icons/icons.svg#icon-add"></use>
+                </svg>
+                Add
+              </button>
+            </div>
+          </div>
+
+          <!-- No Claims Discount -->
+          <div class="cover-tile">
+            <div class="cover-tile__content">
+              <div class="cover-tile__top">
+                <svg class="icon icon--m" viewBox="0 0 48 48">
+                  <use href="../../icons/icons.svg#icon-badge-ncd"></use>
+                </svg>
+                <span class="cover-tile__top-spacer"></span>
+                <span class="badge badge--low" hidden>Added</span>
+              </div>
+              <div class="cover-tile__text">
+                <p class="cover-tile__title">No claims discount (NCD)</p>
+                <p class="cover-tile__body">Protect up to 5 years of your no claims discount, against one at-fault claim. <a class="cover-tile__link" href="#">Read more</a></p>
+              </div>
+            </div>
+            <div class="cover-tile__footer">
+              <p class="cover-tile__price">£59.99</p>
+              <button class="btn btn--pill btn--primary btn--small">
+                <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor">
+                  <use href="../../icons/icons.svg#icon-add"></use>
+                </svg>
+                Add
+              </button>
+            </div>
+          </div>
+
+          <!-- Legal Expenses -->
+          <div class="cover-tile">
+            <div class="cover-tile__content">
+              <div class="cover-tile__top">
+                <svg class="icon icon--m" viewBox="0 0 48 48">
+                  <use href="../../icons/icons.svg#icon-badge-saving"></use>
+                </svg>
+                <span class="cover-tile__top-spacer"></span>
+                <span class="badge badge--low" hidden>Added</span>
+              </div>
+              <div class="cover-tile__text">
+                <p class="cover-tile__title">Legal expenses</p>
+                <p class="cover-tile__body">Covers legal costs for accidents, offences, and disputes, plus a legal helpline. <a class="cover-tile__link" href="#">Read more</a></p>
+              </div>
+              <div class="cover-tile__ipid">
+                <span class="cover-tile__ipid-icon">
+                  <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor">
+                    <use href="../../icons/icons.svg#icon-documents"></use>
+                  </svg>
+                </span>
+                <p class="cover-tile__ipid-label">Insurance information Document (IPID)</p>
+                <button class="btn btn--pill btn--secondary btn--small">Download</button>
+              </div>
+            </div>
+            <div class="cover-tile__footer">
+              <p class="cover-tile__price">£25.00</p>
+              <button class="btn btn--pill btn--primary btn--small">
+                <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor">
+                  <use href="../../icons/icons.svg#icon-add"></use>
+                </svg>
+                Add
+              </button>
+            </div>
+          </div>
+
+        </div><!-- /addons-section__grid -->
+      </div><!-- /addons-section -->
 
     </div>
   </div>
@@ -727,6 +866,91 @@
           var tierData = PRICES[col];
           if (tierData) {
             priceEl.textContent = tierData[billing];
+          }
+        });
+      });
+
+    }());
+
+    // --- Onboarding nav toggle ---
+    function copyRefNumber(btn) {
+      var number = btn.querySelector('.nav__dropdown-ref-number').textContent.trim();
+      var useEl  = btn.querySelector('use');
+      var base   = useEl.getAttribute('href').replace(/#.*$/, '');
+      navigator.clipboard.writeText(number).then(function () {
+        useEl.setAttribute('href', base + '#icon-tick');
+        setTimeout(function () {
+          useEl.setAttribute('href', base + '#icon-copy');
+        }, 1500);
+      });
+    }
+
+    function navToggleOnboarding(navId) {
+      var nav      = document.getElementById(navId);
+      var dropdown = nav.querySelector('.nav__dropdown');
+      var helpBtn  = nav.querySelector('.nav__actions .btn');
+      var toggle   = nav.querySelector('.nav__mobile-toggle');
+      var isOpen   = !dropdown.hidden;
+
+      dropdown.hidden = isOpen;
+
+      if (helpBtn) {
+        helpBtn.setAttribute('aria-expanded', String(!isOpen));
+        helpBtn.innerHTML = isOpen
+          ? '<svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="../../icons/icons.svg#icon-customer"></use></svg> Help'
+          : '<svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="../../icons/icons.svg#icon-close"></use></svg> Close';
+      }
+      if (toggle) {
+        toggle.setAttribute('aria-expanded', String(!isOpen));
+        toggle.setAttribute('aria-label', isOpen ? 'Open help menu' : 'Close help menu');
+        toggle.innerHTML = isOpen
+          ? '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>'
+          : '<svg class="icon icon--xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="../../icons/icons.svg#icon-close"></use></svg>';
+      }
+    }
+
+    document.addEventListener('click', function (e) {
+      var nav = document.getElementById('quote-nav');
+      if (!nav) return;
+      var dropdown = nav.querySelector('.nav__dropdown');
+      var helpBtn  = nav.querySelector('.nav__actions .btn');
+      var toggle   = nav.querySelector('.nav__mobile-toggle');
+      if (dropdown && !nav.contains(e.target) && !dropdown.hidden) {
+        dropdown.hidden = true;
+        if (helpBtn) {
+          helpBtn.setAttribute('aria-expanded', 'false');
+          helpBtn.innerHTML = '<svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="../../icons/icons.svg#icon-customer"></use></svg> Help';
+        }
+        if (toggle) {
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.setAttribute('aria-label', 'Open help menu');
+          toggle.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+        }
+      }
+    });
+
+    // --- Add-ons toggle ---
+    (function () {
+      'use strict';
+
+      var ADD_ICON = '<svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor"><use href="../../icons/icons.svg#icon-add"></use></svg>';
+      var REMOVE_ICON = '<svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor"><use href="../../icons/icons.svg#icon-minus"></use></svg>';
+
+      document.querySelectorAll('.addons-section .cover-tile').forEach(function (tile) {
+        var btn = tile.querySelector('.cover-tile__footer .btn');
+        var badge = tile.querySelector('.badge--low');
+
+        btn.addEventListener('click', function () {
+          var isAdded = !badge.hidden;
+
+          if (isAdded) {
+            badge.hidden = true;
+            btn.className = 'btn btn--pill btn--primary btn--small';
+            btn.innerHTML = ADD_ICON + ' Add';
+          } else {
+            badge.hidden = false;
+            btn.className = 'btn btn--pill btn--secondary btn--small';
+            btn.innerHTML = REMOVE_ICON + ' Remove';
           }
         });
       });

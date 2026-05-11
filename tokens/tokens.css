@@ -11,6 +11,9 @@ body {
   font-family: var(--font-family-base);
 }
 
+/* Ensure the HTML `hidden` attribute always wins over component display rules. */
+[hidden] { display: none !important; }
+
 
 /* ============================================
    PRIMITIVE TOKENS
@@ -117,7 +120,11 @@ body {
   --colour-purple-20: #C9D3FF;
   --colour-purple-10: #E9EDFF;
 
+  /* --- Berry --- */
+  --colour-berry-70: #5B0247;
+
   /* --- Blue --- */
+  --colour-blue-80: #026BA3;
   --colour-blue-70: #0077bb;
   --colour-blue-60: #0088cc;
   --colour-blue-50: #01a1e6;
@@ -348,6 +355,9 @@ body {
   --base-negative: var(--colour-red-50);
   --base-warning: var(--colour-yellow-50);
   --base-positive: var(--colour-green-50);
+
+  /* --- Shadows --- */
+  --shadow-dropdown: 0 2px 6px rgba(39, 37, 45, 0.05), 0 4px 16px rgba(39, 37, 45, 0.1);
 
 }
 

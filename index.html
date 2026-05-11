@@ -70,6 +70,8 @@
   <link rel="stylesheet" href="components/blog-slider/blog-slider.css" />
   <link rel="stylesheet" href="components/tier-comparison/tier-comparison.css" />
   <link rel="stylesheet" href="components/tier-card/tier-card.css" />
+  <link rel="stylesheet" href="components/cover-tile/cover-tile.css" />
+  <link rel="stylesheet" href="components/addons-section/addons-section.css" />
   <link rel="stylesheet" href="components/segment-control/segment-control.css" />
 
   <style>
@@ -1606,6 +1608,170 @@
       </div>
 
     </div>
+  </section>
+
+
+  <!-- ==============================
+       NAVIGATION — ONBOARDING VARIANT
+  ============================== -->
+  <section class="section">
+    <p class="section-label">Navigation — Onboarding</p>
+
+    <div style="display: flex; flex-direction: column; align-items: stretch; gap: var(--gap-large);">
+
+      <!-- Desktop collapsed -->
+      <div>
+        <p class="section__label" style="margin-bottom: var(--gap-small);">Desktop — collapsed</p>
+        <nav class="nav nav--onboarding" aria-label="Main navigation" id="index-onboarding-desktop">
+          <div class="nav__inner">
+          <a href="/" class="nav__logo" aria-label="Zego home">
+            <img src="assets/logo.svg" class="nav__logo-img" alt="Zego" />
+          </a>
+          <div class="nav__actions">
+            <button class="btn btn--pill btn--tertiary" aria-expanded="false" aria-controls="index-onboarding-dropdown-desktop" onclick="navToggleOnboarding('index-onboarding-desktop')">
+              <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-customer"></use></svg>
+              Help
+            </button>
+            <button class="btn btn--pill btn--tertiary">Log out</button>
+          </div>
+          <div class="nav__dropdown" id="index-onboarding-dropdown-desktop" hidden>
+            <div class="nav__dropdown-row">
+              <span class="nav__dropdown-icon">
+                <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-phone"></use></svg>
+              </span>
+              <div class="nav__dropdown-text">
+                <p class="nav__dropdown-title">Call us</p>
+                <p class="nav__dropdown-subtitle">+44 2030 539 815</p>
+              </div>
+            </div>
+            <div class="nav__dropdown-row">
+              <span class="nav__dropdown-icon">
+                <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-live-chat"></use></svg>
+              </span>
+              <div class="nav__dropdown-text">
+                <p class="nav__dropdown-title">Chat with us</p>
+                <p class="nav__dropdown-subtitle">Get instant answers</p>
+              </div>
+            </div>
+            <div class="nav__dropdown-ref">
+              <p class="nav__dropdown-ref-label">Your quote reference is:</p>
+              <button class="nav__dropdown-ref-value" onclick="copyRefNumber(this)" aria-label="Copy reference number to clipboard">
+                <span class="nav__dropdown-ref-number">54673646</span>
+                <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-copy"></use></svg>
+              </button>
+            </div>
+          </div>
+          </div><!-- /.nav__inner -->
+        </nav>
+      </div>
+
+      <!-- Mobile collapsed -->
+      <div>
+        <p class="section__label" style="margin-bottom: var(--gap-small);">Mobile — collapsed</p>
+        <nav class="nav nav--onboarding" aria-label="Main navigation" id="index-onboarding-mobile" style="max-width: 375px;">
+          <div class="nav__inner">
+          <a href="/" class="nav__logo" aria-label="Zego home">
+            <img src="assets/logo.svg" class="nav__logo-img" alt="Zego" />
+          </a>
+          <button class="nav__mobile-toggle" aria-expanded="false" aria-label="Open help menu" onclick="navToggleOnboarding('index-onboarding-mobile')">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+          <div class="nav__dropdown" hidden>
+            <div class="nav__dropdown-row">
+              <span class="nav__dropdown-icon">
+                <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-phone"></use></svg>
+              </span>
+              <div class="nav__dropdown-text">
+                <p class="nav__dropdown-title">Call us</p>
+                <p class="nav__dropdown-subtitle">+44 2030 539 815</p>
+              </div>
+            </div>
+            <div class="nav__dropdown-row">
+              <span class="nav__dropdown-icon">
+                <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-live-chat"></use></svg>
+              </span>
+              <div class="nav__dropdown-text">
+                <p class="nav__dropdown-title">Chat with us</p>
+                <p class="nav__dropdown-subtitle">Get instant answers</p>
+              </div>
+            </div>
+            <div class="nav__dropdown-ref">
+              <p class="nav__dropdown-ref-label">Your quote reference is:</p>
+              <button class="nav__dropdown-ref-value" onclick="copyRefNumber(this)" aria-label="Copy reference number to clipboard">
+                <span class="nav__dropdown-ref-number">54673646</span>
+                <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-copy"></use></svg>
+              </button>
+            </div>
+            <div class="nav__dropdown-row nav__dropdown-row--logout">
+              <button class="btn btn--pill btn--secondary">Log out</button>
+            </div>
+          </div>
+          </div><!-- /.nav__inner -->
+        </nav>
+      </div>
+
+    </div>
+
+    <script>
+    function copyRefNumber(btn) {
+      var number = btn.querySelector('.nav__dropdown-ref-number').textContent.trim();
+      var useEl  = btn.querySelector('use');
+      var base   = useEl.getAttribute('href').replace(/#.*$/, '');
+      navigator.clipboard.writeText(number).then(function () {
+        useEl.setAttribute('href', base + '#icon-tick');
+        setTimeout(function () {
+          useEl.setAttribute('href', base + '#icon-copy');
+        }, 1500);
+      });
+    }
+
+    function navToggleOnboarding(navId) {
+      var nav      = document.getElementById(navId);
+      var dropdown = nav.querySelector('.nav__dropdown');
+      var helpBtn  = nav.querySelector('.nav__actions .btn');
+      var toggle   = nav.querySelector('.nav__mobile-toggle');
+      var isOpen   = !dropdown.hidden;
+
+      dropdown.hidden = isOpen;
+
+      if (helpBtn) {
+        helpBtn.setAttribute('aria-expanded', String(!isOpen));
+        helpBtn.innerHTML = isOpen
+          ? '<svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-customer"></use></svg> Help'
+          : '<svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-close"></use></svg> Close';
+      }
+      if (toggle) {
+        toggle.setAttribute('aria-expanded', String(!isOpen));
+        toggle.setAttribute('aria-label', isOpen ? 'Open help menu' : 'Close help menu');
+        toggle.innerHTML = isOpen
+          ? '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>'
+          : '<svg class="icon icon--xs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-close"></use></svg>';
+      }
+    }
+
+    document.addEventListener('click', function (e) {
+      document.querySelectorAll('.nav--onboarding').forEach(function (nav) {
+        var dropdown = nav.querySelector('.nav__dropdown');
+        var helpBtn  = nav.querySelector('.nav__actions .btn');
+        var toggle   = nav.querySelector('.nav__mobile-toggle');
+        if (dropdown && !nav.contains(e.target) && !dropdown.hidden) {
+          dropdown.hidden = true;
+          if (helpBtn) {
+            helpBtn.setAttribute('aria-expanded', 'false');
+            helpBtn.innerHTML = '<svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor" aria-hidden="true"><use href="icons/icons.svg#icon-customer"></use></svg> Help';
+          }
+          if (toggle) {
+            toggle.setAttribute('aria-expanded', 'false');
+            toggle.setAttribute('aria-label', 'Open help menu');
+            toggle.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+          }
+        }
+      });
+    });
+    </script>
+
   </section>
 
 
@@ -6848,9 +7014,10 @@
   <section class="section">
     <h2 class="sandbox-section-title">Tier card</h2>
 
-    <!-- Default — 3 tiers side by side, Tier 2 selected -->
-    <div class="section__row" style="align-items: flex-start; max-width: 540px;">
-      <div class="tier-card">
+    <!-- Interactive — 3 tiers, Tier 1 selected by default -->
+    <p class="section__label" style="margin-bottom: var(--gap-small);">Interactive — click to select</p>
+    <div class="section__row" id="sandbox-tier-cards" style="align-items: flex-start; max-width: 540px;">
+      <div class="tier-card tier-card--tier-1 tier-card--selected">
         <div class="tier-card__header">
           <span class="tier-card__name">Tier 1</span>
         </div>
@@ -6858,11 +7025,11 @@
           <div class="tier-card__price">
             <span class="tier-card__amount">£857.43</span>
           </div>
-          <button class="btn btn--rounded btn--secondary btn--medium tier-card__cta" type="button">Select Tier 1</button>
+          <button class="btn btn--rounded btn--primary btn--medium tier-card__cta" data-tier="1" type="button">Selected</button>
         </div>
       </div>
 
-      <div class="tier-card tier-card--selected">
+      <div class="tier-card tier-card--tier-2">
         <div class="tier-card__header">
           <span class="tier-card__name">Tier 2</span>
         </div>
@@ -6870,11 +7037,11 @@
           <div class="tier-card__price">
             <span class="tier-card__amount">£1,232.00</span>
           </div>
-          <button class="btn btn--rounded btn--primary btn--medium tier-card__cta" type="button">Selected</button>
+          <button class="btn btn--rounded btn--secondary btn--medium tier-card__cta" data-tier="2" type="button">Select Tier 2</button>
         </div>
       </div>
 
-      <div class="tier-card">
+      <div class="tier-card tier-card--tier-3">
         <div class="tier-card__header">
           <span class="tier-card__name">Tier 3</span>
         </div>
@@ -6882,25 +7049,39 @@
           <div class="tier-card__price">
             <span class="tier-card__amount">£1,549.00</span>
           </div>
-          <button class="btn btn--rounded btn--secondary btn--medium tier-card__cta" type="button">Select Tier 3</button>
+          <button class="btn btn--rounded btn--secondary btn--medium tier-card__cta" data-tier="3" type="button">Select Tier 3</button>
         </div>
       </div>
     </div>
 
-    <!-- Dark mode -->
-    <div class="section__row dark" style="align-items: flex-start; max-width: 200px; background: var(--bg-brand-navy); padding: var(--gap-medium); border-radius: var(--radius-small);">
-      <div class="tier-card tier-card--selected">
-        <div class="tier-card__header">
-          <span class="tier-card__name">Tier 2</span>
-        </div>
-        <div class="tier-card__body">
-          <div class="tier-card__price">
-            <span class="tier-card__amount">£1,232.00</span>
-          </div>
-          <button class="btn btn--rounded btn--primary btn--medium tier-card__cta" type="button">Selected</button>
-        </div>
-      </div>
-    </div>
+    <script>
+      tierCardInit(document.getElementById('sandbox-tier-cards'));
+
+      function tierCardInit(container) {
+        container.addEventListener('click', function (e) {
+          var cta = e.target.closest('.tier-card__cta');
+          if (!cta) return;
+          var newTier = parseInt(cta.dataset.tier, 10);
+          if (!newTier) return;
+          container.querySelectorAll('.tier-card').forEach(function (card) {
+            card.classList.remove('tier-card--selected');
+          });
+          container.querySelectorAll('.tier-card__cta').forEach(function (btn) {
+            var t = parseInt(btn.dataset.tier, 10);
+            if (t === newTier) {
+              btn.textContent = 'Selected';
+              btn.classList.remove('btn--secondary');
+              btn.classList.add('btn--primary');
+              btn.closest('.tier-card').classList.add('tier-card--selected');
+            } else {
+              btn.textContent = 'Select Tier ' + t;
+              btn.classList.remove('btn--primary');
+              btn.classList.add('btn--secondary');
+            }
+          });
+        });
+      }
+    </script>
   </section>
 
   <!-- ============================================================
@@ -6926,19 +7107,43 @@
               </div>
             </th>
             <th scope="col" class="tier-comparison__header-cell tier-comparison__header-cell--tier tier-comparison__col--selected" data-col="1">
-              <div class="tier-comparison__tier-pill tier-comparison__tier-pill--selected">Tier 1</div>
-              <div class="tier-comparison__price" data-annual="£857.43" data-monthly="£79.99">£857.43</div>
-              <button class="btn btn--pill btn--primary tier-comparison__cta tier-comparison__cta--selected" data-tier="1">Selected</button>
+              <div class="tier-card tier-card--tier-1 tier-card--selected">
+                <div class="tier-card__header">
+                  <span class="tier-card__name">Tier 1</span>
+                </div>
+                <div class="tier-card__body">
+                  <div class="tier-card__price">
+                    <span class="tier-card__amount">£857.43</span>
+                  </div>
+                  <button class="btn btn--rounded btn--primary btn--medium tier-card__cta" data-tier="1" type="button">Selected</button>
+                </div>
+              </div>
             </th>
             <th scope="col" class="tier-comparison__header-cell tier-comparison__header-cell--tier" data-col="2">
-              <div class="tier-comparison__tier-pill">Tier 2</div>
-              <div class="tier-comparison__price" data-annual="£1,232.00" data-monthly="£112.99">£1,232.00</div>
-              <button class="btn btn--pill btn--secondary tier-comparison__cta tier-comparison__cta--default" data-tier="2">Select Tier 2</button>
+              <div class="tier-card tier-card--tier-2">
+                <div class="tier-card__header">
+                  <span class="tier-card__name">Tier 2</span>
+                </div>
+                <div class="tier-card__body">
+                  <div class="tier-card__price">
+                    <span class="tier-card__amount">£1,232.00</span>
+                  </div>
+                  <button class="btn btn--rounded btn--secondary btn--medium tier-card__cta" data-tier="2" type="button">Select Tier 2</button>
+                </div>
+              </div>
             </th>
             <th scope="col" class="tier-comparison__header-cell tier-comparison__header-cell--tier" data-col="3">
-              <div class="tier-comparison__tier-pill">Tier 3</div>
-              <div class="tier-comparison__price" data-annual="£1,549.00" data-monthly="£139.99">£1,549.00</div>
-              <button class="btn btn--pill btn--secondary tier-comparison__cta tier-comparison__cta--default" data-tier="3">Select Tier 3</button>
+              <div class="tier-card tier-card--tier-3">
+                <div class="tier-card__header">
+                  <span class="tier-card__name">Tier 3</span>
+                </div>
+                <div class="tier-card__body">
+                  <div class="tier-card__price">
+                    <span class="tier-card__amount">£1,549.00</span>
+                  </div>
+                  <button class="btn btn--rounded btn--secondary btn--medium tier-card__cta" data-tier="3" type="button">Select Tier 3</button>
+                </div>
+              </div>
             </th>
           </tr>
         </thead>
@@ -7433,19 +7638,19 @@
       };
       document.querySelectorAll('.tier-comparison').forEach(function (root) {
         root.addEventListener('click', function (e) {
-          var cta = e.target.closest('.tier-comparison__cta');
+          var cta = e.target.closest('.tier-card__cta');
           if (!cta) return;
           var newTier = parseInt(cta.dataset.tier, 10);
           if (!newTier) return;
           root.querySelectorAll('.tier-comparison__col--selected').forEach(function (el) { el.classList.remove('tier-comparison__col--selected'); });
           root.querySelectorAll('[data-col="' + newTier + '"]').forEach(function (el) { el.classList.add('tier-comparison__col--selected'); });
-          root.querySelectorAll('.tier-comparison__tier-pill').forEach(function (p) { p.classList.remove('tier-comparison__tier-pill--selected'); });
+          root.querySelectorAll('.tier-card').forEach(function (card) { card.classList.remove('tier-card--selected'); });
           var activeCell = root.querySelector('[data-col="' + newTier + '"].tier-comparison__header-cell--tier');
-          if (activeCell) { var pill = activeCell.querySelector('.tier-comparison__tier-pill'); if (pill) pill.classList.add('tier-comparison__tier-pill--selected'); }
-          root.querySelectorAll('.tier-comparison__cta').forEach(function (btn) {
+          if (activeCell) { var card = activeCell.querySelector('.tier-card'); if (card) card.classList.add('tier-card--selected'); }
+          root.querySelectorAll('.tier-card__cta').forEach(function (btn) {
             var t = parseInt(btn.dataset.tier, 10);
-            if (t === newTier) { btn.textContent = 'Selected'; btn.classList.remove('btn--secondary', 'tier-comparison__cta--default'); btn.classList.add('btn--primary', 'tier-comparison__cta--selected'); }
-            else { btn.textContent = 'Select Tier ' + t; btn.classList.remove('btn--primary', 'tier-comparison__cta--selected'); btn.classList.add('btn--secondary', 'tier-comparison__cta--default'); }
+            if (t === newTier) { btn.textContent = 'Selected'; btn.classList.remove('btn--secondary'); btn.classList.add('btn--primary'); }
+            else { btn.textContent = 'Select Tier ' + t; btn.classList.remove('btn--primary'); btn.classList.add('btn--secondary'); }
           });
         });
         root.addEventListener('click', function (e) {
@@ -7454,10 +7659,10 @@
           var billing = btn.dataset.billing;
           if (!billing) return;
           root.querySelectorAll('.tier-comparison__billing-btn').forEach(function (b) { b.classList.toggle('is-active', b === btn); });
-          root.querySelectorAll('.tier-comparison__price').forEach(function (priceEl) {
-            var colEl = priceEl.closest('[data-col]');
+          root.querySelectorAll('.tier-card__amount').forEach(function (amountEl) {
+            var colEl = amountEl.closest('[data-col]');
             var col = colEl ? parseInt(colEl.dataset.col, 10) : null;
-            if (col && PRICES[col]) priceEl.textContent = PRICES[col][billing];
+            if (col && PRICES[col]) amountEl.textContent = PRICES[col][billing];
           });
         });
         root.addEventListener('click', function (e) {
@@ -7595,6 +7800,367 @@
       });
     }());
     </script>
+  </section>
+
+  <!-- ============================================================
+       ADDONS SECTION
+  ============================================================ -->
+  <section class="section">
+
+    <!-- Desktop — 2-column grid, all four cover types -->
+    <div class="section__row" style="align-items: flex-start;">
+      <div class="addons-section" style="max-width: 876px;">
+        <div class="addons-section__text">
+          <h2 class="addons-section__heading">Optional extras</h2>
+          <p class="addons-section__body">We offer extra protection for stress-free driving.</p>
+        </div>
+        <div class="addons-section__grid">
+
+          <!-- Breakdown Cover — IPID -->
+          <div class="cover-tile">
+            <div class="cover-tile__content">
+              <div class="cover-tile__top">
+                <svg class="icon icon--m" viewBox="0 0 48 48"><use href="icons/icons.svg#icon-badge-breakdown"></use></svg>
+                <span class="cover-tile__top-spacer"></span>
+                <span class="badge badge--low" hidden>Added</span>
+              </div>
+              <div class="cover-tile__text">
+                <p class="cover-tile__title">Breakdown cover</p>
+                <p class="cover-tile__body">This includes combined roadside and recovery within the UK. <a class="cover-tile__link" href="#">Read more</a></p>
+              </div>
+              <div class="cover-tile__ipid">
+                <span class="cover-tile__ipid-icon"><svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-documents"></use></svg></span>
+                <p class="cover-tile__ipid-label">Insurance information Document (IPID)</p>
+                <button class="btn btn--pill btn--secondary btn--small">Download</button>
+              </div>
+            </div>
+            <div class="cover-tile__footer">
+              <p class="cover-tile__price">£59.99</p>
+              <button class="btn btn--pill btn--primary btn--small"><svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-add"></use></svg> Add</button>
+            </div>
+          </div>
+
+          <!-- Vehicle Replacement — IPID -->
+          <div class="cover-tile">
+            <div class="cover-tile__content">
+              <div class="cover-tile__top">
+                <svg class="icon icon--m" viewBox="0 0 48 48"><use href="icons/icons.svg#icon-badge-replacement"></use></svg>
+                <span class="cover-tile__top-spacer"></span>
+                <span class="badge badge--low" hidden>Added</span>
+              </div>
+              <div class="cover-tile__text">
+                <p class="cover-tile__title">Vehicle replacement cover</p>
+                <p class="cover-tile__body">Get a replacement vehicle for up to 14 days if yours is unroadworthy, beyond economic repair, or stolen and unrecovered. <a class="cover-tile__link" href="#">Read more</a></p>
+              </div>
+              <div class="cover-tile__ipid">
+                <span class="cover-tile__ipid-icon"><svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-documents"></use></svg></span>
+                <p class="cover-tile__ipid-label">Insurance information Document (IPID)</p>
+                <button class="btn btn--pill btn--secondary btn--small">Download</button>
+              </div>
+            </div>
+            <div class="cover-tile__footer">
+              <p class="cover-tile__price">£59.99</p>
+              <button class="btn btn--pill btn--primary btn--small"><svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-add"></use></svg> Add</button>
+            </div>
+          </div>
+
+          <!-- NCD — no IPID -->
+          <div class="cover-tile">
+            <div class="cover-tile__content">
+              <div class="cover-tile__top">
+                <svg class="icon icon--m" viewBox="0 0 48 48"><use href="icons/icons.svg#icon-badge-ncd"></use></svg>
+                <span class="cover-tile__top-spacer"></span>
+                <span class="badge badge--low" hidden>Added</span>
+              </div>
+              <div class="cover-tile__text">
+                <p class="cover-tile__title">No claims discount (NCD)</p>
+                <p class="cover-tile__body">Protect up to 5 years of your no claims discount, against one at-fault claim. <a class="cover-tile__link" href="#">Read more</a></p>
+              </div>
+            </div>
+            <div class="cover-tile__footer">
+              <p class="cover-tile__price">£59.99</p>
+              <button class="btn btn--pill btn--primary btn--small"><svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-add"></use></svg> Add</button>
+            </div>
+          </div>
+
+          <!-- Legal Expenses — IPID -->
+          <div class="cover-tile">
+            <div class="cover-tile__content">
+              <div class="cover-tile__top">
+                <svg class="icon icon--m" viewBox="0 0 48 48"><use href="icons/icons.svg#icon-badge-saving"></use></svg>
+                <span class="cover-tile__top-spacer"></span>
+                <span class="badge badge--low" hidden>Added</span>
+              </div>
+              <div class="cover-tile__text">
+                <p class="cover-tile__title">Legal expenses</p>
+                <p class="cover-tile__body">Covers legal costs for accidents, offences, and disputes, plus a legal helpline. <a class="cover-tile__link" href="#">Read more</a></p>
+              </div>
+              <div class="cover-tile__ipid">
+                <span class="cover-tile__ipid-icon"><svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-documents"></use></svg></span>
+                <p class="cover-tile__ipid-label">Insurance information Document (IPID)</p>
+                <button class="btn btn--pill btn--secondary btn--small">Download</button>
+              </div>
+            </div>
+            <div class="cover-tile__footer">
+              <p class="cover-tile__price">£25.00</p>
+              <button class="btn btn--pill btn--primary btn--small"><svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-add"></use></svg> Add</button>
+            </div>
+          </div>
+
+        </div><!-- /addons-section__grid -->
+      </div><!-- /addons-section -->
+    </div>
+
+    <!-- Mobile — single column stack -->
+    <div class="section__row" style="align-items: flex-start;">
+      <div class="addons-section" style="max-width: 343px;">
+        <div class="addons-section__text">
+          <h2 class="addons-section__heading">Optional extras</h2>
+          <p class="addons-section__body">We offer extra protection for stress-free driving.</p>
+        </div>
+        <div class="addons-section__grid">
+
+          <div class="cover-tile">
+            <div class="cover-tile__content">
+              <div class="cover-tile__top">
+                <svg class="icon icon--m" viewBox="0 0 48 48"><use href="icons/icons.svg#icon-badge-breakdown"></use></svg>
+                <span class="cover-tile__top-spacer"></span>
+                <span class="badge badge--low" hidden>Added</span>
+              </div>
+              <div class="cover-tile__text">
+                <p class="cover-tile__title">Breakdown cover</p>
+                <p class="cover-tile__body">This includes combined roadside and recovery within the UK. <a class="cover-tile__link" href="#">Read more</a></p>
+              </div>
+              <div class="cover-tile__ipid">
+                <span class="cover-tile__ipid-icon"><svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-documents"></use></svg></span>
+                <p class="cover-tile__ipid-label">Insurance information Document (IPID)</p>
+                <button class="btn btn--pill btn--secondary btn--small">Download</button>
+              </div>
+            </div>
+            <div class="cover-tile__footer">
+              <p class="cover-tile__price">£59.99</p>
+              <button class="btn btn--pill btn--primary btn--small"><svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-add"></use></svg> Add</button>
+            </div>
+          </div>
+
+          <div class="cover-tile">
+            <div class="cover-tile__content">
+              <div class="cover-tile__top">
+                <svg class="icon icon--m" viewBox="0 0 48 48"><use href="icons/icons.svg#icon-badge-replacement"></use></svg>
+                <span class="cover-tile__top-spacer"></span>
+                <span class="badge badge--low" hidden>Added</span>
+              </div>
+              <div class="cover-tile__text">
+                <p class="cover-tile__title">Vehicle replacement cover</p>
+                <p class="cover-tile__body">Get a replacement vehicle for up to 14 days if yours is unroadworthy, beyond economic repair, or stolen and unrecovered. <a class="cover-tile__link" href="#">Read more</a></p>
+              </div>
+              <div class="cover-tile__ipid">
+                <span class="cover-tile__ipid-icon"><svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-documents"></use></svg></span>
+                <p class="cover-tile__ipid-label">Insurance information Document (IPID)</p>
+                <button class="btn btn--pill btn--secondary btn--small">Download</button>
+              </div>
+            </div>
+            <div class="cover-tile__footer">
+              <p class="cover-tile__price">£59.99</p>
+              <button class="btn btn--pill btn--primary btn--small"><svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-add"></use></svg> Add</button>
+            </div>
+          </div>
+
+        </div><!-- /addons-section__grid -->
+      </div><!-- /addons-section -->
+    </div>
+
+    <script>
+    (function () {
+      'use strict';
+      var ADD_ICON = '<svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-add"></use></svg>';
+      var REMOVE_ICON = '<svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor"><use href="icons/icons.svg#icon-minus"></use></svg>';
+      document.querySelectorAll('.addons-section .cover-tile').forEach(function (tile) {
+        var btn = tile.querySelector('.cover-tile__footer .btn');
+        var badge = tile.querySelector('.badge--low');
+        btn.addEventListener('click', function () {
+          var isAdded = !badge.hidden;
+          if (isAdded) {
+            badge.hidden = true;
+            btn.className = 'btn btn--pill btn--primary btn--small';
+            btn.innerHTML = ADD_ICON + ' Add';
+          } else {
+            badge.hidden = false;
+            btn.className = 'btn btn--pill btn--secondary btn--small';
+            btn.innerHTML = REMOVE_ICON + ' Remove';
+          }
+        });
+      });
+    }());
+    </script>
+
+  </section>
+
+  <!-- ============================================================
+       COVER TILE
+  ============================================================ -->
+  <section class="section">
+
+    <!-- Default state — no badge, no IPID -->
+    <div class="section__row" style="align-items: flex-start; flex-wrap: wrap; gap: var(--gap-large);">
+      <p class="section__label">Default</p>
+      <div class="cover-tile" style="width: 327px;">
+        <div class="cover-tile__content">
+          <div class="cover-tile__top">
+            <div class="icon-badge icon-badge--m icon-badge--brand-purple">
+              <svg class="icon-badge__icon" viewBox="0 0 96 96" fill="currentColor">
+                <use href="icons/icons.svg#icon-policy"></use>
+              </svg>
+            </div>
+            <span class="cover-tile__top-spacer"></span>
+          </div>
+          <div class="cover-tile__text">
+            <p class="cover-tile__title">Breakdown cover</p>
+            <p class="cover-tile__body">
+              This includes combined roadside and recovery within the UK.
+              <a class="cover-tile__link" href="#">Read more</a>
+            </p>
+          </div>
+        </div>
+        <div class="cover-tile__footer">
+          <p class="cover-tile__price">£59.99</p>
+          <button class="btn btn--pill btn--primary btn--small">+ Add</button>
+        </div>
+      </div>
+
+      <!-- Added + IPID -->
+      <div class="cover-tile" style="width: 327px;">
+        <div class="cover-tile__content">
+          <div class="cover-tile__top">
+            <div class="icon-badge icon-badge--m icon-badge--brand-purple">
+              <svg class="icon-badge__icon" viewBox="0 0 96 96" fill="currentColor">
+                <use href="icons/icons.svg#icon-policy"></use>
+              </svg>
+            </div>
+            <span class="cover-tile__top-spacer"></span>
+            <span class="badge badge--low">Added</span>
+          </div>
+          <div class="cover-tile__text">
+            <p class="cover-tile__title">Breakdown cover</p>
+            <p class="cover-tile__body">
+              This includes combined roadside and recovery within the UK.
+              <a class="cover-tile__link" href="#">Read more</a>
+            </p>
+          </div>
+          <div class="cover-tile__ipid">
+            <span class="cover-tile__ipid-icon">
+              <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor">
+                <use href="icons/icons.svg#icon-policy"></use>
+              </svg>
+            </span>
+            <p class="cover-tile__ipid-label">Insurance information Document (IPID)</p>
+            <button class="btn btn--pill btn--secondary btn--small">Download</button>
+          </div>
+        </div>
+        <div class="cover-tile__footer">
+          <p class="cover-tile__price">£59.99</p>
+          <button class="btn btn--pill btn--primary btn--small">+ Add</button>
+        </div>
+      </div>
+
+      <!-- Legal Expenses variant -->
+      <div class="cover-tile" style="width: 327px;">
+        <div class="cover-tile__content">
+          <div class="cover-tile__top">
+            <div class="icon-badge icon-badge--m icon-badge--brand-purple">
+              <svg class="icon-badge__icon" viewBox="0 0 96 96" fill="currentColor">
+                <use href="icons/icons.svg#icon-discount"></use>
+              </svg>
+            </div>
+            <span class="cover-tile__top-spacer"></span>
+          </div>
+          <div class="cover-tile__text">
+            <p class="cover-tile__title">Legal expenses</p>
+            <p class="cover-tile__body">
+              Covers legal costs for accidents, offences, and disputes, plus a legal helpline.
+              <a class="cover-tile__link" href="#">Read more</a>
+            </p>
+          </div>
+          <div class="cover-tile__ipid">
+            <span class="cover-tile__ipid-icon">
+              <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor">
+                <use href="icons/icons.svg#icon-policy"></use>
+              </svg>
+            </span>
+            <p class="cover-tile__ipid-label">Insurance information Document (IPID)</p>
+            <button class="btn btn--pill btn--secondary btn--small">Download</button>
+          </div>
+        </div>
+        <div class="cover-tile__footer">
+          <p class="cover-tile__price">£25.00</p>
+          <button class="btn btn--pill btn--primary btn--small">+ Add</button>
+        </div>
+      </div>
+
+      <!-- NCD variant -->
+      <div class="cover-tile" style="width: 327px;">
+        <div class="cover-tile__content">
+          <div class="cover-tile__top">
+            <div class="icon-badge icon-badge--m icon-badge--brand-purple">
+              <svg class="icon-badge__icon" viewBox="0 0 96 96" fill="currentColor">
+                <use href="icons/icons.svg#icon-tick"></use>
+              </svg>
+            </div>
+            <span class="cover-tile__top-spacer"></span>
+          </div>
+          <div class="cover-tile__text">
+            <p class="cover-tile__title">No claims discount (NCD)</p>
+            <p class="cover-tile__body">
+              Protect up to 5 years of your no claims discount, against one at-fault claim.
+              <a class="cover-tile__link" href="#">Read more</a>
+            </p>
+          </div>
+        </div>
+        <div class="cover-tile__footer">
+          <p class="cover-tile__price">£59.99</p>
+          <button class="btn btn--pill btn--primary btn--small">+ Add</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dark mode -->
+    <div class="section__row dark" style="align-items: flex-start; flex-wrap: wrap; gap: var(--gap-large); background: var(--bg-brand-navy); padding: var(--gap-medium); border-radius: var(--radius-small);">
+      <p class="section__label" style="color: var(--colour-white);">Dark mode</p>
+      <div class="cover-tile" style="width: 327px;">
+        <div class="cover-tile__content">
+          <div class="cover-tile__top">
+            <div class="icon-badge icon-badge--m icon-badge--brand-purple">
+              <svg class="icon-badge__icon" viewBox="0 0 96 96" fill="currentColor">
+                <use href="icons/icons.svg#icon-policy"></use>
+              </svg>
+            </div>
+            <span class="cover-tile__top-spacer"></span>
+            <span class="badge badge--low">Added</span>
+          </div>
+          <div class="cover-tile__text">
+            <p class="cover-tile__title">Breakdown cover</p>
+            <p class="cover-tile__body">
+              This includes combined roadside and recovery within the UK.
+              <a class="cover-tile__link" href="#">Read more</a>
+            </p>
+          </div>
+          <div class="cover-tile__ipid">
+            <span class="cover-tile__ipid-icon">
+              <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor">
+                <use href="icons/icons.svg#icon-policy"></use>
+              </svg>
+            </span>
+            <p class="cover-tile__ipid-label">Insurance information Document (IPID)</p>
+            <button class="btn btn--pill btn--secondary btn--small">Download</button>
+          </div>
+        </div>
+        <div class="cover-tile__footer">
+          <p class="cover-tile__price">£59.99</p>
+          <button class="btn btn--pill btn--primary btn--small">+ Add</button>
+        </div>
+      </div>
+    </div>
+
   </section>
 
 </body>

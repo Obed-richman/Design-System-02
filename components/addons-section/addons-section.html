@@ -1,0 +1,341 @@
+<!-- ============================================
+     ADDONS SECTION COMPONENT SNIPPETS
+     Copy what you need into a screen or index.html
+
+     Requires: tokens/tokens.css
+               tokens/typography.css
+               icons/icons.css
+               components/badge/badge.css
+               components/button/button.css
+               components/icon-badge/icon-badge.css
+               components/cover-tile/cover-tile.css
+               components/addons-section/addons-section.css
+
+     Breakpoints: Desktop (default) · Mobile
+     Cards: Breakdown Cover · Vehicle Replacement · NCD · Legal Expenses
+     Per-card toggles: Added badge · IPID row
+   ============================================ -->
+
+
+<!-- ============================================================
+     DESKTOP — 2-column card grid, all four cover types
+     ============================================================ -->
+
+<div class="addons-section">
+
+  <div class="addons-section__text">
+    <h2 class="addons-section__heading">Optional extras</h2>
+    <p class="addons-section__body">We offer extra protection for stress-free driving.</p>
+  </div>
+
+  <div class="addons-section__grid">
+
+    <!-- Breakdown Cover — Added + IPID -->
+    <div class="cover-tile">
+      <div class="cover-tile__content">
+        <div class="cover-tile__top">
+          <svg class="icon icon--m" viewBox="0 0 48 48">
+            <use href="../../icons/icons.svg#icon-badge-breakdown"></use>
+          </svg>
+          <span class="cover-tile__top-spacer"></span>
+          <span class="badge badge--low">Added</span>
+        </div>
+        <div class="cover-tile__text">
+          <p class="cover-tile__title">Breakdown cover</p>
+          <p class="cover-tile__body">
+            This includes combined roadside and recovery within the UK.
+            <a class="cover-tile__link" href="#">Read more</a>
+          </p>
+        </div>
+        <div class="cover-tile__ipid">
+          <span class="cover-tile__ipid-icon">
+            <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor">
+              <use href="../../icons/icons.svg#icon-documents"></use>
+            </svg>
+          </span>
+          <p class="cover-tile__ipid-label">Insurance information Document (IPID)</p>
+          <button class="btn btn--pill btn--secondary btn--small">Download</button>
+        </div>
+      </div>
+      <div class="cover-tile__footer">
+        <p class="cover-tile__price">£59.99</p>
+        <button class="btn btn--pill btn--primary btn--small">
+          <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor">
+            <use href="../../icons/icons.svg#icon-add"></use>
+          </svg>
+          Add
+        </button>
+      </div>
+    </div>
+
+    <!-- Vehicle Replacement — Added + IPID -->
+    <div class="cover-tile">
+      <div class="cover-tile__content">
+        <div class="cover-tile__top">
+          <svg class="icon icon--m" viewBox="0 0 48 48">
+            <use href="../../icons/icons.svg#icon-badge-replacement"></use>
+          </svg>
+          <span class="cover-tile__top-spacer"></span>
+          <span class="badge badge--low">Added</span>
+        </div>
+        <div class="cover-tile__text">
+          <p class="cover-tile__title">Vehicle replacement cover</p>
+          <p class="cover-tile__body">
+            Get a replacement vehicle for up to 14 days if yours is unroadworthy, beyond economic repair, or stolen and unrecovered due to an accident, theft, fire, or malicious damage.
+            <a class="cover-tile__link" href="#">Read more</a>
+          </p>
+        </div>
+        <div class="cover-tile__ipid">
+          <span class="cover-tile__ipid-icon">
+            <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor">
+              <use href="../../icons/icons.svg#icon-documents"></use>
+            </svg>
+          </span>
+          <p class="cover-tile__ipid-label">Insurance information Document (IPID)</p>
+          <button class="btn btn--pill btn--secondary btn--small">Download</button>
+        </div>
+      </div>
+      <div class="cover-tile__footer">
+        <p class="cover-tile__price">£59.99</p>
+        <button class="btn btn--pill btn--primary btn--small">
+          <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor">
+            <use href="../../icons/icons.svg#icon-add"></use>
+          </svg>
+          Add
+        </button>
+      </div>
+    </div>
+
+    <!-- No Claims Discount (NCD) — Added, no IPID -->
+    <div class="cover-tile">
+      <div class="cover-tile__content">
+        <div class="cover-tile__top">
+          <svg class="icon icon--m" viewBox="0 0 48 48">
+            <use href="../../icons/icons.svg#icon-badge-ncd"></use>
+          </svg>
+          <span class="cover-tile__top-spacer"></span>
+          <span class="badge badge--low">Added</span>
+        </div>
+        <div class="cover-tile__text">
+          <p class="cover-tile__title">No claims discount (NCD)</p>
+          <p class="cover-tile__body">
+            Protect up to 5 years of your no claims discount, against one at-fault claim.
+            <a class="cover-tile__link" href="#">Read more</a>
+          </p>
+        </div>
+      </div>
+      <div class="cover-tile__footer">
+        <p class="cover-tile__price">£59.99</p>
+        <button class="btn btn--pill btn--primary btn--small">
+          <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor">
+            <use href="../../icons/icons.svg#icon-add"></use>
+          </svg>
+          Add
+        </button>
+      </div>
+    </div>
+
+    <!-- Legal Expenses — Added + IPID -->
+    <div class="cover-tile">
+      <div class="cover-tile__content">
+        <div class="cover-tile__top">
+          <svg class="icon icon--m" viewBox="0 0 48 48">
+            <use href="../../icons/icons.svg#icon-badge-saving"></use>
+          </svg>
+          <span class="cover-tile__top-spacer"></span>
+          <span class="badge badge--low">Added</span>
+        </div>
+        <div class="cover-tile__text">
+          <p class="cover-tile__title">Legal expenses</p>
+          <p class="cover-tile__body">
+            Covers legal costs for accidents, offences, and disputes, plus a legal helpline.
+            <a class="cover-tile__link" href="#">Read more</a>
+          </p>
+        </div>
+        <div class="cover-tile__ipid">
+          <span class="cover-tile__ipid-icon">
+            <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor">
+              <use href="../../icons/icons.svg#icon-documents"></use>
+            </svg>
+          </span>
+          <p class="cover-tile__ipid-label">Insurance information Document (IPID)</p>
+          <button class="btn btn--pill btn--secondary btn--small">Download</button>
+        </div>
+      </div>
+      <div class="cover-tile__footer">
+        <p class="cover-tile__price">£25.00</p>
+        <button class="btn btn--pill btn--primary btn--small">
+          <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor">
+            <use href="../../icons/icons.svg#icon-add"></use>
+          </svg>
+          Add
+        </button>
+      </div>
+    </div>
+
+  </div><!-- /addons-section__grid -->
+</div><!-- /addons-section (desktop) -->
+
+
+<!-- ============================================================
+     MOBILE — single-column stack
+     ============================================================ -->
+
+<!-- Add class="addons-section addons-section--mobile" if you need
+     to force mobile layout at any viewport. On small screens
+     the @media (max-width: 767px) rules apply automatically. -->
+
+<div class="addons-section" style="max-width: 343px;">
+
+  <div class="addons-section__text">
+    <h2 class="addons-section__heading">Optional extras</h2>
+    <p class="addons-section__body">We offer extra protection for stress-free driving.</p>
+  </div>
+
+  <div class="addons-section__grid">
+
+    <!-- Breakdown Cover -->
+    <div class="cover-tile">
+      <div class="cover-tile__content">
+        <div class="cover-tile__top">
+          <svg class="icon icon--m" viewBox="0 0 48 48">
+            <use href="../../icons/icons.svg#icon-badge-breakdown"></use>
+          </svg>
+          <span class="cover-tile__top-spacer"></span>
+          <span class="badge badge--low">Added</span>
+        </div>
+        <div class="cover-tile__text">
+          <p class="cover-tile__title">Breakdown cover</p>
+          <p class="cover-tile__body">
+            This includes combined roadside and recovery within the UK.
+            <a class="cover-tile__link" href="#">Read more</a>
+          </p>
+        </div>
+        <div class="cover-tile__ipid">
+          <span class="cover-tile__ipid-icon">
+            <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor">
+              <use href="../../icons/icons.svg#icon-documents"></use>
+            </svg>
+          </span>
+          <p class="cover-tile__ipid-label">Insurance information Document (IPID)</p>
+          <button class="btn btn--pill btn--secondary btn--small">Download</button>
+        </div>
+      </div>
+      <div class="cover-tile__footer">
+        <p class="cover-tile__price">£59.99</p>
+        <button class="btn btn--pill btn--primary btn--small">
+          <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor">
+            <use href="../../icons/icons.svg#icon-add"></use>
+          </svg>
+          Add
+        </button>
+      </div>
+    </div>
+
+    <!-- Vehicle Replacement -->
+    <div class="cover-tile">
+      <div class="cover-tile__content">
+        <div class="cover-tile__top">
+          <svg class="icon icon--m" viewBox="0 0 48 48">
+            <use href="../../icons/icons.svg#icon-badge-replacement"></use>
+          </svg>
+          <span class="cover-tile__top-spacer"></span>
+          <span class="badge badge--low">Added</span>
+        </div>
+        <div class="cover-tile__text">
+          <p class="cover-tile__title">Vehicle replacement cover</p>
+          <p class="cover-tile__body">
+            Get a replacement vehicle for up to 14 days if yours is unroadworthy, beyond economic repair, or stolen and unrecovered.
+            <a class="cover-tile__link" href="#">Read more</a>
+          </p>
+        </div>
+        <div class="cover-tile__ipid">
+          <span class="cover-tile__ipid-icon">
+            <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor">
+              <use href="../../icons/icons.svg#icon-documents"></use>
+            </svg>
+          </span>
+          <p class="cover-tile__ipid-label">Insurance information Document (IPID)</p>
+          <button class="btn btn--pill btn--secondary btn--small">Download</button>
+        </div>
+      </div>
+      <div class="cover-tile__footer">
+        <p class="cover-tile__price">£59.99</p>
+        <button class="btn btn--pill btn--primary btn--small">
+          <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor">
+            <use href="../../icons/icons.svg#icon-add"></use>
+          </svg>
+          Add
+        </button>
+      </div>
+    </div>
+
+    <!-- NCD -->
+    <div class="cover-tile">
+      <div class="cover-tile__content">
+        <div class="cover-tile__top">
+          <svg class="icon icon--m" viewBox="0 0 48 48">
+            <use href="../../icons/icons.svg#icon-badge-ncd"></use>
+          </svg>
+          <span class="cover-tile__top-spacer"></span>
+          <span class="badge badge--low">Added</span>
+        </div>
+        <div class="cover-tile__text">
+          <p class="cover-tile__title">No claims discount (NCD)</p>
+          <p class="cover-tile__body">
+            Protect up to 5 years of your no claims discount, against one at-fault claim.
+            <a class="cover-tile__link" href="#">Read more</a>
+          </p>
+        </div>
+      </div>
+      <div class="cover-tile__footer">
+        <p class="cover-tile__price">£59.99</p>
+        <button class="btn btn--pill btn--primary btn--small">
+          <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor">
+            <use href="../../icons/icons.svg#icon-add"></use>
+          </svg>
+          Add
+        </button>
+      </div>
+    </div>
+
+    <!-- Legal Expenses -->
+    <div class="cover-tile">
+      <div class="cover-tile__content">
+        <div class="cover-tile__top">
+          <svg class="icon icon--m" viewBox="0 0 48 48">
+            <use href="../../icons/icons.svg#icon-badge-saving"></use>
+          </svg>
+          <span class="cover-tile__top-spacer"></span>
+          <span class="badge badge--low">Added</span>
+        </div>
+        <div class="cover-tile__text">
+          <p class="cover-tile__title">Legal expenses</p>
+          <p class="cover-tile__body">
+            Covers legal costs for accidents, offences, and disputes, plus a legal helpline.
+            <a class="cover-tile__link" href="#">Read more</a>
+          </p>
+        </div>
+        <div class="cover-tile__ipid">
+          <span class="cover-tile__ipid-icon">
+            <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor">
+              <use href="../../icons/icons.svg#icon-documents"></use>
+            </svg>
+          </span>
+          <p class="cover-tile__ipid-label">Insurance information Document (IPID)</p>
+          <button class="btn btn--pill btn--secondary btn--small">Download</button>
+        </div>
+      </div>
+      <div class="cover-tile__footer">
+        <p class="cover-tile__price">£25.00</p>
+        <button class="btn btn--pill btn--primary btn--small">
+          <svg class="icon icon--xxs" viewBox="0 0 96 96" fill="currentColor">
+            <use href="../../icons/icons.svg#icon-add"></use>
+          </svg>
+          Add
+        </button>
+      </div>
+    </div>
+
+  </div><!-- /addons-section__grid -->
+</div><!-- /addons-section (mobile) -->
