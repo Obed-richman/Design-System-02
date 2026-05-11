@@ -94,6 +94,8 @@
   height: 18px;
   object-fit: contain;
   flex-shrink: 0;
+  /* Extra gap between the partner logo and the registration plate below */
+  margin-bottom: var(--gap-x-large);
 }
 
 
